@@ -6,11 +6,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Welcome</h1>
-        <form action="" method="post">
-        <a href="addBranch.jsp">Branch</a>
-        <a href="viewCountry.jsp">Country</a>
-        <button type="submit">Save</button>
-        </form>
+        <h1>Hello World!</h1>
     </body>
 </html>

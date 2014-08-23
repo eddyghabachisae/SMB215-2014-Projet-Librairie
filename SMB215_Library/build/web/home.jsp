@@ -7,6 +7,10 @@
     </head>
     <body>
         <h1>Welcome</h1>
-        <a href="library.jsp">Library</a>
+        <form action="" method="post">
+        <a href="addBranch.jsp">Branch</a>
+        <a href="viewCountry.jsp">Country</a>
+        <button type="submit">Save</button>
+        </form>
     </body>
 </html>
