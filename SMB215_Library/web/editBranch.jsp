@@ -13,7 +13,7 @@
                 <td><input type="text" id="txtBranchName" name="txtBranchName"></td>
             </tr>
             <tr>
-                <td><label for="">City:</label></td>
+                <td>City:</label></td>
                 <td>
                     <select id="selBranchCity" name="selBranchCity">
                         <option></option>

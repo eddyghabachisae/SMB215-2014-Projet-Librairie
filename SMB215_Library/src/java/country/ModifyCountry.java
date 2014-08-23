@@ -7,17 +7,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "AddCountry", urlPatterns = {"/AddCountry"})
-public class AddCountry extends HttpServlet {
+@WebServlet(name = "ModifyCountry", urlPatterns = {"/ModifyCountry"})
+public class ModifyCountry extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         Country cnt = new Country();
+        cnt.setId(Integer.parseInt(request.getParameter("txtCountryId")));
         cnt.setShortName(request.getParameter("txtCountryShortName"));
         cnt.setName(request.getParameter("txtCountryName"));
         CountryBean cntBean = new CountryBean();
-        cntBean.addCountry(cnt);
-        response.sendRedirect("editCountry.jsp");
+        cntBean.modifyCountry(cnt);
+        response.sendRedirect("viewCountry.jsp");
     }
 
     @Override
