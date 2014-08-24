@@ -1,3 +1,9 @@
+<%-- 
+    Document   : settings
+    Created on : Aug 24, 2014, 4:44:46 PM
+    Author     : Douha
+--%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,70 +28,51 @@
                         
                     </div>
                 </div>
-                <article class="grid_3">
+                <h3 class="prev-indent-bot">Settings</h3>
+                <article class="grid_2">
                     <div class="box">
-                       <a href="#" class="imgCenter"> <figure class="fa-5x fa fa-group blueColor"></figure></a>
+                       <a href="#" class="imgCenter"> <figure class="fa-5x fa fa-sitemap blueColor"></figure></a>
                         <div class="padding">
-                            <strong class="title-3 textCenter">Clients</strong>
+                            <strong class="title-3 ">Branches</strong>
                         </div>
                     </div>
                 </article>
-                <article class="grid_3">
+                <article class="grid_2">
                     <div class="box">
-					<a href="#" class="imgCenter"> <figure class="fa-5x fa fa-book blueColor"></figure></a>
+					<a href="#" class="imgCenter"> <figure class="fa-5x fa fa-globe blueColor"></figure></a>
                         <div class="padding">
-                            <strong class="title-3 textCenter">Products</strong>
+                            <strong class="title-3 ">Countries</strong>
                         </div>
                     </div>
                 </article>
-                <article class="grid_3">
+                <article class="grid_2">
                     <div class="box">
-					  <a href="#" class="imgCenter"> <figure class="fa-5x fa fa-suitcase blueColor"></figure></a>
+					  <a href="#" class="imgCenter"> <figure class="fa-5x fa fa-globe blueColor"></figure></a>
                         <div class="padding">
-                            <strong class="title-3 textCenter">Vendors</strong>
+                            <strong class="title-3 ">Provinces</strong>
                         </div>
                     </div>
                 </article>
-                <article class="grid_3">
+                <article class="grid_2">
                     <div class="box">
-					   <a href="#" class="imgCenter"> <figure class="fa-5x fa fa-cogs blueColor"></figure></a>
+					  <a href="#" class="imgCenter"> <figure class="fa-5x fa fa-globe blueColor"></figure></a>
                         <div class="padding">
-                            <strong class="title-3 textCenter">Employees</strong>
+                            <strong class="title-3 ">Cities</strong>
                         </div>
                     </div>
                 </article>
-				<article class="grid_3">
+                <article class="grid_2">
                     <div class="box">
-					  <a href="#" class="imgCenter"> <figure class="fa-5x fa fa-archive blueColor"></figure></a>
+					  <a href="#" class="imgCenter"> <figure class="fa-5x fa fa-wrench blueColor"></figure></a>
                         <div class="padding">
-                            <strong class="title-3 textCenter">Sales Order</strong>
+                            <strong class="title-3 ">Settings</strong>
                         </div>
                     </div>
                 </article>
-				<article class="grid_3">
-                    <div class="box">
-					   <a href="#" class="imgCenter"> <figure class="fa-5x fa fa-truck blueColor"></figure></a>
-                        <div class="padding">
-                            <strong class="title-3 textCenter">Purshased-Order</strong>
-                        </div>
-                    </div>
-                </article>
-				<article class="grid_3">
-                    <div class="box">
-					   <a href="#" class="imgCenter"> <figure class="fa-5x fa fa-list-alt blueColor"></figure></a>
-                        <div class="padding">
-                            <strong class="title-3 textCenter">Rental orders</strong>
-                        </div>
-                    </div>
-                </article>
-				<article class="grid_3">
-                    <div class="box">
-					  <a href="settings.jsp" class="imgCenter"> <figure class="fa-5x fa fa-cog blueColor"></figure></a>
-                        <div class="padding">
-                            <strong class="title-3 textCenter">Settings</strong>
-                        </div>
-                    </div>
-                </article>
+              
+		
+		
+                
                 <div class="clear"></div>
             </div>
         </header>
@@ -112,4 +99,5 @@
 	<script type="text/javascript"> Cufon.now(); </script>
 </body>
 </html>
+
 
