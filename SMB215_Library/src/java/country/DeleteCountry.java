@@ -15,7 +15,7 @@ public class DeleteCountry extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("id"));
         CountryBean cntBean = new CountryBean();
         cntBean.deleteCountry(id);
-        response.sendRedirect("viewCountry.jsp");
+        response.sendRedirect("country/viewCountry.jsp");
     }
 
     @Override

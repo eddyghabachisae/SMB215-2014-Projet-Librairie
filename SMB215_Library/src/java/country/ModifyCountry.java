@@ -18,7 +18,7 @@ public class ModifyCountry extends HttpServlet {
         cnt.setName(request.getParameter("txtCountryName"));
         CountryBean cntBean = new CountryBean();
         cntBean.modifyCountry(cnt);
-        response.sendRedirect("viewCountry.jsp");
+        response.sendRedirect("country/viewCountry.jsp");
     }
 
     @Override

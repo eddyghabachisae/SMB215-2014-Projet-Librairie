@@ -14,12 +14,12 @@
     </head>
     <body>
         <%
-            String action = "AddCountry";
+            String action = "../AddCountry";
             int id = 0;
             String shortName = "";
             String name = "";
             if (request.getParameter("id") != null) {
-                action = "ModifyCountry";
+                action = "../ModifyCountry";
                 id = Integer.parseInt(request.getParameter("id"));
                 CountryBean cntBean = new CountryBean();
                 Country cnt = cntBean.getCountry(id);

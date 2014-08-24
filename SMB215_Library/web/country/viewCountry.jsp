@@ -31,15 +31,15 @@
                         <form method="post" action="editCountry.jsp">
                             <input type="hidden" name="id" 
                                    value="<%=String.valueOf(cnt.getId())%>"/> 
-                            <input type="image" src="images/modify.png" alt="modify" 
+                            <input type="image" src="../images/modify.png" alt="modify" 
                                    title="modify"> 
                         </form>
                     </td>
                     <td>
-                        <form method="post" action="DeleteCountry">
+                        <form method="post" action="../DeleteCountry">
                             <input type="hidden" name="id" 
                                    value="<%=String.valueOf(cnt.getId())%>"/> 
-                            <input type="image" src="images/delete.png" alt="delete" 
+                            <input type="image" src="../images/delete.png" alt="delete" 
                                    title="delete"> 
                         </form>
                     </td>
