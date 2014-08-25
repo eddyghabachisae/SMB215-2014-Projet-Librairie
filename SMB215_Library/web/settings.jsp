@@ -7,7 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
-<%@ include file="main.html" %>
+<%@ include file="homeMain.html" %>
 <body id="page1">
 	<div class="main">
         <!--==============================header=================================-->
@@ -19,7 +19,7 @@
                             <h1><a href="index.html">Library</a></h1>
                             <nav>
                                 <ul class="menu">
-                                    <li><a class="active" href="index.html">Main</a></li>
+                                    <li><a class="active" href="../home.jsp">Main</a></li>
                                     <li><a href="">Inbox</a></li>
                                     <li><a href="">Logout</a></li>
                                 </ul>
