@@ -4,7 +4,7 @@ public class City{
 
     private int id;
     private String name;
-    private String province
+    private String province;
     private String shortName;
     
 
@@ -25,7 +25,7 @@ public class City{
     }
 
     public String getprovince() {
-        return province
+        return province;
     }
 
     public void setprovince(String province){

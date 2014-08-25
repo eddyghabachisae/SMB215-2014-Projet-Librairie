@@ -1,12 +1,11 @@
 package province;
 
-public class Province{
+public class Province {
 
     private int id;
-    private String name;    
+    private String name;
     private String shortName;
-	private int country;
-    
+    private int country;
 
     public int getId() {
         return id;
@@ -24,19 +23,19 @@ public class Province{
         this.name = name;
     }
 
-
     public String getShortName() {
         return shortName;
     }
+
     public void setShortName(String shortName) {
         this.shortName = shortName;
     }
 
-    public String getcountry() {
-        return country
+    public int getcountry() {
+        return country;
     }
 
-    public void setcountry(String country){
+    public void setcountry(int country) {
         this.country = country;
     }
 
