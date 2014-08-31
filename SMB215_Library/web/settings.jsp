@@ -47,7 +47,7 @@
                 </article>
                 <article class="grid_2">
                     <div class="box">
-					  <a href="#" class="imgCenter"> <figure class="fa-5x fa fa-globe blueColor"></figure></a>
+					  <a href="province/viewProvince.jsp" class="imgCenter"> <figure class="fa-5x fa fa-globe blueColor"></figure></a>
                         <div class="padding">
                             <strong class="title-3 ">Provinces</strong>
                         </div>
@@ -55,7 +55,7 @@
                 </article>
                 <article class="grid_2">
                     <div class="box">
-					  <a href="#" class="imgCenter"> <figure class="fa-5x fa fa-globe blueColor"></figure></a>
+					  <a href="city/viewCity.jsp" class="imgCenter"> <figure class="fa-5x fa fa-globe blueColor"></figure></a>
                         <div class="padding">
                             <strong class="title-3 ">Cities</strong>
                         </div>
@@ -63,7 +63,7 @@
                 </article>
                 <article class="grid_2">
                     <div class="box">
-					  <a href="#" class="imgCenter"> <figure class="fa-5x fa fa-wrench blueColor"></figure></a>
+					  <a href="library/viewSettings.jsp" class="imgCenter"> <figure class="fa-5x fa fa-wrench blueColor"></figure></a>
                         <div class="padding">
                             <strong class="title-3 ">Settings</strong>
                         </div>

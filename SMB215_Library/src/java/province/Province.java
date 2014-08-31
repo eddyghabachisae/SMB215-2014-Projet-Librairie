@@ -38,5 +38,4 @@ public class Province {
     public void setcountry(int country) {
         this.country = country;
     }
-
 }

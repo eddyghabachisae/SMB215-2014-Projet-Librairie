@@ -78,7 +78,7 @@ public class CityBean {
                     dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
 
             stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("Select * From tbl_city order by cit_shortname");
+            ResultSet rs = stmt.executeQuery("Select * From tbl_city order by cty_shortname");
             while (rs.next()) {
                 City cit = new City();
                 cit.setId(rs.getInt(1));

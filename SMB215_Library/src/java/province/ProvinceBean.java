@@ -1,6 +1,5 @@
 package province;
 
-import province.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -181,7 +180,7 @@ public class ProvinceBean {
                     + "pvc_name=? Where pvc_id=?");
             pstmt.setString(1, pvc.getShortName());
             pstmt.setString(2, pvc.getName());
-            pstmt.setString(4, pvc.getcountry());
+            pstmt.setInt(4, pvc.getcountry());
             pstmt.setInt(3, pvc.getId());
             pstmt.executeUpdate();
         } catch (SQLException | ClassNotFoundException ex) {

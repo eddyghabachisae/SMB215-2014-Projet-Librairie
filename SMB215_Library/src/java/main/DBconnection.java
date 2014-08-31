@@ -5,9 +5,9 @@ import java.sql.DriverManager;
 
 public class DBconnection {
     private static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    private static final String DATABASE_URL = "jdbc:mysql://localhost:3306/librarydb";
+    private static final String DATABASE_URL = "jdbc:mysql://localhost:3306/LibraryDB";
     private static final String DB_USERNAME = "root";
-    private static final String DB_PASSWORD = "password";
+    private static final String DB_PASSWORD = "ubuntu";
 
     public DBconnection() {
     }
@@ -28,14 +28,14 @@ public class DBconnection {
         return DB_PASSWORD;
     }
   
-     public static Connection connect()  
+     public Connection connect()  
     {  
     Connection connection = null;  
     try  
     {  
         String username = DB_USERNAME;  
         String password = DB_PASSWORD;  
-        String url = "jdbc:mysql://localhost:3306/librarydb";  
+        String url = "jdbc:mysql://localhost:3306/LibraryDB";  
         Class.forName("com.mysql.jdbc.Driver").newInstance();  
         connection = DriverManager.getConnection(url,username,password);  
         System.out.println("Connection Established!");  
