@@ -1,5 +1,5 @@
 
-package emp;
+package emplo;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
