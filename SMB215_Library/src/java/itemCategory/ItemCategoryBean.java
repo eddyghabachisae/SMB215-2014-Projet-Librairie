@@ -24,7 +24,7 @@ public class ItemCategoryBean {
                     dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
 
             stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("Select * From tbl_itemcategory order by itc_code");
+            ResultSet rs = stmt.executeQuery("Select * From itemcategory order by itc_code");
             while (rs.next()) {
                 ItemCategory itc = new ItemCategory();
                 itc.setId(rs.getInt(1));
@@ -59,7 +59,7 @@ public class ItemCategoryBean {
             con = DriverManager.getConnection(dbCon.getDATABASE_URL(),
                     dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
             stmt = con.createStatement();
-            stmt.execute("Delete From tbl_itemcategory Where itc_id = " + String.valueOf(id));
+            stmt.execute("Delete From itemcategory Where itc_id = " + String.valueOf(id));
         } catch (SQLException | ClassNotFoundException ex) {
             System.err.println("Caught Exception: " + ex.getMessage());
         } finally {
@@ -88,7 +88,7 @@ public class ItemCategoryBean {
             con = DriverManager.getConnection(dbCon.getDATABASE_URL(),
                     dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
 
-            pstmt = con.prepareStatement("Insert Into tbl_itemcategory "
+            pstmt = con.prepareStatement("Insert Into itemcategory "
                     + "(itc_code, itc_description) Values(?,?)");
 
             pstmt.setString(1, itc.getCode());
@@ -123,7 +123,7 @@ public class ItemCategoryBean {
             con = DriverManager.getConnection(dbCon.getDATABASE_URL(),
                     dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
             stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("Select * From tbl_itemcategory Where itc_id=" + id);
+            ResultSet rs = stmt.executeQuery("Select * From itemcategory Where itc_id=" + id);
             if (rs.next()) {
                 itc = new ItemCategory();
                 itc.setId(rs.getInt(1));
@@ -157,7 +157,7 @@ public class ItemCategoryBean {
             con = DriverManager.getConnection(dbCon.getDATABASE_URL(),
                     dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
 
-            pstmt = con.prepareStatement("Update tbl_itemcategory Set itc_code=?, "
+            pstmt = con.prepareStatement("Update itemcategory Set itc_code=?, "
                     + "itc_description=? Where itc_id=?");
             pstmt.setString(1, itc.getCode());
             pstmt.setString(2, itc.getDescription());
