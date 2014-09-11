@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 10, 2014 at 05:27 PM
+-- Generation Time: Sep 11, 2014 at 08:40 PM
 -- Server version: 5.5.16
 -- PHP Version: 5.3.8
 
@@ -222,7 +222,6 @@ CREATE TABLE IF NOT EXISTS `employee` (
 CREATE TABLE IF NOT EXISTS `item` (
   `itm_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `itm_name` varchar(255) DEFAULT NULL,
-  `itm_type_id` int(11) NOT NULL DEFAULT '0',
   `itm_barcode` varchar(255) DEFAULT NULL,
   `itm_barcodeimgpath` varchar(255) DEFAULT NULL,
   `itm_imgpath` varchar(255) DEFAULT NULL,
