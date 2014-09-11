@@ -20,5 +20,6 @@
             </table>
             <button type="submit">Save</button>
         </form>
+                <a href="../GetItemCategories">Back</a>
     </body>
 </html>

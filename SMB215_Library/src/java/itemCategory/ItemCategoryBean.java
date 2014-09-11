@@ -11,7 +11,7 @@ import java.util.List;
 import main.DBconnection;
 
 public class ItemCategoryBean {
-    
+
     public List<ItemCategory> getItemCategories() {
         List<ItemCategory> list = new ArrayList<>();
         Connection con = null;
@@ -78,10 +78,8 @@ public class ItemCategoryBean {
 
     public void addItemCategory(ItemCategory itc) {
 
-        int id;
         Connection con = null;
         PreparedStatement pstmt = null;
-        Statement idstmt = null;
 
         try {
             DBconnection dbCon = new DBconnection();
@@ -89,38 +87,19 @@ public class ItemCategoryBean {
 
             con = DriverManager.getConnection(dbCon.getDATABASE_URL(),
                     dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
-            con.setAutoCommit(false);
-            idstmt = con.createStatement();
-            ResultSet rs = idstmt.executeQuery("Select ifnull(max(itc_id),0)+1 From tbl_itemcategory");
-            rs.next();
-            id = rs.getInt(1);
 
-            pstmt = con.prepareStatement("Insert Into tbl_itemcategory Values(?,?,?)");
+            pstmt = con.prepareStatement("Insert Into tbl_itemcategory "
+                    + "(itc_code, itc_description) Values(?,?)");
 
-            pstmt.setInt(1, id);
-            pstmt.setString(2, itc.getCode());
-            pstmt.setString(3, itc.getDescription());
+            pstmt.setString(1, itc.getCode());
+            pstmt.setString(2, itc.getDescription());
 
             pstmt.execute();
 
-            con.commit();
-
         } catch (SQLException | ClassNotFoundException ex) {
             System.err.println("Caught Exception: " + ex.getMessage());
-            if (con != null) {
-                try {
-                    con.rollback();
-                } catch (SQLException ex2) {
-                    System.err.println("Caught Exception: " + ex2.getMessage());
-                }
-            }
         } finally {
-
             try {
-
-                if (idstmt != null) {
-                    idstmt.close();
-                }
                 if (pstmt != null) {
                     pstmt.close();
                 }
@@ -199,5 +178,5 @@ public class ItemCategoryBean {
             }
         }
     }
-    
+
 }
