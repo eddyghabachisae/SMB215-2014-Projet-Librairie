@@ -40,9 +40,9 @@
                 </article>
                 <article class="grid_3">
                     <div class="box">
-					  <a href="#" class="imgCenter"> <figure class="fa-5x fa fa-suitcase blueColor"></figure></a>
+					  <a href="GetSuppliers" class="imgCenter"> <figure class="fa-5x fa fa-suitcase blueColor"></figure></a>
                         <div class="padding">
-                            <strong class="title-3 textCenter">Vendors</strong>
+                            <strong class="title-3 textCenter">Suppliers</strong>
                         </div>
                     </div>
                 </article>
