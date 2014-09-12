@@ -23,7 +23,6 @@
                 </tr>
             </c:forEach>
         </table>
-         <a href="GetItemCategory">Add</a>
-    </body>
+         <a href="GetSupplier">Add</a>
     </body>
 </html>
