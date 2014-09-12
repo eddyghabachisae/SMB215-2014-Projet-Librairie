@@ -1,6 +1,6 @@
 package Item;
 
-import itemCategory.*;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -18,6 +18,7 @@ public class ItemBean {
         Connection con = null;
         Statement stmt = null;
         try {
+            System.err.println("ana honnnnnnnnnnn");
             DBconnection dbCon = new DBconnection();
             Class.forName(dbCon.getJDBC_DRIVER());
 
@@ -40,9 +41,12 @@ public class ItemBean {
                 item.setMaxLimit(rs.getInt(10));
                 item.setQuantity(rs.getInt(11));
                 item.setIsAvailable(rs.getBoolean(12));
-                item.setDeactivationReason(rs.getString(13));
-                item.setItemCategory_id(rs.getInt(14));
+                item.setIsActive(rs.getBoolean(13));
+                item.setDeactivationReason(rs.getString(14));
+                item.setItemCategory_id(rs.getInt(15));
+                System.err.println(item.toString());
                 list.add(item);
+               
             }
         } catch (SQLException | ClassNotFoundException ex) {
             System.err.println("Caught Exception: " + ex.getMessage());
@@ -58,6 +62,7 @@ public class ItemBean {
                 System.err.println("Caught Exception: " + ex.getMessage());
             }
         }
+        System.err.println(list.size());
         return list;
     }
 
