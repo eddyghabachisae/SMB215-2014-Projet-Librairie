@@ -41,7 +41,7 @@ public class Supplier {
         this.remarks = remarks;
     }
 
-    public boolean isIsactive() {
+    public boolean getIsactive() {
         return isactive;
     }
 
@@ -56,7 +56,5 @@ public class Supplier {
     public void setDeactivationreason(String deactivationreason) {
         this.deactivationreason = deactivationreason;
     }
-    
-    
     
 }
