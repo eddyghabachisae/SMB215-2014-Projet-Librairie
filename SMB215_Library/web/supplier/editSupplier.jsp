@@ -4,11 +4,6 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Edit Supplier</title>
-        <script type="text/javascript">
-    getRemarks(){        
-    document.getElementById("remarks").value = <%=request.getParameter("remarks")%>
-}
-        </script>
     </head>
     <body>
         <h1>Supplier</h1>
@@ -25,24 +20,28 @@
                 <tr>
                     <td><label>Remarks</label></td>
                     <td><textarea name="remarks" >
-                        </textarea></td>
+                            <%=request.getParameter("remarks")%>
+                        </textarea>
+                    </td>
                 <tr>
                     <td><label>Active</label></td>
                     <td>
-                        <input type="radio" value="1"><label>Yes</label> 
-                        <input type="radio" value="2"><label>No</label>
+                        <input type="radio" id="isactiveyes" name="isactive" value="1" checked>
+                        <label for="isactiveyes">Yes</label> 
+                        <input type="radio" id="isactiveno" name="isactive" value="2">
+                        <label for="isactiveno">No</label>
                     </td>
                 </tr>
-
+                <tr>
+                    <td><label>Deactivation reason</label></td>
+                    <td><textarea name="deactivationreason" >
+                            <%=request.getParameter("deactivationreason")%>
+                        </textarea>
+                    </td>
+                </tr>
             </table>
-               
-                    
-                
-
-
             <button type="submit">Save</button>
         </form>
         <a href="../GetSuppliers">Back</a>
     </body>
-    
 </html>
