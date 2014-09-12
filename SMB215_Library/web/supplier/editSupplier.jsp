@@ -19,24 +19,24 @@
                 </tr>
                 <tr>
                     <td><label>Remarks</label></td>
-                    <td><textarea name="remarks" >
-                            <%=request.getParameter("remarks")%>
-                        </textarea>
+                    <td><textarea name="remarks" ><%=request.getParameter("remarks")%></textarea>
                     </td>
                 <tr>
                     <td><label>Active</label></td>
                     <td>
-                        <input type="radio" id="isactiveyes" name="isactive" value="1" checked>
+                        <input type="radio" id="isactiveyes" name="isactive" value="1" 
+                               <% if (request.getParameter("isactive").equals("true")) {%> 
+                               checked <%}%>>
                         <label for="isactiveyes">Yes</label> 
-                        <input type="radio" id="isactiveno" name="isactive" value="2">
+                        <input type="radio" id="isactiveno" name="isactive" value="2"
+                                <% if (request.getParameter("isactive").equals("flase")) {%> 
+                               checked <%}%>>
                         <label for="isactiveno">No</label>
                     </td>
                 </tr>
                 <tr>
                     <td><label>Deactivation reason</label></td>
-                    <td><textarea name="deactivationreason" >
-                            <%=request.getParameter("deactivationreason")%>
-                        </textarea>
+                    <td><textarea name="deactivationreason" ><%=request.getParameter("deactivationreason")%></textarea>
                     </td>
                 </tr>
             </table>

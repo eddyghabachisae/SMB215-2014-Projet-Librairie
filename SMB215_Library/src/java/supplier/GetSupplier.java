@@ -1,7 +1,6 @@
 package supplier;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,7 +21,7 @@ public class GetSupplier extends HttpServlet {
                     +"&website=" + sup.getWebsite()
                     +"&remarks=" + sup.getRemarks()
                     +"&isactive=" + sup.getIsactive()
-                    +"&deactivationreason=" + sup.getDeactivationreason());
+                    +"&deactivationreason=" + ((sup.getIsactive()==true)?sup.getDeactivationreason():""));
         } else {
                response.sendRedirect("supplier/editSupplier.jsp?id=&name=&website=&remarks=&isactive=&deactivationreason=");
         }
