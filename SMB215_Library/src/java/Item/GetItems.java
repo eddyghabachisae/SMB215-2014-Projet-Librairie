@@ -7,7 +7,6 @@
 package Item;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -36,10 +35,10 @@ public class GetItems extends HttpServlet {
         ItemBean itemBean = new ItemBean();
         List<Item> itemsList = itemBean.getItems();
         request.setAttribute("itemsList", itemsList);
-        System.err.println("22222222222"+itemsList.size());
         request.getRequestDispatcher("Item/manage.jsp").forward(request, response);
    
         }
+  
     
         @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)

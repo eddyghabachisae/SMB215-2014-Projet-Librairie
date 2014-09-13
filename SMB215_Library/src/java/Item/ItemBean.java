@@ -18,7 +18,6 @@ public class ItemBean {
         Connection con = null;
         Statement stmt = null;
         try {
-            System.err.println("ana honnnnnnnnnnn");
             DBconnection dbCon = new DBconnection();
             Class.forName(dbCon.getJDBC_DRIVER());
 
@@ -27,6 +26,7 @@ public class ItemBean {
 
             stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("Select * From item order by itm_id");
+        
             while (rs.next()) {
                 Item item = new Item();
                 item.setId(rs.getLong(1));
@@ -44,7 +44,6 @@ public class ItemBean {
                 item.setIsActive(rs.getBoolean(13));
                 item.setDeactivationReason(rs.getString(14));
                 item.setItemCategory_id(rs.getInt(15));
-                System.err.println(item.toString());
                 list.add(item);
                
             }
@@ -151,9 +150,9 @@ public class ItemBean {
             con = DriverManager.getConnection(dbCon.getDATABASE_URL(),
                     dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
             stmt = con.createStatement();
+            System.err.println("idddddddddddddddd:"+id);
             ResultSet rs = stmt.executeQuery("Select * From item Where itm_id=" + id);
             if (rs.next()) {
-                item = new Item();
                 item.setId(rs.getLong(1));
                 item.setName(rs.getString(2));
                 item.setBarcode(rs.getString(3));
@@ -166,8 +165,10 @@ public class ItemBean {
                 item.setMaxLimit(rs.getInt(10));
                 item.setQuantity(rs.getInt(11));
                 item.setIsAvailable(rs.getBoolean(12));
-                item.setDeactivationReason(rs.getString(13));
-                item.setItemCategory_id(rs.getInt(14));
+                item.setIsActive(rs.getBoolean(13));
+                item.setDeactivationReason(rs.getString(14));
+                item.setItemCategory_id(rs.getInt(15));
+                
             }
         } catch (SQLException | ClassNotFoundException ex) {
             System.err.println("Caught Exception: " + ex.getMessage());
@@ -186,7 +187,7 @@ public class ItemBean {
         return item;
     }
 
-    public void modifyItemCategory(Item item) {
+    public void modifyItem(Item item) {
         Connection con = null;
         PreparedStatement pstmt = null;
         try {
@@ -216,7 +217,8 @@ public class ItemBean {
             pstmt.setBoolean(11, item.getIsAvailable());
             pstmt.setBoolean(12, item.getIsActive());
             pstmt.setString(13, item.getDeactivationReason());
-             pstmt.setLong(14, item.getItemCategory_id());
+            pstmt.setLong(14, item.getItemCategory_id());
+             
             
             pstmt.executeUpdate();
         } catch (SQLException | ClassNotFoundException ex) {

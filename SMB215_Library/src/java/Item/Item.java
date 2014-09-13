@@ -17,6 +17,7 @@ public class Item {
     public boolean isAvailable;
     public boolean isActive;
     public String deactivationReason;
+    private int noOfRecords;
 
     @Override
     public String toString() {
