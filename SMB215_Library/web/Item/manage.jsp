@@ -54,9 +54,16 @@
                                         <td>${item.itemCategory_id}</td>
                                         <td>${item.quantity}</td>
                                         <td>
-                                            <a href="#" class="fa fa-check-circle"></a>
-                                            <a href="#" class="fa fa-lg fa-pencil-square-o"></a>
-                                            <a href="#" class="fa fa-lg fa-trash-o"></a> 
+                                            <c:choose>
+                                            <c:when test="${item.isActive==true}" >
+                                                <a href="DeactivateItem?id=${item.id}" class="fa fa-check-circle">Deactivate</a>
+                                            </c:when>
+                                            <c:otherwise>
+                                             <a href="ActivateItem?id=${item.id}" class="fa fa-check-circle">Activate</a>   
+                                            </c:otherwise>
+                                            </c:choose>
+                                            <a href="#" class="fa fa-lg fa-pencil-square-o">Edit</a>
+                                            <a href="DeleteItem?id=${item.id}" class="fa fa-lg fa-trash-o">Delete</a> 
                                         </td>
                                     </tr>
                                 </c:forEach>
