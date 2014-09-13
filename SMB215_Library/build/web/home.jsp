@@ -1,7 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
-<%@ include file="main.html" %>
+<%@ include file="homeMain.html" %>
 <body id="page1">
 	<div class="main">
         <!--==============================header=================================-->
@@ -13,7 +13,7 @@
                             <h1><a href="index.html">Library</a></h1>
                             <nav>
                                 <ul class="menu">
-                                    <li><a class="active" href="index.html">Main</a></li>
+                                    <li><a class="active" href="home.jsp">Main</a></li>
                                     <li><a href="">Inbox</a></li>
                                     <li><a href="">Logout</a></li>
                                 </ul>
@@ -32,7 +32,7 @@
                 </article>
                 <article class="grid_3">
                     <div class="box">
-					<a href="#" class="imgCenter"> <figure class="fa-5x fa fa-book blueColor"></figure></a>
+					<a href="GetItemCategories" class="imgCenter"> <figure class="fa-5x fa fa-book blueColor"></figure></a>
                         <div class="padding">
                             <strong class="title-3 textCenter">Products</strong>
                         </div>
@@ -40,9 +40,9 @@
                 </article>
                 <article class="grid_3">
                     <div class="box">
-					  <a href="#" class="imgCenter"> <figure class="fa-5x fa fa-suitcase blueColor"></figure></a>
+					  <a href="GetSuppliers" class="imgCenter"> <figure class="fa-5x fa fa-suitcase blueColor"></figure></a>
                         <div class="padding">
-                            <strong class="title-3 textCenter">Vendors</strong>
+                            <strong class="title-3 textCenter">Suppliers</strong>
                         </div>
                     </div>
                 </article>
@@ -90,14 +90,8 @@
             </div>
         </header>
         
-        <!--==============================content================================-->
-        <section id="content"><div class="ic"><div class="inner_copy">All <a href="http://www.magentothemesworld.com" title="Best Magento Templates">premium Magento themes</a> at magentothemesworld.com!</div></div>
-            <div class="container_12">
-                <div class="wrapper">
-                    
-                </div>
-            </div>
-          </section>
+   
+        
         
         <!--==============================footer=================================-->
         <footer>

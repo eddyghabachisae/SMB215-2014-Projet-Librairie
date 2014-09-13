@@ -7,7 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
-<%@ include file="main.html" %>
+<%@ include file="homeMain.html" %>
 <body id="page1">
 	<div class="main">
         <!--==============================header=================================-->
@@ -19,7 +19,7 @@
                             <h1><a href="index.html">Library</a></h1>
                             <nav>
                                 <ul class="menu">
-                                    <li><a class="active" href="index.html">Main</a></li>
+                                    <li><a class="active" href="../home.jsp">Main</a></li>
                                     <li><a href="">Inbox</a></li>
                                     <li><a href="">Logout</a></li>
                                 </ul>
@@ -47,7 +47,7 @@
                 </article>
                 <article class="grid_2">
                     <div class="box">
-					  <a href="#" class="imgCenter"> <figure class="fa-5x fa fa-globe blueColor"></figure></a>
+					  <a href="province/viewProvince.jsp" class="imgCenter"> <figure class="fa-5x fa fa-globe blueColor"></figure></a>
                         <div class="padding">
                             <strong class="title-3 ">Provinces</strong>
                         </div>
@@ -55,7 +55,7 @@
                 </article>
                 <article class="grid_2">
                     <div class="box">
-					  <a href="#" class="imgCenter"> <figure class="fa-5x fa fa-globe blueColor"></figure></a>
+					  <a href="city/viewCity.jsp" class="imgCenter"> <figure class="fa-5x fa fa-globe blueColor"></figure></a>
                         <div class="padding">
                             <strong class="title-3 ">Cities</strong>
                         </div>
@@ -63,7 +63,7 @@
                 </article>
                 <article class="grid_2">
                     <div class="box">
-					  <a href="#" class="imgCenter"> <figure class="fa-5x fa fa-wrench blueColor"></figure></a>
+                        <a href="library/editSettings.jsp" class="imgCenter"> <figure class="fa-5x fa fa-wrench blueColor"></figure></a>
                         <div class="padding">
                             <strong class="title-3 ">Settings</strong>
                         </div>
