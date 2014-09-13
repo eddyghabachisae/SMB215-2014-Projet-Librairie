@@ -1,1 +1,0 @@
-Please create a 'test' database then run the query (SQL_Structure.sql) in mysql
