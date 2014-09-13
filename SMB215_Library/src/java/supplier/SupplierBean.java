@@ -2,6 +2,7 @@ package supplier;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -23,7 +24,7 @@ public class SupplierBean {
                     dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
 
             stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("Select * From supplier Where sup_isactive=1 order by sup_name");
+            ResultSet rs = stmt.executeQuery("Select * From supplier order by sup_name");
             while (rs.next()) {
                 Supplier sup = new Supplier();
                 sup.setId(rs.getInt(1));
@@ -45,6 +46,74 @@ public class SupplierBean {
             }
         }
         return list;
+    }
+    
+    public void deleteSupplier(int id) {
+        Connection con = null;
+        Statement stmt = null;
+        try {
+            DBconnection dbCon = new DBconnection();
+            Class.forName(dbCon.getJDBC_DRIVER());
+
+            con = DriverManager.getConnection(dbCon.getDATABASE_URL(),
+                    dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
+            stmt = con.createStatement();
+            stmt.execute("Delete From supplier Where sup_id = " + String.valueOf(id));
+        } catch (SQLException | ClassNotFoundException ex) {
+            System.err.println("Caught Exception: " + ex.getMessage());
+        } finally {
+            try {
+                if (stmt != null) {
+                    stmt.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException ex) {
+                System.err.println("Caught Exception: " + ex.getMessage());
+            }
+        }
+    }
+
+    
+    public void addSupplier(Supplier sup) {
+
+        Connection con = null;
+        PreparedStatement pstmt = null;
+
+        try {
+            DBconnection dbCon = new DBconnection();
+            Class.forName(dbCon.getJDBC_DRIVER());
+
+            con = DriverManager.getConnection(dbCon.getDATABASE_URL(),
+                    dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
+
+            pstmt = con.prepareStatement("Insert Into supplier "
+                    + "(sup_name, sup_website, sup_remarks, sup_isactive, sup_deactivationreason) "
+                    + "Values(?,?,?,?,?)");
+
+            pstmt.setString(1, sup.getName());
+            pstmt.setString(2, sup.getWebsite());
+            pstmt.setString(3, sup.getRemarks());
+            pstmt.setBoolean(4, sup.getIsactive());
+            pstmt.setString(5, sup.getDeactivationreason());
+
+            pstmt.execute();
+
+        } catch (SQLException | ClassNotFoundException ex) {
+            System.err.println("Caught Exception: " + ex.getMessage());
+        } finally {
+            try {
+                if (pstmt != null) {
+                    pstmt.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException ex) {
+                System.err.println("Caught Exception: " + ex.getMessage());
+            }
+        }
     }
     
     
@@ -85,5 +154,42 @@ public class SupplierBean {
         }
         return sup;
     }
+    
+    public void modifySupplier(Supplier sup) {
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        try {
+            DBconnection dbCon = new DBconnection();
+            Class.forName(dbCon.getJDBC_DRIVER());
+
+            con = DriverManager.getConnection(dbCon.getDATABASE_URL(),
+                    dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
+
+            pstmt = con.prepareStatement("Update supplier Set sup_name=?, "
+                    + "sup_website=?, sup_remarks=?, sup_isactive=?, sup_deactivationreason=?"
+                    + " Where sup_id=?");
+            pstmt.setString(1, sup.getName());
+            pstmt.setString(2, sup.getWebsite());
+            pstmt.setString(3, sup.getRemarks());
+            pstmt.setString(4, (sup.getIsactive()==true)?"1":"0");
+            pstmt.setString(5, sup.getDeactivationreason());
+            pstmt.setInt(6, sup.getId());
+            pstmt.executeUpdate();
+        } catch (SQLException | ClassNotFoundException ex) {
+            System.err.println("Caught Exception: " + ex.getMessage());
+        } finally {
+            try {
+                if (pstmt != null) {
+                    pstmt.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException ex) {
+                System.err.println("Caught Exception: " + ex.getMessage());
+            }
+        }
+    }
+
     
 }

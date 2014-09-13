@@ -24,12 +24,12 @@
                 <tr>
                     <td><label>Active</label></td>
                     <td>
-                        <input type="radio" id="isactiveyes" name="isactive" value="1" 
+                        <input type="radio" id="isactiveyes" name="isactive" value="true" 
                                <% if (request.getParameter("isactive").equals("true")) {%> 
                                checked <%}%>>
                         <label for="isactiveyes">Yes</label> 
-                        <input type="radio" id="isactiveno" name="isactive" value="2"
-                                <% if (request.getParameter("isactive").equals("flase")) {%> 
+                        <input type="radio" id="isactiveno" name="isactive" value="false"
+                                <% if (request.getParameter("isactive").equals("false")) {%> 
                                checked <%}%>>
                         <label for="isactiveno">No</label>
                     </td>
