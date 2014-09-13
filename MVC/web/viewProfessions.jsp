@@ -1,45 +1,44 @@
-
-<%@page import="emplo.EmployeeBean"%>
-<%@page import="emplo.Employee"%>
+<%@page import="Profession.ProfessionBean"%>
+<%@page import="Profession.Profession"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>View employee</title>
+        <title>View professions</title>
     </head>
     <body>
         <div>
-            <h2>Existing employees</h2>
+            <h2>Existing Profession</h2>
             <table border="2">
                 <thead>
                 <tr>
-                    <th>Employee Id </th>
-                    <th>Employee Name </th>
+                    <th>Professions Id </th>
+                    <th>Profession Description </th>
              
                 </tr>
                 <thead>
                 <tbody>
                 <%
-                        EmployeeBean eb = new EmployeeBean();
-                        List<Employee> list = eb.getEmployees();
-                        for (Employee e : list) {
+                       ProfessionBean pf = new ProfessionBean();
+                        List<Profession> list = pf.getProfessions();
+                        for (Profession p : list) {
                     %>
 
                    
                 <tr>
-                        <td><%=String.valueOf(e.getempid())%></td>
-                        <td><%=e.getempssn()%></td>
+                        <td><%=String.valueOf(p.getId())%></td>
+                        <td><%=p.getDescription()%></td>
                         <td>
-                            <form method="post" action="UpdateEmployee.jsp">
-                                   <table> <input type="hidden" name="updateempid" value="<%=String.valueOf(e.getempid())%>"/> 
+                            <form method="post" action="UpdateProfession.jsp">
+                                   <table> <input type="hidden" name="updateid" value="<%=String.valueOf(p.getId())%>"/> 
                                     <input type="submit" name ="update" value="Modify"/> 
                                 </form>
                         </td>
                         <td>
-                            <form method="post" action="DelEmployee">
-                                    <input type="hidden" name="deleteId" value="<%=String.valueOf(e.getempid())%>"/> 
+                            <form method="post" action="DelProfession">
+                                    <input type="hidden" name="deleteId" value="<%=String.valueOf(p.getId())%>"/> 
                                     <input type="submit" value="Delete"/> 
                 </table>
                                 </form>
@@ -52,7 +51,8 @@
             </table>
                     <br>
                     <p><a href="index.html">Back to home page</a></p>
-                     
+                      
+                    
         </div>
     </body>
 </html>

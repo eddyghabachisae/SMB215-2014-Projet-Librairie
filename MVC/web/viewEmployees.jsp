@@ -47,7 +47,7 @@
                     </tbody>
             </table>
                     <br>
-                    <p><a href="index.html">Back to homepage</a></p>
+                    <p><a href="index.html">Back to home page</a></p>
         </div>
     </body>
 </html>

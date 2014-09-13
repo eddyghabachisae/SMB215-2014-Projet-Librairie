@@ -9,17 +9,20 @@
         <title>profession Update</title>
     </head>
     <body>
+
         <%
             int id = Integer.parseInt(request.getParameter("updateId"));
             ProfessionBean pf = new ProfessionBean();
             Profession p = pf.getProfessions(id);
         %>
+        
+       
         <div>
             <form action="UpdateProfession" method="post">
-                <h1>Update profession ID:<%=p.getprfid()%></h1>
-                <label><input type="hidden" name="prfid" id="prfid" value="<%=p.getprfid()%>"/></label>                    
+                <h1>Update profession ID:<%=p.getId()%></h1>
+                <label><input type="hidden" name="prfid" id="prfid" value="<%=p.getId()%>"/></label>                    
                 <label>Description</label>
-                <input type="text" name="prfdescription" value="<%=p.getprfdescription()%>"/>
+                <input type="text" name="prfdescription" value="<%=p.getDescription()%>"/>
                 <button type="submit">Update Profession</button>
                    
             </form>

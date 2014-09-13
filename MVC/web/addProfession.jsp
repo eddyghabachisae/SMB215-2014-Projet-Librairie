@@ -3,24 +3,24 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Add Employee</title>
+        <title>Add profession</title>
     </head>
     <body>
         <div>
-            <form action="AddEmployee" method="post">
-                <h2>Add new employee</h2>
+            <form action="Addprofession" method="post">
+                <h2>Add new profession</h2>
                 <table>
                     <tr>
-                        <td><label>Employee ID:</label></td>
-                        <td><input type="text" name="empId"/></td>
+                        <td><label>profession ID:</label></td>
+                        <td><input type="text" name="prfid"/></td>
                     </tr>
                     <tr>
-                        <td><label>Employee Name:</label></td>
-                        <td><input type="text" name="empName"/></td>
+                        <td><label>profession description</label></td>
+                        <td><input type="text" name="prfdescription"/></td>
                     </tr>
                     <tr>
                         <td>
-                            <button type="submit">Add Employee</button>
+                            <button type="submit">Add profession</button>
                         </td>
                     </tr>
                 </table>

@@ -1,6 +1,6 @@
 
-<%@page import="emplo.Employee"%>
-<%@page import="emplo.EmployeeBean"%>
+<%@page import="emp.Employee"%>
+<%@page import="emp.EmployeeBean"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -18,7 +18,7 @@
             <form action="UpdateEmployee" method="post">
                 <h1>Update Employee ID:<%=e.getempid()%></h1>
                 <label><input type="hidden" name="empid" id="empid" value="<%=e.getempid()%>"/></label>   
-                  <h1>Update Emp ssn:<%=e.getempssn()%></h1>
+                  <h1>Update SSN <%=e.getempssn()%></h1>
                 <label><input type="hidden" name="empssn" id="empssn:" value="<%=e.getempssn()%>"/></label> 
                 <label>Name</label>
                 <input type="text" name="empfirstname" value="<%=e.getempfirstname()%>"/>

@@ -137,7 +137,7 @@ public class EmployeeBean {
             con = DriverManager.getConnection(Database_URL, Username, Password);
             stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM employee WHERE empId=" + id);
-            if (rs.next()) {
+            while (rs.next()) {
                 emp = new Employee();
                 emp.setEmpId(rs.getInt(1));
                 emp.setEmpName(rs.getString(2));

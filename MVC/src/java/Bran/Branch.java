@@ -83,12 +83,12 @@ private Date brhactivatedsince;
     public void setbrhisactive(Boolean brhisactive){
         this.brhisactive = brhisactive;
     }
-      public Date getbrhactivatesince(){
-        return brhactivatesince;
+      public Date getbrhactivatedsince(){
+        return brhactivatedsince;
     }
     
-    public void setbrhactivatesince(Date brhactivatesince){
-        this.brhactivatesince = brhactivatesince;
+    public void setbrhactivatesince(Date brhactivatedsince){
+        this.brhactivatedsince = brhactivatedsince;
     }
     
         public Date getbrhdeactivatedsince(){
