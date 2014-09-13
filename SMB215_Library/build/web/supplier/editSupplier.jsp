@@ -4,6 +4,13 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Edit Supplier</title>
+        <script type="text/javascript">
+            window.onload = function() {
+                if (request.getParameter("id").equals("")) {
+document.getElementById('deactivationreason').disabled = true;
+                }
+}
+        </script>
     </head>
     <body>
         <h1>Supplier</h1>
@@ -26,7 +33,8 @@
                     <td>
                         <input type="radio" id="isactiveyes" name="isactive" value="true" 
                                <% if (request.getParameter("isactive").equals("true")) {%> 
-                               checked <%}%>>
+                               checked <%}%>
+                               onclick="truez()">
                         <label for="isactiveyes">Yes</label> 
                         <input type="radio" id="isactiveno" name="isactive" value="false"
                                 <% if (request.getParameter("isactive").equals("false")) {%> 
@@ -36,7 +44,7 @@
                 </tr>
                 <tr>
                     <td><label>Deactivation reason</label></td>
-                    <td><textarea name="deactivationreason" ><%=request.getParameter("deactivationreason")%></textarea>
+                    <td><textarea id="deactivationreason" name="deactivationreason"><%=request.getParameter("deactivationreason")%></textarea>
                     </td>
                 </tr>
             </table>

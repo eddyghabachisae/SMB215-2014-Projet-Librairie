@@ -4,27 +4,26 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Item category</title>
+        <title>Supplier Branch</title>
     </head>
     <body>
-        <h1>Item categories:</h1>
+        <h1>Supplier Branches:</h1>
         <table border="1">
             <tr>
-                <td>Code</td>
-                <td>Description</td>
+                <td>Name</td>
                 <td>Actions</td>
             </tr>
-            <c:forEach items="${itemCategories}" var="itc">
+            <c:forEach items="${supplierBranches}" var="sbr">
                 <tr>
-                    <td>${itc.code}</td>
-                    <td>${itc.description}</td>
+                    <td>${sbr.name}</td>
                     <td>
-                        <a href="GetItemCategory?id=${itc.id}">Modify</a>
-                        <a href="DeleteItemCategory?id=${itc.id}">Delete</a> 
+                        <a href="GetSupplierBranch?id=${sbr.id}">Modify</a>
+                        <a href="DeleteSupplierBranch?id=${sbr.id}?supplier=${sbr.supplier}">Delete</a> 
                     </td>
                 </tr>
             </c:forEach>
         </table>
-         <a href="GetItemCategory">Add</a>
+         <a href="GetSupplierBranch">Add</a>
+         <a href="GetSuppliers">Back</a>
     </body>
 </html>

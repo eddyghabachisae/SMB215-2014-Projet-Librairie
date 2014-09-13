@@ -17,6 +17,7 @@
                 <tr>
                     <td>${sup.name}</td>
                     <td>
+                        <a href="GetSupplierBranches?id=${sup.id}">Branches</a>
                         <a href="GetSupplier?id=${sup.id}">Modify</a>
                         <a href="DeleteSupplier?id=${sup.id}">Delete</a> 
                     </td>
