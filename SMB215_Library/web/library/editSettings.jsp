@@ -31,26 +31,26 @@
             </header>
 
             <!--==============================content================================-->
-            <section id="content"><div class="ic"></div>
+            <section id="content"><div class="ic"><div class="inner_copy">All <a href="http://www.magentothemesworld.com" title="Best Magento Templates">premium Magento themes</a> at magentothemesworld.com!</div></div>
                 <div class="container_12">
                     <div class="wrapper">
                         <article class="grid_8">
                             <div class="indent-right">
                                 <h3 class="prev-indent-bot">Library settings</h3>
-                                <div class="success_box">All of the fields were successfully validated!</div>
-                                <div class="error_box"></div>
-                                <%
+
+                                <div id="content3"> 
+                                    <div class="success_box">All of the fields were successfully validated!</div>
+                                    <div class="error_box"></div>
+                                 <%
                                     LibraryBean libBean = new LibraryBean();
                                     Library lib = new Library();
                                     libBean.getLibrary(lib);
                                 %>
-
-                                <form id="form" name="form" action="" method="post" enctype="multipart/form-data">                    
-                                    <fieldset>
-                                       
-                                        <label><span class="text-form">Name* </span><input type="text" value="<%= lib.getName() %>"></label>
-                                        <label><span class="text-form">Website</span><input type="text" value="<%= lib.getWebsite() %>"></label>
-                                        <label><span class="text-form">Main branch</span>
+                                    <form id="form" name="form" action="" method="post" enctype="multipart/form-data">                    
+                                        <fieldset>
+                                            <label><span class="text-form">Name* </span><input type="text" class="inputText" value="<%= lib.getName() %>"></label>
+                                            <label><span class="text-form">Website</span><input type="text" class="inputText" value="<%= lib.getWebsite() %>"></label>
+                                             <label><span class="text-form">Main branch</span>
                                         <select id="sel">
                                             <option value="">--Select--</option>
 
@@ -67,32 +67,32 @@
 
                                         </select>
                                             </label>
-                             
+                                            
                                             <script>
-var val = <%=lib.getMainBranch() %>;
-$('#sel').val(val);
-</script>
-                                        
-                                        <label><span class="text-form">Rental days* </span><input type="text" value="<%=lib.getRentalDays()%>"></label>
-                                        <label><span class="text-form">Reservation days* </span><input type="text" value="<%=lib.getReservationDays()%>"></label>
-                                        <label><span>Rental alert* </span><input type="text" value="<%=lib.getRentalAlert()%>"></label>
-                                        <label><span>Reservation alert* </span><input type="text" value="<%=lib.getReservationAlert()%>"></label>
-                                        <label><span>Main currency* </span><input type="text" value="<%=lib.getMainCurrency()%>"</label>
-                                        <label><span>Secondary currency </span><input type="text" value="<%=lib.getSecondaryCurrency()%>"></label>
-                                        <label><span>Secondary currency rate </span><input type="text" value="<%=lib.getSecondaryCurrencyRate()%>"></label>
-	<div class="wrapper">
-                                        <div class="extra-wrap">
-											
-                                            <div class="buttons">
+                                            var val = <%=lib.getMainBranch() %>;
+                                            $('#sel').val(val);
+                                            </script>
+                                         <label><span class="text-form">Rental days* </span><input type="text" class="inputText" value="<%=lib.getRentalDays()%>"></label>
+                                        <label><span class="text-form">Reservation days* </span><input type="text" class="inputText" value="<%=lib.getReservationDays()%>"></label>
+                                        <label><span class="text-form">Rental alert* </span><input type="text" class="inputText" value="<%=lib.getRentalAlert()%>"></label>
+                                        <label><span class="text-form">Reservation alert* </span><input type="text" class="inputText" value="<%=lib.getReservationAlert()%>"></label>
+                                        <label><span class="text-form">Main currency* </span><input type="text" class="inputText" value="<%=lib.getMainCurrency()%>"></label>
+                                        <label><span class="text-form">Secondary currency </span><input type="text" class="inputText" value="<%=lib.getSecondaryCurrency()%>"></label>
+                                        <label><span class="text-form">Secondary currency rate </span><input type="text"  class="inputText" value="<%=lib.getSecondaryCurrencyRate()%>"></label>
+                                       
+                                            <div class="wrapper">
+                                                <div class="extra-wrap">		
+                                                    <div class="buttons">
 							<input type="submit" name="Submit" value="Submit" class="button"/>
                                                         <a href="..\settings.jsp"><input type="button" name="Cancel" value="Cancel" class="button"/></a>
-                                            </div> 
-										
-                                        </div>
-										
-                                      </div> 
-                                    </fieldset>
-                                </form>
+                                                    </div> 
+
+                                                </div>
+
+                                            </div>                      
+                                        </fieldset>						
+                                    </form>
+                                </div>
                             </div>
                         </article>
 
@@ -104,16 +104,14 @@ $('#sel').val(val);
             <footer>
                 <div class="inner">
                     <div class="footer-bg">
-                        ISAE &copy; 2014
-
+                   ISAE &copy; 2014
                     </div>
                 </div>
             </footer>
         </div>
         <script type="text/javascript"> Cufon.now();</script>
     </body>
-
-    <script type="text/javascript">
+      <script type="text/javascript">
 
         new FormValidator('form', [{
                 name: 'txtCountryShortName',
