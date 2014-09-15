@@ -6,6 +6,7 @@
         <title>Edit Supplier Branch</title>
     </head>
     <body>
+        <form action="../SaveSupplierBranch?id=<%=request.getParameter("id")%>" method="post">
         <table>
             <tr>
                 <td><label>Name:</label></td>
@@ -32,5 +33,6 @@
                 <td><input type="text"></td>
             </tr>
         </table>
+        </form>
     </body>
 </html>

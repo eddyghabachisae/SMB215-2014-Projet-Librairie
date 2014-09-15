@@ -153,6 +153,7 @@ public class ItemBean {
             System.err.println("idddddddddddddddd:"+id);
             ResultSet rs = stmt.executeQuery("Select * From item Where itm_id=" + id);
             if (rs.next()) {
+                item = new Item();
                 item.setId(rs.getLong(1));
                 item.setName(rs.getString(2));
                 item.setBarcode(rs.getString(3));
@@ -218,7 +219,7 @@ public class ItemBean {
             pstmt.setBoolean(12, item.getIsActive());
             pstmt.setString(13, item.getDeactivationReason());
             pstmt.setLong(14, item.getItemCategory_id());
-             
+            pstmt.setLong(15, item.getId()); 
             
             pstmt.executeUpdate();
         } catch (SQLException | ClassNotFoundException ex) {

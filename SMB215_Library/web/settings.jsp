@@ -39,7 +39,7 @@
                 </article>
                 <article class="grid_2">
                     <div class="box">
-					<a href="country/viewCountry.jsp" class="imgCenter"> <figure class="fa-5x fa fa-globe blueColor"></figure></a>
+					<a href="GetCountries" class="imgCenter"> <figure class="fa-5x fa fa-globe blueColor"></figure></a>
                         <div class="padding">
                             <strong class="title-3 ">Countries</strong>
                         </div>

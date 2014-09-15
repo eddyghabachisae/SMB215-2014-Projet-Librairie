@@ -7,17 +7,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "AddCountry", urlPatterns = {"/AddCountry"})
-public class AddCountry extends HttpServlet {
+@WebServlet(name = "SaveCountry", urlPatterns = {"/SaveCountry"})
+public class SaveCountry extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         Country cnt = new Country();
-        cnt.setShortName(request.getParameter("txtCountryShortName"));
-        cnt.setName(request.getParameter("txtCountryName"));
+        cnt.setCode(request.getParameter("code"));
+        cnt.setName(request.getParameter("name"));
         CountryBean cntBean = new CountryBean();
-        cntBean.addCountry(cnt);
-        response.sendRedirect("country/editCountry.jsp");
+        if (!request.getParameter("id").equals("")) {
+            cnt.setId(Integer.parseInt(request.getParameter("id")));
+            cntBean.modifyCountry(cnt);
+            response.sendRedirect("GetCountries");
+        } else {
+            cntBean.addCountry(cnt);
+            response.sendRedirect("GetCountry");
+        }
     }
 
     @Override
@@ -26,12 +32,14 @@ public class AddCountry extends HttpServlet {
         processRequest(request, response);
     }
 
+   
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
 
+  
     @Override
     public String getServletInfo() {
         return "Short description";

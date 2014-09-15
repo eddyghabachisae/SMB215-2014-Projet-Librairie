@@ -32,9 +32,9 @@
                 </article>
                 <article class="grid_3">
                     <div class="box">
-					<a href="GetItemCategories" class="imgCenter"> <figure class="fa-5x fa fa-book blueColor"></figure></a>
+					<a href="GetItems" class="imgCenter"> <figure class="fa-5x fa fa-book blueColor"></figure></a>
                         <div class="padding">
-                            <strong class="title-3 textCenter">Products</strong>
+                            <strong class="title-3 textCenter">Items</strong>
                         </div>
                     </div>
                 </article>

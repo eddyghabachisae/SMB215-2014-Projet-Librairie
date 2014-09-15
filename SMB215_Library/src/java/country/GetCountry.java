@@ -7,23 +7,31 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "DeleteCountry", urlPatterns = {"/DeleteCountry"})
-public class DeleteCountry extends HttpServlet {
+@WebServlet(name = "GetCountry", urlPatterns = {"/GetCountry"})
+public class GetCountry extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int id = Integer.parseInt(request.getParameter("id"));
-        CountryBean cntBean = new CountryBean();
-        cntBean.deleteCountry(id);
-        response.sendRedirect("GetCountries");
+       if (request.getParameter("id") != null){
+            CountryBean cntBean = new CountryBean();
+            Country cnt = cntBean.getCountry(Integer.valueOf(request.getParameter("id")));
+            response.sendRedirect("country/editCountry.jsp?" 
+                    +"id=" + cnt.getId()
+                    +"&code=" + cnt.getCode() 
+                    +"&name=" + cnt.getName());
+        } else {
+               response.sendRedirect("country/editCountry.jsp?id=&code=&name=");
+        }
     }
 
+   
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
 
+    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
