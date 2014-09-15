@@ -340,8 +340,8 @@ dl span {float:left; width:69px;}
 }
 	#form label {
 		display:block; 
-		height:30px; 
 		overflow:hidden;
+                padding:4px;
 	}
 	#form .inputText{
 		float:left; 
