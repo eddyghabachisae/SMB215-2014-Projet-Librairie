@@ -3,9 +3,9 @@ package city;
 public class City {
 
     private int id;
+    private String code;
     private String name;
     private String province;
-    private String shortName;
 
     public int getId() {
         return id;
@@ -13,6 +13,14 @@ public class City {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public String getName() {
@@ -23,19 +31,13 @@ public class City {
         this.name = name;
     }
 
-    public String getprovince() {
+    public String getProvince() {
         return province;
     }
 
-    public void setprovince(String province) {
+    public void setProvince(String province) {
         this.province = province;
     }
-
-    public String getShortName() {
-        return shortName;
-    }
-
-    public void setShortName(String shortName) {
-        this.shortName = shortName;
-    }
+    
+    
 }

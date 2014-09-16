@@ -1,6 +1,5 @@
 package city;
 
-import city.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -78,14 +77,13 @@ public class CityBean {
                     dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
 
             stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("Select * From tbl_city order by cty_shortname");
+            ResultSet rs = stmt.executeQuery("Select * From city order by cty_name");
             while (rs.next()) {
-                City cit = new City();
-                cit.setId(rs.getInt(1));
-                cit.setShortName(rs.getString(2));
-                cit.setName(rs.getString(3));
-                cit.setprovince(rs.getString(4));
-                list.add(cit);
+                City cty = new City();
+                cty.setId(rs.getInt(1));
+                cty.setCode(rs.getString(2));
+                cty.setName(rs.getString(3));
+                list.add(cty);
             }
         } catch (SQLException | ClassNotFoundException ex) {
             System.err.println("Caught Exception: " + ex.getMessage());

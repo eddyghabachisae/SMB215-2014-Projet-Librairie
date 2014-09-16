@@ -4,7 +4,6 @@ public class Library {
     
     private int id;
     private String name;
-    // image  
     private String website;
     private int mainBranch;
     private int rentalDays;

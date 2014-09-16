@@ -1,8 +1,27 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
-    <%@ include file="../main.html" %>
+    <head>
+    <title>Settings</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../public/stylesheets/reset.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="../public/stylesheets/style.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="../public/stylesheets/grid.css" type="text/css" media="screen">   
+    <link rel="stylesheet" href="../public/font-awesome-4.1.0/css/font-awesome.min.css" type="text/css" />
+    <link rel="stylesheet" href="../public/stylesheets/table.css" type="text/css" />
+    <link rel="stylesheet" href="../public/stylesheets/pagination.css" type="text/css" />
+    <link rel="stylesheet" href="../public/stylesheets/tabs.css" type="text/css">
+    <script src="../public/javascripts/jquery-1.7.1.min.js" type="text/javascript"></script>
+    <script src="../public/javascripts/cufon-yui.js" type="text/javascript"></script>
+    <script src="../public/javascripts/cufon-replace.js" type="text/javascript"></script>
+    <script src="../public/javascripts/Asap_400.font.js" type="text/javascript"></script>
+    <script src="../public/javascripts/Asap_italic_400.font.js" type="text/javascript"></script> 
+    <!--- validation!--->
+	<link rel="stylesheet" href="../public/stylesheets/validate.css" type="text/css" media="screen"> 
+	<script type="text/javascript" src="../public/javascripts/jquery.min.js"></script>	
+	<script type="text/javascript" src="../public/javascripts/validate.min.js"></script>
+    </head>
     <body id="page1">
         <div class="main">
             <!--==============================header=================================-->
@@ -28,7 +47,7 @@
             </header>
 
             <!--==============================content================================-->
-            <section id="content"><div class="ic"><div class="inner_copy">All <a href="http://www.magentothemesworld.com" title="Best Magento Templates">premium Magento themes</a> at magentothemesworld.com!</div></div>
+            <section id="content"><div class="ic"></div>
                 <div class="container_12">
                     <div class="wrapper">
                         <div class="pull-right">
@@ -80,8 +99,7 @@
             <footer>
                 <div class="inner">
                     <div class="footer-bg">
-                        Guide.com &copy; 2012
-                        <span><a class="link" target="_blank" href="http://www.templatemonster.com/" rel="nofollow">Website Template</a> by TemplateMonster.com</span><span>More <a href="http://www.websitetemplatesonline.com" title="WTO - website templates and Flash templates">Free Web Templates</a> at WTO. All <a href="http://www.magentothemesworld.com" title="Best Magento Templates">premium Magento themes</a> at magentothemesworld.com!</span>
+                        ISAE &copy; 2014 
                     </div>
                 </div>
             </footer>

@@ -17,13 +17,13 @@
                 <tr>
                     <td>${sbr.name}</td>
                     <td>
-                        <a href="GetSupplierBranch?id=${sbr.id}">Modify</a>
+                        <a href="GetSupplierBranch?id=${sbr.id}&supplier=${sbr.supplier}">Modify</a>
                         <a href="DeleteSupplierBranch?id=${sbr.id}?supplier=${sbr.supplier}">Delete</a> 
                     </td>
                 </tr>
             </c:forEach>
         </table>
-         <a href="GetSupplierBranch">Add</a>
+         <a href="GetSupplierBranch?supplier=${sbr.supplier}">Add</a>
          <a href="GetSuppliers">Back</a>
     </body>
 </html>

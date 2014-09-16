@@ -18,23 +18,20 @@ public class LibraryBean {
                     dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
 
             stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("Select lib_id, lib_name, lib_logo,"
-                    + "lib_website, lib_mainbranch, lib_rentaldays, lib_reservationdays,"
-                    + "lib_maxreserve, lib_rentalalert, lib_reservationalert,"
-                    + "lib_maincurrency, lib_secondarycurrency, lib_secondarycurrencyrate From tbl_library");
+            ResultSet rs = stmt.executeQuery("Select * From library");
             if (rs.next()) {
                 lib.setId(rs.getInt(1));
                 lib.setName(rs.getString(2));
-                lib.setWebsite(rs.getString(4));
-                lib.setMainBranch(rs.getInt(5));
-                lib.setRentalDays(rs.getInt(6));
-                lib.setReservationDays(rs.getInt(7));
-                lib.setMaxReserve(rs.getInt(8));
-                lib.setRentalAlert(rs.getInt(9));
-                lib.setReservationAlert(rs.getInt(10));
-                lib.setMainCurrency(rs.getString(11));
-                lib.setSecondaryCurrency(rs.getString(12));
-                lib.setSecondaryCurrencyRate(rs.getFloat(13));
+                lib.setMainBranch(rs.getInt(12));
+                lib.setWebsite(rs.getString(3));
+                lib.setRentalDays(rs.getInt(4));
+                lib.setReservationDays(rs.getInt(5));
+                lib.setMaxReserve(rs.getInt(6));
+                lib.setRentalAlert(rs.getInt(7));
+                lib.setReservationAlert(rs.getInt(8));
+                lib.setMainCurrency(rs.getString(9));
+                lib.setSecondaryCurrency(rs.getString(10));
+                lib.setSecondaryCurrencyRate(rs.getFloat(11));
             } 
         } catch (SQLException | ClassNotFoundException ex) {
             System.err.println("Caught Exception: " + ex.getMessage());
