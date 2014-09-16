@@ -11,10 +11,10 @@
                     <div class="wrapper p3">
                         <div class="grid_12">
                             <div class="wrapper border-bot">
-                                <h1><a href="index.html">Library</a></h1>
+                                <h1><a href="${pageContext.request.contextPath}/home.jsp">Library</a></h1>
                                 <nav>
                                     <ul class="menu">
-                                        <li><a class="active" href="../home.jsp">Main</a></li>
+                                        <li><a class="active" href="${pageContext.request.contextPath}/home.jsp">Main</a></li>
                                         <li><a href="">Inbox</a></li>
                                         <li><a href="">Logout</a></li>
                                     </ul>
@@ -56,14 +56,14 @@
                                         <td>
                                             <c:choose>
                                             <c:when test="${item.isActive==true}" >
-                                                <a href="DeactivateItem?id=${item.id}" class="fa fa-check-circle">Deactivate</a>
+                                                <a href="DeactivateItem?id=${item.id}" title="Deactivate" class="fa fa-lg fa-times"></a>
                                             </c:when>
                                             <c:otherwise>
-                                             <a href="ActivateItem?id=${item.id}" class="fa fa-check-circle">Activate</a>   
+                                             <a href="ActivateItem?id=${item.id}" title="Activate" class="fa fa-lg fa-check"></a>   
                                             </c:otherwise>
                                             </c:choose>
-                                            <a href="GetItem?id=${item.id}" class="fa fa-lg fa-pencil-square-o">Edit</a>
-                                            <a href="DeleteItem?id=${item.id}" class="fa fa-lg fa-trash-o">Delete</a> 
+                                            <a href="GetItem?id=${item.id}" title="Edit" class="fa fa-lg fa-pencil-square-o"></a>
+                                            <a href="DeleteItem?id=${item.id}" tite="Delete" class="fa fa-lg fa-trash-o"></a> 
                                         </td>
                                     </tr>
                                 </c:forEach>

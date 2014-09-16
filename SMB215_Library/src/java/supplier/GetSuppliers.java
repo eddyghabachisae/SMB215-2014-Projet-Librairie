@@ -16,8 +16,7 @@ public class GetSuppliers extends HttpServlet {
         SupplierBean supBean = new SupplierBean();
         List<Supplier> suppliers = supBean.getSuppliers();
         request.setAttribute("suppliers", suppliers);
-        response.sendRedirect("supplier/viewSupplier.jsp");
-        //request.getRequestDispatcher("supplier/viewSupplier.jsp").forward(request, response);
+        request.getRequestDispatcher("supplier/viewSupplier.jsp").forward(request, response);
     }
 
     @Override

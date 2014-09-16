@@ -15,8 +15,7 @@ public class GetLibrarySettings extends HttpServlet {
        LibraryBean libBean = new LibraryBean();
        Library lib = new Library();
        libBean.getLibrary(lib);
-       response.sendRedirect("library/editSettings.jsp");
-       //request.getRequestDispatcher("library/editSettings_1.jsp").forward(request, response);
+       request.getRequestDispatcher("library/editSettings.jsp").forward(request, response);
     }
 
     @Override

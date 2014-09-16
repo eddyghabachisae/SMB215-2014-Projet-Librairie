@@ -23,8 +23,8 @@ public class CountryBean {
             pstmt = con.prepareStatement("Insert Into country (cnt_code, cnt_name) "
                     + "Values(?,?)");
 
-            pstmt.setString(2, cnt.getCode());
-            pstmt.setString(3, cnt.getName());
+            pstmt.setString(1, cnt.getCode());
+            pstmt.setString(2, cnt.getName());
 
             pstmt.execute();
 
