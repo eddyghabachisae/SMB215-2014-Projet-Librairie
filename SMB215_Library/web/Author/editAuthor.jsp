@@ -1,7 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
-<html lang="en">
+<html>
     <%@ include file="../main.html" %>
     <body id="page5">
         <div class="main">
@@ -32,13 +32,13 @@
                     <div class="wrapper">
                         <article class="grid_8">
                             <div class="indent-right">
-                                <h3 class="prev-indent-bot">Country</h3>
+                                <h3 class="prev-indent-bot">Author</h3>
                                    <div id="content3"> 
                                     <div class="success_box">All of the fields were successfully validated!</div>
                                     <div class="error_box"></div>
 
       
-                            <form id="form" name="form" action="../SaveCountry?id=<%=request.getParameter("id")%>" method="post">                    
+                            <form id="form" name="form" action="../SaveAuthor?id=<%=request.getParameter("id")%>" method="post">                    
                                 <fieldset>
                                       <label><span class="text-form">Code* </span><input type="text" class="inputText" id="code" 
                                              name="code" value="<%=request.getParameter("code")%>"></label>
@@ -51,7 +51,7 @@
 											
                                             <div class="buttons">
 							<input type="submit" name="Submit" value="Submit" class="button"/>
-                                                        <a href="../GetCountries"><input type="button" name="Cancel" value="Cancel" class="button"/></a>
+                                                        <a href="../GetAuthors"><input type="button" name="Cancel" value="Cancel" class="button"/></a>
                                             </div> 
 										
                                         </div>

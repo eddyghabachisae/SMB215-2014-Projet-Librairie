@@ -31,7 +31,7 @@
                 <div class="container_12">
                     <div class="wrapper">
                         <div class="pull-right">
-                            <a href="GetCountry"><input type="submit" name="Submit" value="Add New Item" class="button"/></a>
+                            <a href="GetCountry"><input type="submit" name="Submit" value="Add New Country" class="button"/></a>
                         </div>
                         <div class="clear2"></div>
                         <div class="CSSTableGenerator" >
