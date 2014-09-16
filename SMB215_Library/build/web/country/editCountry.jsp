@@ -32,7 +32,7 @@
                     <div class="wrapper">
                         <article class="grid_8">
                             <div class="indent-right">
-                                <h3 class="prev-indent-bot">Item</h3>
+                                <h3 class="prev-indent-bot">Country</h3>
                                    <div id="content3"> 
                                     <div class="success_box">All of the fields were successfully validated!</div>
                                     <div class="error_box"></div>

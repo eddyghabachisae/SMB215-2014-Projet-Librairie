@@ -31,7 +31,7 @@
                 <div class="container_12">
                     <div class="wrapper">
                         <div class="pull-right">
-                            <a href="GetCountry"><input type="submit" name="Submit" value="Add New Country" class="button"/></a>
+                            <a href="GetAuthor"><input type="submit" name="Submit" value="Add New Author" class="button"/></a>
                         </div>
                         <div class="clear2"></div>
                         <div class="CSSTableGenerator" >
@@ -43,13 +43,13 @@
                                         <td width="10%">Actions</td>
                                     </tr>
 
-                                    <c:forEach items="${countries}" var="cnt">
+                                    <c:forEach items="${authors}" var="cnt">
                                         <tr>
                                             <td>${cnt.code}</td>
                                             <td>${cnt.name}</td>
                                             <td>
-                                                <a href="GetCountry?id=${cnt.id}" title="Edit" class="fa fa-lg fa-pencil-square-o"></a>
-                                                <a href="DeleteCountry?id=${cnt.id}" title="Delete" class="fa fa-lg fa-trash-o"></a> 
+                                                <a href="GetAuthor?id=${cnt.id}" title="Edit" class="fa fa-lg fa-pencil-square-o"></a>
+                                                <a href="DeleteAuthor?id=${cnt.id}" title="Delete" class="fa fa-lg fa-trash-o"></a> 
                                             </td>
                                         </tr>
                                     </c:forEach>
