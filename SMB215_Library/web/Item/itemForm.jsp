@@ -45,21 +45,17 @@
                                     <form id="form" name="form" action="../SaveItem?id=<%=request.getParameter("id")%>" method="post" enctype="multipart/form-data">                    
                                         <fieldset>
                                             <label><span class="text-form">Name* </span><input type="text" class="inputText" id="name" 
-                                                                                               name="name" value="${item.name}"></label>
-                                            <label><span class="text-form">Image* </span><img src="" width="100" height="100"/><br><input type = "file" name="browse" style="margin-left:30%;"></label>                                                  
-                                            <label><span class="text-form">Average cost* </span><input type="text" class="inputText" id="avgCost" 
-                                                                                                       name="avgCost" value="${item.avgUnitCost}"></label>
+                                                                                               name="name" value="<%=request.getParameter("name")%>"></label>
+                                            <label><span class="text-form">Image </span><img src="<%=request.getParameter("imgPath")%>" width="100" height="100"/><br><input type = "file" name="browse" style="margin-left:30%;"></label>                    
+                                          
                                             <label><span class="text-form">Sale rent price* </span><input type="text" class="inputText" id="saleRentPrice" 
-                                                                                                          name="saleRentPrice" value="${item.saleRentPrice}"></label>
-                                            <label><span class="text-form">Quantity* </span><input type="text" class="inputText" id="quantity" 
-                                                                                                   name="quantity" value="${item.quantity}"></label>
+                                                                                                          name="saleRentPrice" value="<%=request.getParameter("saleRentPrice")%>"></label>
                                             <label><span class="text-form">Min Limit* </span><input type="text" class="inputText" id="minLimit" 
-                                                                                                    name="minLimit" value="${item.minLimit}"></label>
+                                                                                                    name="minLimit" value="<%=request.getParameter("minLimit")%>"></label>
                                             <label><span class="text-form">Max Limit* </span><input type="text" class="inputText" id="maxLimit" 
-                                                                                                    name="maxLimit" value="${item.maxLimit}"></label>
+                                                                                                    name="maxLimit" value="<%=request.getParameter("maxLimit")%>"></label>
                                             <label><span class="text-form">Available? </span><input  name="available" type="checkbox" value="true" /></label>
                                             <label><span class="text-form">Active?</span><input  name="active" type="checkbox" value="true"/></label>
-                                            <label><span class="text-form">book?</span><input  name="book" type="checkbox" value="true"/></label>
                                             <label><span class="text-form">Category*</span>
                                                 <select name="category" ><option value="1">Select</option>
                                                     <c:forEach items="${itemCategoryList}" var="itemCat">
@@ -108,18 +104,8 @@
                 rules: 'required'
             },
             {
-                name: 'avgCost',
-                display: 'Average Cost',
-                rules: 'required|numeric'
-            },
-            {
                 name: 'saleRentPrice',
                 display: 'Sale Rent price',
-                rules: 'required|numeric'
-            },
-            {
-                name: 'quantity',
-                display: 'Quantity',
                 rules: 'required|numeric'
             }, {
                 name: 'minLimit',

@@ -17,16 +17,25 @@ public class GetItem extends HttpServlet {
         if (request.getParameter("id") != null){
             ItemBean itmBean = new ItemBean();
             Item item = itmBean.getItem(Integer.valueOf(request.getParameter("id")));
-            request.setAttribute("item", item);
             ItemCategoryBean itc = new ItemCategoryBean();
             List<ItemCategory> itemCategoryList = itc.getItemCategories();
             request.setAttribute("itemCategoryList", itemCategoryList);
-            response.sendRedirect("Item/itemForm.jsp");
+             response.sendRedirect("Item/itemForm.jsp?" 
+                     +"id=" + item.getId()
+                     +"&name=" + item.getName()
+                     +"&imgPath=" + item.getImgPath()
+                     +"&saleRentPrice="+item.getSaleRentPrice()
+                     +"&minLimit="+item.getMinLimit()
+                     +"&maxLimit="+item.getMaxLimit()
+                     +"&available="+item.getIsAvailable()
+                     +"&active="+item.getIsActive()
+                     +"&category="+item.getItemCategory_id());
         } else {
             ItemCategoryBean itc = new ItemCategoryBean();
             List<ItemCategory> itemCategoryList = itc.getItemCategories();
             request.setAttribute("itemCategoryList", itemCategoryList);
-            response.sendRedirect("Item/itemForm.jsp");
+            response.sendRedirect("Item/itemForm.jsp?" 
+                     +"id=&name=&imgPath=&saleRentPrice=&minLimit=&maxLimit=&available=&active=&category=");
         }
     }
 
