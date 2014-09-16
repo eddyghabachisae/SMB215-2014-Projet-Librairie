@@ -103,10 +103,8 @@ public class ItemBean {
 
             con = DriverManager.getConnection(dbCon.getDATABASE_URL(),
                     dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
-
-            pstmt = con.prepareStatement("Insert Into item "
-                    + "(itm_name, itm_barcode, itm_barcodeimgpath,itm_imgpath,itm_description,itm_avgunitcost,itm_salerentprice,itm_minlimit,itm_maxlimit,itm_quantity,itm_isavailable,itm_isactive,itm_deactivationreason,itemCategory_id) Values(?,?,?,?,?,?,?,?,?,?,?,?,?)");
-
+            pstmt = con.prepareStatement("Insert Into item (itm_name, itm_barcode, itm_barcodeimgpath, itm_imgpath, itm_description, itm_avgunitcost, itm_salerentprice, itm_minlimit, itm_maxlimit, itm_quantity, itm_isavailable, itm_isactive, itm_deactivationreason, itemCategory_id) Values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+    
             pstmt.setString(1, item.getName());
             pstmt.setString(2, item.getBarcode());
             pstmt.setString(3, item.getImgBracodePath());

@@ -23,7 +23,6 @@ public class GetItem extends HttpServlet {
             request.setAttribute("itemCategoryList", itemCategoryList);
             response.sendRedirect("Item/itemForm.jsp");
         } else {
-            System.err.println("fet 3al elseee");
             ItemCategoryBean itc = new ItemCategoryBean();
             List<ItemCategory> itemCategoryList = itc.getItemCategories();
             request.setAttribute("itemCategoryList", itemCategoryList);
