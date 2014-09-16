@@ -20,7 +20,6 @@
                             <nav>
                                 <ul class="menu">
                                     <li><a class="active" href="../home.jsp">Main</a></li>
-                                    <li><a href="">Inbox</a></li>
                                     <li><a href="">Logout</a></li>
                                 </ul>
                             </nav>
@@ -78,7 +77,7 @@
         </header>
         
         <!--==============================content================================-->
-        <section id="content"><div class="ic"><div class="inner_copy">All <a href="http://www.magentothemesworld.com" title="Best Magento Templates">premium Magento themes</a> at magentothemesworld.com!</div></div>
+        <section id="content"><div class="ic"></div>
             <div class="container_12">
                 <div class="wrapper">
                     
@@ -90,8 +89,8 @@
         <footer>
         	<div class="inner">
             	<div class="footer-bg">
-                	Guide.com &copy; 2012
-                    <span><a class="link" target="_blank" href="http://www.templatemonster.com/" rel="nofollow">Website Template</a> by TemplateMonster.com</span><span>More <a href="http://www.websitetemplatesonline.com" title="WTO - website templates and Flash templates">Free Web Templates</a> at WTO. All <a href="http://www.magentothemesworld.com" title="Best Magento Templates">premium Magento themes</a> at magentothemesworld.com!</span>
+                	ISAE &copy; 2014
+                    
                 </div>
             </div>
         </footer>
