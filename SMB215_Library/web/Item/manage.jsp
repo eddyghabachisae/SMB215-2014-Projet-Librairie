@@ -48,8 +48,22 @@
                                     </tr>
                                 <c:forEach items="${itemsList}" var="item">
                                     <tr>
-                                        <td>${item.isAvailable}</td>
-                                        <td>${item.isActive}</td>
+                                        <td><c:choose>
+                                            <c:when test="${item.isAvailable==true}" >
+                                                <a href="" title="Avaible" class="fa fa-lg fa-times"></a>
+                                            </c:when>
+                                            <c:otherwise>
+                                             <a href="" title="Not Available" class="fa fa-lg fa-check"></a>   
+                                            </c:otherwise>
+                                            </c:choose></td>
+                                        <td><c:choose>
+                                            <c:when test="${item.isActive==true}" >
+                                                <a href="" title="Active" class="fa fa-lg fa-times"></a>
+                                            </c:when>
+                                            <c:otherwise>
+                                             <a href="" title="Not Active" class="fa fa-lg fa-check"></a>   
+                                            </c:otherwise>
+                                            </c:choose></td>
                                         <td>${item.name}</td>
                                         <td>${item.itemCategory_id}</td>
                                         <td>${item.quantity}</td>
