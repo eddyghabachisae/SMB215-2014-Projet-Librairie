@@ -7,7 +7,7 @@ import main.DBconnection;
 
 public class BranchBean {
     
-    public List<Branch> getBranchesSummary() {
+    public List<Branch> getBranchesList() {
         List<Branch> list = new ArrayList<>();
         Connection con = null;
         Statement stmt = null;
@@ -21,7 +21,7 @@ public class BranchBean {
 
             stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("Select brh_id, brh_name "
-                    + "From tbl_branch order by brh_name");
+                    + "From branch order by brh_name");
             while (rs.next()) {
                 Branch brh = new Branch();
                 brh.setId(rs.getInt(1));

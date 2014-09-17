@@ -37,30 +37,39 @@
                                     <div class="success_box">All of the fields were successfully validated!</div>
                                     <div class="error_box"></div>
                              
-                                    <form id="form" name="form" action="" method="post" enctype="multipart/form-data">                    
+                                    <form id="form" name="form" action="" method="post">                    
                                         <fieldset>
-                                            <label><span class="text-form">Name* </span><input type="text" class="inputText" value="< %= lib.getName() %>"></label>
-                                            <label><span class="text-form">Website</span><input type="text" class="inputText" value="< %= lib.getWebsite() %>"></label>
-                                             <label><span class="text-form">Main branch</span>
+                                            <label><span class="text-form">Name* </span><input type="text" class="inputText" name="name" value="<%=request.getParameter("name")%>"></label>
+                                            <label><span class="text-form">Main branch* </span>
+                                                <select id="branch">
+                                                    <c:forEach items="${branches}" var="brh">
+                                                        <option value="${brh.id}">${brh.name}</option>
+                                                    </c:forEach> 
+                                                </select>
+                                                
                                                                           </label>
                                             
-                                          <!--  <script>
-                                            var val =< %=lib.getMainBranch() %>;
-                                            $('#sel').val(val);
-                                            </script> -->
-                                         <label><span class="text-form">Rental days* </span><input type="text" class="inputText" value="< %=lib.getRentalDays()%>"></label>
-                                        <label><span class="text-form">Reservation days* </span><input type="text" class="inputText" value="< %=lib.getReservationDays()%>"></label>
-                                        <label><span class="text-form">Rental alert* </span><input type="text" class="inputText" value="< %=lib.getRentalAlert()%>"></label>
-                                        <label><span class="text-form">Reservation alert* </span><input type="text" class="inputText" value="< %=lib.getReservationAlert()%>"></label>
-                                        <label><span class="text-form">Main currency* </span><input type="text" class="inputText" value="< %=lib.getMainCurrency()%>"></label>
-                                        <label><span class="text-form">Secondary currency </span><input type="text" class="inputText" value="< %=lib.getSecondaryCurrency()%>"></label>
-                                        <label><span class="text-form">Secondary currency rate </span><input type="text"  class="inputText" value="< %=lib.getSecondaryCurrencyRate()%>"></label>
+                                           <script>
+                                               if (!String.valueOf(request.getParameter("mainbranch")).equals("")){
+                                            var val = request.getParameter("mainbranch");
+                                            $('#branch').val(val);
+                                        }
+                                            </script> 
+                                            <label><span class="text-form">Website</span><input type="text" class="inputText" name="website" value="<%=request.getParameter("website")%>"></label>
+                                             
+                                         <label><span class="text-form">Rental days* </span><input type="text" class="inputText" name="rentaldays" value="<%=request.getParameter("rentaldays")%>"></label>
+                                        <label><span class="text-form">Reservation days* </span><input type="text" class="inputText" name="reseravationdays" value="<%=request.getParameter("reservationdays")%>"></label>
+                                        <label><span class="text-form">Rental alert* </span><input type="text" class="inputText" name="rentalalert" value="<%=request.getParameter("rentalalert")%>"></label>
+                                        <label><span class="text-form">Reservation alert* </span><input type="text" class="inputText" name="reservationalert" value="<%=request.getParameter("reservationalert")%>"></label>
+                                        <label><span class="text-form">Main currency* </span><input type="text" class="inputText" name="maincurrency" value="<%=request.getParameter("maincurrency")%>"></label>
+                                        <label><span class="text-form">Secondary currency </span><input type="text" class="inputText" name="secondarycurrency" value="<%=request.getParameter("secondarycurrency")%>"></label>
+                                        <label><span class="text-form">Secondary currency rate </span><input type="text"  class="inputText" name="secondarycurrencyrate" value="<%=request.getParameter("secondarycurrencyrate")%>"></label>
                                        
                                             <div class="wrapper">
                                                 <div class="extra-wrap">		
                                                     <div class="buttons">
 							<input type="submit" name="Submit" value="Submit" class="button"/>
-                                                        <a href="..\settings.jsp"><input type="button" name="Cancel" value="Cancel" class="button"/></a>
+                                                        <a href="settings.jsp"><input type="button" name="Cancel" value="Cancel" class="button"/></a>
                                                     </div> 
 
                                                 </div>

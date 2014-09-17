@@ -42,7 +42,7 @@
                                     <div class="success_box">All of the fields were successfully validated!</div>
                                     <div class="error_box"></div>
 
-                                    <form id="form" name="form" action="../SaveItem?id=<%=request.getParameter("id")%>" method="post" enctype="multipart/form-data">                    
+                                    <form id="form" name="form" action="../SaveItem?id=<%=request.getParameter("id")%>" method="post" >                    
                                         <fieldset>
                                             <label><span class="text-form">Name* </span><input type="text" class="inputText" id="name" 
                                                                                                name="name" value="<%=request.getParameter("name")%>"></label>
@@ -65,7 +65,7 @@
                                             <div class="wrapper">
                                                 <div class="text-form">Description</div>
                                                 <div class="extra-wrap">
-                                                    <textarea name="description"></textarea>
+                                                    <textarea name="description"><%=request.getParameter("description")%></textarea>
                                                     <div class="clear2"></div>			
                                                     <div class="buttons">
                                                         <input type="submit" name="Submit" value="Submit" class="button"/>
