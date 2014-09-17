@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-
+import utils.Utils;
 import Book.Book;
 import main.DBconnection;
 
@@ -134,7 +134,7 @@ public class BookBean {
             	query+=aid+",";
             }
             
-            query=str_RemoveLastChar(query);
+            query=Utils.str_RemoveLastChar(query);
            
             query+=") Order by bok_id";
             
@@ -197,7 +197,7 @@ public class BookBean {
             	query+=bcid+",";
             }
             
-            query=str_RemoveLastChar(query);
+            query=Utils.str_RemoveLastChar(query);
            
             query+=") Order by bok_id";
             
@@ -407,10 +407,5 @@ public class BookBean {
         }
     }
 
-    private String str_RemoveLastChar(String str) {
-        if (str.length() > 0) {
-          str = str.substring(0, str.length()-1);
-        }
-        return str;
-    }
+   
 }
