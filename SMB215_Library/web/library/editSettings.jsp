@@ -5,9 +5,10 @@
     <%@ include file="../main.html" %>
         <script>
         function mainbranch_id(){
-   var select = document.getElementById('mainbranch');
-   var mainbranch_id = select.options[select.selectedIndex].value;
-   document.myform.action = "SaveLibrary?mainbranch_id="+mainbranch_id ; 
+            var select = document.getElementById('mainbranch');
+   var mainbranch_id = select.value;
+   var myform = document.getElementById('form');
+   myform.action = "SaveLibrary?mainbranch_id="+mainbranch_id ; 
    myform.submit();
 }
     </script>
@@ -45,7 +46,7 @@
                                     <div class="success_box">All of the fields were successfully validated!</div>
                                     <div class="error_box"></div>
 
-                                    <form id="form" name="form" action="SaveLibrary?mainbranch_id=" onsubmit="mainbranch()" method="post">                    
+                                    <form id="form" name="form" action="SaveLibrary?mainbranch_id="  method="post">                    
                                         <fieldset>
                                             <label><span class="text-form">Name* </span><input type="text" class="inputText" name="name" value="<%=request.getParameter("name")%>"></label>
                                             <label><span class="text-form">Main branch* </span>
@@ -76,7 +77,7 @@
                                             <div class="wrapper">
                                                 <div class="extra-wrap">		
                                                     <div class="buttons">
-                                                        <input type="submit" name="Submit" value="Submit" class="button"/>
+                                                        <input type="button" name="Submit" value="Submit" class="button" onclick="mainbranch_id()"/>
                                                         <a href="settings.jsp"><input type="button" name="Cancel" value="Cancel" class="button"/></a>
                                                     </div> 
 
