@@ -77,7 +77,7 @@ public class BookBean {
                     dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
 
             stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM `book` Inner Join bookstatus On bookstatus_id=bks_id WHERE branch_id= "+branch_id+" Order by bok_id");
+            ResultSet rs = stmt.executeQuery("SELECT * FROM book Inner Join bookstatus On bookstatus_id=bks_id WHERE branch_id= "+branch_id+" Order by bok_id");
         
             while (rs.next()) {
                 Book book = new Book();
