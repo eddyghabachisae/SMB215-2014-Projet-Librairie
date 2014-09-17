@@ -15,6 +15,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
 import main.DBconnection;
 import supplier.Supplier;
 
@@ -24,7 +25,7 @@ import supplier.Supplier;
  */
 public class CustomerBean {
     
-    public List<Customer> getCustomer() {
+    public List<Customer> getCustomers() {
         List<Customer> list = new ArrayList<>();
         Connection con = null;
         Statement stmt = null;
@@ -235,4 +236,112 @@ public class CustomerBean {
         }
     }
     
+
+    public int validateCredentials(String user, String pass){
+    	
+    	
+    	
+    	Connection con = null;
+        Statement stmt = null;
+        try {
+            DBconnection dbCon = new DBconnection();
+            Class.forName(dbCon.getJDBC_DRIVER());
+
+            con = DriverManager.getConnection(dbCon.getDATABASE_URL(),
+                    dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
+            stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("Select cst_id, cst_password From customer Where cst_username='" + user+"'");
+            if (rs.next()) {
+               
+            	if(rs.getString(2).equals(pass))
+            	{
+            		return rs.getInt(1);
+            	}
+            }
+        } catch (SQLException | ClassNotFoundException ex) {
+            System.err.println("Caught Exception: " + ex.getMessage());
+        } finally {
+            try {
+                if (stmt != null) {
+                    stmt.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException ex) {
+                System.err.println("Caught Exception: " + ex.getMessage());
+            }
+        }
+        return -1;
+    	
+    } 
+    
+    public boolean userName_IsValid(String user)
+    {
+    	Connection con = null;
+        Statement stmt = null;
+        try {
+            DBconnection dbCon = new DBconnection();
+            Class.forName(dbCon.getJDBC_DRIVER());
+
+            con = DriverManager.getConnection(dbCon.getDATABASE_URL(),
+                    dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
+            stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("Select cst_id From customer Where cst_username='" + user+"'");
+            if (rs.next()) {
+               
+            	return false;
+            }
+        } catch (SQLException | ClassNotFoundException ex) {
+            System.err.println("Caught Exception: " + ex.getMessage());
+        } finally {
+            try {
+                if (stmt != null) {
+                    stmt.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException ex) {
+                System.err.println("Caught Exception: " + ex.getMessage());
+            }
+        }
+        return true;
+    	
+    	
+    }
+
+    public void changePassword(int id,String pass)
+    {
+    	Connection con = null;
+        PreparedStatement pstmt = null;
+        try {
+            DBconnection dbCon = new DBconnection();
+            Class.forName(dbCon.getJDBC_DRIVER());
+
+            con = DriverManager.getConnection(dbCon.getDATABASE_URL(),
+                    dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
+
+            pstmt = con.prepareStatement("Update customer Set  "
+                    +"cst_password=? Where cst_id=?");
+            pstmt.setString(1, pass);
+            pstmt.setInt(2, id);
+            pstmt.executeUpdate();
+        } catch (SQLException | ClassNotFoundException ex) {
+            System.err.println("Caught Exception: " + ex.getMessage());
+        } finally {
+            try {
+                if (pstmt != null) {
+                    pstmt.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException ex) {
+                System.err.println("Caught Exception: " + ex.getMessage());
+            }
+        }
+
+    }
+
 }

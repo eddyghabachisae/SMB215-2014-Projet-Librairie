@@ -50,18 +50,18 @@
                                     <tr>
                                         <td><c:choose>
                                             <c:when test="${item.isAvailable==true}" >
-                                                <a href="" title="Avaible" class="fa fa-lg fa-times"></a>
+                                                <a href="" title="Avaible" class="fa fa-lg fa-check" ></a>
                                             </c:when>
                                             <c:otherwise>
-                                             <a href="" title="Not Available" class="fa fa-lg fa-check"></a>   
+                                             <a href="" title="Not Available" class="fa fa-lg fa-times" ></a>   
                                             </c:otherwise>
                                             </c:choose></td>
                                         <td><c:choose>
                                             <c:when test="${item.isActive==true}" >
-                                                <a href="" title="Active" class="fa fa-lg fa-times"></a>
+                                                <a href="" title="Active" class="fa fa-lg fa-check"></a>
                                             </c:when>
                                             <c:otherwise>
-                                             <a href="" title="Not Active" class="fa fa-lg fa-check"></a>   
+                                             <a href="" title="Not Active"class="fa fa-lg fa-times"></a>   
                                             </c:otherwise>
                                             </c:choose></td>
                                         <td>${item.name}</td>

@@ -10,6 +10,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
+import Book.Book;
 import main.DBconnection;
 
 public class BookBean {
@@ -63,6 +65,56 @@ public class BookBean {
         return list;
     }
 
+    public List<Book> getBooks(int branch_id) {
+        List<Book> list = new ArrayList<>();
+        Connection con = null;
+        Statement stmt = null;
+        try {
+            DBconnection dbCon = new DBconnection();
+            Class.forName(dbCon.getJDBC_DRIVER());
+
+            con = DriverManager.getConnection(dbCon.getDATABASE_URL(),
+                    dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
+
+            stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM book Inner Join bookstatus On bookstatus_id=bks_id WHERE branch_id= "+branch_id+" Order by bok_id");
+        
+            while (rs.next()) {
+                Book book = new Book();
+                book.setId(rs.getLong(1));
+                book.setTitle(rs.getString(2));
+                book.setSubtitle(rs.getString(3));
+                book.setIsbn(rs.getString(4));
+                book.setPublisher(rs.getString(5));
+                book.setPublishDate(rs.getDate(6));
+                book.setPagesNb(rs.getInt(7));
+                book.setBookCategory_id(rs.getLong(8));
+                book.setLanguage_id(rs.getLong(9));
+                book.setBookAuthor_id(rs.getLong(10));
+                book.setItem_id(rs.getLong(11));
+                book.setBookStatus_id(rs.getLong(12));
+                list.add(book);
+               
+            }
+        } catch (SQLException | ClassNotFoundException ex) {
+            System.err.println("Caught Exception: " + ex.getMessage());
+        } finally {
+            try {
+                if (stmt != null) {
+                    stmt.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException ex) {
+                System.err.println("Caught Exception: " + ex.getMessage());
+            }
+        }
+        System.err.println(list.size());
+        return list;
+    }
+
+    
     public void deleteBook(long id) {
         Connection con = null;
         Statement stmt = null;

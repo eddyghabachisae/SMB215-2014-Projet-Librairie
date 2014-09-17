@@ -1,7 +1,9 @@
-package Item;
+package BookCategory;
 
 
+import Book.*;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,10 +13,10 @@ import java.util.ArrayList;
 import java.util.List;
 import main.DBconnection;
 
-public class ItemBean {
+public class BookCategoryBean {
 
-    public List<Item> getItems() {
-        List<Item> list = new ArrayList<>();
+    public List<BookCategory> getBookCategories() {
+        List<BookCategory> list = new ArrayList<>();
         Connection con = null;
         Statement stmt = null;
         try {
@@ -25,26 +27,15 @@ public class ItemBean {
                     dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
 
             stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("Select * From item order by itm_id");
+            ResultSet rs = stmt.executeQuery("Select * From bookcategory order by bkc_id");
         
             while (rs.next()) {
-                Item item = new Item();
-                item.setId(rs.getLong(1));
-                item.setName(rs.getString(2));
-                item.setBarcode(rs.getString(3));
-                item.setImgBracodePath(rs.getString(4));
-                item.setImgPath(rs.getString(5));
-                item.setDescription(rs.getString(6));
-                item.setAvgUnitCost(rs.getDouble(7));
-                item.setSaleRentPrice(rs.getDouble(8));
-                item.setMinLimit(rs.getInt(9));
-                item.setMaxLimit(rs.getInt(10));
-                item.setQuantity(rs.getInt(11));
-                item.setIsAvailable(rs.getBoolean(12));
-                item.setIsActive(rs.getBoolean(13));
-                item.setDeactivationReason(rs.getString(14));
-                item.setItemCategory_id(rs.getInt(15));
-                list.add(item);
+                BookCategory bookCat = new BookCategory();
+                bookCat.setId(rs.getLong(1));
+                bookCat.setCode(rs.getString(2));
+                bookCat.setDescription(rs.getString(3));
+                
+                list.add(bookCat);
                
             }
         } catch (SQLException | ClassNotFoundException ex) {
@@ -65,7 +56,7 @@ public class ItemBean {
         return list;
     }
 
-    public void deleteItem(long id) {
+    public void deleteBookCategory(long id) {
         Connection con = null;
         Statement stmt = null;
         try {
@@ -75,7 +66,7 @@ public class ItemBean {
             con = DriverManager.getConnection(dbCon.getDATABASE_URL(),
                     dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
             stmt = con.createStatement();
-            stmt.execute("Delete From item Where itm_id = " + String.valueOf(id));
+            stmt.execute("Delete From bookcategory Where bkc_id = " + String.valueOf(id));
         } catch (SQLException | ClassNotFoundException ex) {
             System.err.println("Caught Exception: " + ex.getMessage());
         } finally {
@@ -92,7 +83,7 @@ public class ItemBean {
         }
     }
 
-    public void addItem(Item item) {
+    public void addBookCategory (BookCategory bookCat) {
 
         Connection con = null;
         PreparedStatement pstmt = null;
@@ -103,22 +94,12 @@ public class ItemBean {
 
             con = DriverManager.getConnection(dbCon.getDATABASE_URL(),
                     dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
-            pstmt = con.prepareStatement("Insert Into item (itm_name, itm_barcode, itm_barcodeimgpath, itm_imgpath, itm_description, itm_avgunitcost, itm_salerentprice, itm_minlimit, itm_maxlimit, itm_quantity, itm_isavailable, itm_isactive, itm_deactivationreason, itemCategory_id) Values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-    
-            pstmt.setString(1, item.getName());
-            pstmt.setString(2, item.getBarcode());
-            pstmt.setString(3, item.getImgBracodePath());
-            pstmt.setString(4, item.getImgPath());
-            pstmt.setString(5, item.getDescription());
-            pstmt.setDouble(6, item.getAvgUnitCost());
-            pstmt.setDouble(7, item.getSaleRentPrice());
-            pstmt.setInt(8, item.getMinLimit());
-            pstmt.setInt(9, item.getMaxLimit());
-            pstmt.setInt(10, item.getQuantity());
-            pstmt.setBoolean(11, item.getIsAvailable());
-            pstmt.setBoolean(12, item.getIsActive());
-            pstmt.setString(13, item.getDeactivationReason());
-            pstmt.setLong(14, item.getItemCategory_id());
+
+            pstmt = con.prepareStatement("Insert Into bookcategory "
+                    + "(bkc_code, bkc_description) Values(?,?)");
+
+            pstmt.setString(1, bookCat.getCode());
+            pstmt.setString(2, bookCat.getDescription());
             pstmt.execute();
 
         } catch (SQLException | ClassNotFoundException ex) {
@@ -137,8 +118,8 @@ public class ItemBean {
         }
     }
 
-    public Item getItem(long id) {
-        Item item = null;
+    public BookCategory getBookCategory(long id) {
+        BookCategory bookCat = null;
         Connection con = null;
         Statement stmt = null;
         try {
@@ -148,25 +129,13 @@ public class ItemBean {
             con = DriverManager.getConnection(dbCon.getDATABASE_URL(),
                     dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
             stmt = con.createStatement();
-            System.err.println("idddddddddddddddd:"+id);
-            ResultSet rs = stmt.executeQuery("Select * From item Where itm_id=" + id);
-            item = new Item();
+            ResultSet rs = stmt.executeQuery("Select * From bookcategory Where bkc_id=" + id);
+            bookCat = new BookCategory();
             if (rs.next()) {
-                item.setId(rs.getLong(1));
-                item.setName(rs.getString(2));
-                item.setBarcode(rs.getString(3));
-                item.setImgBracodePath(rs.getString(4));
-                item.setImgPath(rs.getString(5));
-                item.setDescription(rs.getString(6));
-                item.setAvgUnitCost(rs.getDouble(7));
-                item.setSaleRentPrice(rs.getDouble(8));
-                item.setMinLimit(rs.getInt(9));
-                item.setMaxLimit(rs.getInt(10));
-                item.setQuantity(rs.getInt(11));
-                item.setIsAvailable(rs.getBoolean(12));
-                item.setIsActive(rs.getBoolean(13));
-                item.setDeactivationReason(rs.getString(14));
-                item.setItemCategory_id(rs.getInt(15));
+                bookCat = new BookCategory();
+                bookCat.setId(rs.getLong(1));
+                bookCat.setCode(rs.getString(2));
+                bookCat.setDescription(rs.getString(3));
                 
             }
         } catch (SQLException | ClassNotFoundException ex) {
@@ -183,10 +152,10 @@ public class ItemBean {
                 System.err.println("Caught Exception: " + ex.getMessage());
             }
         }
-        return item;
+        return bookCat;
     }
 
-    public void modifyItem(Item item) {
+    public void modifyBookCategory (BookCategory bookCat) {
         Connection con = null;
         PreparedStatement pstmt = null;
         try {
@@ -196,28 +165,13 @@ public class ItemBean {
             con = DriverManager.getConnection(dbCon.getDATABASE_URL(),
                     dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
 
-            pstmt = con.prepareStatement("Update item Set itm_name=?, itm_barcode=?, itm_barcodeimgpath=?,"
-                    + "itm_imgpath=?,itm_description=?,"
-                    + "itm_avgunitcost=?,itm_salerentprice=?,"
-                    + "itm_minlimit=?,itm_maxlimit=?,itm_quantity=?,"
-                    + "itm_isavailable=?,itm_isactive=?,"
-                    + "itm_deactivationreason=?,itemCategory_id=?  Where itm_id=?");
+            pstmt = con.prepareStatement("Update bookcategory Set bkc_code=?, bkc_description=? Where bok_id=?");
            
-            pstmt.setString(1, item.getName());
-            pstmt.setString(2, item.getBarcode());
-            pstmt.setString(3, item.getImgBracodePath());
-            pstmt.setString(4, item.getImgPath());
-            pstmt.setString(5, item.getDescription());
-            pstmt.setDouble(6, item.getAvgUnitCost());
-            pstmt.setDouble(7, item.getSaleRentPrice());
-            pstmt.setInt(8, item.getMinLimit());
-            pstmt.setInt(9, item.getMaxLimit());
-            pstmt.setInt(10, item.getQuantity());
-            pstmt.setBoolean(11, item.getIsAvailable());
-            pstmt.setBoolean(12, item.getIsActive());
-            pstmt.setString(13, item.getDeactivationReason());
-            pstmt.setLong(14, item.getItemCategory_id());
-            pstmt.setLong(15, item.getId());
+            pstmt.setString(1, bookCat.getCode());
+            pstmt.setString(2, bookCat.getDescription());
+            pstmt.setLong(3, bookCat.getId());
+            
+            
              
             
             pstmt.executeUpdate();

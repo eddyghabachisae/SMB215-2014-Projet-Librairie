@@ -19,8 +19,9 @@ public class GetItem extends HttpServlet {
             Item item = itmBean.getItem(Integer.valueOf(request.getParameter("id")));
             ItemCategoryBean itc = new ItemCategoryBean();
             List<ItemCategory> itemCategoryList = itc.getItemCategories();
+            System.err.print("sizeee: "+itemCategoryList.size());
             request.setAttribute("itemCategoryList", itemCategoryList);
-             response.sendRedirect("Item/itemForm.jsp?" 
+            request.getRequestDispatcher("Item/itemForm.jsp?" 
                      +"id=" + item.getId()
                      +"&name=" + item.getName()
                      +"&imgPath=" + item.getImgPath()
@@ -29,14 +30,17 @@ public class GetItem extends HttpServlet {
                      +"&maxLimit="+item.getMaxLimit()
                      +"&available="+item.getIsAvailable()
                      +"&active="+item.getIsActive()
-                     +"&category="+item.getItemCategory_id());
+                     +"&category="+item.getItemCategory_id()
+                     +"&description="+item.getDescription()
+                     +"&book=").forward(request, response);
         } else {
             ItemCategoryBean itc = new ItemCategoryBean();
             List<ItemCategory> itemCategoryList = itc.getItemCategories();
+            System.err.print("sizeee: "+itemCategoryList.size());
             request.setAttribute("itemCategoryList", itemCategoryList);
-            response.sendRedirect("Item/itemForm.jsp?" 
-                     +"id=&name=&imgPath=&saleRentPrice=&minLimit=&maxLimit=&available=&active=&category=");
-        }
+            request.getRequestDispatcher("Item/itemForm.jsp?" 
+                     +"id=&name=&imgPath=&saleRentPrice=&minLimit=&maxLimit=&available=&active=&category=&description=&book=").forward(request, response);
+         }
     }
 
    
