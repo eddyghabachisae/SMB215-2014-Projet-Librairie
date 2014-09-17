@@ -25,7 +25,7 @@ public class GetAuthors extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         AuthorBean cntBean = new AuthorBean();
-        List<Author> authors = cntBean.getAuthor();
+        List<Author> authors = cntBean.getAuthors();
         request.setAttribute("authors", authors);
         request.getRequestDispatcher("authors/viewAuthor.jsp").forward(request, response);
     }
