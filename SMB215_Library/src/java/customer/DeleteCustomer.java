@@ -4,30 +4,25 @@
  * and open the template in the editor.
  */
 
-package Author;
+package customer;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author Dell
- */
-@WebServlet(name = "GetAuthors", urlPatterns = {"/GetAuthors"})
-public class GetAuthors extends HttpServlet {
+@WebServlet(name = "DeleteCustomer", urlPatterns = {"/DeleteCustomer"})
+public class DeleteCustomer extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        AuthorBean cntBean = new AuthorBean();
-        List<Author> authors = cntBean.getAuthors();
-        request.setAttribute("authors", authors);
-        request.getRequestDispatcher("authors/viewAuthor.jsp").forward(request, response);
+        int id = Integer.parseInt(request.getParameter("id"));
+        CustomerBean cntBean = new CustomerBean();
+        cntBean.deleteCustomer(id);
+        response.sendRedirect("GetCustomers");
     }
 
     @Override

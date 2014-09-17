@@ -4,11 +4,9 @@
  * and open the template in the editor.
  */
 
-package Author;
+package Language;
 
-import customer.Customer;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -22,10 +20,9 @@ import main.DBconnection;
  *
  * @author Dell
  */
-public class AuthorBean {
-    
-    public List<Author> getAuthors() {
-        List<Author> list = new ArrayList<>();
+public class LanguageBean {
+    public List<Language> getLanguages() {
+        List<Language> list = new ArrayList<>();
         Connection con = null;
         Statement stmt = null;
         try {
@@ -36,13 +33,13 @@ public class AuthorBean {
                     dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
 
             stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("Select * From author order by aut_name");
+            ResultSet rs = stmt.executeQuery("Select * From language order by lng_name");
             while (rs.next()) {
-                Author aut = new Author();
-                aut.setId(rs.getInt(1));
-                aut.setName(rs.getString(2));
-                aut.setCode(rs.getString(3));
-                list.add(aut);
+                Language lng = new Language();
+                lng.setId(rs.getInt(1));
+                lng.setName(rs.getString(2));
+                lng.setCode(rs.getString(3));
+                list.add(lng);
             }
         } catch (SQLException | ClassNotFoundException ex) {
             System.err.println("Caught Exception: " + ex.getMessage());
@@ -61,7 +58,7 @@ public class AuthorBean {
         return list;
     }
     
-    public void deleteAuthor(int id) {
+    public void deleteLanguage(int id) {
         Connection con = null;
         Statement stmt = null;
         try {
@@ -71,7 +68,7 @@ public class AuthorBean {
             con = DriverManager.getConnection(dbCon.getDATABASE_URL(),
                     dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
             stmt = con.createStatement();
-            stmt.execute("Delete From author Where aut_id = " + String.valueOf(id));
+            stmt.execute("Delete From language Where lng_id = " + String.valueOf(id));
         } catch (SQLException | ClassNotFoundException ex) {
             System.err.println("Caught Exception: " + ex.getMessage());
         } finally {
@@ -88,7 +85,7 @@ public class AuthorBean {
         }
     }
     
-    public void addAuthor(Author aut) {
+    public void addLanguage(Language lng) {
 
         Connection con = null;
         PreparedStatement pstmt = null;
@@ -100,12 +97,12 @@ public class AuthorBean {
             con = DriverManager.getConnection(dbCon.getDATABASE_URL(),
                     dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
 
-            pstmt = con.prepareStatement("Insert Into author "
-                    + "(aut_name, aut_code) "
+            pstmt = con.prepareStatement("Insert Into language "
+                    + "(lng_name, lng_code) "
                     + "Values(?,?)");
 
-            pstmt.setString(1, aut.getName());
-            pstmt.setString(2, aut.getCode());
+            pstmt.setString(1, lng.getName());
+            pstmt.setString(2, lng.getCode());
 
             pstmt.execute();
 
@@ -125,8 +122,8 @@ public class AuthorBean {
         }
     }
     
-    public Author getAuthor(int id) {
-        Author aut = null;
+    public Language getLanguage(int id) {
+        Language lng = null;
         Connection con = null;
         Statement stmt = null;
         try {
@@ -136,12 +133,12 @@ public class AuthorBean {
             con = DriverManager.getConnection(dbCon.getDATABASE_URL(),
                     dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
             stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("Select * From author Where aut_id=" + id);
+            ResultSet rs = stmt.executeQuery("Select * From language Where lng_id=" + id);
             if (rs.next()) {
-                aut = new Author();
-                aut.setId(rs.getInt(1));
-                aut.setName(rs.getString(2));
-                aut.setCode(rs.getString(3));
+                lng = new Language();
+                lng.setId(rs.getInt(1));
+                lng.setName(rs.getString(2));
+                lng.setCode(rs.getString(3));
             }
         } catch (SQLException | ClassNotFoundException ex) {
             System.err.println("Caught Exception: " + ex.getMessage());
@@ -157,10 +154,10 @@ public class AuthorBean {
                 System.err.println("Caught Exception: " + ex.getMessage());
             }
         }
-        return aut;
+        return lng;
     }
     
-    public void modifyAuthor(Author aut) {
+    public void modifyLanguage(Language lng) {
         Connection con = null;
         PreparedStatement pstmt = null;
         try {
@@ -170,11 +167,11 @@ public class AuthorBean {
             con = DriverManager.getConnection(dbCon.getDATABASE_URL(),
                     dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
 
-            pstmt = con.prepareStatement("Update author Set aut_name=?, "
-                    +"aut_code=? Where aut_id=?");
-            pstmt.setString(1, aut.getName());
-            pstmt.setString(2, aut.getCode());
-            pstmt.setInt(3, aut.getId());
+            pstmt = con.prepareStatement("Update language Set lng_name=?, "
+                    +"lng_code=? Where lng_id=?");
+            pstmt.setString(1, lng.getName());
+            pstmt.setString(2, lng.getCode());
+            pstmt.setInt(3, lng.getId());
             pstmt.executeUpdate();
         } catch (SQLException | ClassNotFoundException ex) {
             System.err.println("Caught Exception: " + ex.getMessage());
@@ -191,6 +188,4 @@ public class AuthorBean {
             }
         }
     }
-    
-    
 }
