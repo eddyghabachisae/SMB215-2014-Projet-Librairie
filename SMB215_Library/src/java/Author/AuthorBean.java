@@ -24,7 +24,7 @@ import main.DBconnection;
  */
 public class AuthorBean {
     
-    public List<Author> getAuthor() {
+    public List<Author> getAuthors() {
         List<Author> list = new ArrayList<>();
         Connection con = null;
         Statement stmt = null;
