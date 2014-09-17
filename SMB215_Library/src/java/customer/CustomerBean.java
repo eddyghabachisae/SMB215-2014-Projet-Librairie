@@ -24,7 +24,7 @@ import supplier.Supplier;
  */
 public class CustomerBean {
     
-    public List<Customer> getCustomer() {
+    public List<Customer> getCustomers() {
         List<Customer> list = new ArrayList<>();
         Connection con = null;
         Statement stmt = null;
