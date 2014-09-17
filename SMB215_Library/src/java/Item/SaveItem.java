@@ -44,13 +44,10 @@ public class SaveItem extends HttpServlet {
             throws ServletException, IOException {
         System.err.println("fet 3al post");
         Item item = new Item();
-         System.err.println("fet la honnnn");
-        System.err.println("request: "+request.getParameter("name"));
+         System.err.println("book"+request.getParameter("book"));
         item.setName(request.getParameter("name"));
         item.setDescription(request.getParameter("description"));
-        item.setAvgUnitCost(Double.parseDouble(request.getParameter("avgCost")));
         item.setSaleRentPrice(Double.parseDouble(request.getParameter("saleRentPrice")));
-        item.setQuantity(Integer.parseInt(request.getParameter("quantity")));
         item.setMinLimit(Integer.parseInt(request.getParameter("minLimit")));
         item.setMaxLimit(Integer.parseInt(request.getParameter("maxLimit")));
         item.setIsAvailable(Boolean.parseBoolean(request.getParameter("available")));
@@ -60,7 +57,7 @@ public class SaveItem extends HttpServlet {
         System.err.println("itemmmm: "+item.toString());
         
         
-        if(ServletFileUpload.isMultipartContent(request)){
+      /*  if(ServletFileUpload.isMultipartContent(request)){
 
             try {
 
@@ -99,16 +96,22 @@ public class SaveItem extends HttpServlet {
            
 
         }
-
-        if (request.getParameter("id")!=null) {
+*/
+        if (!request.getParameter("id").equals("")) {
             System.err.println("fet 3al ifff");
             item.setId(Long.parseLong(request.getParameter("id")));
             itemBean.modifyItem(item);
-            response.sendRedirect("GetItems");
+            if(request.getParameter("book").equals("true"))
+                response.sendRedirect("GetBook?item_id="+item.getId());
+            else
+                response.sendRedirect("GetItems");
         } else {
             System.err.println("fet 3al elseee");
             itemBean.addItem(item);
-            response.sendRedirect("GetItems");
+            if(request.getParameter("book").equals("true"))
+                response.sendRedirect("GetBook?item_id="+item.getId());
+            else
+                response.sendRedirect("GetItems");
         }
     }
 
