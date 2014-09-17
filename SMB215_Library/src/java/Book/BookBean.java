@@ -113,7 +113,6 @@ public class BookBean {
         System.err.println(list.size());
         return list;
     }
-
     
     public void deleteBook(long id) {
         Connection con = null;
