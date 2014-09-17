@@ -7,12 +7,15 @@
 package customer;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.Arrays;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import utils.Enums.Gender;
+import utils.Enums.MaritalStatus;
 
 
 @WebServlet(name = "GetCustomer", urlPatterns = {"/GetCustomer"})
@@ -20,28 +23,37 @@ public class GetCustomer extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+            List<Gender> genderlist;
+            genderlist = Arrays.asList(Gender.values());
+            List<MaritalStatus> maritalstatuslist;
+            maritalstatuslist = Arrays.asList(MaritalStatus.values());
         if (request.getParameter("id") != null){
             CustomerBean cntBean = new CustomerBean();
             Customer cnt = cntBean.getCustomer(Integer.valueOf(request.getParameter("id")));
-            response.sendRedirect("Customer/editCustomer.jsp?" 
+            request.setAttribute("gender", genderlist);
+            request.setAttribute("maritalstatus", maritalstatuslist);
+            request.getRequestDispatcher("Customer/editCustomer.jsp?" 
                     +"id=" + cnt.getId()
                     +"&username=" + cnt.getUsername() 
                     +"&password=" + cnt.getPassword()
-                    +"firstname=" + cnt.getFirstname()
-                    +"&username=" + cnt.getUsername() 
+                    +"&firstname=" + cnt.getFirstname()
                     +"&lastname=" + cnt.getLastname()
-                    +"gender=" + cnt.getGender()
+                    +"&gender=" + cnt.getGender()
                     +"&maritalstatus=" + cnt.getMaritalstatus()
                     +"&dateofbirth=" + cnt.getDateofbirth()
-                    +"address=" + cnt.getAddress()
+                    +"&address=" + cnt.getAddress()
                     +"&city=" + cnt.getCity()
                     +"&phone=" + cnt.getPhone()
-                    +"mobile=" + cnt.getMobile()
+                    +"&mobile=" + cnt.getMobile()
                     +"&email=" + cnt.getEmail()
                     +"&remarks=" + cnt.getRemarks()
-                    +"isactive=" + cnt.getIsactive());
+                    +"&isactive=" + cnt.getIsactive()).forward(request, response);
         } else {
-               response.sendRedirect("Customer/editCustomer.jsp?id=&code=&name=");
+            request.setAttribute("gender", genderlist);
+            request.setAttribute("maritalstatus", maritalstatuslist);
+               request.getRequestDispatcher("Customer/editCustomer.jsp?id=&username=&password="
+               +"&firstname=&lastname=&gender=&maritalstatus=&dateofbirth=&address=&city=&phone=&"
+               + "&mobile=&email=&remarks=&isactive=").forward(request, response);
         }
     }
 

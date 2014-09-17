@@ -1,3 +1,5 @@
+<%@page import="Item.Item"%>
+<%@page import="Item.Item"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
@@ -14,7 +16,7 @@
                                 <h1><a href="index.html">Library</a></h1>
                                 <nav>
                                     <ul class="menu">
-                                        <li><a class="active" href="../home.jsp">Main</a></li>
+                                        <li><a class="active" href="${pageContext.request.contextPath}/home.jsp">Main</a></li>
                                         <li><a href="">Inbox</a></li>
                                         <li><a href="">Logout</a></li>
                                     </ul>
@@ -35,31 +37,38 @@
                                 <h3 class="prev-indent-bot">Item</h3>
                                 <ul id="tabs">
                                     <li><a href="#" title="tab1" class="activeTab">Main Info</a></li>
-                                    <li><a href="#" title="tab2" class="notActive">Book Info</a></li>
                                 </ul>
 
                                 <div id="content3"> 
                                     <div class="success_box">All of the fields were successfully validated!</div>
                                     <div class="error_box"></div>
 
-                                    <form id="form" name="form" action="../SaveItem?id=<%=request.getParameter("id")%>" method="post" >                    
+                                    <form id="form" name="form" action="SaveItem?id=<%=request.getParameter("id")%>" method="post" >                    
                                         <fieldset>
                                             <label><span class="text-form">Name* </span><input type="text" class="inputText" id="name" 
-                                                                                               name="name" value="<%=request.getParameter("name")%>"></label>
-                                            <label><span class="text-form">Image </span><img src="<%=request.getParameter("imgPath")%>" width="100" height="100"/><br><input type = "file" name="browse" style="margin-left:30%;"></label>                    
+                                                                                               name="name" value="<%=request.getParameter("name")%>"></label>                   
                                           
-                                            <label><span class="text-form">Sale rent price* </span><input type="text" class="inputText" id="saleRentPrice" 
+                                            <label><span class="text-form">Sale price* </span><input type="text" class="inputText" id="saleRentPrice" 
                                                                                                           name="saleRentPrice" value="<%=request.getParameter("saleRentPrice")%>"></label>
-                                            <label><span class="text-form">Min Limit* </span><input type="text" class="inputText" id="minLimit" 
+                                            <label><span class="text-form">Min Limit In Stock* </span><input type="text" class="inputText" id="minLimit" 
                                                                                                     name="minLimit" value="<%=request.getParameter("minLimit")%>"></label>
-                                            <label><span class="text-form">Max Limit* </span><input type="text" class="inputText" id="maxLimit" 
+                                            <label><span class="text-form">Max Limit In Stock* </span><input type="text" class="inputText" id="maxLimit" 
                                                                                                     name="maxLimit" value="<%=request.getParameter("maxLimit")%>"></label>
-                                            <label><span class="text-form">Available? </span><input  name="available" type="checkbox" value="true" /></label>
-                                            <label><span class="text-form">Active?</span><input  name="active" type="checkbox" value="true"/></label>
+                                                                                                    <%  String available= request.getParameter("available");
+                                                                                                    %>
+                                            <label><span class="text-form">Available? </span><input  name="available" type="checkbox" value="true" <%= (available.equals("true") ? "checked" : "") %> /></label>
+                                                                                                     <%  String active= request.getParameter("active");
+                                                                                                    %>
+                                            <label><span class="text-form">Active?</span><input  name="active" type="checkbox" value="true" <%= (active.equals("true") ? "checked" : "") %>/></label>
+                                                                                                      <%  String book= request.getParameter("book");
+                                                                                                        %>
+                                            <label><span class="text-form">Book ?</span><input  name="book" type="checkbox" value="true" <%=(book.equals("true") ? "checked" : "") %>/></label>
                                             <label><span class="text-form">Category*</span>
-                                                <select name="category" ><option value="1">Select</option>
+                                                <select name="category" >
+                                                    <option value="">Select</option>
                                                     <c:forEach items="${itemCategoryList}" var="itemCat">
-                                                        <option value="${itemCat.id}">${itemCat.code}</option>
+                                                        <c:set var="itemID" value="${itemCat.id}" />
+                                                        <option value="${itemCat.id}" >${itemCat.code}</option>
                                                     </c:forEach>
                                                 </select></label>
                                             <div class="wrapper">
@@ -69,7 +78,7 @@
                                                     <div class="clear2"></div>			
                                                     <div class="buttons">
                                                         <input type="submit" name="Submit" value="Submit" class="button"/>
-                                                        <a href="../GetItems"><input type="button" name="Cancel" value="Cancel" class="button"/></a>
+                                                        <a href="GetItems"><input type="button" name="Cancel" value="Cancel" class="button"/></a>
                                                     </div> 
 
                                                 </div>
