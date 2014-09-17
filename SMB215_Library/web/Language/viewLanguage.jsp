@@ -27,32 +27,35 @@
             </header>
 
             <!--==============================content================================-->
-            <section id="content"><div class="ic"><div class="inner_copy">All <a href="http://www.magentothemesworld.com" title="Best Magento Templates">premium Magento themes</a> at magentothemesworld.com!</div></div>
+            <section id="content"><div class="ic"></div>
                 <div class="container_12">
                     <div class="wrapper">
                         <div class="pull-right">
-                            <a href="GetItemCategory"><input type="submit" name="Submit" value="Add New Item Category" class="button"/></a>
+                            <a href="GetLanguage"><input type="submit" name="Submit" value="Add New Language" class="button"/></a>
                         </div>
                         <div class="clear2"></div>
                         <div class="CSSTableGenerator" >
-                            <table border="1">
-            <tr>
-                <td>Code</td>
-                <td>Description</td>
-                <td width="10%">Actions</td>
-            </tr>
-            <c:forEach items="${itemCategories}" var="itc">
-                <tr>
-                    <td>${itc.code}</td>
-                    <td>${itc.description}</td>
-                    <td>
-                        <a href="GetItemCategory?id=${itc.id}" title="Edit" class="fa fa-lg fa-pencil-square-o"></a>
-                        <a href="DeleteItemCategory?id=${itc.id}" title="Delete" class="fa fa-lg fa-trash-o"></a> 
-                    </td>
-                </tr>
-            </c:forEach>
-        </table>
-    </div>
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td>Code</td>
+                                        <td>Name</td>
+                                        <td width="10%">Actions</td>
+                                    </tr>
+
+                                    <c:forEach items="${Languages}" var="cnt">
+                                        <tr>
+                                            <td>${cnt.code}</td>
+                                            <td>${cnt.name}</td>
+                                            <td>
+                                                <a href="GetLanguage?id=${cnt.id}" title="Edit" class="fa fa-lg fa-pencil-square-o"></a>
+                                                <a href="DeleteLanguage?id=${cnt.id}" title="Delete" class="fa fa-lg fa-trash-o"></a> 
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
+                                </tbody>
+                            </table>
+                                               </div>
                         <div class="clear"></div>
                         <div id="tnt_pagination">
                             <span class="disabled_tnt_pagination">Prev</span>
