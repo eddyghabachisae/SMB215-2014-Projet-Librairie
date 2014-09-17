@@ -49,4 +49,71 @@ public class LibraryBean {
         }
     }
 
+        public void UpdateLibrary(Library lib) {
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        Statement stmt = null;
+        try {
+            DBconnection dbCon = new DBconnection();
+            Class.forName(dbCon.getJDBC_DRIVER());
+
+            con = DriverManager.getConnection(dbCon.getDATABASE_URL(),
+                    dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
+            stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("Select lib_id From library");
+            if(rs.next()) {
+            pstmt = con.prepareStatement("Update library Set lib_name=?, "
+                    + "lib_website=?, lib_rentaldays=?, lib_reservationdays=?,"
+                    + "lib_maxreserve=?, lib_rentalalert=?, lib_reservationalert=?,"
+                    + "lib_maincurrency=?, lib_secondarycurrency=?, lib_secondarycurrencyrate=?,"
+                    + "mainBranch_id=? Where lib_id=1");
+            pstmt.setString(1, lib.getName());
+            pstmt.setString(2, lib.getWebsite());
+            pstmt.setInt(3, lib.getRentalDays());
+            pstmt.setInt(4, lib.getReservationDays());
+            pstmt.setInt(5, lib.getMaxReserve());
+            pstmt.setInt(6, lib.getRentalAlert());
+            pstmt.setInt(7, lib.getReservationAlert());
+            pstmt.setString(8, lib.getMainCurrency());
+            pstmt.setString(9, lib.getSecondaryCurrency());
+            pstmt.setFloat(10, lib.getSecondaryCurrencyRate());
+            pstmt.setInt(11, lib.getMainBranch());
+            pstmt.executeUpdate(); 
+            } else {
+                            pstmt = con.prepareStatement("Insert Into library (lib_name, "
+                    + "lib_website, lib_rentaldays, lib_reservationdays,"
+                    + "lib_maxreserve, lib_rentalalert, lib_reservationalert,"
+                    + "lib_maincurrency, lib_secondarycurrency, lib_secondarycurrencyrate,"
+                    + "mainBranch_id) Values (?,?,?,?,?,?,?,?,?,?,?)");
+            pstmt.setString(1, lib.getName());
+            pstmt.setString(2, lib.getWebsite());
+            pstmt.setInt(3, lib.getRentalDays());
+            pstmt.setInt(4, lib.getReservationDays());
+            pstmt.setInt(5, lib.getMaxReserve());
+            pstmt.setInt(6, lib.getRentalAlert());
+            pstmt.setInt(7, lib.getReservationAlert());
+            pstmt.setString(8, lib.getMainCurrency());
+            pstmt.setString(9, lib.getSecondaryCurrency());
+            pstmt.setFloat(10, lib.getSecondaryCurrencyRate());
+            pstmt.setInt(11, lib.getMainBranch());
+            pstmt.execute(); 
+            }
+        } catch (SQLException | ClassNotFoundException ex) {
+            System.err.println("Caught Exception: " + ex.getMessage());
+        } finally {
+            try {
+                if (pstmt != null) {
+                    pstmt.close();
+                }
+                if (stmt != null) {
+                    stmt.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException ex) {
+                System.err.println("Caught Exception: " + ex.getMessage());
+            }
+        }
+    }
 }

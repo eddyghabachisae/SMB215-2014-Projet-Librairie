@@ -3,6 +3,14 @@
 <!DOCTYPE html>
 <html lang="en">
     <%@ include file="../main.html" %>
+        <script>
+        function mainbranch_id(){
+   var select = document.getElementById('mainbranch');
+   var mainbranch_id = select.options[select.selectedIndex].value;
+   document.myform.action = "SaveLibrary?mainbranch_id="+mainbranch_id ; 
+   myform.submit();
+}
+    </script>
     <body id="page5">
         <div class="main">
             <!--==============================header=================================-->
@@ -36,39 +44,39 @@
                                 <div id="content3"> 
                                     <div class="success_box">All of the fields were successfully validated!</div>
                                     <div class="error_box"></div>
-                             
-                                    <form id="form" name="form" action="" method="post">                    
+
+                                    <form id="form" name="form" action="SaveLibrary?mainbranch_id=" onsubmit="mainbranch()" method="post">                    
                                         <fieldset>
                                             <label><span class="text-form">Name* </span><input type="text" class="inputText" name="name" value="<%=request.getParameter("name")%>"></label>
                                             <label><span class="text-form">Main branch* </span>
-                                                <select id="branch">
+
+                                                <select id="mainbranch">
                                                     <c:forEach items="${branches}" var="brh">
                                                         <option value="${brh.id}">${brh.name}</option>
                                                     </c:forEach> 
                                                 </select>
-                                                
-                                                                          </label>
-                                            
-                                           <script>
-                                               if (!String.valueOf(request.getParameter("mainbranch")).equals("")){
-                                            var val = request.getParameter("mainbranch");
-                                            $('#branch').val(val);
-                                        }
-                                            </script> 
+                                                <script>
+                                                 if ("<%=request.getParameter("mainbranch")%>" !== "") {
+                                                     var val = <%=request.getParameter("mainbranch")%>;
+                                                     $('#mainbranch').val(val);
+                                                 }
+                                                </script>
+                                            </label>
                                             <label><span class="text-form">Website</span><input type="text" class="inputText" name="website" value="<%=request.getParameter("website")%>"></label>
-                                             
-                                         <label><span class="text-form">Rental days* </span><input type="text" class="inputText" name="rentaldays" value="<%=request.getParameter("rentaldays")%>"></label>
-                                        <label><span class="text-form">Reservation days* </span><input type="text" class="inputText" name="reseravationdays" value="<%=request.getParameter("reservationdays")%>"></label>
-                                        <label><span class="text-form">Rental alert* </span><input type="text" class="inputText" name="rentalalert" value="<%=request.getParameter("rentalalert")%>"></label>
-                                        <label><span class="text-form">Reservation alert* </span><input type="text" class="inputText" name="reservationalert" value="<%=request.getParameter("reservationalert")%>"></label>
-                                        <label><span class="text-form">Main currency* </span><input type="text" class="inputText" name="maincurrency" value="<%=request.getParameter("maincurrency")%>"></label>
-                                        <label><span class="text-form">Secondary currency </span><input type="text" class="inputText" name="secondarycurrency" value="<%=request.getParameter("secondarycurrency")%>"></label>
-                                        <label><span class="text-form">Secondary currency rate </span><input type="text"  class="inputText" name="secondarycurrencyrate" value="<%=request.getParameter("secondarycurrencyrate")%>"></label>
-                                       
+
+                                            <label><span class="text-form">Rental days* </span><input type="text" class="inputText" name="rentaldays" value="<%=request.getParameter("rentaldays")%>"></label>
+                                            <label><span class="text-form">Reservation days* </span><input type="text" class="inputText" name="reservationdays" value="<%=request.getParameter("reservationdays")%>"></label>
+                                            <label><span class="text-form">Maximum reserve* </span><input type="text" class="inputText" name="maxreserve" value="<%=request.getParameter("maxreserve")%>"></label>
+                                            <label><span class="text-form">Rental alert* </span><input type="text" class="inputText" name="rentalalert" value="<%=request.getParameter("rentalalert")%>"></label>
+                                            <label><span class="text-form">Reservation alert* </span><input type="text" class="inputText" name="reservationalert" value="<%=request.getParameter("reservationalert")%>"></label>
+                                            <label><span class="text-form">Main currency* </span><input type="text" class="inputText" name="maincurrency" value="<%=request.getParameter("maincurrency")%>"></label>
+                                            <label><span class="text-form">Secondary currency </span><input type="text" class="inputText" name="secondarycurrency" value="<%=request.getParameter("secondarycurrency")%>"></label>
+                                            <label><span class="text-form">Secondary currency rate </span><input type="text"  class="inputText" name="secondarycurrencyrate" value="<%=request.getParameter("secondarycurrencyrate")%>"></label>
+
                                             <div class="wrapper">
                                                 <div class="extra-wrap">		
                                                     <div class="buttons">
-							<input type="submit" name="Submit" value="Submit" class="button"/>
+                                                        <input type="submit" name="Submit" value="Submit" class="button"/>
                                                         <a href="settings.jsp"><input type="button" name="Cancel" value="Cancel" class="button"/></a>
                                                     </div> 
 
@@ -97,17 +105,37 @@
         </div>
         <script type="text/javascript"> Cufon.now();</script>
     </body>
-    <script type="text/javascript">
+         <script type="text/javascript">
 
         new FormValidator('form', [{
-                name: 'code',
-                display: 'Code',
+                name: 'name',
+                display: 'Name',
                 rules: 'required'
             },
             {
-                name: 'description',
-                display: 'Description',
-                rules: 'required'
+                name: 'rentaldays',
+                display: 'Rental days',
+                rules: 'required|numeric'
+            }, {
+                name: 'reservationdays',
+                display: 'Reservation days',
+                rules: 'required|numeric'
+            }, {
+                name: 'maxreserve',
+                display: 'Maximum reserve',
+                rules: 'required|numeric'
+            }, {
+                name: 'rentalalert',
+                display: 'Rental alert',
+                rules: 'required|numeric'
+            }, {
+                name: 'reservationalert',
+                display: 'Resesrvation alert',
+                rules: 'required|numeric'
+            }, {
+                name: 'secondarycurrenctrate',
+                display: 'Secondary currency rate',
+                rules: 'numeric'
             }
         ], function(errors, event) {
             var SELECTOR_ERRORS = $('.error_box'),

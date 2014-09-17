@@ -14,7 +14,7 @@ public class SaveCountry extends HttpServlet {
             throws ServletException, IOException {
         Country cnt = new Country();
         cnt.setCode(request.getParameter("code"));
-        cnt.setName(request.getParameter("name"));
+       cnt.setName(request.getParameter("name"));
         CountryBean cntBean = new CountryBean();
         if (!request.getParameter("id").equals("")) {
             cnt.setId(Integer.parseInt(request.getParameter("id")));
