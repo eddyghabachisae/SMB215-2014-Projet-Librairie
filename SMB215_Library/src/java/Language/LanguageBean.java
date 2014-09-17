@@ -21,7 +21,7 @@ import main.DBconnection;
  * @author Dell
  */
 public class LanguageBean {
-    public List<Language> getLanguage() {
+    public List<Language> getLanguages() {
         List<Language> list = new ArrayList<>();
         Connection con = null;
         Statement stmt = null;
