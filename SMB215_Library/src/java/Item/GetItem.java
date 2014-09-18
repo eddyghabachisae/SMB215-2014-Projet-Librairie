@@ -1,5 +1,7 @@
 package Item;
 
+import Book.Book;
+import Book.BookBean;
 import itemCategory.*;
 import java.io.IOException;
 import java.util.List;
@@ -21,6 +23,11 @@ public class GetItem extends HttpServlet {
             List<ItemCategory> itemCategoryList = itc.getItemCategories();
             System.err.print("sizeee: "+itemCategoryList.size());
             request.setAttribute("itemCategoryList", itemCategoryList);
+            BookBean bookBean = new BookBean();
+            Book book = bookBean.getBookFormItem(item.getId());
+            boolean isBook = false;
+            if(book!=null && book.getItem_id()== item.getId())
+                isBook = true;
             request.getRequestDispatcher("Item/itemForm.jsp?" 
                      +"id=" + item.getId()
                      +"&name=" + item.getName()
@@ -32,7 +39,8 @@ public class GetItem extends HttpServlet {
                      +"&active="+item.getIsActive()
                      +"&category="+item.getItemCategory_id()
                      +"&description="+item.getDescription()
-                     +"&book=").forward(request, response);
+                     +"&book="+isBook
+                     +"&book_id="+book.getId()).forward(request, response);
         } else {
             ItemCategoryBean itc = new ItemCategoryBean();
             List<ItemCategory> itemCategoryList = itc.getItemCategories();

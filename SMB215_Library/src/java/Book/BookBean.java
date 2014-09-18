@@ -280,13 +280,13 @@ public class BookBean {
                     dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
 
             pstmt = con.prepareStatement("Insert Into book "
-                    + "(bok_id, bok_title, bok_subtitle,bok_isbn,bok_publisher,bok_publisherdate,bok_nbpages,bookCategory_id,bookLanguage_id,BookAuthor_id,item_id,bookstatus_id) Values(?,?,?,?,?,?,?,?,?,?,?,?)");
+                    + "(bok_title, bok_subtitle,bok_isbn,bok_publisher,bok_publisherdate,bok_nbpages,bookCategory_id,bookLanguage_id,BookAuthor_id,item_id,bookstatus_id) Values(?,?,?,?,?,?,?,?,?,?,?)");
 
             pstmt.setString(1, book.getTitle());
             pstmt.setString(2, book.getSubtitle());
             pstmt.setString(3, book.getIsbn());
             pstmt.setString(4, book.getPublisher());
-            pstmt.setDate(5, (Date) book.getPublishDate());
+            pstmt.setDate(5, book.getPublishDate());
             pstmt.setInt(6, book.getPagesNb());
             pstmt.setLong(7, book.getBookCategory_id());
             pstmt.setLong(8, book.getLanguage_id());
@@ -323,6 +323,52 @@ public class BookBean {
                     dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
             stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("Select * From Book Where bok_id=" + id);
+            book = new Book();
+            if (rs.next()) {
+                book = new Book();
+                book.setId(rs.getLong(1));
+                book.setTitle(rs.getString(2));
+                book.setSubtitle(rs.getString(3));
+                book.setIsbn(rs.getString(4));
+                book.setPublisher(rs.getString(5));
+                book.setPublishDate((Date)(java.util.Date)rs.getDate(6));
+                book.setPagesNb(rs.getInt(7));
+                book.setBookCategory_id(rs.getLong(8));
+                book.setLanguage_id(rs.getLong(9));
+                book.setAuthor_id(rs.getLong(10));
+                book.setItem_id(rs.getLong(11));
+                book.setBookStatus_id(rs.getLong(12));
+                
+            }
+        } catch (SQLException | ClassNotFoundException ex) {
+            System.err.println("Caught Exception: " + ex.getMessage());
+        } finally {
+            try {
+                if (stmt != null) {
+                    stmt.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException ex) {
+                System.err.println("Caught Exception: " + ex.getMessage());
+            }
+        }
+        return book;
+    }
+   
+      public Book getBookFormItem(long item_id) {
+        Book book = null;
+        Connection con = null;
+        Statement stmt = null;
+        try {
+            DBconnection dbCon = new DBconnection();
+            Class.forName(dbCon.getJDBC_DRIVER());
+
+            con = DriverManager.getConnection(dbCon.getDATABASE_URL(),
+                    dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
+            stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("Select * From Book Where item_id=" + item_id);
             book = new Book();
             if (rs.next()) {
                 book = new Book();

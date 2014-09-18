@@ -6,21 +6,25 @@
 
 package Item;
 
+import Book.Book;
+import Book.BookBean;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-//import org.apache.commons.fileupload.FileItem;
-//import org.apache.commons.fileupload.disk.DiskFileItemFactory;
-//import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 /**
  *
  * @author Douha
  */
+@WebServlet(name = "SaveItem", urlPatterns = {"/SaveItem"})
 public class SaveItem extends HttpServlet {
 
     
@@ -101,15 +105,18 @@ public class SaveItem extends HttpServlet {
             System.err.println("fet 3al ifff");
             item.setId(Long.parseLong(request.getParameter("id")));
             itemBean.modifyItem(item);
-            if(request.getParameter("book").equals("true"))
-                response.sendRedirect("GetBook?item_id="+item.getId());
+            if(request.getParameter("book")!=null && request.getParameter("book").equals("true")){
+                BookBean bookBean = new BookBean();
+                Book book = bookBean.getBookFormItem(item.getId());
+                response.sendRedirect("GetBook?item_id="+item.getId()+"&id="+book.getId());
+            }
             else
                 response.sendRedirect("GetItems");
         } else {
             System.err.println("fet 3al elseee");
             itemBean.addItem(item);
-            if(request.getParameter("book").equals("true"))
-                response.sendRedirect("GetBook?item_id="+item.getId());
+            if(request.getParameter("book")!=null && request.getParameter("book").equals("true"))
+                response.sendRedirect("GetBook?item_id="+item.getId()+"&id=");
             else
                 response.sendRedirect("GetItems");
         }
