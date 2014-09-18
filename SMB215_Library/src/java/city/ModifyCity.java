@@ -15,7 +15,7 @@ public class ModifyCity extends HttpServlet {
             throws ServletException, IOException {
         City cit = new City();
         cit.setId(Integer.parseInt(request.getParameter("txtCityId")));
-        cit.setShortName(request.getParameter("txtCityShortName"));
+        cit.setCode(request.getParameter("txtCityShortName"));
         cit.setName(request.getParameter("txtCityName"));
         CityBean citBean = new CityBean();
         citBean.modifyCity(cit);

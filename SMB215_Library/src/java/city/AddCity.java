@@ -13,7 +13,7 @@ public class AddCity extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         City cit = new City();
-        cit.setShortName(request.getParameter("txtCityShortName"));
+        cit.setCode(request.getParameter("txtCityShortName"));
         cit.setName(request.getParameter("txtCityName"));
         CityBean citBean = new CityBean();
         citBean.addCity(cit);

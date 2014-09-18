@@ -2,6 +2,18 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/home/eddy/githubproject/Librairie/SMB215_Library/src/java/city/CityBean.java</file>
+            <file>file:/home/eddy/githubproject/Librairie/SMB215_Library/web/Item/manage.jsp</file>
+            <file>file:/home/eddy/githubproject/Librairie/SMB215_Library/src/java/city/ModifyCity.java</file>
+            <file>file:/home/eddy/githubproject/Librairie/SMB215_Library/src/java/city/AddCity.java</file>
+            <file>file:/home/eddy/githubproject/Librairie/SMB215_Library/src/java/Item/ItemBean.java</file>
+            <file>file:/home/eddy/githubproject/Librairie/SMB215_Library/src/java/supplier/SupplierBean.java</file>
+            <file>file:/home/eddy/githubproject/Librairie/SMB215_Library/src/java/supplier/ActivateSupplier.java</file>
+            <file>file:/home/eddy/githubproject/Librairie/SMB215_Library/src/java/Item/SaveItem.java</file>
+            <file>file:/home/eddy/githubproject/Librairie/SMB215_Library/web/supplier/viewSupplier.jsp</file>
+            <file>file:/home/eddy/githubproject/Librairie/SMB215_Library/src/java/supplier/DeactivateSupplier.java</file>
+            <file>file:/home/eddy/githubproject/Librairie/SMB215_Library/src/java/Item/ActivateItem.java</file>
+        </group>
     </open-files>
 </project-private>

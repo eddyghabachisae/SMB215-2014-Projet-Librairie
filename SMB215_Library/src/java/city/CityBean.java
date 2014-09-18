@@ -29,9 +29,9 @@ public class CityBean {
             pstmt = con.prepareStatement("Insert Into tbl_city Values(?,?,?,?)");
 
             pstmt.setInt(1, id);
-            pstmt.setString(2, cit.getShortName());
+            pstmt.setString(2, cit.getCode());
             pstmt.setString(3, cit.getName());
-            pstmt.setString(4, cit.getprovince());
+            //pstmt.setString(4, cit.getprovince());
 
             pstmt.execute();
 
@@ -144,9 +144,9 @@ public class CityBean {
             if (rs.next()) {
                 cit = new City();
                 cit.setId(rs.getInt(1));
-                cit.setShortName(rs.getString(2));
+                cit.setCode(rs.getString(2));
                 cit.setName(rs.getString(3));
-                cit.setprovince(rs.getString(3));
+                //cit.setprovince(rs.getString(3));
             }
         } catch (SQLException | ClassNotFoundException ex) {
             System.err.println("Caught Exception: " + ex.getMessage());
@@ -177,9 +177,9 @@ public class CityBean {
 
             pstmt = con.prepareStatement("Update tbl_city Set cit_shortname=?, "
                     + "cit_name=? Where cit_id=?");
-            pstmt.setString(1, cit.getShortName());
+            pstmt.setString(1, cit.getCode());
             pstmt.setString(2, cit.getName());
-            pstmt.setString(4, cit.getprovince());
+//           / pstmt.setString(4, cit.getprovince());
             pstmt.setInt(3, cit.getId());
             pstmt.executeUpdate();
         } catch (SQLException | ClassNotFoundException ex) {
