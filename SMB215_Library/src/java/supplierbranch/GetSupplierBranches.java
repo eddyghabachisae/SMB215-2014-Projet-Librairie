@@ -18,7 +18,8 @@ public class GetSupplierBranches extends HttpServlet {
         List<SupplierBranch> supplierBranches = 
                 sbrBean.getSupplierBranches(Integer.parseInt(request.getParameter("id")));
         request.setAttribute("supplierBranches", supplierBranches);
-        request.getRequestDispatcher("supplierBranch/viewSupplierBranch.jsp").forward(request, response);
+        request.getRequestDispatcher("supplierBranch/viewSupplierBranch.jsp"
+                + "?suppliername="+request.getParameter("suppliername")).forward(request, response);
     }
 
    

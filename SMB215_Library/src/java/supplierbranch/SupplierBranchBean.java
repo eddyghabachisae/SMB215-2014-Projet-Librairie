@@ -25,13 +25,17 @@ public class SupplierBranchBean {
                     dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
 
             stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("Select sbr_id, sbr_name, supplier_id "
+            ResultSet rs = stmt.executeQuery("Select sbr_id, sbr_name, supplier_id, "
+                    + "sbr_contactname, sbr_phone, sbr_isactive "
                     + "From supplierbranch Where supplier_id= " +sup+ " order by sbr_name");
             while (rs.next()) {
                 SupplierBranch sbr = new SupplierBranch();
                 sbr.setId(rs.getInt(1));
                 sbr.setName(rs.getString(2));
                 sbr.setSupplier(rs.getInt(3));
+                sbr.setContactname(rs.getString(4));
+                sbr.setPhone(rs.getString(5));
+                sbr.setIsactive(rs.getBoolean(6));
                 list.add(sbr);
             }
         } catch (SQLException | ClassNotFoundException ex) {
