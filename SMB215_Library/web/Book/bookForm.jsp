@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
@@ -14,7 +15,7 @@
                             <h1><a href="index.html">Library</a></h1>
                             <nav>
                                  <ul class="menu">
-                                    <li><a class="active" href="../home.jsp">Main</a></li>
+                                    <li><a class="active" href="${pageContext.request.contextPath}/home.jsp">Main</a></li>
                                     <li><a href="">Inbox</a></li>
                                     <li><a href="">Logout</a></li>
                                 </ul>
@@ -34,50 +35,92 @@
                     	<div class="indent-right">
                         	<h3 class="prev-indent-bot">Item</h3>
                                 <ul id="tabs">
-                                    <li><a href="#" title="tab1" class="notActive">Main Info</a></li>
+                                    <li><a href="./GetItem?id=<%=request.getParameter("item_id")%>" title="tab1" class="notActive">Main Info</a></li>
                                     <li><a href="#" title="tab2" class="activeTab">Book Info</a></li>
                                 </ul>
                                 <div id="content3"> 
                                     <div class="success_box">All of the fields were successfully validated!</div>
                                     <div class="error_box"></div>
                                    
-                            <form id="form" name="form" action="../SaveBook?id=<%=request.getParameter("id")%>" method="post" enctype="multipart/form-data">                    
+                            
+                            <form id="form" name="form" action="SaveBook?id=<%=request.getParameter("id")%>" method="post" >                    
                                 <fieldset>
+                                    <input type="hidden" name="item_id" value="<%=request.getParameter("item_id")%>"/>
                                       <label><span class="text-form">Title* </span><input type="text" class="inputText" id="title" 
-                                             name="name" value=""></label>
+                                             name="title" value="<%=request.getParameter("title")%>"></label>
                                       <label><span class="text-form">SubTitle </span><input type="text" class="inputText" id="subtitle" 
-                                        name="subtitle" value=""></label>
+                                        name="subtitle" value="<%=request.getParameter("subtitle")%>"></label>
                                       <label><span class="text-form">ISBN </span><input type="text" class="inputText" id="isbn" 
-                                        name="isbn" value=""></label>
+                                        name="isbn" value="<%=request.getParameter("isbn")%>"></label>
                                       <label><span class="text-form">Publisher* </span><input type="text" class="inputText" id="publisher" 
-                                        name="publisher" value=""></label>
-                                      <label><span class="text-form">Publish Date* </span><input type="text" class="inputText" id="publishDate" 
-                                        name="publishDate" value=""></label>
+                                        name="publisher" value="<%=request.getParameter("publisher")%>"></label>
+                                      
+                                        <label><span class="text-form">Publish Date </span><input type="text" class="inputText" id="publishDate" 
+                                        name="publishDate" value="<%=request.getParameter("publishDate")%>"></label>
                                       <label><span class="text-form">Pages Number* </span><input type="text" class="inputText" id="pagesNb" 
-                                        name="pagesNb" value=""></label>
+                                        name="pagesNb" value="<%=request.getParameter("pagesNb")%>"></label>
                                       <label><span class="text-form">Language*</span>
-                                          <select name="language" ><option value="1">Select</option>
-                                            <c:forEach items="${itemCategoryList}" var="itemCat">
-					   <option value="${itemCat.id}">${itemCat.code}</option>
+                                          <select name="language" id="language" >
+                                              <option value="1">Select</option>
+                                            <c:forEach items="${LanguagesList}" var="lang">
+					   <option value="${lang.id}">${lang.code}</option>
                                             </c:forEach>
                                           </select></label>
+                                    <script>
+                                                 if ("<%=request.getParameter("language_id")%>" !== "") {
+                                                     var val = <%=request.getParameter("language_id")%>;
+                                                     $('#language').val(val);
+                                                 }
+                                                </script>
                                      <label><span class="text-form">Category*</span>
-                                          <select name="language" ><option value="1">Select</option>
-                                            <c:forEach items="${itemCategoryList}" var="itemCat">
-					   <option value="${itemCat.id}">${itemCat.code}</option>
+                                          <select name="category" id="category">
+                                              <option value="">Select</option>
+                                            <c:forEach items="${bookCategoriesList}" var="bookCat">
+					   <option value="${bookCat.id}">${bookCat.code}</option>
                                             </c:forEach>
                                           </select></label>
-                                     <label><span class="text-form">Author*</span>
-                                          <select name="language" ><option value="1">Select</option>
-                                            <c:forEach items="${itemCategoryList}" var="itemCat">
-					   <option value="${itemCat.id}">${itemCat.code}</option>
+                                    <script>
+                                                 if ("<%=request.getParameter("bookCategory_id")%>" !== "") {
+                                                     var val = <%=request.getParameter("bookCategory_id")%>;
+                                                     $('#category').val(val);
+                                                 }
+                                                </script>
+                                     <label><span class="text-form">Author</span>
+                                          <select name="author" id="author" >
+                                              <option value="">Select</option>
+                                            <c:forEach items="${authorsList}" var="auth">
+					   <option value="${auth.id}">${auth.name}</option>
                                             </c:forEach>
                                           </select></label>
+                                    <script>
+                                                 if ("<%=request.getParameter("author_id")%>" !== "") {
+                                                     var val = <%=request.getParameter("author_id")%>;
+                                                     $('#author').val(val);
+                                                 }
+                                                </script>
+                                    <input type="hidden" name="bookStatus_id" value="<%=request.getParameter("bookStatus_id")%>"/>
+                                    <label><span class="text-form">Branch*</span>
+                                          <select name="branch" id="branch" >
+                                              <option value="">Select</option>
+                                            <c:forEach items="${branchesList}" var="branch">
+					   <option value="${branch.id}">${branch.name}</option>
+                                            </c:forEach>
+                                          </select></label>
+                                    <script>
+                                                 if ("<%=request.getParameter("branch_id")%>" !== "") {
+                                                     var val = <%=request.getParameter("branch_id")%>;
+                                                     $('#branch').val(val);
+                                                 }
+                                                </script>
+                                    <label><span class="text-form">Section* </span><input type="text" class="inputText" id="section" 
+                                        name="section" value="<%=request.getParameter("section")%>"></label>
+                                    <label><span class="text-form">Shelf* </span><input type="text" class="inputText" id="shelf" 
+                                        name="shelf" value="<%=request.getParameter("shelf")%>"></label>
 					<div class="wrapper">
                                         <div class="extra-wrap">		
                                             <div class="buttons">
 							<input type="submit" name="Submit" value="Submit" class="button"/>
-                                                        <a href="../GetItems"><input type="button" name="Cancel" value="Cancel" class="button"/></a>
+                                                        <a href="./GetItems"><input type="button" name="Cancel" value="Cancel" class="button"/></a>
                                             </div> 
 										
                                         </div>
@@ -117,11 +160,6 @@ new FormValidator('form', [{
     rules: 'required'
 },
 {
-    name: 'publishDate',
-    display: 'Publish Date',    
-    rules: 'required'
-},
-{
     name: 'pagesNb',
     display: 'Page Number',    
     rules: 'required|numeric'
@@ -136,6 +174,20 @@ new FormValidator('form', [{
 },{
     name:'category',
     display: 'Category',    
+    rules: 'required'
+},
+{
+    name:'branch',
+    display: 'Branch',    
+    rules: 'required'
+},
+{
+    name:'section',
+    display: 'Section',    
+    rules: 'required'
+},{
+    name:'shelf',
+    display: 'Shelf',    
     rules: 'required'
 }
 ], function(errors, event) {
