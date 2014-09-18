@@ -16,7 +16,11 @@ public class SaveSupplier extends HttpServlet {
         sup.setName(request.getParameter("name"));
         sup.setWebsite(request.getParameter("website"));
         sup.setRemarks(request.getParameter("remarks"));
-        sup.setIsactive(request.getParameter("isactive").equals("true"));
+        if (request.getParameter("isactive")!= null){
+        sup.setIsactive(request.getParameter("isactive").equals("on"));
+        } else {
+            sup.setIsactive(false);
+        }
         sup.setDeactivationreason(request.getParameter("deactivationreason"));
         SupplierBean supBean = new SupplierBean();
         if (!request.getParameter("id").equals("")) {
