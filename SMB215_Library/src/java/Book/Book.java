@@ -13,14 +13,24 @@ public class Book {
     private int pagesNb;
     private long bookCategory_id;
     private long language_id;
-    private long bookAuthor_id;
+    private long author_id;
     private long item_id;
     private long bookStatus_id;
 
     @Override
     public String toString() {
-        return "Book{" + "id=" + id + ", title=" + title + ", subtitle=" + subtitle + ", isbn=" + isbn + ", publisher=" + publisher + ", publishDate=" + publishDate + ", pagesNb=" + pagesNb + ", bookCategory_id=" + bookCategory_id + ", language_id=" + language_id + ", bookAuthor_id=" + bookAuthor_id + ", item_id=" + item_id + ", bookStatus_id=" + bookStatus_id + '}';
+        return "Book{" + "id=" + id + ", title=" + title + ", subtitle=" + subtitle + ", isbn=" + isbn + ", publisher=" + publisher + ", publishDate=" + publishDate + ", pagesNb=" + pagesNb + ", bookCategory_id=" + bookCategory_id + ", language_id=" + language_id + ", author_id=" + author_id + ", item_id=" + item_id + ", bookStatus_id=" + bookStatus_id + '}';
     }
+
+    public long getAuthor_id() {
+        return author_id;
+    }
+
+    public void setAuthor_id(long author_id) {
+        this.author_id = author_id;
+    }
+
+    
 
     public long getItem_id() {
         return item_id;
@@ -30,15 +40,6 @@ public class Book {
         this.item_id = item_id;
     }
 
-    
-
-    public void setBookAuthor_id(long bookAuthor_id) {
-        this.bookAuthor_id = bookAuthor_id;
-    }
-
-    public long getBookAuthor_id() {
-        return bookAuthor_id;
-    }
 
     public void setId(long id) {
         this.id = id;
