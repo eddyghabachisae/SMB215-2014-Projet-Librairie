@@ -66,7 +66,7 @@ public class LibraryBean {
                     + "lib_website=?, lib_rentaldays=?, lib_reservationdays=?,"
                     + "lib_maxreserve=?, lib_rentalalert=?, lib_reservationalert=?,"
                     + "lib_maincurrency=?, lib_secondarycurrency=?, lib_secondarycurrencyrate=?,"
-                    + "mainBranch_id=? Where lib_id=1");
+                    + "mainBranch_id=? Where 1=1");
             pstmt.setString(1, lib.getName());
             pstmt.setString(2, lib.getWebsite());
             pstmt.setInt(3, lib.getRentalDays());

@@ -260,7 +260,6 @@ CREATE TABLE IF NOT EXISTS `itemcategory` (
 CREATE TABLE IF NOT EXISTS `library` (
   `lib_id` int(11) NOT NULL AUTO_INCREMENT,
   `lib_name` varchar(255) DEFAULT NULL,
-  `lib_logo` varchar(255) DEFAULT NULL,
   `lib_website` varchar(255) DEFAULT NULL,
   `lib_rentaldays` int(11) NOT NULL DEFAULT '0',
   `lib_reservationdays` int(11) NOT NULL DEFAULT '0',
@@ -269,7 +268,7 @@ CREATE TABLE IF NOT EXISTS `library` (
   `lib_reservationalert` int(11) NOT NULL DEFAULT '0',
   `lib_maincurrency` varchar(255) DEFAULT NULL,
   `lib_secondarycurrency` varchar(255) DEFAULT NULL,
-  `lib_secondarrycurrencyrate` varchar(255) DEFAULT NULL,
+  `lib_secondarycurrencyrate` float DEFAULT NULL,
   `mainBranch_id` bigint(20) NOT NULL DEFAULT '0',
   PRIMARY KEY (`lib_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;

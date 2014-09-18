@@ -3,14 +3,14 @@
 <!DOCTYPE html>
 <html lang="en">
     <%@ include file="../main.html" %>
-        <script>
-        function mainbranch_id(){
+    <script>
+        function selectedmainbranch() {
             var select = document.getElementById('mainbranch');
-   var mainbranch_id = select.value;
-   var myform = document.getElementById('form');
-   myform.action = "SaveLibrary?mainbranch_id="+mainbranch_id ; 
-   myform.submit();
-}
+            var mainbranch_id = select.value;
+            var myform = document.getElementById('form');
+            myform.action = "SaveLibrary?selectedmainbranch=" + mainbranch_id;
+
+        }
     </script>
     <body id="page5">
         <div class="main">
@@ -40,13 +40,13 @@
                     <div class="wrapper">
                         <article class="grid_8">
                             <div class="indent-right">
-                                <h3 class="prev-indent-bot">Item Category</h3>
+                                <h3 class="prev-indent-bot">Settings</h3>
 
                                 <div id="content3"> 
                                     <div class="success_box">All of the fields were successfully validated!</div>
                                     <div class="error_box"></div>
 
-                                    <form id="form" name="form" action="SaveLibrary?mainbranch_id="  method="post">                    
+                                    <form id="form" name="form" action="SaveLibrary" method="post">                    
                                         <fieldset>
                                             <label><span class="text-form">Name* </span><input type="text" class="inputText" name="name" value="<%=request.getParameter("name")%>"></label>
                                             <label><span class="text-form">Main branch* </span>
@@ -56,13 +56,15 @@
                                                         <option value="${brh.id}">${brh.name}</option>
                                                     </c:forEach> 
                                                 </select>
-                                                <script>
-                                                 if ("<%=request.getParameter("mainbranch")%>" !== "") {
-                                                     var val = <%=request.getParameter("mainbranch")%>;
-                                                     $('#mainbranch').val(val);
-                                                 }
-                                                </script>
                                             </label>
+                                            <script>
+                                                if ("<%=request.getParameter("mainbranch")%>" !== "") {
+                                                    var val = <%=request.getParameter("mainbranch")%>;
+                                                    $('#mainbranch').val(val);
+
+                                                }
+                                            </script>
+
                                             <label><span class="text-form">Website</span><input type="text" class="inputText" name="website" value="<%=request.getParameter("website")%>"></label>
 
                                             <label><span class="text-form">Rental days* </span><input type="text" class="inputText" name="rentaldays" value="<%=request.getParameter("rentaldays")%>"></label>
@@ -77,7 +79,7 @@
                                             <div class="wrapper">
                                                 <div class="extra-wrap">		
                                                     <div class="buttons">
-                                                        <input type="button" name="Submit" value="Submit" class="button" onclick="mainbranch_id()"/>
+                                                        <input type="submit" name="Submit" value="Submit" class="button" onclick="selectedmainbranch()" />
                                                         <a href="settings.jsp"><input type="button" name="Cancel" value="Cancel" class="button"/></a>
                                                     </div> 
 
@@ -106,7 +108,7 @@
         </div>
         <script type="text/javascript"> Cufon.now();</script>
     </body>
-         <script type="text/javascript">
+    <script type="text/javascript">
 
         new FormValidator('form', [{
                 name: 'name',

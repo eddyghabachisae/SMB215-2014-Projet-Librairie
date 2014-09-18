@@ -14,11 +14,11 @@ public class SaveLibrary extends HttpServlet {
             throws ServletException, IOException {
         Library lib = new Library();
         lib.setName(request.getParameter("name"));
-        lib.setMainBranch(Integer.parseInt(request.getParameter("mainbranch_id")));
+        lib.setMainBranch(Integer.parseInt(request.getParameter("selectedmainbranch")));
         lib.setWebsite(request.getParameter("website"));
         lib.setRentalDays(Integer.parseInt(request.getParameter("rentaldays")));
         lib.setReservationDays(Integer.parseInt(request.getParameter("reservationdays")));
-        lib.setMaxReserve(Integer.parseInt(request.getParameter("mainreserve")));
+        lib.setMaxReserve(Integer.parseInt(request.getParameter("maxreserve")));
         lib.setRentalAlert(Integer.parseInt(request.getParameter("rentalalert")));
         lib.setReservationAlert(Integer.parseInt(request.getParameter("reservationalert")));
         lib.setMainCurrency(request.getParameter("maincurrency"));
