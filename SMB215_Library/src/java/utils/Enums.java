@@ -15,7 +15,9 @@ public class Enums {
 	None, LL, $, €;
     }
 
- 
+    public enum bookStatus{
+      Select, ; 
+    }
     
 
 }
