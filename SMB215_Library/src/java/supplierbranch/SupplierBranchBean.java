@@ -188,4 +188,49 @@ public class SupplierBranchBean {
             }
         }
     }
+    
+        public SupplierBranch getSupplierBranch(int id) {
+        SupplierBranch sbr = null;
+        Connection con = null;
+        Statement stmt = null;
+        try {
+            DBconnection dbCon = new DBconnection();
+            Class.forName(dbCon.getJDBC_DRIVER());
+
+            con = DriverManager.getConnection(dbCon.getDATABASE_URL(),
+                    dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
+            stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("Select * From supplierbranch Where sbr_id=" + id);
+            if (rs.next()) {
+                sbr = new SupplierBranch();
+                sbr.setId(rs.getInt(1));
+                sbr.setName(rs.getString(2));
+                sbr.setContactname(rs.getString(3));
+                sbr.setAddress(rs.getString(4));
+                sbr.setPhone(rs.getString(5));
+                sbr.setFax(rs.getString(6));
+                sbr.setMobile(rs.getString(7));
+                sbr.setEmail(rs.getString(8));
+                sbr.setRemarks(rs.getString(9));
+                sbr.setIsactive(rs.getBoolean(10));
+                sbr.setDeactivationreason(rs.getString(11));
+                sbr.setCity(rs.getInt(12));
+                sbr.setSupplier(rs.getInt(13));
+            }
+        } catch (SQLException | ClassNotFoundException ex) {
+            System.err.println("Caught Exception: " + ex.getMessage());
+        } finally {
+            try {
+                if (stmt != null) {
+                    stmt.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException ex) {
+                System.err.println("Caught Exception: " + ex.getMessage());
+            }
+        }
+        return sbr;
+    }
 }

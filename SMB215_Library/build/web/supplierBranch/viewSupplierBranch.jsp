@@ -32,7 +32,7 @@
                     <div class="wrapper">
                         <h1>Supplier: <%=request.getParameter("suppliername")%></h1>
                         <div class="pull-right">
-                            <a href="GetSupplierBranch"><input type="submit" name="Submit" value="Add New Supplier Branch" class="button"/></a>
+                            <a href="GetSupplierBranch?suppliername=<%=request.getParameter("suppliername")%>"><input type="submit" name="Submit" value="Add New Supplier Branch" class="button"/></a>
                         </div>
                         <div class="clear2"></div>
                         <div class="CSSTableGenerator" >        
@@ -68,7 +68,7 @@
                                                         <a href="ActivateSupplierBranch?id=${sbr.id}&amp;supplierid=${sbr.supplier}&amp;suppliername=<%=request.getParameter("suppliername")%>" title="Activate" class="fa fa-lg fa-check"></a>   
                                                     </c:otherwise>
                                                 </c:choose>
-                        <a href="GetSupplierBranch?id=${sbr.id}&amp;supplier=${sbr.supplier}" title="Edit" class="fa fa-lg fa-pencil-square-o"></a>
+                        <a href="GetSupplierBranch?id=${sbr.id}&amp;supplier=${sbr.supplier}&amp;suppliername=<%=request.getParameter("suppliername")%>" title="Edit" class="fa fa-lg fa-pencil-square-o"></a>
                         <a href="DeleteSupplierBranch?id=${sbr.id}?supplier=${sbr.supplier}" title="Delete" class="fa fa-lg fa-trash-o"></a> 
                     </td>
                 </tr>

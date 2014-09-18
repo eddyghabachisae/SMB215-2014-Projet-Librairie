@@ -52,6 +52,7 @@
                                             <label><span class="text-form">Main branch* </span>
 
                                                 <select id="mainbranch">
+                                                    <option value="">Select</option>
                                                     <c:forEach items="${branches}" var="brh">
                                                         <option value="${brh.id}">${brh.name}</option>
                                                     </c:forEach> 
@@ -139,6 +140,10 @@
                 name: 'secondarycurrenctrate',
                 display: 'Secondary currency rate',
                 rules: 'numeric'
+            }, {
+                name: 'mainbranch',
+                display: 'Main branch',
+                rules: 'required'
             }
         ], function(errors, event) {
             var SELECTOR_ERRORS = $('.error_box'),
