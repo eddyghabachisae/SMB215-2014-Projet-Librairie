@@ -11,12 +11,11 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import utils.Utils;
-import Book.Book;
 import main.DBconnection;
 
 public class BookBean {
 
-    public List<Book> getBooks() {
+     public List<Book> getBooks() {
         List<Book> list = new ArrayList<>();
         Connection con = null;
         Statement stmt = null;
@@ -41,7 +40,7 @@ public class BookBean {
                 book.setPagesNb(rs.getInt(7));
                 book.setBookCategory_id(rs.getLong(8));
                 book.setLanguage_id(rs.getLong(9));
-                book.setBookAuthor_id(rs.getLong(10));
+                book.setAuthor_id(rs.getLong(10));
                 book.setItem_id(rs.getLong(11));
                 book.setBookStatus_id(rs.getLong(12));
                 list.add(book);
@@ -90,7 +89,7 @@ public class BookBean {
                 book.setPagesNb(rs.getInt(7));
                 book.setBookCategory_id(rs.getLong(8));
                 book.setLanguage_id(rs.getLong(9));
-                book.setBookAuthor_id(rs.getLong(10));
+                book.setAuthor_id(rs.getLong(10));
                 book.setItem_id(rs.getLong(11));
                 book.setBookStatus_id(rs.getLong(12));
                 list.add(book);
@@ -152,7 +151,7 @@ public class BookBean {
                 book.setPagesNb(rs.getInt(7));
                 book.setBookCategory_id(rs.getLong(8));
                 book.setLanguage_id(rs.getLong(9));
-                book.setBookAuthor_id(rs.getLong(10));
+                book.setAuthor_id(rs.getLong(10));
                 book.setItem_id(rs.getLong(11));
                 book.setBookStatus_id(rs.getLong(12));
                 list.add(book);
@@ -216,7 +215,7 @@ public class BookBean {
                 book.setPagesNb(rs.getInt(7));
                 book.setBookCategory_id(rs.getLong(8));
                 book.setLanguage_id(rs.getLong(9));
-                book.setBookAuthor_id(rs.getLong(10));
+                book.setAuthor_id(rs.getLong(10));
                 book.setItem_id(rs.getLong(11));
                 book.setBookStatus_id(rs.getLong(12));
                 list.add(book);
@@ -291,7 +290,7 @@ public class BookBean {
             pstmt.setInt(6, book.getPagesNb());
             pstmt.setLong(7, book.getBookCategory_id());
             pstmt.setLong(8, book.getLanguage_id());
-            pstmt.setLong(9, book.getBookAuthor_id());
+            pstmt.setLong(9, book.getAuthor_id());
             pstmt.setLong(10, book.getItem_id());
             pstmt.setLong(11, book.getBookStatus_id());
             pstmt.execute();
@@ -312,7 +311,7 @@ public class BookBean {
         }
     }
 
-    public Book getBook(long id) {
+   public Book getBook(long id) {
         Book book = null;
         Connection con = null;
         Statement stmt = null;
@@ -336,7 +335,7 @@ public class BookBean {
                 book.setPagesNb(rs.getInt(7));
                 book.setBookCategory_id(rs.getLong(8));
                 book.setLanguage_id(rs.getLong(9));
-                book.setBookAuthor_id(rs.getLong(10));
+                book.setAuthor_id(rs.getLong(10));
                 book.setItem_id(rs.getLong(11));
                 book.setBookStatus_id(rs.getLong(12));
                 
@@ -382,7 +381,7 @@ public class BookBean {
             pstmt.setInt(6, book.getPagesNb());
             pstmt.setLong(7, book.getBookCategory_id());
             pstmt.setLong(8, book.getLanguage_id());
-            pstmt.setLong(9, book.getBookAuthor_id());
+            pstmt.setLong(9, book.getAuthor_id());
             pstmt.setLong(10, book.getItem_id());
             pstmt.setLong(11, book.getBookStatus_id());
             pstmt.setLong(12, book.getId());
