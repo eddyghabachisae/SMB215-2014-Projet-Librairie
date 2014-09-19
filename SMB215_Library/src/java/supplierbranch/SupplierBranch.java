@@ -15,6 +15,8 @@ public class SupplierBranch {
     private String deactivationreason;
     private int city;
     private int supplier;
+    private int province;
+    private int country;
 
     public int getId() {
         return id;
@@ -118,6 +120,22 @@ public class SupplierBranch {
 
     public void setSupplier(int supplier) {
         this.supplier = supplier;
+    }
+
+    public int getProvince() {
+        return province;
+    }
+
+    public void setProvince(int province) {
+        this.province = province;
+    }
+
+    public int getCountry() {
+        return country;
+    }
+
+    public void setCountry(int country) {
+        this.country = country;
     }
     
     

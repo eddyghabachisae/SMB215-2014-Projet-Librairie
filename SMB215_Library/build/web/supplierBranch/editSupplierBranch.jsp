@@ -22,13 +22,16 @@
         }
 
         function refreshprovinces() {
+
             var country = document.getElementById('country').value;
+
             document.getElementById('province').value = '';
             document.getElementById('city').value = '';
             if (country === '') {
                 document.getElementById('province').disabled = true;
                 document.getElementById('city').disabled = true;
             } else {
+
                 document.getElementById('province').disabled = false;
                 for (var i = 1; i <= document.getElementById('province').length - 1; i++) {
                     if (document.getElementById('province').options[i].className !== country) {
@@ -57,6 +60,13 @@
                 }
             }
 
+        }
+        
+                function selectedcity() {
+            var select = document.getElementById('city');
+            var city_id = select.value;
+            var myform = document.getElementById('form');
+            myform.action = "SaveSupplierBranch?id=<%=request.getParameter("id")%>&supplier=<%=request.getParameter("supplier")%>&suppliername=<%=request.getParameter("suppliername")%>&selectedcity=" + city_id;
         }
     </script>
     <body id="page5">
@@ -94,7 +104,7 @@
                                     <div class="error_box"></div>
 
 
-                                    <form id="form" name="form" action="../SaveSupplierBranch?id=<%=request.getParameter("id")%>" method="post">                    
+                                    <form id="form" name="form" action="" method="post">                    
 
                                         <fieldset>
 
@@ -119,6 +129,7 @@
                                                 </select>
                                             </label>
 
+
                                             <label><span class="text-form">City* </span>
                                                 <select id="city" disabled>
                                                     <option value="">Select</option>
@@ -127,11 +138,33 @@
                                                     </c:forEach> 
                                                 </select>
                                             </label>
+                                            <script>
+                                                if ("<%=request.getParameter("country")%>" !== "") {
+                                                    var val = <%=request.getParameter("country")%>;
+                                                    $('#country').val(val);
+                                                    refreshprovinces();
+                                                }
+                                            </script>
+                                            <script>
+                                                if ("<%=request.getParameter("province")%>" !== "") {
+                                                    var val = <%=request.getParameter("province")%>;
+                                                    $('#province').val(val);
+                                                    document.getElementById('province').disabled = false;
+                                                    refreshcities();
+                                                }
+                                            </script>
+                                            <script>
+                                                if ("<%=request.getParameter("city")%>" !== "") {
+                                                    var val = <%=request.getParameter("city")%>;
+                                                    $('#city').val(val);
+                                                    document.getElementById('city').disabled = false;
+                                                }
+                                            </script>
 
 
                                             <label><span class="text-form">Address </span><textarea class="inputText" name="address"><%=request.getParameter("address")%></textarea></label>
                                             <label><span class="text-form">Phone </span><input type="text" class="inputText" name="phone" value="<%=request.getParameter("phone")%>"></label>
-                                            <label><span class="text-form">Contact Fax </span><input type="text" class="inputText" name="fax" value="<%=request.getParameter("fax")%>"></label>        
+                                            <label><span class="text-form">Fax </span><input type="text" class="inputText" name="fax" value="<%=request.getParameter("fax")%>"></label>        
                                             <label><span class="text-form">Mobile </span><input type="text" class="inputText" name="mobile" value="<%=request.getParameter("mobile")%>"></label>
                                             <label><span class="text-form">Email </span><input type="text" class="inputText" name="email" value="<%=request.getParameter("email")%>"></label>
                                             <label><span class="text-form">Remarks </span><textarea class="inputText" name="remarks"><%=request.getParameter("remarks")%></textarea></label>
@@ -146,9 +179,9 @@
                                             <div class="wrapper">
                                                 <div class="extra-wrap">		
                                                     <div class="buttons">
-                                                        <input type="submit" name="Submit" value="Submit" class="button"  />
-                                                        <a href="../GetSupplierBranches?id="<%=request.getParameter("supplier")%>><input type="button" name="Cancel" value="Cancel" class="button"/></a>
-           a                                         </div> 
+                                                        <input type="submit" name="Submit" value="Submit" class="button"  onclick="selectedcity()" />
+                                                        <a href="GetSupplierBranches?id=<%=request.getParameter("supplier")%>&amp;suppliername=<%=request.getParameter("suppliername")%>"><input type="button" name="Cancel" value="Cancel" class="button"/></a>
+                                                                                               </div> 
 
                                                 </div>
 
@@ -189,8 +222,16 @@
                 display: 'Name',
                 rules: 'required'
             }, {
+                name: 'country',
+                display: 'Country',
+                rules: 'required'
+            }, {
+                name: 'province',
+                display: 'Province',
+                rules: 'required'
+            }, {
                 name: 'city',
-                display: 'city',
+                display: 'City',
                 rules: 'required'
             }
         ], function(errors, event) {

@@ -44,11 +44,12 @@ public class GetSupplierBranch extends HttpServlet {
                     + "&isactive=" + sbr.getIsactive()
                     + "&deactivationreason=" + ((sbr.getIsactive() == false) ? sbr.getDeactivationreason() : "")
                     + "&city=" + sbr.getCity()
+                    + "&province=" + sbr.getProvince()
+                    + "&country=" + sbr.getCountry()
                     + "&supplier=" + sbr.getSupplier()
                     + "&suppliername=" + request.getParameter("suppliername")).forward(request, response);
         } else {
-            request.getRequestDispatcher("supplierBranch/editSupplierBranch.jsp?id=&supplier="+request.getParameter("suppliername")+"&name=&contactname=&city=&address=&phone=&fax=&mobile=&email=&remarks=&isactive=&deactivationreason=").forward(request, response);
-       
+            request.getRequestDispatcher("supplierBranch/editSupplierBranch.jsp?id=&supplier="+request.getParameter("supplier")+"&suppliername="+request.getParameter("suppliername")+"&name=&contactname=&city=&country=&province=&address=&phone=&fax=&mobile=&email=&remarks=&isactive=&deactivationreason=").forward(request, response); 
         }
     }
 
