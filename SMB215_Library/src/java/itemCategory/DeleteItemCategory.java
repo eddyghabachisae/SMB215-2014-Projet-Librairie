@@ -12,7 +12,7 @@ public class DeleteItemCategory extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int id = Integer.parseInt(request.getParameter("id"));
+        long id = Long.parseLong(request.getParameter("id"));
         ItemCategoryBean itcBean = new ItemCategoryBean();
         itcBean.deleteItemCategory(id);
         response.sendRedirect("GetItemCategories");

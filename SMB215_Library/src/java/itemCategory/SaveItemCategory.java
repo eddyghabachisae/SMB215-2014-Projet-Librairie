@@ -17,12 +17,12 @@ public class SaveItemCategory extends HttpServlet {
         itc.setDescription(request.getParameter("description"));
         ItemCategoryBean itcBean = new ItemCategoryBean();
         if (!request.getParameter("id").equals("")) {
-            itc.setId(Integer.parseInt(request.getParameter("id")));
+            itc.setId(Long.parseLong(request.getParameter("id")));
             itcBean.modifyItemCategory(itc);
             response.sendRedirect("GetItemCategories");
         } else {
             itcBean.addItemCategory(itc);
-            response.sendRedirect("GetItemCategory");
+            response.sendRedirect("GetItemCategories");
         }
     }
 

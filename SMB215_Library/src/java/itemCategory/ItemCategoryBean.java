@@ -27,7 +27,7 @@ public class ItemCategoryBean {
             ResultSet rs = stmt.executeQuery("Select * From itemcategory order by itc_code");
             while (rs.next()) {
                 ItemCategory itc = new ItemCategory();
-                itc.setId(rs.getInt(1));
+                itc.setId(rs.getLong(1));
                 itc.setCode(rs.getString(2));
                 itc.setDescription(rs.getString(3));
                 list.add(itc);
@@ -49,7 +49,7 @@ public class ItemCategoryBean {
         return list;
     }
 
-    public void deleteItemCategory(int id) {
+    public void deleteItemCategory(long id) {
         Connection con = null;
         Statement stmt = null;
         try {
@@ -112,7 +112,7 @@ public class ItemCategoryBean {
         }
     }
 
-    public ItemCategory getItemCategory(int id) {
+    public ItemCategory getItemCategory(long id) {
         ItemCategory itc = null;
         Connection con = null;
         Statement stmt = null;
@@ -126,7 +126,7 @@ public class ItemCategoryBean {
             ResultSet rs = stmt.executeQuery("Select * From itemcategory Where itc_id=" + id);
             if (rs.next()) {
                 itc = new ItemCategory();
-                itc.setId(rs.getInt(1));
+                itc.setId(rs.getLong(1));
                 itc.setCode(rs.getString(2));
                 itc.setDescription(rs.getString(3));
             }
@@ -161,7 +161,7 @@ public class ItemCategoryBean {
                     + "itc_description=? Where itc_id=?");
             pstmt.setString(1, itc.getCode());
             pstmt.setString(2, itc.getDescription());
-            pstmt.setInt(3, itc.getId());
+            pstmt.setLong(3, itc.getId());
             pstmt.executeUpdate();
         } catch (SQLException | ClassNotFoundException ex) {
             System.err.println("Caught Exception: " + ex.getMessage());

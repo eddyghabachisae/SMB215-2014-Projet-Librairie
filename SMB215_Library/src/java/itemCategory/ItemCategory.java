@@ -2,33 +2,35 @@ package itemCategory;
 
 public class ItemCategory {
     
-    private int id;
+    private long id;
     private String code;
     private String description;
 
-    public int getId() {
+    public long getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getCode() {
         return code;
     }
 
-    public void setCode(String code) {
-        this.code = code;
-    }
-
     public String getDescription() {
         return description;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public void setDescription(String description) {
         this.description = description;
     }
+
+
 
   
 }
