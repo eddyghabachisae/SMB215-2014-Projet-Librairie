@@ -10,9 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 import main.DBconnection;
 
-
 public class SupplierBranchBean {
-    
+
     public List<SupplierBranch> getSupplierBranches(int sup) {
         List<SupplierBranch> list = new ArrayList<>();
         Connection con = null;
@@ -27,7 +26,7 @@ public class SupplierBranchBean {
             stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("Select sbr_id, sbr_name, supplier_id, "
                     + "sbr_contactname, sbr_phone, sbr_isactive "
-                    + "From supplierbranch Where supplier_id= " +sup+ " order by sbr_name");
+                    + "From supplierbranch Where supplier_id= " + sup + " order by sbr_name");
             while (rs.next()) {
                 SupplierBranch sbr = new SupplierBranch();
                 sbr.setId(rs.getInt(1));
@@ -54,7 +53,7 @@ public class SupplierBranchBean {
         }
         return list;
     }
-    
+
     public void deleteSupplierBranch(int id) {
         Connection con = null;
         Statement stmt = null;
@@ -131,7 +130,50 @@ public class SupplierBranchBean {
         }
     }
     
-        public void activateSupplierBranch(int id) {
+     public void modifySupplierBranch(SupplierBranch sbr) {
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        try {
+            DBconnection dbCon = new DBconnection();
+            Class.forName(dbCon.getJDBC_DRIVER());
+
+            con = DriverManager.getConnection(dbCon.getDATABASE_URL(),
+                    dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
+
+            pstmt = con.prepareStatement("Update supplierbranch Set sbr_name=?, "
+                    + "sbr_contactname=?, sbr_address=?, sbr_phone=?, sbr_fax=?, sbr_mobile=?, "
+                    + "sbr_email=?, sbr_remarks=?, sbr_isactive=?, sbr_deactivationreason=?, "
+                    + "city_id=? Where sbr_id=?");
+            pstmt.setString(1, sbr.getName());
+            pstmt.setString(2, sbr.getContactname());
+            pstmt.setString(3, sbr.getAddress());
+            pstmt.setString(4, sbr.getPhone());
+            pstmt.setString(5, sbr.getFax());
+            pstmt.setString(6, sbr.getMobile());
+            pstmt.setString(7, sbr.getEmail());
+            pstmt.setString(8, sbr.getRemarks());
+            pstmt.setString(9, (sbr.getIsactive()==true)?"1":"0");
+            pstmt.setString(10, sbr.getDeactivationreason());
+            pstmt.setInt(11, sbr.getCity());
+            pstmt.setInt(12, sbr.getId());
+            pstmt.executeUpdate();
+        } catch (SQLException | ClassNotFoundException ex) {
+            System.err.println("Caught Exception: " + ex.getMessage());
+        } finally {
+            try {
+                if (pstmt != null) {
+                    pstmt.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException ex) {
+                System.err.println("Caught Exception: " + ex.getMessage());
+            }
+        }
+    }
+
+    public void activateSupplierBranch(int id) {
         Connection con = null;
         Statement stmt = null;
         try {
@@ -143,7 +185,7 @@ public class SupplierBranchBean {
 
             stmt = con.createStatement();
             stmt.execute("Update supplierbranch Set sbr_isactive=1 "
-                    + " Where sbr_id=" +id);
+                    + " Where sbr_id=" + id);
         } catch (SQLException | ClassNotFoundException ex) {
             System.err.println("Caught Exception: " + ex.getMessage());
         } finally {
@@ -159,7 +201,7 @@ public class SupplierBranchBean {
             }
         }
     }
-    
+
     public void deactivateSupplierBranch(int id) {
         Connection con = null;
         Statement stmt = null;
@@ -172,7 +214,7 @@ public class SupplierBranchBean {
 
             stmt = con.createStatement();
             stmt.execute("Update supplierbranch Set sbr_isactive=0 "
-                    + " Where sbr_id=" +id);
+                    + " Where sbr_id=" + id);
         } catch (SQLException | ClassNotFoundException ex) {
             System.err.println("Caught Exception: " + ex.getMessage());
         } finally {
@@ -188,8 +230,8 @@ public class SupplierBranchBean {
             }
         }
     }
-    
-        public SupplierBranch getSupplierBranch(int id) {
+
+    public SupplierBranch getSupplierBranch(int id) {
         SupplierBranch sbr = null;
         Connection con = null;
         Statement stmt = null;
@@ -200,8 +242,16 @@ public class SupplierBranchBean {
             con = DriverManager.getConnection(dbCon.getDATABASE_URL(),
                     dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
             stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("Select * From supplierbranch Where sbr_id=" + id);
-            if (rs.next()) {
+            ResultSet rs = stmt.executeQuery("Select sbr_id, sbr_name, "
+                    + "sbr_contactname, sbr_address, sbr_phone, sbr_fax, sbr_mobile, sbr_email, "
+                    + "sbr_remarks, sbr_isactive, sbr_deactivationreason, supplier_id, "
+                    + "cty_id, pvc_id, cnt_id "
+                    + "From supplierbranch "
+                    + "left join city on city_id = cty_id "
+                    + "left join province on province_id = pvc_id "
+                    + "left join country on country_id = cnt_id "
+                    + "Where sbr_id= " + id);
+            while (rs.next()) {
                 sbr = new SupplierBranch();
                 sbr.setId(rs.getInt(1));
                 sbr.setName(rs.getString(2));
@@ -214,8 +264,10 @@ public class SupplierBranchBean {
                 sbr.setRemarks(rs.getString(9));
                 sbr.setIsactive(rs.getBoolean(10));
                 sbr.setDeactivationreason(rs.getString(11));
-                sbr.setCity(rs.getInt(12));
-                sbr.setSupplier(rs.getInt(13));
+                sbr.setSupplier(rs.getInt(12));
+                sbr.setCity(rs.getInt(13));
+                sbr.setProvince(rs.getInt(14));
+                sbr.setCountry(rs.getInt(15));
             }
         } catch (SQLException | ClassNotFoundException ex) {
             System.err.println("Caught Exception: " + ex.getMessage());

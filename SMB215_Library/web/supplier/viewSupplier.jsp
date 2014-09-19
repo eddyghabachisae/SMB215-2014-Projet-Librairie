@@ -58,7 +58,7 @@
                                             <td>${sup.name}</td>
                                             <td>${sup.website}</td>
                                             <td>
-                                                <a href="GetSupplierBranches?id=${sup.id}&suppliername=${sup.name}">Branches</a>
+                                                <a href="GetSupplierBranches?id=${sup.id}&amp;suppliername=${sup.name}">Branches</a>
                                             </td>
                                             <td>
                                                 <c:choose>

@@ -32,7 +32,7 @@
                     <div class="wrapper">
                         <h1>Supplier: <%=request.getParameter("suppliername")%></h1>
                         <div class="pull-right">
-                            <a href="GetSupplierBranch?suppliername=<%=request.getParameter("suppliername")%>"><input type="submit" name="Submit" value="Add New Supplier Branch" class="button"/></a>
+                            <a href="GetSupplierBranch?supplier=<%=request.getParameter("supplier")%>&amp;suppliername=<%=request.getParameter("suppliername")%>"><input type="submit" name="Submit" value="Add New Supplier Branch" class="button"/></a>
                         </div>
                         <div class="clear2"></div>
                         <div class="CSSTableGenerator" >        

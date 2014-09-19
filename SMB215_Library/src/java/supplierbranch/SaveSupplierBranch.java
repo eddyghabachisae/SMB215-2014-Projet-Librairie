@@ -15,23 +15,30 @@ public class SaveSupplierBranch extends HttpServlet {
        SupplierBranch sbr = new SupplierBranch();
         sbr.setName(request.getParameter("name"));
         sbr.setContactname(request.getParameter("contactname"));
-        sbr.setCity(Integer.parseInt(request.getParameter("city")));
+        sbr.setCity(Integer.parseInt(request.getParameter("selectedcity")));
         sbr.setAddress(request.getParameter("address"));
         sbr.setPhone(request.getParameter("phone"));
         sbr.setFax(request.getParameter("fax"));
         sbr.setMobile(request.getParameter("mobile"));
         sbr.setEmail(request.getParameter("email"));
         sbr.setRemarks(request.getParameter("remarks"));
-        sbr.setIsactive(request.getParameter("isactive").equals("true"));
+        if (request.getParameter("isactive")!= null){
+        sbr.setIsactive(request.getParameter("isactive").equals("on"));
+        } else {
+            sbr.setIsactive(false);
+        }
         sbr.setDeactivationreason(request.getParameter("deactivationreason"));
+        sbr.setSupplier(Integer.parseInt(request.getParameter("supplier")));
         SupplierBranchBean sbrBean = new SupplierBranchBean();
         if (!request.getParameter("id").equals("")) {
             sbr.setId(Integer.parseInt(request.getParameter("id")));
-            //sbrBean.modifySupplierBranch(sbr);
-            response.sendRedirect("GetSupplierBranches");
+            sbrBean.modifySupplierBranch(sbr);
+            response.sendRedirect("GetSupplierBranches?id="+request.getParameter("supplier")+
+                    "&suppliername="+request.getParameter("suppliername"));
         } else {
             sbrBean.addSupplierBranch(sbr);
-            response.sendRedirect("GetSupplierBranch");
+            response.sendRedirect("GetSupplierBranch?supplier="+request.getParameter("supplier")+
+                    "&suppliername="+request.getParameter("suppliername"));
         }
     }
 
