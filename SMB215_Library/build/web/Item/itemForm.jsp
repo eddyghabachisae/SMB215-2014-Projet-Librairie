@@ -37,6 +37,10 @@
                                 <h3 class="prev-indent-bot">Item</h3>
                                 <ul id="tabs">
                                     <li><a href="#" title="tab1" class="activeTab">Main Info</a></li>
+                                    <% if(request.getParameter("book").equals("true")){ %>
+                                                <li><a href="./GetBook?id=<%=request.getParameter("book_id")%>" title="tab2" class="notActive">Book Info</a></li>
+                                    <% }%>
+                                    
                                 </ul>
 
                                 <div id="content3"> 
@@ -64,13 +68,19 @@
                                                                                                         %>
                                             <label><span class="text-form">Book ?</span><input  name="book" type="checkbox" value="true" <%=(book.equals("true") ? "checked" : "") %>/></label>
                                             <label><span class="text-form">Category*</span>
-                                                <select name="category" >
+                                                <select name="category" id="category" >
                                                     <option value="">Select</option>
                                                     <c:forEach items="${itemCategoryList}" var="itemCat">
                                                         <c:set var="itemID" value="${itemCat.id}" />
                                                         <option value="${itemCat.id}" >${itemCat.code}</option>
                                                     </c:forEach>
                                                 </select></label>
+                                            <script>
+                                                 if ("<%=request.getParameter("category")%>" !== "") {
+                                                     var val = <%=request.getParameter("category")%>;
+                                                     $('#category').val(val);
+                                                 }
+                                                </script>
                                             <div class="wrapper">
                                                 <div class="text-form">Description</div>
                                                 <div class="extra-wrap">

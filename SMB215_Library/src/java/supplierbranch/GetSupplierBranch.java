@@ -1,5 +1,9 @@
 package supplierbranch;
 
+import country.Country;
+import country.CountryBean;
+import province.Province;
+import province.ProvinceBean;
 import city.City;
 import city.CityBean;
 import java.io.IOException;
@@ -15,14 +19,20 @@ public class GetSupplierBranch extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //CityBean ctyBean = new CityBean();
-        //List<City> cities = 
-                //ctyBean.getCities();
-        //request.setAttribute("cities", cities);
+        CountryBean cntBean = new CountryBean();
+        List<Country> countries = 
+        cntBean.getCountries();
+        request.setAttribute("countries", countries);
+        ProvinceBean pvcBean = new ProvinceBean();
+        List<Province> provinces = pvcBean.getProvinces();
+        request.setAttribute("provinces", provinces);
+        CityBean ctyBean = new CityBean();
+        List<City> cities = ctyBean.getCities();
+        request.setAttribute("cities", cities);
         if (request.getParameter("id") != null) {
             SupplierBranchBean sbrBean = new SupplierBranchBean();
             SupplierBranch sbr = sbrBean.getSupplierBranch(Integer.valueOf(request.getParameter("id")));
-            response.sendRedirect("supplierBranch/editSupplierBranch.jsp?"
+            request.getRequestDispatcher("supplierBranch/editSupplierBranch.jsp?"
                     + "id=" + sbr.getId()
                     + "&name=" + sbr.getName()
                     + "&contactname=" + sbr.getContactname()
@@ -35,10 +45,10 @@ public class GetSupplierBranch extends HttpServlet {
                     + "&deactivationreason=" + ((sbr.getIsactive() == false) ? sbr.getDeactivationreason() : "")
                     + "&city=" + sbr.getCity()
                     + "&supplier=" + sbr.getSupplier()
-                    + "&suppliername=" + request.getParameter("suppliername"));
+                    + "&suppliername=" + request.getParameter("suppliername")).forward(request, response);
         } else {
             request.getRequestDispatcher("supplierBranch/editSupplierBranch.jsp?id=&supplier="+request.getParameter("suppliername")+"&name=&contactname=&city=&address=&phone=&fax=&mobile=&email=&remarks=&isactive=&deactivationreason=").forward(request, response);
-       //     response.sendRedirect("supplierBranch/editSupplierBranch.jsp?id=&supplier="+request.getParameter("supplier")+"&name=&contactname=&city=&address=&phone=&fax=&mobile=&email=&remarks=&isactive=&deactivationreason=");
+       
         }
     }
 

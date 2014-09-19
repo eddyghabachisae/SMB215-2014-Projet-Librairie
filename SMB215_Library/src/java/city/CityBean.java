@@ -83,6 +83,7 @@ public class CityBean {
                 cty.setId(rs.getInt(1));
                 cty.setCode(rs.getString(2));
                 cty.setName(rs.getString(3));
+                cty.setProvince(rs.getInt(4));
                 list.add(cty);
             }
         } catch (SQLException | ClassNotFoundException ex) {

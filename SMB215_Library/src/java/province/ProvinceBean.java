@@ -65,6 +65,44 @@ public class ProvinceBean {
         }
     }
 
+    public List<Province> getProvinces() {
+        List<Province> list = new ArrayList<>();
+        Connection con = null;
+        Statement stmt = null;
+        try {
+            DBconnection dbCon = new DBconnection();
+            Class.forName(dbCon.getJDBC_DRIVER());
+
+            con = DriverManager.getConnection(dbCon.getDATABASE_URL(),
+                    dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
+
+            stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("Select * From province "
+                    + "order by pvc_name");
+            while (rs.next()) {
+                Province pvc = new Province();
+                pvc.setId(rs.getInt(1));
+                pvc.setName(rs.getString(3));
+                pvc.setcountry(rs.getInt(4));
+                list.add(pvc);
+            }
+        } catch (SQLException | ClassNotFoundException ex) {
+            System.err.println("Caught Exception: " + ex.getMessage());
+        } finally {
+            try {
+                if (stmt != null) {
+                    stmt.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException ex) {
+                System.err.println("Caught Exception: " + ex.getMessage());
+            }
+        }
+        return list;
+    }
+    
     public List<Province> getCities() {
         List<Province> list = new ArrayList<>();
         Connection con = null;
