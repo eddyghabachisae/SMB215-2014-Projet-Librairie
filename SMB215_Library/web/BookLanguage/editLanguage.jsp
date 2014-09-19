@@ -38,7 +38,7 @@
                                     <div class="error_box"></div>
 
       
-                            <form id="form" name="form" action="../SaveLanguage?id=<%=request.getParameter("id")%>" method="post">                    
+                            <form id="form" name="form" action="../SaveBookLanguage?id=<%=request.getParameter("id")%>" method="post">                    
                                 <fieldset>
                                       <label><span class="text-form">Code* </span><input type="text" class="inputText" id="code" 
                                              name="code" value="<%=request.getParameter("code")%>"></label>
@@ -51,7 +51,7 @@
 											
                                             <div class="buttons">
 							<input type="submit" name="Submit" value="Submit" class="button"/>
-                                                        <a href="../GetLanguages"><input type="button" name="Cancel" value="Cancel" class="button"/></a>
+                                                        <a href="../GetBookLanguages"><input type="button" name="Cancel" value="Cancel" class="button"/></a>
                                             </div> 
 										
                                         </div>

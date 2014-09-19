@@ -1,4 +1,10 @@
-package itemCategory;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+package BookLanguage;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -10,10 +16,13 @@ import java.util.ArrayList;
 import java.util.List;
 import main.DBconnection;
 
-public class ItemCategoryBean {
-
-    public List<ItemCategory> getItemCategories() {
-        List<ItemCategory> list = new ArrayList<>();
+/**
+ *
+ * @author Dell
+ */
+public class BookLanguageBean {
+    public List<BookLanguage> getBookLanguages() {
+        List<BookLanguage> list = new ArrayList<>();
         Connection con = null;
         Statement stmt = null;
         try {
@@ -24,13 +33,13 @@ public class ItemCategoryBean {
                     dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
 
             stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("Select * From itemcategory order by itc_code");
+            ResultSet rs = stmt.executeQuery("Select * From bookLanguage order by lan_code");
             while (rs.next()) {
-                ItemCategory itc = new ItemCategory();
-                itc.setId(rs.getLong(1));
-                itc.setCode(rs.getString(2));
-                itc.setDescription(rs.getString(3));
-                list.add(itc);
+                BookLanguage lng = new BookLanguage();
+                lng.setId(rs.getLong(1));
+                lng.setCode(rs.getString(3));
+                lng.setName(rs.getString(2));
+                list.add(lng);
             }
         } catch (SQLException | ClassNotFoundException ex) {
             System.err.println("Caught Exception: " + ex.getMessage());
@@ -48,8 +57,8 @@ public class ItemCategoryBean {
         }
         return list;
     }
-
-    public void deleteItemCategory(long id) {
+    
+    public void deleteBookLanguage(long id) {
         Connection con = null;
         Statement stmt = null;
         try {
@@ -59,7 +68,7 @@ public class ItemCategoryBean {
             con = DriverManager.getConnection(dbCon.getDATABASE_URL(),
                     dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
             stmt = con.createStatement();
-            stmt.execute("Delete From itemcategory Where itc_id = " + String.valueOf(id));
+            stmt.execute("Delete From bookLanguage Where lan_id = " + String.valueOf(id));
         } catch (SQLException | ClassNotFoundException ex) {
             System.err.println("Caught Exception: " + ex.getMessage());
         } finally {
@@ -75,8 +84,8 @@ public class ItemCategoryBean {
             }
         }
     }
-
-    public void addItemCategory(ItemCategory itc) {
+    
+    public void addBookLanguage(BookLanguage lng) {
 
         Connection con = null;
         PreparedStatement pstmt = null;
@@ -88,11 +97,12 @@ public class ItemCategoryBean {
             con = DriverManager.getConnection(dbCon.getDATABASE_URL(),
                     dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
 
-            pstmt = con.prepareStatement("Insert Into itemcategory "
-                    + "(itc_code, itc_description) Values(?,?)");
+            pstmt = con.prepareStatement("Insert Into BookLanguage "
+                    + "(lan_code, lan_name) "
+                    + "Values(?,?)");
 
-            pstmt.setString(1, itc.getCode());
-            pstmt.setString(2, itc.getDescription());
+            pstmt.setString(1, lng.getCode());
+            pstmt.setString(2, lng.getName());
 
             pstmt.execute();
 
@@ -111,9 +121,9 @@ public class ItemCategoryBean {
             }
         }
     }
-
-    public ItemCategory getItemCategory(long id) {
-        ItemCategory itc = null;
+    
+    public BookLanguage getBookLanguage(long id) {
+        BookLanguage lng = null;
         Connection con = null;
         Statement stmt = null;
         try {
@@ -123,12 +133,12 @@ public class ItemCategoryBean {
             con = DriverManager.getConnection(dbCon.getDATABASE_URL(),
                     dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
             stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("Select * From itemcategory Where itc_id=" + id);
+            ResultSet rs = stmt.executeQuery("Select * From BookLanguage Where lan_id=" + id);
             if (rs.next()) {
-                itc = new ItemCategory();
-                itc.setId(rs.getLong(1));
-                itc.setCode(rs.getString(2));
-                itc.setDescription(rs.getString(3));
+                lng = new BookLanguage();
+                lng.setId(rs.getLong(1));
+                lng.setCode(rs.getString(2));
+                lng.setName(rs.getString(3));
             }
         } catch (SQLException | ClassNotFoundException ex) {
             System.err.println("Caught Exception: " + ex.getMessage());
@@ -144,10 +154,10 @@ public class ItemCategoryBean {
                 System.err.println("Caught Exception: " + ex.getMessage());
             }
         }
-        return itc;
+        return lng;
     }
-
-    public void modifyItemCategory(ItemCategory itc) {
+    
+    public void modifyBookLanguage(BookLanguage lng) {
         Connection con = null;
         PreparedStatement pstmt = null;
         try {
@@ -157,11 +167,11 @@ public class ItemCategoryBean {
             con = DriverManager.getConnection(dbCon.getDATABASE_URL(),
                     dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
 
-            pstmt = con.prepareStatement("Update itemcategory Set itc_code=?, "
-                    + "itc_description=? Where itc_id=?");
-            pstmt.setString(1, itc.getCode());
-            pstmt.setString(2, itc.getDescription());
-            pstmt.setLong(3, itc.getId());
+            pstmt = con.prepareStatement("Update bookLanguage Set lan_code=?, "
+                    +"lan_name=? Where lan_id=?");
+            pstmt.setString(1, lng.getCode());
+            pstmt.setString(2, lng.getName());
+            pstmt.setLong(3, lng.getId());
             pstmt.executeUpdate();
         } catch (SQLException | ClassNotFoundException ex) {
             System.err.println("Caught Exception: " + ex.getMessage());
@@ -178,5 +188,4 @@ public class ItemCategoryBean {
             }
         }
     }
-
 }

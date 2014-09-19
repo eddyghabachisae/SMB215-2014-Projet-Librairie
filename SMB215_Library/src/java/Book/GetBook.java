@@ -7,8 +7,8 @@ import BookCategory.BookCategory;
 import BookCategory.BookCategoryBean;
 import BookStatus.BookStatus;
 import BookStatus.BookStatusBean;
-import Language.Language;
-import Language.LanguageBean;
+import BookLanguage.BookLanguage;
+import BookLanguage.BookLanguageBean;
 import branch.Branch;
 import branch.BranchBean;
 import java.io.IOException;
@@ -28,8 +28,8 @@ public class GetBook extends HttpServlet {
         if (request.getParameter("id") != null && !request.getParameter("id").equals("") && !request.getParameter("id").equals("0")){
             BookBean bookBean = new BookBean();
             Book book = bookBean.getBook(Integer.valueOf(request.getParameter("id")));
-             LanguageBean langBean = new LanguageBean();
-            List<Language> LanguagesList = langBean.getLanguage();
+             BookLanguageBean langBean = new BookLanguageBean();
+            List<BookLanguage> LanguagesList = langBean.getBookLanguages();
             request.setAttribute("LanguagesList", LanguagesList);
             BookCategoryBean bookCatBean = new BookCategoryBean();
             List<BookCategory> bookCategoriesList = bookCatBean.getBookCategories();

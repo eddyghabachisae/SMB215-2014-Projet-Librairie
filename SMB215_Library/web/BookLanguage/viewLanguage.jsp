@@ -31,7 +31,7 @@
                 <div class="container_12">
                     <div class="wrapper">
                         <div class="pull-right">
-                            <a href="GetLanguage"><input type="submit" name="Submit" value="Add New Language" class="button"/></a>
+                            <a href="GetBookLanguage"><input type="submit" name="Submit" value="Add New Language" class="button"/></a>
                         </div>
                         <div class="clear2"></div>
                         <div class="CSSTableGenerator" >
@@ -48,8 +48,8 @@
                                             <td>${cnt.code}</td>
                                             <td>${cnt.name}</td>
                                             <td>
-                                                <a href="GetLanguage?id=${cnt.id}" title="Edit" class="fa fa-lg fa-pencil-square-o"></a>
-                                                <a href="DeleteLanguage?id=${cnt.id}" title="Delete" class="fa fa-lg fa-trash-o"></a> 
+                                                <a href="GetBookLanguage?id=${cnt.id}" title="Edit" class="fa fa-lg fa-pencil-square-o"></a>
+                                                <a href="DeleteBookLanguage?id=${cnt.id}" title="Delete" class="fa fa-lg fa-trash-o"></a> 
                                             </td>
                                         </tr>
                                     </c:forEach>
