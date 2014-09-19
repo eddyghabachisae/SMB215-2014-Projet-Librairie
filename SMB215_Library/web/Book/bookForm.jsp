@@ -4,6 +4,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <%@ include file="../main.html" %>
+<script>
+  $(function() {
+    $( "#datepicker" ).datepicker();
+  });
+ </script>
 <body id="page5">
 	<div class="main">
         <!--==============================header=================================-->
@@ -55,7 +60,7 @@
                                       <label><span class="text-form">Publisher* </span><input type="text" class="inputText" id="publisher" 
                                         name="publisher" value="<%=request.getParameter("publisher")%>"></label>
                                       
-                                        <label><span class="text-form">Publish Date </span><input type="text" class="inputText" id="publishDate" 
+                                        <label><span class="text-form">Publish Date </span><input type="text" class="inputText" id="datepicker"  
                                         name="publishDate" value="<%=request.getParameter("publishDate")%>"></label>
                                       <label><span class="text-form">Pages Number* </span><input type="text" class="inputText" id="pagesNb" 
                                         name="pagesNb" value="<%=request.getParameter("pagesNb")%>"></label>
