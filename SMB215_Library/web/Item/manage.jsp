@@ -1,3 +1,5 @@
+<%@page import="itemCategory.ItemCategory"%>
+<%@page import="itemCategory.ItemCategoryBean"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -65,7 +67,7 @@
                                             </c:otherwise>
                                             </c:choose></td>
                                         <td>${item.name}</td>
-                                        <td>${item.itemCategory_id}</td>
+                                        <td>${item.getItemCategoryName()}</td>
                                         <td>${item.quantity}</td>
                                         <td>
                                             <c:choose>

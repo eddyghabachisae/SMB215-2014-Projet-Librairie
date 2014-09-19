@@ -1,5 +1,8 @@
 package Item;
 
+import itemCategory.ItemCategory;
+import itemCategory.ItemCategoryBean;
+
 public class Item {
 
     private long id;
@@ -163,6 +166,12 @@ public class Item {
 
     public void setDeactivationReason(String deactivationReason) {
         this.deactivationReason = deactivationReason;
+    }
+    
+    public String getItemCategoryName(){
+     ItemCategoryBean ItemCatBean = new ItemCategoryBean();
+     ItemCategory itemCat= ItemCatBean.getItemCategory(this.getItemCategory_id());
+     return itemCat.getCode();
     }
 
 }
