@@ -32,8 +32,8 @@ public class GetBook extends HttpServlet {
             BookBean bookBean = new BookBean();
             Book book = bookBean.getBook(Integer.valueOf(request.getParameter("id")));
              LanguageBean langBean = new LanguageBean();
-           // List<Language> LanguagesList = langBean.getLanguage();
-            //request.setAttribute("LanguagesList", LanguagesList);
+            List<Language> LanguagesList = langBean.getLanguage();
+            request.setAttribute("LanguagesList", LanguagesList);
             BookCategoryBean bookCatBean = new BookCategoryBean();
             List<BookCategory> bookCategoriesList = bookCatBean.getBookCategories();
             request.setAttribute("bookCategoriesList", bookCategoriesList);
