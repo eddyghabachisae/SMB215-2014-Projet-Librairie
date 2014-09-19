@@ -51,6 +51,7 @@
                             <form id="form" name="form" action="SaveBook?id=<%=request.getParameter("id")%>" method="post" >                    
                                 <fieldset>
                                     <input type="hidden" name="item_id" value="<%=request.getParameter("item_id")%>"/>
+                                 
                                       <label><span class="text-form">Title* </span><input type="text" class="inputText" id="title" 
                                              name="title" value="<%=request.getParameter("title")%>"></label>
                                       <label><span class="text-form">SubTitle </span><input type="text" class="inputText" id="subtitle" 
@@ -64,9 +65,11 @@
                                         name="publishDate" value="<%=request.getParameter("publishDate")%>"></label>
                                       <label><span class="text-form">Pages Number* </span><input type="text" class="inputText" id="pagesNb" 
                                         name="pagesNb" value="<%=request.getParameter("pagesNb")%>"></label>
+                                        <label><span class="text-form">Rent Price* </span><input type="text" class="inputText" id="rentPrice" 
+                                        name="rentPrice" value="<%=request.getParameter("rentPrice")%>"></label>
                                       <label><span class="text-form">Language*</span>
                                           <select name="language" id="language" >
-                                              <option value="1">Select</option>
+                                              <option value="1" selected >Select</option>
                                             <c:forEach items="${LanguagesList}" var="lang">
 					   <option value="${lang.id}">${lang.code}</option>
                                             </c:forEach>
@@ -79,7 +82,7 @@
                                                 </script>
                                      <label><span class="text-form">Category*</span>
                                           <select name="category" id="category">
-                                              <option value="">Select</option>
+                                              <option value="" selected>Select</option>
                                             <c:forEach items="${bookCategoriesList}" var="bookCat">
 					   <option value="${bookCat.id}">${bookCat.code}</option>
                                             </c:forEach>
@@ -92,7 +95,7 @@
                                                 </script>
                                      <label><span class="text-form">Author</span>
                                           <select name="author" id="author" >
-                                              <option value="">Select</option>
+                                              <option value="" selected>Select</option>
                                             <c:forEach items="${authorsList}" var="auth">
 					   <option value="${auth.id}">${auth.name}</option>
                                             </c:forEach>
@@ -106,7 +109,7 @@
                                     <input type="hidden" name="bookStatus_id" value="<%=request.getParameter("bookStatus_id")%>"/>
                                     <label><span class="text-form">Branch*</span>
                                           <select name="branch" id="branch" >
-                                              <option value="">Select</option>
+                                              <option value="" selected >Select</option>
                                             <c:forEach items="${branchesList}" var="branch">
 					   <option value="${branch.id}">${branch.name}</option>
                                             </c:forEach>
@@ -194,6 +197,10 @@ new FormValidator('form', [{
     name:'shelf',
     display: 'Shelf',    
     rules: 'required'
+},{
+    name:'rentPrice',
+    display: 'Rent Price',    
+    rules: 'required|numeric'
 }
 ], function(errors, event) {
     var SELECTOR_ERRORS = $('.error_box'),

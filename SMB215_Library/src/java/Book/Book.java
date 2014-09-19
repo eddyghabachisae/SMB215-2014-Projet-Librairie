@@ -18,11 +18,22 @@ public class Book {
     private long author_id;
     private long item_id;
     private long bookStatus_id;
+    private double rentPrice;
 
     @Override
     public String toString() {
-        return "Book{" + "id=" + id + ", title=" + title + ", subtitle=" + subtitle + ", isbn=" + isbn + ", publisher=" + publisher + ", publishDate=" + publishDate + ", pagesNb=" + pagesNb + ", bookCategory_id=" + bookCategory_id + ", language_id=" + language_id + ", author_id=" + author_id + ", item_id=" + item_id + ", bookStatus_id=" + bookStatus_id + '}';
+        return "Book{" + "id=" + id + ", title=" + title + ", subtitle=" + subtitle + ", isbn=" + isbn + ", publisher=" + publisher + ", publishDate=" + publishDate + ", pagesNb=" + pagesNb + ", bookCategory_id=" + bookCategory_id + ", language_id=" + language_id + ", author_id=" + author_id + ", item_id=" + item_id + ", bookStatus_id=" + bookStatus_id + ", rentPrice=" + rentPrice + '}';
     }
+
+    public double getRentPrice() {
+        return rentPrice;
+    }
+
+    public void setRentPrice(double rentPrice) {
+        this.rentPrice = rentPrice;
+    }
+
+    
 
     public long getAuthor_id() {
         return author_id;

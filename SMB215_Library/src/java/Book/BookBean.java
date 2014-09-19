@@ -43,6 +43,7 @@ public class BookBean {
                 book.setAuthor_id(rs.getLong(10));
                 book.setItem_id(rs.getLong(11));
                 book.setBookStatus_id(rs.getLong(12));
+                book.setRentPrice(rs.getDouble(13));
                 list.add(book);
                
             }
@@ -92,6 +93,7 @@ public class BookBean {
                 book.setAuthor_id(rs.getLong(10));
                 book.setItem_id(rs.getLong(11));
                 book.setBookStatus_id(rs.getLong(12));
+                book.setRentPrice(rs.getDouble(13));
                 list.add(book);
                
             }
@@ -154,6 +156,7 @@ public class BookBean {
                 book.setAuthor_id(rs.getLong(10));
                 book.setItem_id(rs.getLong(11));
                 book.setBookStatus_id(rs.getLong(12));
+                book.setRentPrice(rs.getDouble(13));
                 list.add(book);
                
             }
@@ -218,6 +221,7 @@ public class BookBean {
                 book.setAuthor_id(rs.getLong(10));
                 book.setItem_id(rs.getLong(11));
                 book.setBookStatus_id(rs.getLong(12));
+                book.setRentPrice(rs.getDouble(13));
                 list.add(book);
                
             }
@@ -280,7 +284,7 @@ public class BookBean {
                     dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
 
             pstmt = con.prepareStatement("Insert Into book "
-                    + "(bok_title, bok_subtitle,bok_isbn,bok_publisher,bok_publisherdate,bok_nbpages,bookCategory_id,bookLanguage_id,BookAuthor_id,item_id,bookstatus_id) Values(?,?,?,?,?,?,?,?,?,?,?)");
+                    + "(bok_title, bok_subtitle,bok_isbn,bok_publisher,bok_publisherdate,bok_nbpages,bookCategory_id,bookLanguage_id,BookAuthor_id,item_id,bookstatus_id,bok_rentPrice) Values(?,?,?,?,?,?,?,?,?,?,?,?)");
 
             pstmt.setString(1, book.getTitle());
             pstmt.setString(2, book.getSubtitle());
@@ -293,6 +297,7 @@ public class BookBean {
             pstmt.setLong(9, book.getAuthor_id());
             pstmt.setLong(10, book.getItem_id());
             pstmt.setLong(11, book.getBookStatus_id());
+            pstmt.setDouble(12, book.getRentPrice());
             pstmt.execute();
 
         } catch (SQLException | ClassNotFoundException ex) {
@@ -338,6 +343,7 @@ public class BookBean {
                 book.setAuthor_id(rs.getLong(10));
                 book.setItem_id(rs.getLong(11));
                 book.setBookStatus_id(rs.getLong(12));
+                book.setRentPrice(rs.getDouble(13));
                 
             }
         } catch (SQLException | ClassNotFoundException ex) {
@@ -384,6 +390,7 @@ public class BookBean {
                 book.setAuthor_id(rs.getLong(10));
                 book.setItem_id(rs.getLong(11));
                 book.setBookStatus_id(rs.getLong(12));
+                book.setRentPrice(rs.getDouble(13));
                 
             }
         } catch (SQLException | ClassNotFoundException ex) {
@@ -417,7 +424,7 @@ public class BookBean {
                     + "bok_publisher=?,bok_publisherdate=?,"
                     + "bok_nbpages=?,bookCategory_id=?,"
                     + "bookLanguage_id=?,BookAuthor_id=?,item_id=?,"
-                    + "bookstatus_id=? Where bok_id=?");
+                    + "bookstatus_id=?,bok_rentPrice=?  Where bok_id=?");
            
             pstmt.setString(1, book.getTitle());
             pstmt.setString(2, book.getSubtitle());
@@ -430,7 +437,9 @@ public class BookBean {
             pstmt.setLong(9, book.getAuthor_id());
             pstmt.setLong(10, book.getItem_id());
             pstmt.setLong(11, book.getBookStatus_id());
-            pstmt.setLong(12, book.getId());
+            pstmt.setDouble(12, book.getRentPrice());
+            pstmt.setLong(13, book.getId());
+             
             
             
              

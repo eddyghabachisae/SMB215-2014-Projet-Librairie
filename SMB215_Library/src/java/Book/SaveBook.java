@@ -38,14 +38,12 @@ public class SaveBook extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        System.err.println("fet 3al get");
     }
 
     
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        System.err.println("fet 3al post");
         
         Book book = new Book();
         book.setTitle(request.getParameter("title"));
@@ -63,6 +61,7 @@ public class SaveBook extends HttpServlet {
         book.setPublishDate(sqlDate);
         }
         book.setPagesNb(Integer.parseInt(request.getParameter("pagesNb")));
+        book.setRentPrice(Double.parseDouble(request.getParameter("rentPrice")));
         book.setLanguage_id(Long.parseLong(request.getParameter("language")));
         book.setBookCategory_id(Long.parseLong(request.getParameter("category")));
         book.setAuthor_id(Long.parseLong(request.getParameter("author")));
@@ -73,11 +72,11 @@ public class SaveBook extends HttpServlet {
         bookStatus.setShelf(request.getParameter("shelf"));
         BookBean bookBean = new BookBean();
         BookStatusBean bookStatusBean = new BookStatusBean();
-        
         if(!request.getParameter("bookStatus_id").equals("")){
            System.err.println("fet 3al ifff book status");
            bookStatus.setId(Long.parseLong(request.getParameter("bookStatus_id")));
            bookStatusBean.modifyBookStatus(bookStatus);
+           book.setBookStatus_id(Long.parseLong(request.getParameter("bookStatus_id")));
         }
         else{
             System.err.println("fet 3al elseee book status");
