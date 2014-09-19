@@ -33,7 +33,10 @@ public class DoLogin extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         LoginBean loginBean = new LoginBean();
-        loginBean.doLogin(request.getParameter(""), request.getParameter(""));
+        boolean success = loginBean.doLogin(request.getParameter("user"), request.getParameter("pass"));
+        if (success) {
+            response.sendRedirect("home.jsp");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -1,5 +1,3 @@
-<%@page import="itemCategory.ItemCategory"%>
-<%@page import="itemCategory.ItemCategoryBean"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -34,52 +32,24 @@
                 <div class="container_12">
                     <div class="wrapper">
                         <div class="pull-right">
-                            <a href="GetItem"><input type="submit" name="Submit" value="Add New Item" class="button"/></a>
+                            <a href="GetBookCategory"><input type="submit" name="Submit" value="Add New Category" class="button"/></a>
                         </div>
                         <div class="clear2"></div>
                         <div class="CSSTableGenerator" >
                             <table >
                                 <tbody>
                                     <tr>
-                                        <td width="10%">Availability</td>
-                                        <td width="10%">is Active</td>
-                                        <td>Name</td>
-                                        <td>Category</td>
-                                        <td>Quantity</td>
+                                        <td width="30%">Code</td>
+                                        <td>Description</td>
                                         <td width="10%">Actions</td>
                                     </tr>
-                                <c:forEach items="${itemsList}" var="item">
+                                <c:forEach items="${bookCategoriesList}" var="bookCat">
                                     <tr>
-                                        <td><c:choose>
-                                            <c:when test="${item.isAvailable==true}" >
-                                                <a href="" title="Avaible" class="fa fa-lg fa-check" ></a>
-                                            </c:when>
-                                            <c:otherwise>
-                                             <a href="" title="Not Available" class="fa fa-lg fa-times" ></a>   
-                                            </c:otherwise>
-                                            </c:choose></td>
-                                        <td><c:choose>
-                                            <c:when test="${item.isActive==true}" >
-                                                <a href="" title="Active" class="fa fa-lg fa-check"></a>
-                                            </c:when>
-                                            <c:otherwise>
-                                             <a href="" title="Not Active"class="fa fa-lg fa-times"></a>   
-                                            </c:otherwise>
-                                            </c:choose></td>
-                                        <td>${item.name}</td>
-                                        <td>${item.getItemCategoryName()}</td>
-                                        <td>${item.quantity}</td>
+                                        <td>${bookCat.code}</td>
+                                        <td>${bookCat.description}</td>
                                         <td>
-                                            <c:choose>
-                                            <c:when test="${item.isActive==true}" >
-                                                <a href="DeactivateItem?id=${item.id}" title="Deactivate" class="fa fa-lg fa-times"></a>
-                                            </c:when>
-                                            <c:otherwise>
-                                             <a href="ActivateItem?id=${item.id}" title="Activate" class="fa fa-lg fa-check"></a>   
-                                            </c:otherwise>
-                                            </c:choose>
-                                            <a href="GetItem?id=${item.id}" title="Edit" class="fa fa-lg fa-pencil-square-o"></a>
-                                            <a href="DeleteItem?id=${item.id}" tite="Delete" class="fa fa-lg fa-trash-o"></a> 
+                                            <a href="GetBookCategory?id=${bookCat.id}" title="Edit" class="fa fa-lg fa-pencil-square-o"></a>
+                                            <a href="DeleteBookCategory?id=${bookCat.id}" tite="Delete" class="fa fa-lg fa-trash-o"></a> 
                                         </td>
                                     </tr>
                                 </c:forEach>

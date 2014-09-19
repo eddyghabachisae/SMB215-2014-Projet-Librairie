@@ -8,6 +8,7 @@ package Login;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -19,22 +20,23 @@ import main.DBconnection;
  */
 public class LoginBean {
     
-    public boolean doLogin(String username, String password) {
-        
+        public boolean doLogin(String username, String password) {
         Connection con = null;
-        Statement stmt = null;
-        Boolean success = false;
+        PreparedStatement pstmt = null;
+        boolean success = false;
         try {
             DBconnection dbCon = new DBconnection();
             Class.forName(dbCon.getJDBC_DRIVER());
 
             con = DriverManager.getConnection(dbCon.getDATABASE_URL(),
                     dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
-            stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("Select emp_username, emp_password "
-                    + "From supplier Where emp_username=" + username
-            + " and emp_password=" +password);
-            if (rs.next()) {
+
+            pstmt = con.prepareStatement("Select emp_username, emp_password From employee "
+                    + "Where emp_username=? and emp_password=?");
+            pstmt.setString(1, username);
+            pstmt.setString(2, password);
+            ResultSet rs = pstmt.executeQuery();
+             if (rs.next()) {
                 Login login = new Login();
                 login.setUsername(rs.getString(1));
                 login.setPassword(rs.getString(2));
@@ -46,8 +48,8 @@ public class LoginBean {
             System.err.println("Caught Exception: " + ex.getMessage());
         } finally {
             try {
-                if (stmt != null) {
-                    stmt.close();
+                if (pstmt != null) {
+                    pstmt.close();
                 }
                 if (con != null) {
                     con.close();
@@ -59,3 +61,5 @@ public class LoginBean {
         return success;
     }
 }
+    
+    
