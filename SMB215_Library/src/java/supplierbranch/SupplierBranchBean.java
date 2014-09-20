@@ -54,6 +54,43 @@ public class SupplierBranchBean {
         return list;
     }
 
+    public List<SupplierBranch> getSupplierBranchesList() {
+        List<SupplierBranch> list = new ArrayList<>();
+        Connection con = null;
+        Statement stmt = null;
+        try {
+            DBconnection dbCon = new DBconnection();
+            Class.forName(dbCon.getJDBC_DRIVER());
+
+            con = DriverManager.getConnection(dbCon.getDATABASE_URL(),
+                    dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
+
+            stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("Select sbr_id, sbr_name, supplier_id "
+                    + "From supplierbranch order by sbr_name");
+            while (rs.next()) {
+                SupplierBranch sbr = new SupplierBranch();
+                sbr.setId(rs.getInt(1));
+                sbr.setName(rs.getString(2));
+                sbr.setSupplier(rs.getInt(3));
+                list.add(sbr);
+            }
+        } catch (SQLException | ClassNotFoundException ex) {
+            System.err.println("Caught Exception: " + ex.getMessage());
+        } finally {
+            try {
+                if (stmt != null) {
+                    stmt.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException ex) {
+                System.err.println("Caught Exception: " + ex.getMessage());
+            }
+        }
+        return list;
+    }
     public void deleteSupplierBranch(int id) {
         Connection con = null;
         Statement stmt = null;

@@ -63,7 +63,23 @@
                                                     </c:forEach> 
                                                 </select>
                                             </label>
+                                        <label><span class="text-form">Supplier* </span>
+                                         <select id="supplier">
+                                                    <option value="">Select</option>
+                                                    <c:forEach items="${suppliers}" var="sup">
+                                                        <option value="${sup.id}">${sup.name}</option>
+                                                    </c:forEach> 
+                                                </select>
+                                            </label>
                                         
+                                        <label><span class="text-form">Supplier Branch* </span>
+                                         <select id="supplierbranch">
+                                                    <option value="">Select</option>
+                                                    <c:forEach items="${supplierbranches}" var="sbr">
+                                                        <option value="${sbr.id}">${sbr.name}</option>
+                                                    </c:forEach> 
+                                                </select>
+                                            </label>
 					<div class="wrapper">
                                         <div class="extra-wrap">
 											

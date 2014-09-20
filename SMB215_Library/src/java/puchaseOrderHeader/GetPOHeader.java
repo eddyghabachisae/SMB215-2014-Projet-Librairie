@@ -7,6 +7,10 @@
 package puchaseOrderHeader;
 import branch.Branch;
 import branch.BranchBean;
+import supplier.Supplier;
+import supplier.SupplierBean;
+import supplierbranch.SupplierBranch;
+import supplierbranch.SupplierBranchBean;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -39,6 +43,12 @@ public class GetPOHeader extends HttpServlet {
         BranchBean brhBean = new BranchBean();
        List<Branch> branches =brhBean.getBranchesList();
        request.setAttribute("branches", branches);
+       SupplierBean supBean = new SupplierBean();
+       List<Supplier> suppliers = supBean.getSuppliers();
+       request.setAttribute("suppliers", suppliers);
+              SupplierBranchBean sbrBean = new SupplierBranchBean();
+       List<SupplierBranch> supplierbranches = sbrBean.getSupplierBranchesList();
+       request.setAttribute("supplierbranches", supplierbranches);
         request.getRequestDispatcher("purchaseOrderHeader/editPOHeader.jsp").forward(request, response);
         
     }
