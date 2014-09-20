@@ -1,5 +1,5 @@
 
-package Emp;
+package Employee;
 
 
 import java.sql.Connection;
@@ -27,7 +27,7 @@ public class EmployeeBean {
                     dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
 
             stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("Select * From Employee ORDER BY empid");
+            ResultSet rs = stmt.executeQuery("Select * From employee ORDER BY emp_id");
                  while (rs.next()) {
                 Employee emp = new Employee();
 //                emp.setempid(rs.getInt(1));

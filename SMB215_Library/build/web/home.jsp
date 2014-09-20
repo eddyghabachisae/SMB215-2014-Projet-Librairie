@@ -58,7 +58,7 @@
                 </article>
                 <article class="grid_3">
                     <div class="box">
-					   <a href="#" class="imgCenter"> <figure class="fa-5x fa fa-cogs blueColor"></figure></a>
+					   <a href="GetEmployees" class="imgCenter"> <figure class="fa-5x fa fa-cogs blueColor"></figure></a>
                         <div class="padding">
                             <strong class="title-3 textCenter">Employees</strong>
                         </div>

@@ -1,6 +1,6 @@
 
 
-package Emp;
+package Employee;
 
 import java.io.IOException;
 import javax.servlet.ServletException;

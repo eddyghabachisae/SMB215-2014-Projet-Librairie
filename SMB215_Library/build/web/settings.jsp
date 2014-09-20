@@ -62,6 +62,14 @@
                 </article>
                 <article class="grid_2">
                     <div class="box">
+					  <a href="GetProfessions" class="imgCenter"> <figure class="fa-5x fa fa-globe blueColor"></figure></a>
+                        <div class="padding">
+                            <strong class="title-3 ">Professions</strong>
+                        </div>
+                    </div>
+                </article>
+                <article class="grid_2">
+                    <div class="box">
                         <a href="GetLibrarySettings" class="imgCenter"> <figure class="fa-5x fa fa-wrench blueColor"></figure></a>
                         <div class="padding">
                             <strong class="title-3 ">Settings</strong>

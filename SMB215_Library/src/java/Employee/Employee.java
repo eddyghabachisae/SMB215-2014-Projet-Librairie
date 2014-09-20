@@ -1,5 +1,5 @@
 
-package Emp;
+package Employee;
 import java.util.Date;
 
 public class Employee {
