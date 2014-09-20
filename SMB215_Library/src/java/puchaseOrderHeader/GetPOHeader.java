@@ -49,7 +49,7 @@ public class GetPOHeader extends HttpServlet {
               SupplierBranchBean sbrBean = new SupplierBranchBean();
        List<SupplierBranch> supplierbranches = sbrBean.getSupplierBranchesList();
        request.setAttribute("supplierbranches", supplierbranches);
-        request.getRequestDispatcher("purchaseOrderHeader/editPOHeader.jsp").forward(request, response);
+        request.getRequestDispatcher("purchaseOrderHeader/editPOHeader.jsp?branch=&supplier=&supplierbranch=&orderdate=&shippingdate=&deliverydate=").forward(request, response);
         
     }
 
