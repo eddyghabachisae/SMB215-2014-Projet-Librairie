@@ -36,46 +36,30 @@
             <section id="content"><div class="ic"></div>
                 <div class="container_12">
                     <div class="wrapper">
-                        <h1>Supplier: <%=request.getParameter("suppliername")%></h1>
+                        <h1>Supplier branch: <%=request.getParameter("supplierbranchname")%></h1>
                         <div class="pull-right">
-                            <a href="GetSupplierBranch?supplier=<%=request.getParameter("supplier")%>&amp;suppliername=<%=request.getParameter("suppliername")%>"><input type="submit" name="Submit" value="Add New Supplier Branch" class="button"/></a>
+                            <a href="GetSupplierBranch?supplier=<%=request.getParameter("supplier")%>&amp;suppliername=<%=request.getParameter("suppliername")%>"><input type="submit" name="Submit" value="Add Item" class="button"/></a>
                         </div>
                         <div class="clear2"></div>
                         <div class="CSSTableGenerator" >        
         <table >
                                 <tbody>
                                     <tr>
-                                        <td width="10%">Active</td>
-                                        <td>Name</td>
-                                        <td>Contact Name</td>
-                                        <td>Phone</td>
-                                        <td>Items</td>
+                                        
+                                        <td>Item</td>
+                                        <td>Price</td>
+                                        <td>Price</td>
+                                        <td>Shipping days</td>
                                         <td width="10%">Actions</td>
                                     </tr>
-            <c:forEach items="${supplierBranches}" var="sbr">
+            <c:forEach items="${supplierBranchItems}" var="spi">
                 <tr>
-                    <td><c:choose>
-                                                    <c:when test="${sbr.isactive==true}" >
-                                                        <a href="" title="Active" class="fa fa-lg fa-check"></a>
-                                                    </c:when>
-                                                    <c:otherwise>
-                                                        <a href="" title="Not Active" class="fa fa-lg fa-times"></a>   
-                                                    </c:otherwise>
-                                                </c:choose>
-                                            </td>
-                    <td>${sbr.name}</td>
-                    <td>${sbr.contactname}</td>
-                    <td>${sbr.phone}</td>
-                    <td><a href="GetSupplierBranchItems?id=${sbr.id}&amp;supplierbranchname=${sbr.name}">Items</a></td>
+                    
+                    <td>${spi.itemname}</td>
+                    <td>${spi.price}</td>
+                    <td>${spi.price}</td>
+                    <td>${spi.shippingdays}</td>
                     <td>
-                        <c:choose>
-                                                    <c:when test="${sbr.isactive==true}" >
-                                                        <a href="DeactivateSupplierBranch?id=${sbr.id}&amp;supplierid=${sbr.supplier}&amp;suppliername=<%=request.getParameter("suppliername")%>" title="Deactivate" class="fa fa-lg fa-times"></a>
-                                                    </c:when>
-                                                    <c:otherwise>
-                                                        <a href="ActivateSupplierBranch?id=${sbr.id}&amp;supplierid=${sbr.supplier}&amp;suppliername=<%=request.getParameter("suppliername")%>" title="Activate" class="fa fa-lg fa-check"></a>   
-                                                    </c:otherwise>
-                                                </c:choose>
                         <a href="GetSupplierBranch?id=${sbr.id}&amp;supplier=${sbr.supplier}&amp;suppliername=<%=request.getParameter("suppliername")%>" title="Edit" class="fa fa-lg fa-pencil-square-o"></a>
                         <a href="DeleteSupplierBranch?id=${sbr.id}?supplier=${sbr.supplier}" title="Delete" class="fa fa-lg fa-trash-o"></a> 
                     </td>

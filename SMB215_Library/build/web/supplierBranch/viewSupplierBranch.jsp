@@ -49,6 +49,7 @@
                                         <td>Name</td>
                                         <td>Contact Name</td>
                                         <td>Phone</td>
+                                        <td>Items</td>
                                         <td width="10%">Actions</td>
                                     </tr>
             <c:forEach items="${supplierBranches}" var="sbr">
@@ -65,6 +66,7 @@
                     <td>${sbr.name}</td>
                     <td>${sbr.contactname}</td>
                     <td>${sbr.phone}</td>
+                    <td><a href="GetSupplierBranchItems?id=${sbr.id}&amp;supplierbranchname=${sbr.name}">Items</a></td>
                     <td>
                         <c:choose>
                                                     <c:when test="${sbr.isactive==true}" >
