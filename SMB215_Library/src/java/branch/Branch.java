@@ -1,10 +1,11 @@
 package branch;
 
 import java.util.Date;
+import java.util.logging.Logger;
 
 public class Branch {
     
-    private int id;
+    private long id;
     private String name;
     private int city;
     private String address;
@@ -16,14 +17,19 @@ public class Branch {
     private Date activeSince;
     private Date deactivatedSince;
 
-    public int getId() {
+    @Override
+    public String toString() {
+        return "Branch{" + "id=" + id + ", name=" + name + ", city=" + city + ", address=" + address + ", email=" + email + ", phone=" + phone + ", fax=" + fax + ", mobile=" + mobile + ", isActive=" + isActive + ", activeSince=" + activeSince + ", deactivatedSince=" + deactivatedSince + '}';
+    }
+
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
-
+  
     public String getName() {
         return name;
     }
@@ -102,6 +108,28 @@ public class Branch {
 
     public void setDeactivatedSince(Date deactivatedSince) {
         this.deactivatedSince = deactivatedSince;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 71 * hash + (int) (this.id ^ (this.id >>> 32));
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Branch other = (Branch) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        return true;
     }
     
 }
