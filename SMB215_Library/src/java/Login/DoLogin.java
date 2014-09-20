@@ -35,8 +35,10 @@ public class DoLogin extends HttpServlet {
         LoginBean loginBean = new LoginBean();
         boolean success = loginBean.doLogin(request.getParameter("user"), request.getParameter("pass"));
         if (success) {
-            response.sendRedirect("home.jsp");
-        }
+            response.sendRedirect("home.jsp?username="+request.getParameter("user"));
+        } else {
+            response.sendRedirect("login.jsp?success="+success);
+        } 
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

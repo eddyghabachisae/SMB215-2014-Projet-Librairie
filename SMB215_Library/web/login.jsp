@@ -22,7 +22,9 @@
   </form>
 
   <div class="login-help">
-    <a href="#">Forgot Password</a>
+     <% if ((request.getParameter("success") != null) && (request.getParameter("success").equals("false"))) { %>
+      <p style="text-align:center;color:red">Login failed! Try again</p>
+      <%}%>
   </div>
 </div>
 
