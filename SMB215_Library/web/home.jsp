@@ -3,12 +3,8 @@
 <html lang="en">
     <% 
         if ((session.getAttribute("username") == null) || (session.getAttribute("username") == "")) {
-        if ((request.getParameter("username") != null)) {
-                session.setAttribute("username", request.getParameter("username"));
-        } else {
       response.sendRedirect("login.jsp");
         }
-    }
     %>
 <%@ include file="homeMain.html" %>
 <body id="page1">
