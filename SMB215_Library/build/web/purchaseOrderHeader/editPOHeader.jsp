@@ -118,7 +118,7 @@
 
                                                     <div class="buttons">
                                                         <input type="submit" name="Submit" value="Submit" class="button"/>
-                                                        <a href="../GetCountries"><input type="button" name="AddPOD" value="Add Item" class="button"/></a>
+                                                        <a href="GetPODetail"><input type="button" name="AddPOD" value="Add Item" class="button"/></a>
                                                         <a href="../GetCountries"><input type="button" name="Cancel" value="Cancel" class="button"/></a>
                                                     </div> 
 
@@ -159,7 +159,7 @@
             },
             {
                 name: 'supplierbranch',
-                display: 'SupplierBranch',
+                display: 'Supplier branch',
                 rules: 'required'
             },
             {
