@@ -18,6 +18,25 @@
         $(function() {
             $("#deliverydatepicker").datepicker();
         });
+        
+        function refreshsupplierbranches() {
+
+            var supplier = document.getElementById('supplier').value;
+            document.getElementById('supplierbranch').value = '';
+            if (supplier === '') {
+                document.getElementById('supplierbranch').disabled = true;
+            } else {
+                document.getElementById('supplierbranch').disabled = false;
+                for (var i = 1; i <= document.getElementById('supplierbranch').length - 1; i++) {
+                    
+                if (document.getElementById('supplierbranch').options[i].className !== supplier) {
+                        document.getElementById('supplierbranch').options[i].hidden = true;
+                    } else {
+                        document.getElementById('supplierbranch').options[i].hidden = false;
+                    }
+                }
+            }
+        }
     </script>
     <body id="page5">
         <div class="main">
@@ -67,7 +86,7 @@
                                                 </select>
                                             </label>
                                             <label><span class="text-form">Supplier* </span>
-                                                <select id="supplier">
+                                                <select id="supplier" onchange="refreshsupplierbranches()">
                                                     <option value="">Select</option>
                                                     <c:forEach items="${suppliers}" var="sup">
                                                         <option value="${sup.id}">${sup.name}</option>
@@ -76,16 +95,16 @@
                                             </label>
 
                                             <label><span class="text-form">Supplier Branch* </span>
-                                                <select id="supplierbranch">
+                                                <select id="supplierbranch"  disabled>
                                                     <option value="">Select</option>
                                                     <c:forEach items="${supplierbranches}" var="sbr">
-                                                        <option value="${sbr.id}">${sbr.name}</option>
+                                                        <option class="${sbr.supplier}" value="${sbr.id}">${sbr.name}</option>
                                                     </c:forEach> 
                                                 </select>
                                             </label>
 
 
-                                            <label><span class="text-form">Order Date </span><input type="text" class="inputText" id="orderdatepicker"  
+                                            <label><span class="text-form">Order Date* </span><input type="text" class="inputText" id="orderdatepicker"  
                                                                                                     name="orderdate" value="<%=request.getParameter("orderdate")%>"></label>
 
                                             <label><span class="text-form">Shipping Date </span><input type="text" class="inputText" id="shippingdatepicker"  
@@ -129,13 +148,23 @@
     <script type="text/javascript">
 
         new FormValidator('form', [{
-                name: 'code',
-                display: 'Code',
+                name: 'branch',
+                display: 'Branch',
                 rules: 'required'
             },
             {
-                name: 'name',
-                display: 'Name',
+                name: 'supplier',
+                display: 'Supplier',
+                rules: 'required'
+            },
+            {
+                name: 'supplierbranch',
+                display: 'SupplierBranch',
+                rules: 'required'
+            },
+            {
+                name: 'orderdate',
+                display: 'Order Date',
                 rules: 'required'
             }], function(errors, event) {
             var SELECTOR_ERRORS = $('.error_box'),
