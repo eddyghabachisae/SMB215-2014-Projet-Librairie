@@ -48,7 +48,7 @@
 
                                             <label><span class="text-form">Item* </span>
 
-                                                <select id="branch">
+                                                <select id="item">
                                                     <option value="">Select</option>
                                                     <c:forEach items="${items}" var="itm">
                                                         <option value="${itm.id}">${itm.name}</option>
