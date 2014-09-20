@@ -42,8 +42,7 @@ public class BookBean {
                 book.setLanguage_id(rs.getLong(9));
                 book.setAuthor_id(rs.getLong(10));
                 book.setItem_id(rs.getLong(11));
-                book.setBookStatus_id(rs.getLong(12));
-                book.setRentPrice(rs.getDouble(13));
+                book.setRentPrice(rs.getDouble(12));
                 list.add(book);
                
             }
@@ -92,8 +91,7 @@ public class BookBean {
                 book.setLanguage_id(rs.getLong(9));
                 book.setAuthor_id(rs.getLong(10));
                 book.setItem_id(rs.getLong(11));
-                book.setBookStatus_id(rs.getLong(12));
-                book.setRentPrice(rs.getDouble(13));
+                book.setRentPrice(rs.getDouble(12));
                 list.add(book);
                
             }
@@ -155,8 +153,7 @@ public class BookBean {
                 book.setLanguage_id(rs.getLong(9));
                 book.setAuthor_id(rs.getLong(10));
                 book.setItem_id(rs.getLong(11));
-                book.setBookStatus_id(rs.getLong(12));
-                book.setRentPrice(rs.getDouble(13));
+                book.setRentPrice(rs.getDouble(12));
                 list.add(book);
                
             }
@@ -220,8 +217,7 @@ public class BookBean {
                 book.setLanguage_id(rs.getLong(9));
                 book.setAuthor_id(rs.getLong(10));
                 book.setItem_id(rs.getLong(11));
-                book.setBookStatus_id(rs.getLong(12));
-                book.setRentPrice(rs.getDouble(13));
+                book.setRentPrice(rs.getDouble(12));
                 list.add(book);
                
             }
@@ -271,10 +267,11 @@ public class BookBean {
         }
     }
 
-    public void addBook(Book book) {
+    public long addBook(Book book) {
 
         Connection con = null;
         PreparedStatement pstmt = null;
+        long id =0;
 
         try {
             DBconnection dbCon = new DBconnection();
@@ -284,7 +281,7 @@ public class BookBean {
                     dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
 
             pstmt = con.prepareStatement("Insert Into book "
-                    + "(bok_title, bok_subtitle,bok_isbn,bok_publisher,bok_publisherdate,bok_nbpages,bookCategory_id,bookLanguage_id,BookAuthor_id,item_id,bookstatus_id,bok_rentPrice) Values(?,?,?,?,?,?,?,?,?,?,?,?)");
+                    + "(bok_title, bok_subtitle,bok_isbn,bok_publisher,bok_publisherdate,bok_nbpages,bookCategory_id,bookLanguage_id,BookAuthor_id,item_id,bok_rentPrice) Values(?,?,?,?,?,?,?,?,?,?,?)",Statement.RETURN_GENERATED_KEYS);
 
             pstmt.setString(1, book.getTitle());
             pstmt.setString(2, book.getSubtitle());
@@ -296,10 +293,12 @@ public class BookBean {
             pstmt.setLong(8, book.getLanguage_id());
             pstmt.setLong(9, book.getAuthor_id());
             pstmt.setLong(10, book.getItem_id());
-            pstmt.setLong(11, book.getBookStatus_id());
-            pstmt.setDouble(12, book.getRentPrice());
+            pstmt.setDouble(11, book.getRentPrice());
             pstmt.execute();
-
+            ResultSet rs = pstmt.getGeneratedKeys();
+            rs.next();
+            id = rs.getLong(1);
+            
         } catch (SQLException | ClassNotFoundException ex) {
             System.err.println("Caught Exception: " + ex.getMessage());
         } finally {
@@ -314,6 +313,7 @@ public class BookBean {
                 System.err.println("Caught Exception: " + ex.getMessage());
             }
         }
+        return id;
     }
 
    public Book getBook(long id) {
@@ -342,8 +342,7 @@ public class BookBean {
                 book.setLanguage_id(rs.getLong(9));
                 book.setAuthor_id(rs.getLong(10));
                 book.setItem_id(rs.getLong(11));
-                book.setBookStatus_id(rs.getLong(12));
-                book.setRentPrice(rs.getDouble(13));
+                book.setRentPrice(rs.getDouble(12));
                 
             }
         } catch (SQLException | ClassNotFoundException ex) {
@@ -389,8 +388,7 @@ public class BookBean {
                 book.setLanguage_id(rs.getLong(9));
                 book.setAuthor_id(rs.getLong(10));
                 book.setItem_id(rs.getLong(11));
-                book.setBookStatus_id(rs.getLong(12));
-                book.setRentPrice(rs.getDouble(13));
+                book.setRentPrice(rs.getDouble(12));
                 
             }
         } catch (SQLException | ClassNotFoundException ex) {
@@ -424,7 +422,7 @@ public class BookBean {
                     + "bok_publisher=?,bok_publisherdate=?,"
                     + "bok_nbpages=?,bookCategory_id=?,"
                     + "bookLanguage_id=?,BookAuthor_id=?,item_id=?,"
-                    + "bookstatus_id=?,bok_rentPrice=?  Where bok_id=?");
+                    + "bok_rentPrice=?  Where bok_id=?");
            
             pstmt.setString(1, book.getTitle());
             pstmt.setString(2, book.getSubtitle());
@@ -436,9 +434,8 @@ public class BookBean {
             pstmt.setLong(8, book.getLanguage_id());
             pstmt.setLong(9, book.getAuthor_id());
             pstmt.setLong(10, book.getItem_id());
-            pstmt.setLong(11, book.getBookStatus_id());
-            pstmt.setDouble(12, book.getRentPrice());
-            pstmt.setLong(13, book.getId());
+            pstmt.setDouble(11, book.getRentPrice());
+            pstmt.setLong(12, book.getId());
              
             
             

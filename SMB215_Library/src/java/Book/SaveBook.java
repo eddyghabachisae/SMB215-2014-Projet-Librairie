@@ -66,7 +66,7 @@ public class SaveBook extends HttpServlet {
         book.setBookCategory_id(Long.parseLong(request.getParameter("category")));
         book.setAuthor_id(Long.parseLong(request.getParameter("author")));
         book.setItem_id(Long.parseLong(request.getParameter("item_id")));
-        BookStatus bookStatus = new BookStatus();
+      /*  BookStatus bookStatus = new BookStatus();
         bookStatus.setBranch_id(Long.parseLong(request.getParameter("branch")));
         bookStatus.setSection(request.getParameter("section"));
         bookStatus.setShelf(request.getParameter("shelf"));
@@ -82,19 +82,17 @@ public class SaveBook extends HttpServlet {
             System.err.println("fet 3al elseee book status");
             long bookStatus_id= bookStatusBean.addBookStatus(bookStatus);
             book.setBookStatus_id(bookStatus_id);
-        }
-        System.err.println(book.toString());
-        System.err.println(bookStatus.toString());
-        System.err.println("id bookkk"+request.getParameter("id"));
+        }*/
+        BookBean bookBean = new BookBean();
         if (!request.getParameter("id").equals("")) {
             System.err.println("fet 3al ifff");
             book.setId(Long.parseLong(request.getParameter("id")));
             bookBean.modifyBook(book);
-            response.sendRedirect("GetItems");
+            response.sendRedirect("GetBookStatus?book_id="+book.getId()+"&id=");
         } else {
             System.err.println("fet 3al elseee");
-            bookBean.addBook(book);
-            response.sendRedirect("GetItems");
+            long book_id= bookBean.addBook(book);
+            response.sendRedirect("GetBookStatus?book_id="+book_id+"&id=");
         }
     }
 

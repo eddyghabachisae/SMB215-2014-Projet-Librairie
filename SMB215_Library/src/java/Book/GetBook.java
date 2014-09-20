@@ -41,7 +41,7 @@ public class GetBook extends HttpServlet {
             List<Branch> branchesList = branchBean.getBranchesList();
             request.setAttribute("branchesList", branchesList);
             BookStatusBean bookStatusBean = new BookStatusBean();
-            BookStatus bookStatus = bookStatusBean.getBookStatus(book.getBookStatus_id());
+           // BookStatus bookStatus = bookStatusBean.getBookStatus(book.getBookStatus_id());
             String publishDate="";
             if(book.getPublishDate()!=null){
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -59,11 +59,7 @@ public class GetBook extends HttpServlet {
                      +"&bookCategory_id="+book.getBookCategory_id()
                      +"&author_id="+book.getAuthor_id()
                      +"&rentPrice="+book.getRentPrice()
-                     +"&item_id="+book.getItem_id()
-                     +"&bookStatus_id="+book.getBookStatus_id()
-                     +"&branch_id="+bookStatus.getBranch_id()
-                     +"&section="+bookStatus.getSection()
-                     +"&shelf="+bookStatus.getShelf()).forward(request, response);
+                     +"&item_id="+book.getItem_id()).forward(request, response);
         } else {
             BookBean bookBean = new BookBean();
             BookCategoryBean bookCatBean = new BookCategoryBean();
@@ -71,14 +67,11 @@ public class GetBook extends HttpServlet {
             request.setAttribute("bookCategoriesList", bookCategoriesList);
             AuthorBean authorBean = new AuthorBean();
             List<Author> authorsList = authorBean.getAuthors();
-            System.err.println("listttt:"+authorsList.size());
             request.setAttribute("authorsList", authorsList);
             BranchBean branchBean = new BranchBean();
             List<Branch> branchesList = branchBean.getBranchesList();
             request.setAttribute("branchesList", branchesList);
-            System.err.println("item iddd:"+request.getParameter("item_id"));
-            request.getRequestDispatcher("Book/bookForm.jsp?id=&title=&subtitle=&isbn=&publisher=&publishDate=&pagesNb=&bookCategory_id=&bookAuthor_id=&rentPrice=&item_id="+request.getParameter("item_id")
-                        +"&bookStatus_id=&section=&shelf=&branch_id=&bookStatus_id=").forward(request, response);
+            request.getRequestDispatcher("Book/bookForm.jsp?id=&title=&subtitle=&isbn=&publisher=&publishDate=&pagesNb=&bookCategory_id=&bookAuthor_id=&rentPrice=&item_id="+request.getParameter("item_id")).forward(request, response);
       }
 
     }

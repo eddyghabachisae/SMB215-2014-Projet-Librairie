@@ -17,13 +17,13 @@ public class Book {
     private long language_id;
     private long author_id;
     private long item_id;
-    private long bookStatus_id;
     private double rentPrice;
 
     @Override
     public String toString() {
-        return "Book{" + "id=" + id + ", title=" + title + ", subtitle=" + subtitle + ", isbn=" + isbn + ", publisher=" + publisher + ", publishDate=" + publishDate + ", pagesNb=" + pagesNb + ", bookCategory_id=" + bookCategory_id + ", language_id=" + language_id + ", author_id=" + author_id + ", item_id=" + item_id + ", bookStatus_id=" + bookStatus_id + ", rentPrice=" + rentPrice + '}';
+        return "Book{" + "id=" + id + ", title=" + title + ", subtitle=" + subtitle + ", isbn=" + isbn + ", publisher=" + publisher + ", publishDate=" + publishDate + ", pagesNb=" + pagesNb + ", bookCategory_id=" + bookCategory_id + ", language_id=" + language_id + ", author_id=" + author_id + ", item_id=" + item_id + ", rentPrice=" + rentPrice + '}';
     }
+
 
     public double getRentPrice() {
         return rentPrice;
@@ -90,9 +90,7 @@ public class Book {
         this.language_id = language_id;
     }
 
-    public void setBookStatus_id(long bookStatus_id) {
-        this.bookStatus_id = bookStatus_id;
-    }
+   
 
     public long getId() {
         return id;
@@ -130,9 +128,7 @@ public class Book {
         return language_id;
     }
 
-    public long getBookStatus_id() {
-        return bookStatus_id;
-    }
+    
   
 
     
