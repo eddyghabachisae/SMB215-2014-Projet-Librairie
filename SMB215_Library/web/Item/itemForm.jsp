@@ -39,6 +39,7 @@
                                     <li><a href="#" title="tab1" class="activeTab">Main Info</a></li>
                                     <% if(request.getParameter("book").equals("true")){ %>
                                                 <li><a href="./GetBook?id=<%=request.getParameter("book_id")%>" title="tab2" class="notActive">Book Info</a></li>
+                                                <li><a href="./GetBookStatus?book_id=<%=request.getParameter("book_id")%>&id=" title="tab2" class="notActive">Book Status Info</a></li>
                                     <% }%>
                                     
                                 </ul>
