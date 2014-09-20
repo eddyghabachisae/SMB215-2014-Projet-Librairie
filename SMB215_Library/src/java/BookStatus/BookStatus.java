@@ -1,5 +1,10 @@
 package BookStatus;
 
+import Book.Book;
+import Book.BookBean;
+import branch.Branch;
+import branch.BranchBean;
+
 
 
 
@@ -10,10 +15,19 @@ public class BookStatus {
     private String section;
     private String shelf;
     private long branch_id;
+    private long book_id;
 
     @Override
     public String toString() {
-        return "BookStatus{" + "id=" + id + ", reservedCopies=" + reservedCopies + ", section=" + section + ", shelf=" + shelf + ", branch_id=" + branch_id + '}';
+        return "BookStatus{" + "id=" + id + ", reservedCopies=" + reservedCopies + ", section=" + section + ", shelf=" + shelf + ", branch_id=" + branch_id + ", book_id=" + book_id + '}';
+    }
+
+    public long getBook_id() {
+        return book_id;
+    }
+
+    public void setBook_id(long book_id) {
+        this.book_id = book_id;
     }
 
     public long getBranch_id() {
@@ -58,8 +72,17 @@ public class BookStatus {
         this.shelf = shelf;
     }
 
-   
+   public Branch getBranch(){
+       BranchBean branchBean = new BranchBean();
+       Branch branch = branchBean.getBranch(this.branch_id);
+       return branch;
+   }
 
+   public Book getBook(){
+   BookBean bookBean = new BookBean();
+   Book book = bookBean.getBook(this.book_id);
+   return book;
+   }
    
 
     

@@ -34,6 +34,7 @@ public class BookStatusBean {
                 bookStatus.setSection(rs.getString(3));
                 bookStatus.setShelf(rs.getString(4));
                 bookStatus.setBranch_id(rs.getLong(5));
+                bookStatus.setBook_id(rs.getLong(6));
                 
                 list.add(bookStatus);
                
@@ -83,7 +84,7 @@ public class BookStatusBean {
         }
     }
 
-    public long addBookStatus (BookStatus bookCat) {
+    public long addBookStatus (BookStatus bookStatus) {
 
         Connection con = null;
         PreparedStatement pstmt = null;
@@ -97,12 +98,13 @@ public class BookStatusBean {
                     dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
 
             pstmt = con.prepareStatement("Insert Into bookstatus "
-                    + "(bks_reservedcopies, bks_section,bks_shelf, branch_id) Values(?,?,?,?)",Statement.RETURN_GENERATED_KEYS);
+                    + "(bks_reservedcopies, bks_section,bks_shelf, branch_id,book_id) Values(?,?,?,?,?)",Statement.RETURN_GENERATED_KEYS);
 
-            pstmt.setInt(1, bookCat.getReservedCopies());
-            pstmt.setString(2, bookCat.getSection());
-            pstmt.setString(3, bookCat.getShelf());
-            pstmt.setLong(4, bookCat.getBranch_id());
+            pstmt.setInt(1, bookStatus.getReservedCopies());
+            pstmt.setString(2, bookStatus.getSection());
+            pstmt.setString(3, bookStatus.getShelf());
+            pstmt.setLong(4, bookStatus.getBranch_id());
+            pstmt.setLong(5, bookStatus.getBook_id());
             pstmt.execute();
             ResultSet rs = pstmt.getGeneratedKeys();
             rs.next();
@@ -146,6 +148,7 @@ public class BookStatusBean {
                 bookStatus.setSection(rs.getString(3));
                 bookStatus.setShelf(rs.getString(4));
                 bookStatus.setBranch_id(rs.getLong(5));
+                bookStatus.setBook_id(rs.getLong(6));
                 
             }
         } catch (SQLException | ClassNotFoundException ex) {
@@ -175,12 +178,14 @@ public class BookStatusBean {
             con = DriverManager.getConnection(dbCon.getDATABASE_URL(),
                     dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
 
-            pstmt = con.prepareStatement("Update bookStatus Set bks_section=?, bks_shelf=?, branch_id=? Where bks_id=?");
+            pstmt = con.prepareStatement("Update bookStatus Set bks_section=?, bks_shelf=?, branch_id=?, book_id=? Where bks_id=?");
            
             pstmt.setString(1, bookStatus.getSection());
             pstmt.setString(2, bookStatus.getShelf());
             pstmt.setLong(3, bookStatus.getBranch_id());
-            pstmt.setLong(4, bookStatus.getId());
+            pstmt.setLong(4, bookStatus.getBook_id());
+            pstmt.setLong(5, bookStatus.getId());
+           
             
              
             
