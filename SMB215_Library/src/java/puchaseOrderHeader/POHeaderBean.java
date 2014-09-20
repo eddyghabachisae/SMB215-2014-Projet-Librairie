@@ -33,17 +33,31 @@ public class POHeaderBean {
                     dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
 
             stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("Select poh_id, poh_total "
-                    + "From purchaseheader order by poh_id");
+            ResultSet rs = stmt.executeQuery("Select poh_id,"
+                    + "CASE WHEN poh_orderdate!='0000-00-00' THEN poh_orderdate END poh_orderdate,"
+                    + "CASE WHEN poh_shippingdate!='0000-00-00' THEN poh_shippingdate END poh_shippingdate,"
+                    + "CASE WHEN poh_deliverydate!='0000-00-00' THEN poh_deliverydate END poh_deliverydate,"
+                    + "sup_name, brh_name, CONCAT(emp_firstname,' ',emp_lastname) emp_name, poh_total "
+                    + "From purchaseheader "
+                    + "Inner Join supplierbranch on sbr_id=supplierBranch_id " 
+                    + "Inner Join supplier on supplier_id=sup_id "
+                    + "Inner Join branch on branch_id=brh_id "
+                    + "Inner Join employee on employee_id=emp_id "
+                    + "order by poh_id");
             while (rs.next()) {
                 POHeader poh = new POHeader();
                 poh.setId(rs.getInt(1));
-                poh.setTotal(rs.getFloat(2));
+                poh.setOrderdate(rs.getDate(2));
+                poh.setStatus(rs.getDate(3),rs.getDate(4));
+                poh.setSuppliername(rs.getString(5));
+                poh.setBranchname(rs.getString(6));
+                poh.setEmployeename(rs.getString(7));
+                poh.setTotal(rs.getFloat(8));
                 
                 list.add(poh);
             }
         } catch (SQLException | ClassNotFoundException ex) {
-            System.err.println("Caught Exception: " + ex.getMessage());
+                System.err.println("Caught Exception: " + ex.getMessage());
         } finally {
             try {
                 if (stmt != null) {

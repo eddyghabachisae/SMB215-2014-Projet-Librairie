@@ -22,6 +22,10 @@ public class POHeader {
     private long branch;
     private long employee;
     private long supplierbranch;
+    private String status;
+    private String suppliername;
+    private String branchname;
+    private String employeename;
 
     public long getId() {
         return id;
@@ -86,6 +90,45 @@ public class POHeader {
     public void setSupplierbranch(long supplierbranch) {
         this.supplierbranch = supplierbranch;
     }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(Date shippingdate, Date deliverydate) {
+        if (deliverydate != null){
+            this.status = "Delivered";
+        } else if (shippingdate != null) {
+            this.status = "Shipped";
+        } else {
+            this.status = "Ordered";
+        }
+    }
+
+    public String getSuppliername() {
+        return suppliername;
+    }
+
+    public void setSuppliername(String suppliername) {
+        this.suppliername = suppliername;
+    }
+
+    public String getBranchname() {
+        return branchname;
+    }
+
+    public void setBranchname(String branchname) {
+        this.branchname = branchname;
+    }
+
+    public String getEmployeename() {
+        return employeename;
+    }
+
+    public void setEmployeename(String employeename) {
+        this.employeename = employeename;
+    }
+    
     
     
 }

@@ -38,14 +38,22 @@
                             <table>
                                 <tbody>
                                     <tr>
-                                        <td></td>
+                                        <td>Order Date</td>
+                                        <td>Status</td>
+                                        <td>Supplier</td>
+                                        <td>Branch</td>
+                                        <td>Ordered by</td>
                                         <td>Total</td>
                                         <td width="10%">Actions</td>
                                     </tr>
 
                                     <c:forEach items="${poheaders}" var="poh">
                                         <tr>
-                                          <!--  <td>${cnt.code}</td> -->
+                                            <td>${poh.orderdate}</td>
+                                            <td>${poh.status}</td>
+                                            <td>${poh.suppliername}</td>
+                                            <td>${poh.branchname}</td>
+                                            <td>${poh.employeename}</td>
                                             <td>${poh.total}</td>
                                             <td>
                                                 <a href="GetPOHeader?id=${poh.id}" title="Edit" class="fa fa-lg fa-pencil-square-o"></a>
