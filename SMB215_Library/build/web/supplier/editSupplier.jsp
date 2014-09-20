@@ -2,6 +2,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
+        <% 
+        if ((session.getAttribute("username") == null) || (session.getAttribute("username") == "")) {
+      response.sendRedirect("login.jsp");
+        }
+    %>
     <%@ include file="../main.html" %>
     <script type="text/javascript">
         function validateisactive() {
@@ -28,8 +33,9 @@
                                 <h1><a href="index.html">Library</a></h1>
                                 <nav>
                                     <ul class="menu">
-                                        <li><a class="active" href="../home.jsp">Main</a></li>
-                                        <li><a href="">Logout</a></li>
+                                        <li><b><% out.print(session.getAttribute("username"));%></b></li>
+                                        <li><a class="active" href="${pageContext.request.contextPath}/home.jsp">Main</a></li>
+                                    <li><a href="logout.jsp">Logout</a></li>
                                     </ul>
                                 </nav>
                             </div>

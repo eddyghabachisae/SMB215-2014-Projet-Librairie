@@ -2,6 +2,11 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
+     <% 
+        if ((session.getAttribute("username") == null) || (session.getAttribute("username") == "")) {
+      response.sendRedirect("login.jsp");
+        }
+    %>
     <%@ include file="../main.html" %>
     <body id="page1">
         <div class="main">
@@ -14,8 +19,10 @@
                                 <h1><a href="${pageContext.request.contextPath}/home.jsp">Library</a></h1>
                                 <nav>
                                     <ul class="menu">
-                                        <li><a class="active" href="${pageContext.request.contextPath}/home.jsp">Main</a></li>
-                                        <li><a href="">Logout</a></li>
+                                        <li><b><% out.print(session.getAttribute("username"));%></b></li>
+                                    <li><a class="active" href="home.jsp">Main</a></li>
+                                    
+                                    <li><a href="logout.jsp">Logout</a></li>
                                     </ul>
                                 </nav>
                             </div>
