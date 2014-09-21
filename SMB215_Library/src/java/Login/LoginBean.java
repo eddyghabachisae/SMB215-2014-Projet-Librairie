@@ -20,7 +20,7 @@ import main.DBconnection;
  */
 public class LoginBean {
     
-        public boolean doLogin(String username, String password) {
+        public boolean doLogin(Login login, String username, String password) {
         Connection con = null;
         PreparedStatement pstmt = null;
         boolean success = false;
@@ -31,15 +31,15 @@ public class LoginBean {
             con = DriverManager.getConnection(dbCon.getDATABASE_URL(),
                     dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
 
-            pstmt = con.prepareStatement("Select emp_username, emp_password From employee "
+            pstmt = con.prepareStatement("Select emp_username, emp_password, emp_id From employee "
                     + "Where emp_username=? and emp_password=?");
             pstmt.setString(1, username);
             pstmt.setString(2, password);
             ResultSet rs = pstmt.executeQuery();
              if (rs.next()) {
-                Login login = new Login();
                 login.setUsername(rs.getString(1));
                 login.setPassword(rs.getString(2));
+                login.setId(rs.getLong(3));
                 success = true;
             } else {
                 success = false;
