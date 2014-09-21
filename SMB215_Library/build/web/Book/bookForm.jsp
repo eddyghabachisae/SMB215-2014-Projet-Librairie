@@ -42,6 +42,7 @@
                                 <ul id="tabs">
                                     <li><a href="./GetItem?id=<%=request.getParameter("item_id")%>" title="tab1" class="notActive">Main Info</a></li>
                                     <li><a href="#" title="tab2" class="activeTab">Book Info</a></li>
+                                    <li><a href="./GetBookStatus?book_id=<%=request.getParameter("id")%>&id=" title="tab2" class="notActive">Book Status Info</a></li>
                                 </ul>
                                 <div id="content3"> 
                                     <div class="success_box">All of the fields were successfully validated!</div>
@@ -69,7 +70,7 @@
                                         name="rentPrice" value="<%=request.getParameter("rentPrice")%>"></label>
                                       <label><span class="text-form">Language*</span>
                                           <select name="language" id="language" >
-                                              <option value="1" selected >Select</option>
+                                              <option value="" selected >Select</option>
                                             <c:forEach items="${LanguagesList}" var="lang">
 					   <option value="${lang.id}">${lang.code}</option>
                                             </c:forEach>
@@ -106,24 +107,7 @@
                                                      $('#author').val(val);
                                                  }
                                                 </script>
-                                    <input type="hidden" name="bookStatus_id" value="<%=request.getParameter("bookStatus_id")%>"/>
-                                    <label><span class="text-form">Branch*</span>
-                                          <select name="branch" id="branch" >
-                                              <option value="" selected >Select</option>
-                                            <c:forEach items="${branchesList}" var="branch">
-					   <option value="${branch.id}">${branch.name}</option>
-                                            </c:forEach>
-                                          </select></label>
-                                    <script>
-                                                 if ("<%=request.getParameter("branch_id")%>" !== "") {
-                                                     var val = <%=request.getParameter("branch_id")%>;
-                                                     $('#branch').val(val);
-                                                 }
-                                                </script>
-                                    <label><span class="text-form">Section* </span><input type="text" class="inputText" id="section" 
-                                        name="section" value="<%=request.getParameter("section")%>"></label>
-                                    <label><span class="text-form">Shelf* </span><input type="text" class="inputText" id="shelf" 
-                                        name="shelf" value="<%=request.getParameter("shelf")%>"></label>
+                                    
 					<div class="wrapper">
                                         <div class="extra-wrap">		
                                             <div class="buttons">
@@ -182,20 +166,6 @@ new FormValidator('form', [{
 },{
     name:'category',
     display: 'Category',    
-    rules: 'required'
-},
-{
-    name:'branch',
-    display: 'Branch',    
-    rules: 'required'
-},
-{
-    name:'section',
-    display: 'Section',    
-    rules: 'required'
-},{
-    name:'shelf',
-    display: 'Shelf',    
     rules: 'required'
 },{
     name:'rentPrice',
