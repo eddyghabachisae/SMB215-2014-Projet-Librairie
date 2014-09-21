@@ -13,7 +13,7 @@ import main.DBconnection;
 
 public class BookStatusBean {
 
-    public List<BookStatus> getBookStatus() {
+    public List<BookStatus> getBookStatuss(long book_id) {
         List<BookStatus> list = new ArrayList<>();
         Connection con = null;
         Statement stmt = null;
@@ -25,7 +25,7 @@ public class BookStatusBean {
                     dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
 
             stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("Select * From bookStatus order by bks_id");
+            ResultSet rs = stmt.executeQuery("Select * From bookStatus  Where book_id ="+String.valueOf(book_id));
         
             while (rs.next()) {
                 BookStatus bookStatus = new BookStatus();

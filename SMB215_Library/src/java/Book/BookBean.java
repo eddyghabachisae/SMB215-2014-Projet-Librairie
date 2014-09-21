@@ -327,7 +327,7 @@ public class BookBean {
             con = DriverManager.getConnection(dbCon.getDATABASE_URL(),
                     dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
             stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("Select * From Book Where bok_id=" + id);
+            ResultSet rs = stmt.executeQuery("Select * From book Where bok_id=" + id);
             book = new Book();
             if (rs.next()) {
                 book = new Book();
@@ -373,7 +373,7 @@ public class BookBean {
             con = DriverManager.getConnection(dbCon.getDATABASE_URL(),
                     dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
             stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("Select * From Book Where item_id=" + item_id);
+            ResultSet rs = stmt.executeQuery("Select * From book Where item_id=" + item_id);
             book = new Book();
             if (rs.next()) {
                 book = new Book();

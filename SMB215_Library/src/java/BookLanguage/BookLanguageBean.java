@@ -97,7 +97,7 @@ public class BookLanguageBean {
             con = DriverManager.getConnection(dbCon.getDATABASE_URL(),
                     dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
 
-            pstmt = con.prepareStatement("Insert Into BookLanguage "
+            pstmt = con.prepareStatement("Insert Into bookLanguage "
                     + "(lan_code, lan_name) "
                     + "Values(?,?)");
 
@@ -133,7 +133,7 @@ public class BookLanguageBean {
             con = DriverManager.getConnection(dbCon.getDATABASE_URL(),
                     dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
             stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("Select * From BookLanguage Where lan_id=" + id);
+            ResultSet rs = stmt.executeQuery("Select * From bookLanguage Where lan_id=" + id);
             if (rs.next()) {
                 lng = new BookLanguage();
                 lng.setId(rs.getLong(1));
