@@ -37,6 +37,11 @@
                             <a href="GetItem"><input type="submit" name="Submit" value="Add New Item" class="button"/></a>
                         </div>
                         <div class="clear2"></div>
+                         <%
+                             if(!request.getParameter("listSize").equals("0"))
+                             {
+                            
+                            %> 
                         <div class="CSSTableGenerator" >
                             <table >
                                 <tbody>
@@ -85,6 +90,12 @@
                                 </c:forEach>
                                 </tbody>
                             </table>
+                                         <%}
+                             else{
+                            %>
+                            <br>
+                            <div class="emptyList_box">List is Empty!</div>
+                            <%}%>
                         </div>
                         <div class="clear"></div>
                         <div id="tnt_pagination">
