@@ -1,5 +1,6 @@
-package client;
+package Client;
 
+import supplier.*;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -7,17 +8,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "indexClient", urlPatterns = {"/indexClient"})
+@WebServlet(name = "GetClient", urlPatterns = {"/GetClient"})
 public class GetClient extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         if (request.getParameter("id") != null){
             ClientBean supBean = new ClientBean();
-            Client sup = supBean.getClient(Integer.valueOf(request.getParameter("id")));
-            response.sendRedirect("client/indexClient.jsp");
+            Client cst = supBean.getClient(Integer.valueOf(request.getParameter("id")));
+            response.sendRedirect("Client/indexClient.jsp");
         } else {
-               response.sendRedirect("client/indexClient.jsp");
+               response.sendRedirect("Client/indexClient.jsp");
         }
     }
 

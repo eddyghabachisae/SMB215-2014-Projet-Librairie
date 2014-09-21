@@ -1,2 +1,0 @@
-client.DeleteClient
-supplier.DeleteClient

@@ -6,7 +6,7 @@
 
 package Client;
 
-import client.*;
+
 import java.util.Date;
 
 /**

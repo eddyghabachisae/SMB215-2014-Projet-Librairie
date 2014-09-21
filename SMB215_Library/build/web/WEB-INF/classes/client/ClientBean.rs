@@ -1,2 +1,0 @@
-client.ClientBean
-supplier.ClientBean
