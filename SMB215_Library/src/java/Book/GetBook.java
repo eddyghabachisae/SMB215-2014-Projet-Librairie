@@ -71,6 +71,9 @@ public class GetBook extends HttpServlet {
             BranchBean branchBean = new BranchBean();
             List<Branch> branchesList = branchBean.getBranchesList();
             request.setAttribute("branchesList", branchesList);
+             BookLanguageBean langBean = new BookLanguageBean();
+            List<BookLanguage> LanguagesList = langBean.getBookLanguages();
+            request.setAttribute("LanguagesList", LanguagesList);
             request.getRequestDispatcher("Book/bookForm.jsp?id=&title=&subtitle=&isbn=&publisher=&publishDate=&pagesNb=&bookCategory_id=&bookAuthor_id=&rentPrice=&item_id="+request.getParameter("item_id")).forward(request, response);
       }
 
