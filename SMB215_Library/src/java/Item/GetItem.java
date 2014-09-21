@@ -26,8 +26,11 @@ public class GetItem extends HttpServlet {
             BookBean bookBean = new BookBean();
             Book book = bookBean.getBookFormItem(item.getId());
             boolean isBook = false;
-            if(book!=null && book.getItem_id()== item.getId())
+            long book_id =0;
+            if(book!=null && book.getItem_id()== item.getId()){
                 isBook = true;
+                book_id = book.getId();
+            }
             request.getRequestDispatcher("Item/itemForm.jsp?" 
                      +"id=" + item.getId()
                      +"&name=" + item.getName()
@@ -40,7 +43,7 @@ public class GetItem extends HttpServlet {
                      +"&category="+item.getItemCategory_id()
                      +"&description="+item.getDescription()
                      +"&book="+isBook
-                     +"&book_id="+book.getId()).forward(request, response);
+                     +"&book_id="+book_id).forward(request, response);
         } else {
             ItemCategoryBean itc = new ItemCategoryBean();
             List<ItemCategory> itemCategoryList = itc.getItemCategories();
