@@ -7,7 +7,9 @@
       response.sendRedirect("login.jsp");
         }
     %>
-    <script>
+    <head>
+        <title>Supplier Branch Item</title>
+        <script>
         function selecteditem() {
             var select = document.getElementById('item');
             var item_id = select.value;
@@ -17,6 +19,8 @@
         }
     </script>
     <%@ include file="../main.html" %>
+    </head>
+    
     <body id="page5">
         <div class="main">
             <!--==============================header=================================-->

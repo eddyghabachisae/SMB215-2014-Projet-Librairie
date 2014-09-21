@@ -2,13 +2,15 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
-        <% 
+    <%
         if ((session.getAttribute("username") == null) || (session.getAttribute("username") == "")) {
-      response.sendRedirect("login.jsp");
+            response.sendRedirect("login.jsp");
         }
     %>
-    <%@ include file="../main.html" %>
-    <script>
+    <head>
+        <title>PO Header</title>
+        <%@ include file="../main.html" %>
+        <script>
         $(function() {
             $("#orderdatepicker").datepicker();
         });
@@ -18,7 +20,7 @@
         $(function() {
             $("#deliverydatepicker").datepicker();
         });
-        
+
         function refreshsupplierbranches() {
 
             var supplier = document.getElementById('supplier').value;
@@ -28,8 +30,8 @@
             } else {
                 document.getElementById('supplierbranch').disabled = false;
                 for (var i = 1; i <= document.getElementById('supplierbranch').length - 1; i++) {
-                    
-                if (document.getElementById('supplierbranch').options[i].className !== supplier) {
+
+                    if (document.getElementById('supplierbranch').options[i].className !== supplier) {
                         document.getElementById('supplierbranch').options[i].hidden = true;
                     } else {
                         document.getElementById('supplierbranch').options[i].hidden = false;
@@ -38,6 +40,8 @@
             }
         }
     </script>
+   </head>
+   
     <body id="page5">
         <div class="main">
             <!--==============================header=================================-->
@@ -51,7 +55,7 @@
                                     <ul class="menu">
                                         <li><b><% out.print(session.getAttribute("username"));%></b></li>
                                         <li><a class="active" href="${pageContext.request.contextPath}/home.jsp">Main</a></li>
-                                    <li><a href="logout.jsp">Logout</a></li>
+                                        <li><a href="logout.jsp">Logout</a></li>
                                     </ul>
                                 </nav>
                             </div>
@@ -103,9 +107,30 @@
                                                 </select>
                                             </label>
 
+                                            <script>
+                                                if ("<%=request.getParameter("branch")%>" !== "") {
+                                                    var val = <%=request.getParameter("branch")%>;
+                                                    $('#branch').val(val);
+                                                }
+                                            </script>
+
+                                            <script>
+                                                if ("<%=request.getParameter("supplier")%>" !== "") {
+                                                    var val = <%=request.getParameter("supplier")%>;
+                                                    $('#supplier').val(val);
+                                                    refreshsupplierbranches();
+                                                }
+                                            </script>
+
+                                            <script>
+                                                if ("<%=request.getParameter("supplierbranch")%>" !== "") {
+                                                    var val = <%=request.getParameter("supplierbranch")%>;
+                                                    $('#supplierbranch').val(val);
+                                                }
+                                            </script>
 
                                             <label><span class="text-form">Order Date* </span><input type="text" class="inputText" id="orderdatepicker"  
-                                                                                                    name="orderdate" value="<%=request.getParameter("orderdate")%>"></label>
+                                                                                                     name="orderdate" value="<%=request.getParameter("orderdate")%>"></label>
 
                                             <label><span class="text-form">Shipping Date </span><input type="text" class="inputText" id="shippingdatepicker"  
                                                                                                        name="shippingdate" value="<%=request.getParameter("shippingdate")%>"></label>
@@ -113,8 +138,38 @@
                                             <label><span class="text-form">Delivery Date </span><input type="text" class="inputText" id="deliverydatepicker"  
                                                                                                        name="deliverydate" value="<%=request.getParameter("deliverydate")%>"></label>
 
+                                                                                                       <br>
+                                            <div class="CSSTableGenerator" >
+                                                <table>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>Item</td>
+                                                            <td>Quantity</td>
+                                                            <td>Unit cost</td>
+                                                            <td>Item total</td>
+                                                        </tr>
+
+                                                        <c:forEach items="${poheaders}" var="poh">
+                                                            <tr>
+                                                                <td>${poh.orderdate}</td>
+                                                                <td>${poh.status}</td>
+                                                                <td>${poh.suppliername}</td>
+                                                                <td>${poh.branchname}</td>
+                                                                <td>${poh.employeename}</td>
+                                                                <td>${poh.total}</td>
+                                                                <td>
+                                                                    <a href="GetPOHeader?id=${poh.id}" title="Edit" class="fa fa-lg fa-pencil-square-o"></a>
+                                                                  <!--  <a href="DeleteCountry?id=${cnt.id}" title="Delete" class="fa fa-lg fa-trash-o"></a> -->
+                                                                </td>
+                                                            </tr>
+                                                        </c:forEach>
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                             <div class="wrapper">
                                                 <div class="extra-wrap">
+
+
 
                                                     <div class="buttons">
                                                         <input type="submit" name="Submit" value="Submit" class="button"/>

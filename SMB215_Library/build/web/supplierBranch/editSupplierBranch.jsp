@@ -12,7 +12,9 @@
       response.sendRedirect("login.jsp");
         }
     %>
-    <%@ include file="../main.html" %>
+    <head>
+        <title>Supplier Branch</title>
+        <%@ include file="../main.html" %>
     <script type="text/javascript">
         function validateisactive() {
 
@@ -74,6 +76,8 @@
             myform.action = "SaveSupplierBranch?id=<%=request.getParameter("id")%>&supplier=<%=request.getParameter("supplier")%>&suppliername=<%=request.getParameter("suppliername")%>&selectedcity=" + city_id;
         }
     </script>
+    </head>
+    
     <body id="page5">
         <div class="main">
             <!--==============================header=================================-->

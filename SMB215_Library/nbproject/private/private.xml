@@ -3,12 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/eddy/githubproject/Librairie/SMB215_Library/web/supplierBranchItem/viewSupplierBranchItem.jsp</file>
-            <file>file:/home/eddy/githubproject/Librairie/SMB215_Library/src/java/supplierBranchItem/SaveSupplierBranchItem.java</file>
-            <file>file:/home/eddy/githubproject/Librairie/SMB215_Library/web/supplierBranchItem/editSupplierBranchItem.jsp</file>
-            <file>file:/home/eddy/githubproject/Librairie/SMB215_Library/src/java/supplierBranchItem/GetSupplierBranchItem.java</file>
-            <file>file:/home/eddy/githubproject/Librairie/SMB215_Library/src/java/supplierBranchItem/SupplierBranchItemBean.java</file>
-            <file>file:/home/eddy/githubproject/Librairie/SMB215_Library/src/java/supplierbranch/GetSupplierBranch.java</file>
+            <file>file:/home/eddy/githubproject/Librairie/SMB215_Library/src/java/puchaseOrderHeader/POHeaderBean.java</file>
+            <file>file:/home/eddy/githubproject/Librairie/SMB215_Library/web/purchaseOrderHeader/viewPOHeader.jsp</file>
+            <file>file:/home/eddy/githubproject/Librairie/SMB215_Library/web/purchaseOrderHeader/editPOHeader.jsp</file>
+            <file>file:/home/eddy/githubproject/Librairie/SMB215_Library/src/java/supplier/GetSupplier.java</file>
+            <file>file:/home/eddy/githubproject/Librairie/SMB215_Library/src/java/puchaseOrderHeader/GetPOHeader.java</file>
+            <file>file:/home/eddy/githubproject/Librairie/SMB215_Library/src/java/puchaseOrderHeader/GetPOHeaders.java</file>
+            <file>file:/home/eddy/githubproject/Librairie/SMB215_Library/web/supplierBranch/editSupplierBranch.jsp</file>
         </group>
     </open-files>
 </project-private>

@@ -2,12 +2,16 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
-        <% 
+            <%
         if ((session.getAttribute("username") == null) || (session.getAttribute("username") == "")) {
       response.sendRedirect("login.jsp");
         }
     %>
-    <%@ include file="../main.html" %>
+    <head>
+        <title>Country</title>
+        <%@ include file="../main.html" %>
+    </head>
+    
     <body id="page5">
         <div class="main">
             <!--==============================header=================================-->

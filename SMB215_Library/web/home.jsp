@@ -6,7 +6,11 @@
       response.sendRedirect("login.jsp");
         }
     %>
-<%@ include file="homeMain.html" %>
+    <head>
+        <title>Home</title>
+        <%@ include file="homeMain.html" %>
+    </head>
+
 <body id="page1">
 	<div class="main">
         <!--==============================header=================================-->

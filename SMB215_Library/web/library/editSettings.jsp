@@ -7,8 +7,12 @@
       response.sendRedirect("login.jsp");
         }
     %>
-    <%@ include file="../main.html" %>
-    <script>
+    <head>
+        <title>
+            Library Settings
+        </title>
+        <%@ include file="../main.html" %>
+        <script>
         function selectedmainbranch() {
             var select = document.getElementById('mainbranch');
             var mainbranch_id = select.value;
@@ -17,6 +21,7 @@
 
         }
     </script>
+    </head>
     <body id="page5">
         <div class="main">
             <!--==============================header=================================-->

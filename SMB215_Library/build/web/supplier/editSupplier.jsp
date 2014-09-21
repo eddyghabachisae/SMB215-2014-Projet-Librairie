@@ -7,7 +7,9 @@
       response.sendRedirect("login.jsp");
         }
     %>
-    <%@ include file="../main.html" %>
+    <head>
+        <title>Supplier</title>
+        <%@ include file="../main.html" %>
     <script type="text/javascript">
         function validateisactive() {
 
@@ -22,6 +24,8 @@
         }
 
     </script>
+    </head>
+    
     <body id="page5">
         <div class="main">
             <!--==============================header=================================-->

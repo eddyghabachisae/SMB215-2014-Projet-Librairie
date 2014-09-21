@@ -3,8 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package puchaseOrderHeader;
+
 import branch.Branch;
 import branch.BranchBean;
 import supplier.Supplier;
@@ -39,18 +39,32 @@ public class GetPOHeader extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        POHeaderBean pohBean = new POHeaderBean();
+
         BranchBean brhBean = new BranchBean();
-       List<Branch> branches =brhBean.getBranchesList();
-       request.setAttribute("branches", branches);
-       SupplierBean supBean = new SupplierBean();
-       List<Supplier> suppliers = supBean.getSuppliers();
-       request.setAttribute("suppliers", suppliers);
-              SupplierBranchBean sbrBean = new SupplierBranchBean();
-       List<SupplierBranch> supplierbranches = sbrBean.getSupplierBranchesList();
-       request.setAttribute("supplierbranches", supplierbranches);
-        request.getRequestDispatcher("purchaseOrderHeader/editPOHeader.jsp?branch=&supplier=&supplierbranch=&orderdate=&shippingdate=&deliverydate=").forward(request, response);
-        
+        List<Branch> branches = brhBean.getBranchesList();
+        request.setAttribute("branches", branches);
+        SupplierBean supBean = new SupplierBean();
+        List<Supplier> suppliers = supBean.getSuppliers();
+        request.setAttribute("suppliers", suppliers);
+        SupplierBranchBean sbrBean = new SupplierBranchBean();
+        List<SupplierBranch> supplierbranches = sbrBean.getSupplierBranchesList();
+        request.setAttribute("supplierbranches", supplierbranches);
+        if (request.getParameter("id") != null) {
+            POHeaderBean pohBean = new POHeaderBean();
+            POHeader poh = pohBean.getPOHeader(Long.valueOf(request.getParameter("id")));
+            request.getRequestDispatcher("purchaseOrderHeader/editPOHeader.jsp?"
+                    + "branch=" + poh.getBranch()
+                    + "&supplier=" + poh.getSupplier()
+                    + "&supplierbranch=" + poh.getSupplierbranch()
+            + "&orderdate=" + poh.getOrderdate()
+                    + "&shippingdate=" +
+                    ((poh.getShippingdate()!=null)?poh.getShippingdate():"")
+                    + "&deliverydate=" + 
+                    ((poh.getDeliverydate()!=null)?poh.getDeliverydate():"")
+            ).forward(request, response);
+        } else {
+            request.getRequestDispatcher("purchaseOrderHeader/editPOHeader.jsp?branch=&supplier=&supplierbranch=&orderdate=&shippingdate=&deliverydate=").forward(request, response);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
