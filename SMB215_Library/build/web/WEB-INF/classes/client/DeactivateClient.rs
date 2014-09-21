@@ -1,0 +1,2 @@
+client.DeactivateClient
+supplier.DeactivateSupplier

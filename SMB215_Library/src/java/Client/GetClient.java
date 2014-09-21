@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "GetClient", urlPatterns = {"/GetClient"})
+@WebServlet(name = "indexClient", urlPatterns = {"/indexClient"})
 public class GetClient extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -15,15 +15,9 @@ public class GetClient extends HttpServlet {
         if (request.getParameter("id") != null){
             ClientBean supBean = new ClientBean();
             Client sup = supBean.getClient(Integer.valueOf(request.getParameter("id")));
-            response.sendRedirect("client/editClient.jsp?" 
-                    +"id=" + sup.getId()
-                    +"&name=" + sup.getName() 
-                    +"&website=" + sup.getWebsite()
-                    +"&remarks=" + sup.getRemarks()
-                    +"&isactive=" + sup.getIsactive()
-                    +"&deactivationreason=" + ((sup.getIsactive()==false)?sup.getDeactivationreason():""));
+            response.sendRedirect("client/indexClient.jsp");
         } else {
-               response.sendRedirect("client/editClient.jsp?id=&name=&website=&remarks=&isactive=&deactivationreason=");
+               response.sendRedirect("client/indexClient.jsp");
         }
     }
 

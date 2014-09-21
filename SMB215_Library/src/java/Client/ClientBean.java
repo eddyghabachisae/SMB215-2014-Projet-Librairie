@@ -1,6 +1,14 @@
-package client;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 
+package Client;
+
+import Client.*;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,8 +16,14 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import main.DBconnection;
 
+import main.DBconnection;
+import supplier.Supplier;
+
+/**
+ *
+ * @author Dell
+ */
 public class ClientBean {
     
     public List<Client> getClients() {
@@ -24,15 +38,17 @@ public class ClientBean {
                     dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
 
             stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("Select sup_id, sup_name, sup_website,"
-                    + "sup_isactive From client order by sup_name");
+            ResultSet rs = stmt.executeQuery("Select * From customer order by cst_firstname");
             while (rs.next()) {
-                Client sup = new Client();
-                sup.setId(rs.getInt(1));
-                sup.setName(rs.getString(2));
-                sup.setWebsite(rs.getString(3));
-                sup.setIsactive(rs.getBoolean(4));
-                list.add(sup);
+                Client cust = new Client();
+                cust.setId(rs.getInt(1));
+                cust.setFirstname(rs.getString(4));
+                cust.setLastname(rs.getString(5));
+                cust.setGender(rs.getInt(6));
+                cust.setCity(rs.getString(10));
+                cust.setMobile(rs.getString(12));
+                cust.setEmail(rs.getString(13));
+                list.add(cust);
             }
         } catch (SQLException | ClassNotFoundException ex) {
             System.err.println("Caught Exception: " + ex.getMessage());
@@ -61,7 +77,7 @@ public class ClientBean {
             con = DriverManager.getConnection(dbCon.getDATABASE_URL(),
                     dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
             stmt = con.createStatement();
-            stmt.execute("Delete From client Where sup_id = " + String.valueOf(id));
+            stmt.execute("Delete From customer Where cst_id = " + String.valueOf(id));
         } catch (SQLException | ClassNotFoundException ex) {
             System.err.println("Caught Exception: " + ex.getMessage());
         } finally {
@@ -77,9 +93,8 @@ public class ClientBean {
             }
         }
     }
-
     
-    public void addClient(Client sup) {
+    public void addClient(Client cust) {
 
         Connection con = null;
         PreparedStatement pstmt = null;
@@ -92,14 +107,23 @@ public class ClientBean {
                     dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
 
             pstmt = con.prepareStatement("Insert Into client "
-                    + "(sup_name, sup_website, sup_remarks, sup_isactive, sup_deactivationreason) "
-                    + "Values(?,?,?,?,?)");
+                    + "(cst_username, cst_password, cst_firstname, cst_lastname, cst_gender_id, cst_maritalstatus, cst_dateofbirth, cst_address, cst_city, cst_phone, cst_mobile, cst_email, cst_remarks, cst_isactive) "
+                    + "Values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
-            pstmt.setString(1, sup.getName());
-            pstmt.setString(2, sup.getWebsite());
-            pstmt.setString(3, sup.getRemarks());
-            pstmt.setBoolean(4, sup.getIsactive());
-            pstmt.setString(5, sup.getDeactivationreason());
+            pstmt.setString(1, cust.getUsername());
+            pstmt.setString(2, cust.getPassword());
+            pstmt.setString(3, cust.getFirstname());
+            pstmt.setString(4, cust.getLastname());
+            pstmt.setInt(5, cust.getGender());
+            pstmt.setInt(6, cust.getMaritalstatus());
+            pstmt.setDate(7, (Date) cust.getDateofbirth());
+            pstmt.setString(8, cust.getAddress());
+            pstmt.setString(9, cust.getCity());
+            pstmt.setString(10, cust.getPhone());
+            pstmt.setString(11, cust.getMobile());
+            pstmt.setString(12, cust.getEmail());
+            pstmt.setString(13, cust.getRemarks());
+            pstmt.setBoolean(14, cust.getIsactive());
 
             pstmt.execute();
 
@@ -119,9 +143,8 @@ public class ClientBean {
         }
     }
     
-    
     public Client getClient(int id) {
-        Client sup = null;
+        Client cust = null;
         Connection con = null;
         Statement stmt = null;
         try {
@@ -131,15 +154,24 @@ public class ClientBean {
             con = DriverManager.getConnection(dbCon.getDATABASE_URL(),
                     dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
             stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("Select * From client Where sup_id=" + id);
+            ResultSet rs = stmt.executeQuery("Select * From client Where cst_id=" + id);
             if (rs.next()) {
-                sup = new Client();
-                sup.setId(rs.getInt(1));
-                sup.setName(rs.getString(2));
-                sup.setWebsite(rs.getString(3));
-                sup.setRemarks(rs.getString(4));
-                sup.setIsactive(rs.getBoolean(5));
-                sup.setDeactivationreason(rs.getString(6));
+                cust = new Client();
+                cust.setId(rs.getInt(1));
+                cust.setUsername(rs.getString(2));
+                cust.setPassword(rs.getString(3));
+                cust.setFirstname(rs.getString(4));
+                cust.setLastname(rs.getString(5));
+                cust.setGender(rs.getInt(6));
+                cust.setMaritalstatus(rs.getInt(7));
+                cust.setDateofbirth(rs.getDate(8));
+                cust.setAddress(rs.getString(9));
+                cust.setCity(rs.getString(10));
+                cust.setPhone(rs.getString(11));
+                cust.setMobile(rs.getString(12));
+                cust.setEmail(rs.getString(13));
+                cust.setRemarks(rs.getString(14));
+                cust.setIsactive(rs.getBoolean(15));
             }
         } catch (SQLException | ClassNotFoundException ex) {
             System.err.println("Caught Exception: " + ex.getMessage());
@@ -155,10 +187,10 @@ public class ClientBean {
                 System.err.println("Caught Exception: " + ex.getMessage());
             }
         }
-        return sup;
+        return cust;
     }
     
-    public void modifyClient(Client sup) {
+    public void modifyClient(Client cust) {
         Connection con = null;
         PreparedStatement pstmt = null;
         try {
@@ -168,15 +200,26 @@ public class ClientBean {
             con = DriverManager.getConnection(dbCon.getDATABASE_URL(),
                     dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
 
-            pstmt = con.prepareStatement("Update client Set sup_name=?, "
-                    + "sup_website=?, sup_remarks=?, sup_isactive=?, sup_deactivationreason=?"
-                    + " Where sup_id=?");
-            pstmt.setString(1, sup.getName());
-            pstmt.setString(2, sup.getWebsite());
-            pstmt.setString(3, sup.getRemarks());
-            pstmt.setString(4, (sup.getIsactive()==true)?"1":"0");
-            pstmt.setString(5, sup.getDeactivationreason());
-            pstmt.setInt(6, sup.getId());
+            pstmt = con.prepareStatement("Update client Set cst_username=?, "
+                    +"cst_password=?, cst_firstname=?, cst_lastname=?, cst_gender_id=?, "
+                    +"cst_maritalstatus=?, cst_dateofbirth=?, cst_address=?, cst_city=?, "
+                    +"cst_phone=?, cst_mobile=?, cst_email=?, cst_remarks=?, cst_isactive=?"
+                    + " Where cst_id=?");
+            pstmt.setString(1, cust.getUsername());
+            pstmt.setString(2, cust.getPassword());
+            pstmt.setString(3, cust.getFirstname());
+            pstmt.setString(4, cust.getLastname());
+            pstmt.setInt(5, cust.getGender());
+            pstmt.setInt(6, cust.getMaritalstatus());
+            pstmt.setDate(7, (Date) cust.getDateofbirth());
+            pstmt.setString(8, cust.getAddress());
+            pstmt.setString(9, cust.getCity());
+            pstmt.setString(10, cust.getPhone());
+            pstmt.setString(11, cust.getMobile());
+            pstmt.setString(12, cust.getEmail());
+            pstmt.setString(13, cust.getRemarks());
+            pstmt.setString(14, (cust.getIsactive()==true)?"1":"0");
+            pstmt.setInt(15, cust.getId());
             pstmt.executeUpdate();
         } catch (SQLException | ClassNotFoundException ex) {
             System.err.println("Caught Exception: " + ex.getMessage());
@@ -193,9 +236,13 @@ public class ClientBean {
             }
         }
     }
+    
 
-    public void activateClient(int id) {
-        Connection con = null;
+    public int validateCredentials(String user, String pass){
+    	
+    	
+    	
+    	Connection con = null;
         Statement stmt = null;
         try {
             DBconnection dbCon = new DBconnection();
@@ -203,10 +250,15 @@ public class ClientBean {
 
             con = DriverManager.getConnection(dbCon.getDATABASE_URL(),
                     dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
-
             stmt = con.createStatement();
-            stmt.execute("Update client Set sup_isactive=1 "
-                    + " Where sup_id=" +id);
+            ResultSet rs = stmt.executeQuery("Select cst_id, cst_password From client Where cst_username='" + user+"'");
+            if (rs.next()) {
+               
+            	if(rs.getString(2).equals(pass))
+            	{
+            		return rs.getInt(1);
+            	}
+            }
         } catch (SQLException | ClassNotFoundException ex) {
             System.err.println("Caught Exception: " + ex.getMessage());
         } finally {
@@ -221,10 +273,13 @@ public class ClientBean {
                 System.err.println("Caught Exception: " + ex.getMessage());
             }
         }
-    }
+        return -1;
+    	
+    } 
     
-    public void deactivateClient(int id) {
-        Connection con = null;
+    public boolean userName_IsValid(String user)
+    {
+    	Connection con = null;
         Statement stmt = null;
         try {
             DBconnection dbCon = new DBconnection();
@@ -232,10 +287,12 @@ public class ClientBean {
 
             con = DriverManager.getConnection(dbCon.getDATABASE_URL(),
                     dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
-
             stmt = con.createStatement();
-            stmt.execute("Update client Set sup_isactive=0 "
-                    + " Where sup_id=" +id);
+            ResultSet rs = stmt.executeQuery("Select cst_id From client Where cst_username='" + user+"'");
+            if (rs.next()) {
+               
+            	return false;
+            }
         } catch (SQLException | ClassNotFoundException ex) {
             System.err.println("Caught Exception: " + ex.getMessage());
         } finally {
@@ -250,6 +307,42 @@ public class ClientBean {
                 System.err.println("Caught Exception: " + ex.getMessage());
             }
         }
+        return true;
+    	
+    	
     }
-    
+
+    public void changePassword(int id,String pass)
+    {
+    	Connection con = null;
+        PreparedStatement pstmt = null;
+        try {
+            DBconnection dbCon = new DBconnection();
+            Class.forName(dbCon.getJDBC_DRIVER());
+
+            con = DriverManager.getConnection(dbCon.getDATABASE_URL(),
+                    dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
+
+            pstmt = con.prepareStatement("Update client Set  "
+                    +"cst_password=? Where cst_id=?");
+            pstmt.setString(1, pass);
+            pstmt.setInt(2, id);
+            pstmt.executeUpdate();
+        } catch (SQLException | ClassNotFoundException ex) {
+            System.err.println("Caught Exception: " + ex.getMessage());
+        } finally {
+            try {
+                if (pstmt != null) {
+                    pstmt.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException ex) {
+                System.err.println("Caught Exception: " + ex.getMessage());
+            }
+        }
+
+    }
+
 }

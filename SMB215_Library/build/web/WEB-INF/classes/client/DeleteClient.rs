@@ -1,0 +1,2 @@
+client.DeleteClient
+supplier.DeleteClient
