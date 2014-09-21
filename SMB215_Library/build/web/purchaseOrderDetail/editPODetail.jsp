@@ -7,15 +7,6 @@
       response.sendRedirect("login.jsp");
         }
     %>
-    <script>
-        function selecteditem() {
-            var select = document.getElementById('item');
-            var item_id = select.value;
-            var myform = document.getElementById('form');
-            myform.action = "SaveSupplierBranchItem?id=<%=request.getParameter("id")%>&supplierbranchid=<%=request.getParameter("supplierbranchid")%>&supplierbranchname=<%=request.getParameter("supplierbranchname")%>&selecteditem=" + item_id;
-
-        }
-    </script>
     <%@ include file="../main.html" %>
     <body id="page5">
         <div class="main">
@@ -46,13 +37,13 @@
                     <div class="wrapper">
                         <article class="grid_8">
                             <div class="indent-right">
-                                <h3 class="prev-indent-bot">Supplier Branch Item</h3>
+                                <h3 class="prev-indent-bot">Purchase Order Detail</h3>
                                 <div id="content3"> 
                                     <div class="success_box">All of the fields were successfully validated!</div>
                                     <div class="error_box"></div>
 
 
-                                    <form id="form" name="form" action="" method="post">                    
+                                    <form id="form" name="form" action="../SetPODetail?id=<%=request.getParameter("id")%>" method="post">                    
                                         <fieldset>
 
                                             <label><span class="text-form">Item* </span>
@@ -64,26 +55,19 @@
                                                     </c:forEach> 
                                                 </select>
                                             </label>
-                                            <script>
-                                                if ("<%=request.getParameter("item")%>" !== "") {
-                                                    var val = <%=request.getParameter("item")%>;
-                                                    $('#item').val(val);
-
-                                                }
-                                            </script>
                                            
-                                            <label><span class="text-form">Price* </span><input type="text" class="inputText" id="price"  
-                                                                                                    name="price"  value="<%=request.getParameter("price")%>"></label>
-                                                                                               
-                                            <label><span class="text-form">Shipping days </span><input type="text" class="inputText" id="shippingdays"  
-                                                                                                       name="shippingdays" value="<%=request.getParameter("shippingdays")%>"></label>
+                                            <label><span class="text-form">Quantity* </span><input type="text" class="inputText" id="quantity"  
+                                                                                                    name="quantity" value="<%=request.getParameter("quantity")%>"></label>
+
+                                            <label><span class="text-form">Unit cost* </span><input type="text" class="inputText" id="unitcost"  
+                                                                                                       name="unitcost" value="<%=request.getParameter("unitcost")%>"></label>
                                         
                                             <div class="wrapper">
                                                 <div class="extra-wrap">
 
                                                     <div class="buttons">
-                                                        <input type="submit" name="Submit" value="Submit" class="button" onclick="selecteditem()"/>
-                                                        <a href="GetSupplierBranchItems?id=<%=request.getParameter("supplierbranchid")%>&amp;supplierbranchname=<%=request.getParameter("supplierbranchname")%>"><input type="button" name="Cancel" value="Cancel" class="button"/></a>
+                                                        <input type="submit" name="Submit" value="Submit" class="button"/>
+                                                        <a href="../GetCountries"><input type="button" name="Cancel" value="Cancel" class="button"/></a>
                                                     </div> 
 
                                                 </div>
@@ -117,9 +101,19 @@
                 rules: 'required'
             },
             {
-                name: 'price',
-                display: 'Price',
+                name: 'quantity',
+                display: 'Quantity',
                 rules: 'required| numeric'
+            },
+            {
+                name: 'unitcost',
+                display: 'Unit cost',
+                rules: 'required| numeric'
+            },
+            {
+                name: 'orderdate',
+                display: 'Order Date',
+                rules: 'required'
             }], function(errors, event) {
             var SELECTOR_ERRORS = $('.error_box'),
                     SELECTOR_SUCCESS = $('.success_box');
