@@ -35,7 +35,8 @@ public class GetItems extends HttpServlet {
         ItemBean itemBean = new ItemBean();
         List<Item> itemsList = itemBean.getItems();
         request.setAttribute("itemsList", itemsList);
-        request.getRequestDispatcher("Item/manage.jsp").forward(request, response);
+        int listSize= itemsList.size();
+        request.getRequestDispatcher("Item/manage.jsp?listSize="+listSize).forward(request, response);
    
         }
   
