@@ -149,14 +149,12 @@
                                                             <td>Item total</td>
                                                         </tr>
 
-                                                        <c:forEach items="${poheaders}" var="poh">
+                                                        <c:forEach items="${podetails}" var="pod">
                                                             <tr>
-                                                                <td>${poh.orderdate}</td>
-                                                                <td>${poh.status}</td>
-                                                                <td>${poh.suppliername}</td>
-                                                                <td>${poh.branchname}</td>
-                                                                <td>${poh.employeename}</td>
-                                                                <td>${poh.total}</td>
+                                                                <td>${pod.item}</td>
+                                                                <td>${pod.quantity}</td>
+                                                                <td>${pod.unitcost}</td>
+                                                                <td>${pod.total}</td>
                                                                 <td>
                                                                     <a href="GetPOHeader?id=${poh.id}" title="Edit" class="fa fa-lg fa-pencil-square-o"></a>
                                                                   <!--  <a href="DeleteCountry?id=${cnt.id}" title="Delete" class="fa fa-lg fa-trash-o"></a> -->

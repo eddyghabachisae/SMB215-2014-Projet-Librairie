@@ -14,7 +14,8 @@ public class PODetail {
     
     private long item;
     private long quantity;
-    private float unitprice;
+    private float unitcost;
+    private float total;
 
     public long getItem() {
         return item;
@@ -32,12 +33,20 @@ public class PODetail {
         this.quantity = quantity;
     }
 
-    public float getUnitprice() {
-        return unitprice;
+    public float getUnitcost() {
+        return unitcost;
     }
 
-    public void setUnitprice(float unitprice) {
-        this.unitprice = unitprice;
+    public void setUnitcost(float unitcost) {
+        this.unitcost = unitcost;
+    }
+
+    public float getTotal() {
+        return total;
+    }
+
+    public void setTotal(float total) {
+        this.total = total;
     }
     
     

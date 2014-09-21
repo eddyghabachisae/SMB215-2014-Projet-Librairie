@@ -11,6 +11,8 @@ import supplier.Supplier;
 import supplier.SupplierBean;
 import supplierbranch.SupplierBranch;
 import supplierbranch.SupplierBranchBean;
+import purchaseOrderDetail.PODetail;
+import purchaseOrderDetail.PODetailBean;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -50,6 +52,9 @@ public class GetPOHeader extends HttpServlet {
         List<SupplierBranch> supplierbranches = sbrBean.getSupplierBranchesList();
         request.setAttribute("supplierbranches", supplierbranches);
         if (request.getParameter("id") != null) {
+            PODetailBean podBean = new PODetailBean();
+        List<PODetail> podetails = podBean.getPODetails(Long.parseLong(request.getParameter("id")));
+        request.setAttribute("podetails", podetails);
             POHeaderBean pohBean = new POHeaderBean();
             POHeader poh = pohBean.getPOHeader(Long.valueOf(request.getParameter("id")));
             request.getRequestDispatcher("purchaseOrderHeader/editPOHeader.jsp?"
