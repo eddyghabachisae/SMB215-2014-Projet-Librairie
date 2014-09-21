@@ -6,11 +6,8 @@
 
 package supplierBranchItem;
 
-import Item.Item;
-import Item.ItemBean;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,8 +18,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author eddy
  */
-@WebServlet(name = "GetSupplierBranchItem", urlPatterns = {"/GetSupplierBranchItem"})
-public class GetSupplierBranchItem extends HttpServlet {
+@WebServlet(name = "SaveSupplierBranchItem", urlPatterns = {"/SaveSupplierBranchItem"})
+public class SaveSupplierBranchItem extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,22 +32,22 @@ public class GetSupplierBranchItem extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        ItemBean itmBean = new ItemBean();
-       List<Item> items = itmBean.getItemsList();
-       request.setAttribute("items", items);
-       if (request.getParameter("id") != null) {
-           SupplierBranchItemBean spiBean = new SupplierBranchItemBean();
-            SupplierBranchItem spi = spiBean.getSupplierBranchItem(Long.valueOf(request.getParameter("id")));
-            request.getRequestDispatcher("supplierBranchItem/editSupplierBranchItem.jsp?"
-                    + "id=" + spi.getId()
-                    + "&item=" + spi.getItem()
-                    + "&price=" + spi.getPrice()
-                    + "&shippingdays=" + spi.getShippingdays()
-            + "&supplierbranchid=" + spi.getSupplierbranch()
-            + "&supplierbranchname=" + request.getParameter("supplierbranchname")).forward(request, response);
-       }
-        request.getRequestDispatcher("supplierBranchItem/editSupplierBranchItem.jsp?"
-                + "id=&item=&price=&shippingdays=").forward(request, response);
+      SupplierBranchItem spi = new SupplierBranchItem();
+        spi.setPrice(Float.parseFloat(request.getParameter("price")));
+        spi.setShippingdays(Integer.parseInt(request.getParameter("shippingdays")));
+        spi.setItem(Long.parseLong(request.getParameter("selecteditem")));
+        spi.setSupplierbranch(Long.parseLong(request.getParameter("supplierbranchid")));
+        SupplierBranchItemBean spiBean = new SupplierBranchItemBean();
+        if (!request.getParameter("id").equals("")) {
+            spi.setId(Integer.parseInt(request.getParameter("id")));
+            spiBean.modifySupplierBranchItem(spi);
+            response.sendRedirect("GetSupplierBranchItems?id="+request.getParameter("supplierbranchid")+
+                    "&supplierbranchname="+request.getParameter("supplierbranchname"));
+        } else {
+            spiBean.addSupplierBranchItem(spi);
+            response.sendRedirect("GetSupplierBranchItem?supplierbranchid="+request.getParameter("supplierbranchid")+
+                    "&supplierbranchname="+request.getParameter("supplierbranchname"));
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

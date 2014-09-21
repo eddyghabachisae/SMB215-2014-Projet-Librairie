@@ -5,7 +5,7 @@
         <% 
         if ((session.getAttribute("username") == null) || (session.getAttribute("username") == "")) {
       response.sendRedirect("login.jsp");
-        }
+       }
     %>
     <%@ include file="../main.html" %>
     <body id="page1">

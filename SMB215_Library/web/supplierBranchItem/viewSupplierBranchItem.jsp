@@ -38,7 +38,7 @@
                     <div class="wrapper">
                         <h1>Supplier branch: <%=request.getParameter("supplierbranchname")%></h1>
                         <div class="pull-right">
-                            <a href="GetSupplierBranch?supplier=<%=request.getParameter("supplier")%>&amp;suppliername=<%=request.getParameter("suppliername")%>"><input type="submit" name="Submit" value="Add Item" class="button"/></a>
+                            <a href="GetSupplierBranchItem?supplierbranchid=<%=request.getParameter("id")%>&amp;supplierbranchname=<%=request.getParameter("supplierbranchname")%>"><input type="submit" name="Submit" value="Add Item" class="button"/></a>
                         </div>
                         <div class="clear2"></div>
                         <div class="CSSTableGenerator" >        
@@ -60,8 +60,8 @@
                     <td>${spi.price}</td>
                     <td>${spi.shippingdays}</td>
                     <td>
-                        <a href="GetSupplierBranch?id=${sbr.id}&amp;supplier=${sbr.supplier}&amp;suppliername=<%=request.getParameter("suppliername")%>" title="Edit" class="fa fa-lg fa-pencil-square-o"></a>
-                        <a href="DeleteSupplierBranch?id=${sbr.id}?supplier=${sbr.supplier}" title="Delete" class="fa fa-lg fa-trash-o"></a> 
+                        <a href="GetSupplierBranchItem?id=${spi.id}&amp;supplierbranchid=${spi.supplierbranch}&amp;supplierbranchname=<%=request.getParameter("supplierbranchname")%>" title="Edit" class="fa fa-lg fa-pencil-square-o"></a>
+                        <a href="DeleteSupplierBranchItem?id=${spi.id}&amp;supplierbranchid=${spi.supplierbranch}&amp;supplierbranchname=<%=request.getParameter("supplierbranchname")%>" title="Delete" class="fa fa-lg fa-trash-o"></a> 
                     </td>
                 </tr>
             </c:forEach>
