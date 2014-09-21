@@ -4,8 +4,11 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/home/eddy/githubproject/Librairie/SMB215_Library/web/supplierBranchItem/viewSupplierBranchItem.jsp</file>
+            <file>file:/home/eddy/githubproject/Librairie/SMB215_Library/src/java/supplierBranchItem/SaveSupplierBranchItem.java</file>
+            <file>file:/home/eddy/githubproject/Librairie/SMB215_Library/web/supplierBranchItem/editSupplierBranchItem.jsp</file>
+            <file>file:/home/eddy/githubproject/Librairie/SMB215_Library/src/java/supplierBranchItem/GetSupplierBranchItem.java</file>
             <file>file:/home/eddy/githubproject/Librairie/SMB215_Library/src/java/supplierBranchItem/SupplierBranchItemBean.java</file>
-            <file>file:/home/eddy/githubproject/Librairie/SMB215_Library/src/java/supplierBranchItem/GetSupplierBranchItems.java</file>
+            <file>file:/home/eddy/githubproject/Librairie/SMB215_Library/src/java/supplierbranch/GetSupplierBranch.java</file>
         </group>
     </open-files>
 </project-private>
