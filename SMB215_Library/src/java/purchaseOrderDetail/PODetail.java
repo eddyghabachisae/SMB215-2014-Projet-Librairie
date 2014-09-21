@@ -16,6 +16,7 @@ public class PODetail {
     private long quantity;
     private float unitcost;
     private float total;
+    private String itemname;
 
     public long getItem() {
         return item;
@@ -47,6 +48,14 @@ public class PODetail {
 
     public void setTotal(float total) {
         this.total = total;
+    }
+
+    public String getItemname() {
+        return itemname;
+    }
+
+    public void setItemname(String itemname) {
+        this.itemname = itemname;
     }
     
     

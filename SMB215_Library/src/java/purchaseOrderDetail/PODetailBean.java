@@ -34,16 +34,18 @@ public class PODetailBean {
 
             stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("Select pod_id,"
-                    + "item_id, pod_quantity, pod_unitcost, pod_quantity*pod_unitcost pod_total "
+                    + "item_id, itm_name, pod_quantity, pod_unitcost, pod_quantity*pod_unitcost pod_total "
                     + "From purchasedetails "
+                    + "Inner Join item on item_id=itm_id "
                     + "Where purchaseheader_id = " + poh
                     + " order by pod_id");
             while (rs.next()) {
                 PODetail pod = new PODetail();
-                pod.setItem(rs.getLong(1));
-                pod.setQuantity(rs.getInt(2));
-                pod.setUnitcost(rs.getFloat(3));
-                pod.setTotal(rs.getFloat(4));
+                pod.setItem(rs.getLong(2));
+                pod.setItemname(rs.getString(3));
+                pod.setQuantity(rs.getInt(4));
+                pod.setUnitcost(rs.getFloat(5));
+                pod.setTotal(rs.getFloat(6));
                 list.add(pod);
             }
         } catch (SQLException | ClassNotFoundException ex) {

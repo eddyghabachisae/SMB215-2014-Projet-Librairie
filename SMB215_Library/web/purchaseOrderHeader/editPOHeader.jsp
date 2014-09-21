@@ -151,7 +151,7 @@
 
                                                         <c:forEach items="${podetails}" var="pod">
                                                             <tr>
-                                                                <td>${pod.item}</td>
+                                                                <td>${pod.itemname}</td>
                                                                 <td>${pod.quantity}</td>
                                                                 <td>${pod.unitcost}</td>
                                                                 <td>${pod.total}</td>
@@ -172,7 +172,7 @@
                                                     <div class="buttons">
                                                         <input type="submit" name="Submit" value="Submit" class="button"/>
                                                         <a href="GetPODetail"><input type="button" name="AddPOD" value="Add Item" class="button"/></a>
-                                                        <a href="../GetCountries"><input type="button" name="Cancel" value="Cancel" class="button"/></a>
+                                                        <a href="GetPOHeaders"><input type="button" name="Cancel" value="Cancel" class="button"/></a>
                                                     </div> 
 
                                                 </div>
