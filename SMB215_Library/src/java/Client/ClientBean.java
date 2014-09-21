@@ -26,7 +26,7 @@ import supplier.Supplier;
  */
 public class ClientBean {
     
-    public List<Client> getClients() {
+    public List<Client> getClients(int id) {
         List<Client> list = new ArrayList<>();
         Connection con = null;
         Statement stmt = null;
@@ -38,7 +38,7 @@ public class ClientBean {
                     dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
 
             stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("Select * From customer order by cst_firstname");
+            ResultSet rs = stmt.executeQuery("Select * From customer  Where cst_id = " + String.valueOf(id));
             while (rs.next()) {
                 Client cust = new Client();
                 cust.setId(rs.getInt(1));

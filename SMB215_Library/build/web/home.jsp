@@ -6,11 +6,7 @@
       response.sendRedirect("login.jsp");
         }
     %>
-    <head>
-        <title>Home</title>
-        <%@ include file="homeMain.html" %>
-    </head>
-
+<%@ include file="homeMain.html" %>
 <body id="page1">
 	<div class="main">
         <!--==============================header=================================-->
@@ -33,7 +29,7 @@
                 </div>
                 <article class="grid_3">
                     <div class="box">
-                       <a href="GetClient" class="imgCenter"> <figure class="fa-5x fa fa-group blueColor"></figure></a>
+                       <a href="#" class="imgCenter"> <figure class="fa-5x fa fa-group blueColor"></figure></a>
                         <div class="padding">
                             <strong class="title-3 textCenter">Clients</strong>
                         </div>
@@ -81,7 +77,7 @@
                 </article>
 				<article class="grid_3">
                     <div class="box">
-					   <a href="#" class="imgCenter"> <figure class="fa-5x fa fa-list-alt blueColor"></figure></a>
+					   <a href="GetRentHeaders" class="imgCenter"> <figure class="fa-5x fa fa-list-alt blueColor"></figure></a>
                         <div class="padding">
                             <strong class="title-3 textCenter">Rental orders</strong>
                         </div>
