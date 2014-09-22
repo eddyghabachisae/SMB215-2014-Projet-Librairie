@@ -165,7 +165,7 @@
                                                                 <td>${pod.unitcost}</td>
                                                                 <td>${pod.total}</td>
                                                                 <td>
-                                                                    <a href="GetPOHeader?id=${poh.id}" title="Edit" class="fa fa-lg fa-pencil-square-o"></a>
+                                                                    <a href="GetPODetail?pohid=<%=request.getParameter("id")%>&amp;id=${pod.id}" title="Edit" class="fa fa-lg fa-pencil-square-o"></a>
                                                                   <!--  <a href="DeleteCountry?id=${cnt.id}" title="Delete" class="fa fa-lg fa-trash-o"></a> -->
                                                                 </td>
                                                             </tr>

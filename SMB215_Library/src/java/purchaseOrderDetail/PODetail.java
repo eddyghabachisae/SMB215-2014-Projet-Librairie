@@ -18,6 +18,7 @@ public class PODetail {
     private float total;
     private String itemname;
     private long pohid;
+    private long id;
     
 
     public long getItem() {
@@ -66,6 +67,14 @@ public class PODetail {
 
     public void setPohid(long pohid) {
         this.pohid = pohid;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
     
     

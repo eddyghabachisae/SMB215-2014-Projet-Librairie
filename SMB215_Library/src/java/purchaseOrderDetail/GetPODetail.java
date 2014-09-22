@@ -39,7 +39,14 @@ public class GetPODetail extends HttpServlet {
        List<Item> items = itmBean.getItemsByPOH(Long.parseLong(request.getParameter("pohid")));
        request.setAttribute("items", items);
        if (request.getParameter("id") != null){
-          
+          PODetailBean podBean = new PODetailBean();
+          PODetail pod = podBean.getPODetail(Long.parseLong(request.getParameter("id")));
+          request.getRequestDispatcher("purchaseOrderDetail/editPODetail.jsp?" 
+                    +"id=" + pod.getId()
+                    +"&quantity=" + pod.getQuantity() 
+                    +"&unitcost=" + pod.getUnitcost()
+                    +"&item=" + pod.getItem()
+                    +"&pohid=" + pod.getPohid()).forward(request,response); 
        } else {
            request.getRequestDispatcher("purchaseOrderDetail/editPODetail.jsp?"
                  + "id=&quantity=&unitcost=").forward(request,response); 

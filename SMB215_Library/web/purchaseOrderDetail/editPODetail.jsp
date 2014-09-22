@@ -67,6 +67,13 @@
                                                     </c:forEach> 
                                                 </select>
                                             </label>
+                                            
+                                            <script>
+                                                if ("<%=request.getParameter("item")%>" !== "") {
+                                                    var val = <%=request.getParameter("item")%>;
+                                                    $('#item').val(val);
+                                                }
+                                            </script>
                                            
                                             <label><span class="text-form">Quantity* </span><input type="text" class="inputText" id="quantity"  
                                                                                                     name="quantity" value="<%=request.getParameter("quantity")%>"></label>

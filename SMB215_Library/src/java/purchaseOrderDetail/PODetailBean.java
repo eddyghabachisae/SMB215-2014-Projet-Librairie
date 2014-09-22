@@ -42,6 +42,7 @@ public class PODetailBean {
                     + " order by pod_id");
             while (rs.next()) {
                 PODetail pod = new PODetail();
+                pod.setId(rs.getLong(1));
                 pod.setItem(rs.getLong(2));
                 pod.setItemname(rs.getString(3));
                 pod.setQuantity(rs.getInt(4));
@@ -103,6 +104,43 @@ public class PODetailBean {
             }
             
         }
+    }
+    
+    public PODetail getPODetail(long id) {
+        PODetail pod = null;
+        Connection con = null;
+        Statement stmt = null;
+        try {
+            DBconnection dbCon = new DBconnection();
+            Class.forName(dbCon.getJDBC_DRIVER());
+
+            con = DriverManager.getConnection(dbCon.getDATABASE_URL(),
+                    dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
+            stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("Select * From purchasedetails Where pod_id=" + id);
+            if (rs.next()) {
+                pod = new PODetail();
+                pod.setId(rs.getLong(1));
+                pod.setQuantity(rs.getInt(2));
+                pod.setUnitcost(rs.getFloat(3));
+                pod.setPohid(rs.getLong(4));
+                pod.setItem(rs.getLong(5));
+            }
+        } catch (SQLException | ClassNotFoundException ex) {
+            System.err.println("Caught Exception: " + ex.getMessage());
+        } finally {
+            try {
+                if (stmt != null) {
+                    stmt.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException ex) {
+                System.err.println("Caught Exception: " + ex.getMessage());
+            }
+        }
+        return pod;
     }
     
 }
