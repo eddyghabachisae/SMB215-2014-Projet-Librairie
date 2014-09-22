@@ -40,11 +40,17 @@
                 <div class="container_12">
                     <div class="wrapper">
                         <div class="pull-left">
-                            Welcome to the Profile page
+                            Welcome to the Profile page of user: <b><%= request.getParameter("username") %></b><br />
+                            
+                            <h1>General Information:</h1><br /><br />
+                            First Name: <i><%= request.getParameter("FirstName") %></i> <br/>
+                            Last Name: <i><%= request.getParameter("LastName") %></i><br />
+                            </br>
+Please select an option from the below:
                         </div><br />
-                         <div class="pull-left">
-                            Please select an option from the below:
-                        </div>
+                         
+                            
+                        
                         <div class="clear2"></div>
             
                         <div class="clear"></div>
