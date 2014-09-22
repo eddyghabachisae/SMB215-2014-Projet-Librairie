@@ -15,7 +15,7 @@ import java.util.Date;
  */
 public class Client {
     
-    private int id;
+    private long id;
     private String username;
     private String password;
     private String firstname;
