@@ -4,6 +4,11 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
+         <%
+        if ((session.getAttribute("username") == null) || (session.getAttribute("username") == "")) {
+            response.sendRedirect("login.jsp");
+        }
+    %>
     <%@ include file="../main.html" %>
     <body id="page1">
         <div class="main">
@@ -33,50 +38,46 @@
             <section id="content"><div class="ic"><div class="inner_copy">All <a href="http://www.magentothemesworld.com" title="Best Magento Templates">premium Magento themes</a> at magentothemesworld.com!</div></div>
                 <div class="container_12">
                     <div class="wrapper">
-                        
+                        <div class="pull-right">
+                            <a href="./GetBooks"><input type="submit" name="Submit" value="New Rent Order" class="button"/></a>
+                        </div>
                         <div class="clear2"></div>
-                        <ul id="tabs">
-                                    <li><a href="" title="tab1" class="activeTab">Select Books</a></li>
-                                    <li><a href="" title="tab2" class="notActive">Rentals Info</a></li>
-                       </ul>
-                        <div id="content3"> 
-                            <div class="error_box"></div>
-                     <form id="form" name="form" action="./SaveSelectedBook" method="post" >                    
-                          
+                         <%
+                             if(!request.getParameter("listSize").equals("0"))
+                             {
+                            
+                            %> 
                         <div class="CSSTableGenerator" >
                             <table >
                                 <tbody>
                                     <tr>
-                                        <td width="10%">Select</td>
-                                        <td>Title</td>
-                                        <td width="20%">Rent Price</td>
+                                        <td>Customer Name</td>
+                                        <td>Submit Date</td>
+                                        <td>Books Nb</td>
+                                        <td width="10%">Actions</td>
                                     </tr>
-                                <c:forEach items="${booksList}" var="book">
+                                <c:forEach items="${rentHeadersList}" var="rent">
                                     <tr>
-                                        <td><input name="selectedBooks" type="checkbox" value="${book.id}"/></td>
-                                        <td>${book.title}</td>
-                                        <td>${book.rentPrice}</td>
+                                        <td></td>
+                                        <td>${rent.submitDate}</td>
+                                        <td>${rent.getBooksNb()}</td>
+                                        <td><a href="GetRentHeader?id=${rent.id}" title="View Details" class="fa fa-lg fa fa-eye"></a></td>
                                     </tr>
                                 </c:forEach>
                                 </tbody>
                             </table>
-                        </div>
-                         <fieldset>
-                             <div class="wrapper">
-                                <div class="extra-wrap">		
-                                  <div class="buttons">
-					<input type="button" name="Submit" value="Submit" class="button" id="submitBtn"/>
-                                        <a href="GetBooks"><input type="button" name="Cancel" value="Cancel" class="button"/></a>
-                                </div> 
-
-                            </div>
-
-                          </div> 
-                         </fieldset>
-                     </form>
+                                           <%}
+                             else{
+                            %>
+                            <br>
+                            <div class="emptyList_box">List is Empty!</div>
+                            <%}%>
                         </div>
                         <div class="clear"></div>
                         
+
+
+                    </div>
                 </div>
             </section>
 
@@ -92,20 +93,6 @@
         </div>
         <script type="text/javascript"> Cufon.now();</script>
     </body>
-    
-    <script>
-        $('#submitBtn').click(function () {
-            var atLeastOneIsChecked = $('input:checkbox').is(':checked');
-            if(atLeastOneIsChecked == false){
-                $('.error_box').html("Select One At Least!");
-               $('.error_box').css('display','block'); 
-            }
-            else{
-              document.getElementById("form").submit();  
-            }
-            
-        });
-    </script>
 </html>
 
 

@@ -98,6 +98,7 @@
                                         <td>Branch</td>
                                         <td>Section</td>
                                         <td>Shelf</td>
+                                        <td>Reserved Copies</td>
                                         <td width="10%">Actions</td>
                                     </tr>
                                 <c:forEach items="${bookStatusList}" var="bookStatus">
@@ -105,6 +106,7 @@
                                         <td>${bookStatus.getBranch().name}</td>
                                         <td>${bookStatus.section}</td>
                                         <td>${bookStatus.shelf}</td>
+                                        <td>${bookStatus.reservedCopies}</td>
                                         <td>
                                             <a href="GetBookStatus?id=${bookStatus.id}" title="Edit" class="fa fa-lg fa-pencil-square-o"></a>
                                             <a href="DeleteBookStatus?id=${bookStatus.id}" tite="Delete" class="fa fa-lg fa-trash-o"></a> 
