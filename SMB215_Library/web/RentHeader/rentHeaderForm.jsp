@@ -22,7 +22,6 @@
                             <nav>
                                  <ul class="menu">
                                     <li><a class="active" href="${pageContext.request.contextPath}/home.jsp">Main</a></li>
-                                    <li><a href="">Inbox</a></li>
                                     <li><a href="">Logout</a></li>
                                 </ul>
                             </nav>
