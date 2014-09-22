@@ -10,17 +10,23 @@
     <head>
         <title>PO Header</title>
         <%@ include file="../main.html" %>
-        <script>
-        $(function() {
+        <script>        
+        $(function() {   
+            if (mode !== 'view') {
             $("#orderdatepicker").datepicker();
+        }
         });
         $(function() {
+            if (mode !== 'view') {
             $("#shippingdatepicker").datepicker();
+        }
         });
         $(function() {
+            if (mode !== 'view') {
             $("#deliverydatepicker").datepicker();
+        }
         });
-
+    
         function refreshsupplierbranches() {
 
             var supplier = document.getElementById('supplier').value;
@@ -207,11 +213,11 @@
                 } 
                 if (mode === 'view') {
                     document.getElementById('branch').disabled = true;
-                    document.getElementById('orderdate').disabled = true;
-                    document.getElementById('shippingdate').disabled = true;
-                    document.getElementById('deliverydate').disabled = true;
-                    document.getElementById('submit').hide = true;
-                    document.getElementById('add').hide = true;
+                    document.getElementById('orderdatepicker').disabled = true;
+                    document.getElementById('shippingdatepicker').disabled = true;
+                    document.getElementById('deliverydatepicker').disabled = true;
+                    document.getElementById('submit').style.visibility = 'hidden';
+                    document.getElementById('add').style.visibility = 'hidden';
                 }
             </script>
 

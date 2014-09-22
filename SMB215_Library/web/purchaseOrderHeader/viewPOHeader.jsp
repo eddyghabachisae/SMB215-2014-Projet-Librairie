@@ -40,7 +40,7 @@
                 <div class="container_12">
                     <div class="wrapper">
                         <div class="pull-right">
-                            <a href="GetPOHeader?mode=edit"><input type="submit" name="Submit" value="New Purchase Order" class="button"/></a>
+                            <a href="GetPOHeader?mode=add"><input type="submit" name="Submit" value="New Purchase Order" class="button"/></a>
                         </div>
                         <div class="clear2"></div>
                         <div class="CSSTableGenerator" >

@@ -79,7 +79,7 @@ public class SavePOHeader extends HttpServlet {
            String s = "no";
        } else {
            long id = pohBean.addPOHeader(poh);
-            response.sendRedirect("GetPOHeader?id="+id);
+            response.sendRedirect("GetPOHeader?mode=edit&id="+id);
        }
     }
 
