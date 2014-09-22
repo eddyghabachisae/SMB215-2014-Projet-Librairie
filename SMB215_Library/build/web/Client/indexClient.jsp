@@ -45,19 +45,7 @@
                         <div class="clear2"></div>
             
                         <div class="clear"></div>
-                        <div id="tnt_pagination">
-                            <span class="disabled_tnt_pagination">Prev</span>
-                            <span class="active_tnt_link">1</span>
-                            <a href="#1">2</a>
-                            <a href="#2">3</a>
-                            <a href="#3">4</a>
-                            <a href="#5">5</a>
-                            <a href="#6">6</a>
-                            <a href="#7">7</a>
-                            <a href="#8">8</a>
-                            <a href="#9">9</a>
-                            <a href="#10">10</a>
-                            <a href="#forward">Next</a></div>
+                        
 
 
                     </div>

@@ -42,6 +42,7 @@ public class ClientBean {
             while (rs.next()) {
                 Client cust = new Client();
                 cust.setId(rs.getLong(1));
+                cust.setUsername(rs.getString(2));
                 cust.setFirstname(rs.getString(4));
                 cust.setLastname(rs.getString(5));
                 cust.setGender(rs.getInt(6));
