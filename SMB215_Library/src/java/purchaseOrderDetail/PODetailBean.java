@@ -143,4 +143,37 @@ public class PODetailBean {
         return pod;
     }
     
+    public void modifyPODetail(PODetail pod) {
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        try {
+            DBconnection dbCon = new DBconnection();
+            Class.forName(dbCon.getJDBC_DRIVER());
+
+            con = DriverManager.getConnection(dbCon.getDATABASE_URL(),
+                    dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
+
+            pstmt = con.prepareStatement("Update purchasedetails Set pod_quantity=?, "
+                    + "pod_unitcost=?, item_id=? Where pod_id=?");
+            pstmt.setInt(1, pod.getQuantity());
+            pstmt.setFloat(2, pod.getUnitcost());
+            pstmt.setLong(3, pod.getItem());
+            pstmt.setLong(4, pod.getId());
+            pstmt.executeUpdate();
+        } catch (SQLException | ClassNotFoundException ex) {
+            System.err.println("Caught Exception: " + ex.getMessage());
+        } finally {
+            try {
+                if (pstmt != null) {
+                    pstmt.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException ex) {
+                System.err.println("Caught Exception: " + ex.getMessage());
+            }
+        }
+    }
+    
 }
