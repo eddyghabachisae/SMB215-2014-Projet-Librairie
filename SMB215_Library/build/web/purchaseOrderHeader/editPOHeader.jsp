@@ -162,6 +162,9 @@
                                                             <td>Quantity</td>
                                                             <td>Unit cost</td>
                                                             <td>Item total</td>
+                                                            <% if ((request.getParameter("deliverydate") == null) || (request.getParameter("deliverydate").equals(""))) {%>
+                                                            <td width="10%">Actions</td>
+                                                            <%}%>
                                                         </tr>
 
                                                         <c:forEach items="${podetails}" var="pod">
@@ -170,10 +173,15 @@
                                                                 <td>${pod.quantity}</td>
                                                                 <td>${pod.unitcost}</td>
                                                                 <td>${pod.total}</td>
+                                                                <% if ((request.getParameter("deliverydate") == null) || (request.getParameter("deliverydate").equals(""))) {%>
                                                                 <td>
+                                                                       
                                                                     <a href="GetPODetail?pohid=<%=request.getParameter("id")%>&amp;id=${pod.id}" title="Edit" class="fa fa-lg fa-pencil-square-o"></a>
                                                                     <a href="DeletePODetail?pohid=<%=request.getParameter("id")%>&amp;id=${pod.id}" title="Delete" class="fa fa-lg fa-trash-o"></a> 
-                                                                </td>
+                                                                       </td>
+                                                        <%}%>
+                                                            
+                                                             
                                                             </tr>
                                                         </c:forEach>
                                                     </tbody>
