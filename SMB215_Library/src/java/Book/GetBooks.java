@@ -8,6 +8,7 @@ package Book;
 
 import Item.*;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -34,7 +35,16 @@ public class GetBooks extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         BookBean bookBean = new BookBean();
-        List<Book> booksList = bookBean.getBooks();
+        List<Book> tempBooksList = bookBean.getBooks();
+        List<Book> booksList = new ArrayList();
+        for(Book book:tempBooksList){
+            System.err.println(book.getItem().toString());
+            boolean isactive =book.getItem().isActive;
+            boolean isAvailable =book.getItem().isAvailable;
+        if(isactive==true && isAvailable==true){
+            booksList.add(book);
+        }
+        }
         request.setAttribute("booksList", booksList);
         request.getRequestDispatcher("Book/booksList.jsp").forward(request, response);
    

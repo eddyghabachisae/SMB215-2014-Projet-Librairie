@@ -1,5 +1,7 @@
 package Book;
 
+import Item.Item;
+import Item.ItemBean;
 import java.sql.Date;
 
 
@@ -128,6 +130,12 @@ public class Book {
         return language_id;
     }
 
+    public Item getItem(){
+    ItemBean itemBean = new ItemBean();
+    Item item= itemBean.getItem(this.item_id);
+    return item;
+    
+    }
     
   
 
