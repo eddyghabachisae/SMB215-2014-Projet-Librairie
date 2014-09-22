@@ -31,7 +31,7 @@ public class Client {
     private String remarks;
     private boolean isactive;
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 

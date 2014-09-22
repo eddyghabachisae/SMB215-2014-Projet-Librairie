@@ -219,7 +219,7 @@ public class ClientBean {
             pstmt.setString(12, cust.getEmail());
             pstmt.setString(13, cust.getRemarks());
             pstmt.setString(14, (cust.getIsactive()==true)?"1":"0");
-            pstmt.setInt(15, cust.getId());
+            pstmt.setLong(15, cust.getId());
             pstmt.executeUpdate();
         } catch (SQLException | ClassNotFoundException ex) {
             System.err.println("Caught Exception: " + ex.getMessage());
