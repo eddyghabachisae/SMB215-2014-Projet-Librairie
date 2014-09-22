@@ -193,7 +193,7 @@ public void deleteEmployee(int id) {
             if (rs.next()) {
             
                   emp = new Employee();
-//                emp.setempid(rs.getInt(1));
+                emp.setempid(rs.getInt(1));
                 emp.setempssn(rs.getInt(2));
                 emp.setempusername(rs.getString(3));
                 emp.setemppassword(rs.getString(4));
@@ -202,22 +202,22 @@ public void deleteEmployee(int id) {
                 emp.setempgender(rs.getBoolean(7));
                 emp.setempmaritalstatus(rs.getBoolean(8));
                 emp.setempdateofbirth(rs.getDate(9));
-                emp.setempcity(rs.getInt(10));
-                emp.setempaddress(rs.getString(11));
-                emp.setemphomephone(rs.getString(12));
-                emp.setempmobile(rs.getString(13));
-                emp.setemppersonalemail(rs.getString(14));
-                emp.setempworkphone(rs.getString(15));
-                emp.setempworkext(rs.getInt(16));
-                emp.setempworkfax(rs.getString(17));
-                emp.setempworkemail(rs.getString(18));
-                emp.setempprofession(rs.getInt(19));
-                emp.setempremarks(rs.getString(20));
-                emp.setempbranch(rs.getInt(21));
-                emp.setempisactive(rs.getBoolean(22));
-                emp.setempactivesince(rs.getDate(23));
-                emp.setempdeactivatedsince(rs.getDate(24));
-                emp.setempdeactivatedreason(rs.getString(25));
+                emp.setempaddress(rs.getString(10));
+                emp.setemphomephone(rs.getString(11));
+                emp.setempmobile(rs.getString(12));
+                emp.setemppersonalemail(rs.getString(13));
+                emp.setempworkphone(rs.getString(14));
+                emp.setempworkext(rs.getInt(15));
+                emp.setempworkfax(rs.getString(16));
+                emp.setempworkemail(rs.getString(17));
+                emp.setempremarks(rs.getString(18));
+                emp.setempisactive(rs.getBoolean(19));
+                emp.setempactivesince(rs.getDate(20));
+                emp.setempdeactivatedsince(rs.getDate(21));
+                emp.setempdeactivatedreason(rs.getString(22));
+                emp.setempcity(rs.getInt(23));
+                emp.setempprofession(rs.getInt(24));
+                emp.setempbranch(rs.getInt(25));
            
               
             }
@@ -278,4 +278,5 @@ public void deleteEmployee(int id) {
             }
         }
     }
+            
 }
