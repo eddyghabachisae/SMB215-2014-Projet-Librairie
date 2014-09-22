@@ -48,6 +48,7 @@ public class POHeaderBean {
                 POHeader poh = new POHeader();
                 poh.setId(rs.getInt(1));
                 poh.setOrderdate(rs.getDate(2));
+                poh.setDeliverydate(rs.getDate(4));
                 poh.setStatus(rs.getDate(3),rs.getDate(4));
                 poh.setSuppliername(rs.getString(5));
                 poh.setBranchname(rs.getString(6));
