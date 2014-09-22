@@ -25,4 +25,9 @@ public class Utils {
 	c.setTime(sdf.parse(dateStr));
 	return c.getTime();
     }
+        
+        public static Date getNowDateTime() {
+		Calendar currentDate = Calendar.getInstance();
+		return currentDate.getTime();
+	}
 }
