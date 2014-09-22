@@ -68,7 +68,7 @@
                                                            <c:set var="deliverydate" value="${poh.deliverydate}"/>               
                                        <% if ((pageContext.getAttribute("deliverydate") == null) || (pageContext.getAttribute("deliverydate") == "")) { %>
                                                 <a href="GetPOHeader?mode=edit&amp;id=${poh.id}" title="Edit" class="fa fa-lg fa-pencil-square-o"></a>
-                                              <a href="DeleteCountry?id=${cnt.id}" title="Delete" class="fa fa-lg fa-trash-o"></a> 
+                                              <a href="DeletePOHeader?id=${poh.id}" title="Delete" class="fa fa-lg fa-trash-o"></a> 
                                               <%} else {%>
                                               <a href="GetPOHeader?mode=view&amp;id=${poh.id}" title="View" >View</a>
                                               <%}%>
