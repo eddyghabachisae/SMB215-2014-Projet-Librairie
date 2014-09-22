@@ -35,7 +35,12 @@
                     <div class="wrapper">
                         
                         <div class="clear2"></div>
+                        <ul id="tabs">
+                                    <li><a href="" title="tab1" class="activeTab">Select Books</a></li>
+                                    <li><a href="" title="tab2" class="notActive">Rentals Info</a></li>
+                       </ul>
                         <div id="content3"> 
+                            <div class="error_box"></div>
                      <form id="form" name="form" action="./SaveSelectedBook" method="post" >                    
                           
                         <div class="CSSTableGenerator" >
@@ -60,7 +65,7 @@
                              <div class="wrapper">
                                 <div class="extra-wrap">		
                                   <div class="buttons">
-					<input type="submit" name="Submit" value="Submit" class="button"/>
+					<input type="button" name="Submit" value="Submit" class="button" id="submitBtn"/>
                                         <a href="GetBooks"><input type="button" name="Cancel" value="Cancel" class="button"/></a>
                                 </div> 
 
@@ -87,6 +92,20 @@
         </div>
         <script type="text/javascript"> Cufon.now();</script>
     </body>
+    
+    <script>
+        $('#submitBtn').click(function () {
+            var atLeastOneIsChecked = $('input:checkbox').is(':checked');
+            if(atLeastOneIsChecked == false){
+                $('.error_box').html("Select One At Least!");
+               $('.error_box').css('display','block'); 
+            }
+            else{
+              document.getElementById("form").submit();  
+            }
+            
+        });
+    </script>
 </html>
 
 
