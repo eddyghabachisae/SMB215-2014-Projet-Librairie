@@ -40,7 +40,7 @@
                 <div class="container_12">
                     <div class="wrapper">
                         <div class="pull-right">
-                            <a href="GetPOHeader"><input type="submit" name="Submit" value="New Purchase Order" class="button"/></a>
+                            <a href="GetPOHeader?mode=edit"><input type="submit" name="Submit" value="New Purchase Order" class="button"/></a>
                         </div>
                         <div class="clear2"></div>
                         <div class="CSSTableGenerator" >
@@ -65,10 +65,12 @@
                                             <td>${poh.employeename}</td>
                                             <td>${poh.total}</td>
                                             <td>
-                                                <a href="GetPOHeader?id=${poh.id}" title="Edit" class="fa fa-lg fa-pencil-square-o"></a>
-                                                <c:set var="deliverydate" value="${poh.deliverydate}"/>               
+                                                           <c:set var="deliverydate" value="${poh.deliverydate}"/>               
                                        <% if ((pageContext.getAttribute("deliverydate") == null) || (pageContext.getAttribute("deliverydate") == "")) { %>
+                                                <a href="GetPOHeader?mode=edit&amp;id=${poh.id}" title="Edit" class="fa fa-lg fa-pencil-square-o"></a>
                                               <a href="DeleteCountry?id=${cnt.id}" title="Delete" class="fa fa-lg fa-trash-o"></a> 
+                                              <%} else {%>
+                                              <a href="GetPOHeader?mode=view&amp;id=${poh.id}" title="View" >View</a>
                                               <%}%>
                                             </td>
                                         </tr>
@@ -95,7 +97,7 @@
                     </div>
                 </div>
             </section>
-
+            
             <!--==============================footer=================================-->
             <footer>
                 <div class="inner">

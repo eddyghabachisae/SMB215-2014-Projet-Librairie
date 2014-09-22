@@ -4,25 +4,26 @@
  * and open the template in the editor.
  */
 
-package purchaseOrderDetail;
+package puchaseOrderHeader;
 
-import Item.Item;
-import Item.ItemBean;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.List;
+import java.sql.Date;
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import utils.Utils;
 
 /**
  *
  * @author eddy
  */
-@WebServlet(name = "GetPODetail", urlPatterns = {"/GetPODetail"})
-public class GetPODetail extends HttpServlet {
+@WebServlet(name = "SavePOHeader", urlPatterns = {"/SavePOHeader"})
+public class SavePOHeader extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,16 +36,51 @@ public class GetPODetail extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        ItemBean itmBean = new ItemBean();
-       List<Item> items = itmBean.getItemsByPOH(Long.parseLong(request.getParameter("pohid")));
-       request.setAttribute("items", items);
-       if (request.getParameter("id") != null){
-          
+       POHeader poh = new POHeader();
+       poh.setBranch(Long.parseLong(request.getParameter("branch")));
+       poh.setSupplierbranch(Long.parseLong(request.getParameter("supplierbranch")));
+       
+       java.util.Date orderdate = null;
+        try {
+            orderdate = Utils.getDateFromString(request.getParameter("orderdate"));
+        } catch (ParseException ex) {
+            Logger.getLogger(SavePOHeader.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if(orderdate!=null){
+        java.sql.Date sqlDate = new java.sql.Date(orderdate.getTime());
+        poh.setOrderdate(sqlDate);
+        }
+        
+        java.util.Date shippingdate = null;
+        try {
+            shippingdate = Utils.getDateFromString(request.getParameter("shippingdate"));
+        } catch (ParseException ex) {
+            Logger.getLogger(SavePOHeader.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if(shippingdate!=null){
+        java.sql.Date sqlDate = new java.sql.Date(shippingdate.getTime());
+        poh.setShippingdate(sqlDate);
+        }
+        
+        java.util.Date deliverydate = null;
+        try {
+            deliverydate = Utils.getDateFromString(request.getParameter("deliverydate"));
+        } catch (ParseException ex) {
+            Logger.getLogger(SavePOHeader.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if(deliverydate!=null){
+        java.sql.Date sqlDate = new java.sql.Date(deliverydate.getTime());
+        poh.setDeliverydate(sqlDate);
+        }
+        
+       poh.setEmployee(Long.parseLong(request.getParameter("employee")));
+       POHeaderBean pohBean = new POHeaderBean();
+       if (!request.getParameter("id").equals("null")) {
+           String s = "no";
        } else {
-           request.getRequestDispatcher("purchaseOrderDetail/editPODetail.jsp?"
-                 + "id=&quantity=&unitcost=").forward(request,response); 
+           long id = pohBean.addPOHeader(poh);
+            response.sendRedirect("GetPOHeader?id="+id);
        }
-      
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -8,6 +8,7 @@ package puchaseOrderHeader;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -129,4 +130,60 @@ public class POHeaderBean {
         return poh;
     }
 
+    public long addPOHeader(POHeader poh) {
+
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        long pohid = 0;
+
+        try {
+            DBconnection dbCon = new DBconnection();
+            Class.forName(dbCon.getJDBC_DRIVER());
+
+            con = DriverManager.getConnection(dbCon.getDATABASE_URL(),
+                    dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
+
+            pstmt = con.prepareStatement("Insert Into purchaseheader "
+                    + "(poh_orderdate, poh_shippingdate, poh_deliverydate, "
+                    + "branch_id, employee_id, supplierBranch_id) "
+                    + "Values(?,?,?,?,?,?)",
+            Statement.RETURN_GENERATED_KEYS);
+            
+            pstmt.setDate(1, poh.getOrderdate());
+            pstmt.setDate(2, poh.getShippingdate());
+            pstmt.setDate(3, poh.getDeliverydate());
+            
+            pstmt.setLong(4, poh.getBranch());
+            pstmt.setLong(5, poh.getEmployee());
+            pstmt.setLong(6, poh.getSupplierbranch());
+
+            pstmt.execute();
+
+            rs = pstmt.getGeneratedKeys();
+            
+            if (rs.next()){
+                pohid = rs.getLong(1);
+            }
+            
+        } catch (SQLException | ClassNotFoundException ex) {
+            System.err.println("Caught Exception: " + ex.getMessage());
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (pstmt != null) {
+                    pstmt.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException ex) {
+                System.err.println("Caught Exception: " + ex.getMessage());
+            }
+            return pohid;
+        }
+    }
+    
 }

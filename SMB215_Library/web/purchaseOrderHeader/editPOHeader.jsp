@@ -39,6 +39,14 @@
                 }
             }
         }
+            function selectedvalues() {
+            var selectbranch = document.getElementById('branch');
+            var branch_id = selectbranch.value;
+            var selectsupplierbranch = document.getElementById('supplierbranch');
+            var supplierbranch_id = selectsupplierbranch.value;
+            var myform = document.getElementById('form');
+            myform.action = "SavePOHeader?id=<%=request.getParameter("id")%>&branch="+branch_id+"&supplierbranch=" + supplierbranch_id+"&employee=" + <%= session.getAttribute("userid")%>;
+        }
     </script>
    </head>
    
@@ -77,18 +85,9 @@
                                     <div class="error_box"></div>
 
 
-                                    <form id="form" name="form" action="../SaveCountry?id=<%=request.getParameter("id")%>" method="post">                    
+                                    <form id="form" name="form" action="" method="post">                    
                                         <fieldset>
 
-                                            <label><span class="text-form">Branch* </span>
-
-                                                <select id="branch">
-                                                    <option value="">Select</option>
-                                                    <c:forEach items="${branches}" var="brh">
-                                                        <option value="${brh.id}">${brh.name}</option>
-                                                    </c:forEach> 
-                                                </select>
-                                            </label>
                                             <label><span class="text-form">Supplier* </span>
                                                 <select id="supplier" onchange="refreshsupplierbranches()">
                                                     <option value="">Select</option>
@@ -106,13 +105,16 @@
                                                     </c:forEach> 
                                                 </select>
                                             </label>
+                                            
+                                            <label><span class="text-form">Branch* </span>
 
-                                            <script>
-                                                if ("<%=request.getParameter("branch")%>" !== "") {
-                                                    var val = <%=request.getParameter("branch")%>;
-                                                    $('#branch').val(val);
-                                                }
-                                            </script>
+                                                <select id="branch">
+                                                    <option value="">Select</option>
+                                                    <c:forEach items="${branches}" var="brh">
+                                                        <option value="${brh.id}">${brh.name}</option>
+                                                    </c:forEach> 
+                                                </select>
+                                            </label>
 
                                             <script>
                                                 if ("<%=request.getParameter("supplier")%>" !== "") {
@@ -128,6 +130,13 @@
                                                     $('#supplierbranch').val(val);
                                                 }
                                             </script>
+                                            
+                                            <script>
+                                                if ("<%=request.getParameter("branch")%>" !== "") {
+                                                    var val = <%=request.getParameter("branch")%>;
+                                                    $('#branch').val(val);
+                                                }
+                                            </script>
 
                                             <label><span class="text-form">Order Date* </span><input type="text" class="inputText" id="orderdatepicker"  
                                                                                                      name="orderdate" value="<%=request.getParameter("orderdate")%>"></label>
@@ -135,10 +144,10 @@
                                             <label><span class="text-form">Shipping Date </span><input type="text" class="inputText" id="shippingdatepicker"  
                                                                                                        name="shippingdate" value="<%=request.getParameter("shippingdate")%>"></label>
 
-                                            <label><span class="text-form">Delivery Date </span><input type="text" class="inputText" id="deliverydatepicker"  
+                                            <label><span class="text-form">Delivery Date </span><input type="text"  class="inputText" id="deliverydatepicker"  
                                                                                                        name="deliverydate" value="<%=request.getParameter("deliverydate")%>"></label>
 
-                                                                                                       <br>
+                                        <% if ((request.getParameter("id")!=null) && (request.getParameter("id")!="")){%>                                                               <br>
                                             <div class="CSSTableGenerator" >
                                                 <table>
                                                     <tbody>
@@ -164,15 +173,18 @@
                                                     </tbody>
                                                 </table>
                                             </div>
+                                            <%}%>
                                             <div class="wrapper">
                                                 <div class="extra-wrap">
 
 
 
                                                     <div class="buttons">
-                                                        <input type="submit" name="Submit" value="Submit" class="button"/>
-                                                        <a href="GetPODetail"><input type="button" name="AddPOD" value="Add Item" class="button"/></a>
-                                                        <a href="GetPOHeaders"><input type="button" name="Cancel" value="Cancel" class="button"/></a>
+                                                        <input type="submit" name="Submit" id="submit" value="Submit" class="button" onclick="selectedvalues()"/>
+                                                        <% if ((request.getParameter("id")!=null) && (request.getParameter("id")!="")){%>                                                               
+                                                        <a href="GetPODetail?pohid=<%=request.getParameter("id")%>"><input type="button" id="add" name="AddPOD" value="Add Item" class="button"/></a>
+                                                        <%}%>
+                                                        <a href="GetPOHeaders"><input type="button"  name="Cancel" value="Cancel" class="button"/></a>
                                                     </div> 
 
                                                 </div>
@@ -186,6 +198,22 @@
                     </div>
                 </div>
             </section>
+                                                        
+            <script>
+                var mode = '<%=request.getParameter("mode")%>';
+                if ((mode === 'edit') || (mode === 'view')) {
+                    document.getElementById('supplier').disabled = true;
+                    document.getElementById('supplierbranch').disabled = true;
+                } 
+                if (mode === 'view') {
+                    document.getElementById('branch').disabled = true;
+                    document.getElementById('orderdate').disabled = true;
+                    document.getElementById('shippingdate').disabled = true;
+                    document.getElementById('deliverydate').disabled = true;
+                    document.getElementById('submit').hide = true;
+                    document.getElementById('add').hide = true;
+                }
+            </script>
 
             <!--==============================footer=================================-->
             <footer>
