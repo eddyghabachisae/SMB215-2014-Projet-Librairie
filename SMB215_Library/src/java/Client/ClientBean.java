@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import main.DBconnection;
-import supplier.Supplier;
+import Client.Client;
 
 /**
  *
@@ -36,7 +36,8 @@ public class ClientBean {
             con = DriverManager.getConnection(dbCon.getDATABASE_URL(),
                     dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
             stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("Select * From client Where cst_id=" + id);
+            ResultSet rs = stmt.executeQuery("Select * From customer Where cst_id=1");
+            
             if (rs.next()) {
                 cust = new Client();
                 cust.setId(rs.getInt(1));
