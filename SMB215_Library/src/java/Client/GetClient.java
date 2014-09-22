@@ -1,6 +1,6 @@
 package Client;
 
-import supplier.*;
+import Client.*;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,13 +13,16 @@ public class GetClient extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        if (request.getParameter("id") != null){
-            ClientBean supBean = new ClientBean();
-            Client cst = supBean.getClient(Integer.valueOf(request.getParameter("id")));
-            response.sendRedirect("Client/indexClient.jsp?id=1");
-        } else {
-               response.sendRedirect("Client/indexClient.jsp?id=1");
-        }
+            ClientBean cltBean = new ClientBean();
+            Client clt = cltBean.getClient(1);
+
+            response.sendRedirect("Client/indexClient.jsp?id=" + clt.getId());
+               //     +"&username=" + clt.getUsername() 
+                 //   +"&FirstName=" + clt.getFirstname()
+                   // +"&LastName=" + clt.getLastname());
+        //} else {
+         //      response.sendRedirect("Client/indexClient.jsp?id=&username=&FirstName=&LastName=");
+        //}
     }
 
     

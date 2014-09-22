@@ -62,7 +62,7 @@
                                     <div class="error_box"></div>
 
 
-                                    <form id="form" name="form" action="../SaveSupplier?id=<%=request.getParameter("id")%>" method="post">                    
+                                    <form id="form" name="form" action="../SaveClient?id=<%=request.getParameter("id")%>" method="post">                    
                                         <fieldset>
                                             <label><span class="text-form">Name* </span><input type="text" class="inputText" name="name" value="<%=request.getParameter("name")%>"></label>
                                             <label><span class="text-form">Website </span><input type="text" class="inputText" name="website" value="<%=request.getParameter("website")%>"></label>
