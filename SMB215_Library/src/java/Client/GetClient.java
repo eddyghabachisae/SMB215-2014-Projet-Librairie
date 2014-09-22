@@ -30,15 +30,15 @@ public class GetClient extends HttpServlet {
             //clt.setId(id);
                         
             ClientBean cltBean = new ClientBean();
-            Client clt1 = cltBean.getClient(1);
+            Client clt1 = cltBean.getClient(1);  //replace 1 with session variable correspondant to user id
 
         
-            System.out.println(clt.getId());
+            //System.out.println(clt.getId());
             
-            response.sendRedirect("Client/indexClient.jsp?id=" + clt1.getId());
-               //     +"&username=" + clt.getUsername() 
-                 //   +"&FirstName=" + clt.getFirstname()
-                   // +"&LastName=" + clt.getLastname());
+            response.sendRedirect("Client/indexClient.jsp?id=" + clt1.getId()
+                 + "&username=" + clt1.getUsername() 
+                 + "&FirstName=" + clt1.getFirstname()
+                 + "&LastName=" + clt1.getLastname());
         //} else {
          //      response.sendRedirect("Client/indexClient.jsp?id=&username=&FirstName=&LastName=");
         //}

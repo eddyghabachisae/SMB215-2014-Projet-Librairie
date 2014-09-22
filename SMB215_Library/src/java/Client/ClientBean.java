@@ -35,8 +35,9 @@ public class ClientBean {
 
             con = DriverManager.getConnection(dbCon.getDATABASE_URL(),
                     dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
+            
             stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("Select * From customer Where cst_id=1");
+            ResultSet rs = stmt.executeQuery("Select * From customer Where cst_id=" + id);
             
             if (rs.next()) {
                 cust = new Client();
