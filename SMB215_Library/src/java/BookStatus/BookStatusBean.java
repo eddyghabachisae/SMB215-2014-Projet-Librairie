@@ -205,5 +205,80 @@ public class BookStatusBean {
             }
         }
     }
+    
+     public void modifyResevredCopies (BookStatus bookStatus) {
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        try {
+            DBconnection dbCon = new DBconnection();
+            Class.forName(dbCon.getJDBC_DRIVER());
+
+            con = DriverManager.getConnection(dbCon.getDATABASE_URL(),
+                    dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
+
+            pstmt = con.prepareStatement("Update bookStatus Set bks_reservedcopies=? Where bks_id=?");
+           
+            pstmt.setInt(1, bookStatus.getReservedCopies());
+            pstmt.setLong(2, bookStatus.getId());
+           
+            
+             
+            
+            pstmt.executeUpdate();
+        } catch (SQLException | ClassNotFoundException ex) {
+            System.err.println("Caught Exception: " + ex.getMessage());
+        } finally {
+            try {
+                if (pstmt != null) {
+                    pstmt.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException ex) {
+                System.err.println("Caught Exception: " + ex.getMessage());
+            }
+        }
+    }
+    
+        public BookStatus getBookStatusByBranch(long book_id, long branch_id) {
+        BookStatus bookStatus = null;
+        Connection con = null;
+        Statement stmt = null;
+        try {
+            DBconnection dbCon = new DBconnection();
+            Class.forName(dbCon.getJDBC_DRIVER());
+
+            con = DriverManager.getConnection(dbCon.getDATABASE_URL(),
+                    dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
+            stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("Select * From bookstatus Where branch_id="+branch_id+" AND book_id="+book_id);
+            bookStatus = new BookStatus();
+            if (rs.next()) {
+                bookStatus = new BookStatus();
+                bookStatus.setId(rs.getLong(1));
+                bookStatus.setReservedCopies(rs.getInt(2));
+                bookStatus.setSection(rs.getString(3));
+                bookStatus.setShelf(rs.getString(4));
+                bookStatus.setBranch_id(rs.getLong(5));
+                bookStatus.setBook_id(rs.getLong(6));
+                
+            }
+        } catch (SQLException | ClassNotFoundException ex) {
+            System.err.println("Caught Exception: " + ex.getMessage());
+        } finally {
+            try {
+                if (stmt != null) {
+                    stmt.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException ex) {
+                System.err.println("Caught Exception: " + ex.getMessage());
+            }
+        }
+        return bookStatus;
+    }
 
 }
