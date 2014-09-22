@@ -10,6 +10,14 @@
     <head>
         <title>PO Detail</title>
         <%@ include file="../main.html" %>
+        <script>
+            function selecteditem() {
+            var select = document.getElementById('item');
+            var item_id = select.value;
+            var myform = document.getElementById('form');
+            myform.action = "SavePODetail?id=<%=request.getParameter("id")%>&pohid=<%=request.getParameter("pohid")%>&selecteditem=" + item_id;
+        }
+        </script>
     </head>
     
     <body id="page5">
@@ -47,7 +55,7 @@
                                     <div class="error_box"></div>
 
 
-                                    <form id="form" name="form" action="../SetPODetail?id=<%=request.getParameter("id")%>" method="post">                    
+                                    <form id="form" name="form" action="" method="post">                    
                                         <fieldset>
 
                                             <label><span class="text-form">Item* </span>
@@ -70,8 +78,8 @@
                                                 <div class="extra-wrap">
 
                                                     <div class="buttons">
-                                                        <input type="submit" name="Submit" value="Submit" class="button"/>
-                                                        <a href="../GetCountries"><input type="button" name="Cancel" value="Cancel" class="button"/></a>
+                                                        <input type="submit" name="Submit" value="Submit" class="button" onclick="selecteditem()"/>
+                                                        <a href="GetPOHeader?mode=edit&amp;id=<%=request.getParameter("pohid")%>"><input type="button" name="Cancel" value="Cancel" class="button"/></a>
                                                     </div> 
 
                                                 </div>
@@ -113,11 +121,6 @@
                 name: 'unitcost',
                 display: 'Unit cost',
                 rules: 'required| numeric'
-            },
-            {
-                name: 'orderdate',
-                display: 'Order Date',
-                rules: 'required'
             }], function(errors, event) {
             var SELECTOR_ERRORS = $('.error_box'),
                     SELECTOR_SUCCESS = $('.success_box');

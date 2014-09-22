@@ -8,6 +8,7 @@ package purchaseOrderDetail;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -63,6 +64,45 @@ public class PODetailBean {
             }
         }
         return list;
+    }
+    
+    public void addPODetail (PODetail pod){
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        
+        try {
+            DBconnection dbCon = new DBconnection();
+            Class.forName(dbCon.getJDBC_DRIVER());
+
+            con = DriverManager.getConnection(dbCon.getDATABASE_URL(),
+                    dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
+
+            pstmt = con.prepareStatement("Insert Into purchasedetails "
+                    + "(pod_quantity, pod_unitcost, purchaseheader_id, item_id) "
+                    + "Values(?,?,?,?)");
+            
+            pstmt.setInt(1, pod.getQuantity());
+            pstmt.setFloat(2, pod.getUnitcost());
+            pstmt.setLong(3, pod.getPohid());
+            pstmt.setLong(4, pod.getItem());
+            
+            pstmt.execute();
+           
+        } catch (SQLException | ClassNotFoundException ex) {
+            System.err.println("Caught Exception: " + ex.getMessage());
+        } finally {
+            try {
+                if (pstmt != null) {
+                    pstmt.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException ex) {
+                System.err.println("Caught Exception: " + ex.getMessage());
+            }
+            
+        }
     }
     
 }

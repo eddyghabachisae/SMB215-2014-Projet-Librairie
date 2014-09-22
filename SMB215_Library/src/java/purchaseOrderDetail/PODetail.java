@@ -13,10 +13,12 @@ package purchaseOrderDetail;
 public class PODetail {
     
     private long item;
-    private long quantity;
+    private int quantity;
     private float unitcost;
     private float total;
     private String itemname;
+    private long pohid;
+    
 
     public long getItem() {
         return item;
@@ -26,11 +28,11 @@ public class PODetail {
         this.item = item;
     }
 
-    public long getQuantity() {
+    public int getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(long quantity) {
+    public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
 
@@ -56,6 +58,14 @@ public class PODetail {
 
     public void setItemname(String itemname) {
         this.itemname = itemname;
+    }
+
+    public long getPohid() {
+        return pohid;
+    }
+
+    public void setPohid(long pohid) {
+        this.pohid = pohid;
     }
     
     
