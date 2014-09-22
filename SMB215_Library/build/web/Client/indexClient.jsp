@@ -36,11 +36,33 @@
                 </div>
             </header>
 <!--==============================content================================-->
-            <section id="content"><div class="ic"></div>
+ <section id="content1"><div class="ic"></div>
+                <div class="container_12">
+                    <div class="wrapper">
+                        <div class="pull-left">
+                            Welcome to the Profile page
+                        </div><br />
+                         <div class="pull-left">
+                            Please select an option from the below:
+                        </div>
+                        <div class="clear2"></div>
+            
+                        <div class="clear"></div>
+                        
+
+
+                    </div>
+                </div>
+            </section>           
+
+<section id="Edit"><div class="ic"></div>
                 <div class="container_12">
                     <div class="wrapper">
                         <div class="pull-left">
                             <a href="GetClient"><input type="submit" name="Submit" value="Edit My Profile" class="button"/></a>
+                            <a href="GetClient"><input type="submit" name="Submit" value="Borrow a book" class="button"/></a>
+                            <a href="GetClient"><input type="submit" name="Submit" value="Borrowed Books List" class="button"/></a>
+                            <a href="GetClient"><input type="submit" name="Submit" value="change your password" class="button"/></a>
                         </div>
                         <div class="clear2"></div>
             
