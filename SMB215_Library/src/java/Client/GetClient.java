@@ -33,17 +33,19 @@ public class GetClient extends HttpServlet {
             //int id = 1;
             //clt.setId(id);
             
+            //replace 1 with session variable correspondant to user id  
+            ClientBean cltBean = new ClientBean();
+            Client clt1 = cltBean.getClient(1);   
             
             // Get Gender information
             GenderBean genBean = new GenderBean();
-            Gender gen = genBean.getGender(1); 
+            Gender gen = genBean.getGender(clt1.getGender()); 
             
             // Get Marital Status information            
             MaritalBean marBean = new MaritalBean();
             Marital mar = marBean.getMarital(1);  
 
-            ClientBean cltBean = new ClientBean();
-            Client clt1 = cltBean.getClient(1);  //replace 1 with session variable correspondant to user id       
+    
             //System.out.println(clt.getId());
             //CityBean citBean = new CityBean();
            // City mycit = citBean.getCity(1);
