@@ -18,7 +18,9 @@ import java.sql.Statement;
 import main.DBconnection;
 import city.*;
 import gender.*;
-        
+import Marital.*;   
+
+
 @WebServlet(name = "GetClient", urlPatterns = {"/GetClient"})
 public class GetClient extends HttpServlet {
     
@@ -30,9 +32,15 @@ public class GetClient extends HttpServlet {
             Client clt = new Client();
             //int id = 1;
             //clt.setId(id);
-                        
+            
+            
+            // Get Gender information
             GenderBean genBean = new GenderBean();
-            Gender gen = genBean.getGender(1);  
+            Gender gen = genBean.getGender(1); 
+            
+            // Get Marital Status information            
+            MaritalBean marBean = new MaritalBean();
+            Marital mar = marBean.getMarital(1);  
 
             ClientBean cltBean = new ClientBean();
             Client clt1 = cltBean.getClient(1);  //replace 1 with session variable correspondant to user id       
@@ -46,7 +54,7 @@ public class GetClient extends HttpServlet {
                  + "&FirstName=" + clt1.getFirstname()
                  + "&LastName=" + clt1.getLastname()
                  + "&Gender=" + gen.getGender()   
-                 + "&Maritalstatus=" + clt1.getMaritalstatus()
+                 + "&Maritalstatus=" + mar.getMarital()
                  + "&Address=" + clt1.getAddress()
                  + "&City=" + clt1.getAddress()
                  + "&Phone=" + clt1.getPhone()
