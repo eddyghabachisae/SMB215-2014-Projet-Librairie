@@ -43,8 +43,8 @@
                             Welcome to the Profile page of user: <b><%= request.getParameter("username") %></b><br />
                             
                             <h1>General Information:</h1><br /><br />
-                            First Name: <i><%= request.getParameter("FirstName") %></i> <br/>
-                            Last Name: <i><%= request.getParameter("LastName") %></i><br />
+                            Full Name: <i><%= request.getParameter("FirstName") %> <%= request.getParameter("LastName") %></i> <br/>
+                          
                             </br>
 Please select an option from the below:
                         </div><br />

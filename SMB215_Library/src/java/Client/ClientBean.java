@@ -25,7 +25,7 @@ import Client.Client;
  * @author Dell
  */
 public class ClientBean {
-        public Client getClient(int id) {
+        public Client getClient(long id) {
         Client cust = null;
         Connection con = null;
         Statement stmt = null;

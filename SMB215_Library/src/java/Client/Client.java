@@ -15,7 +15,7 @@ import java.util.Date;
  */
 public class Client {
     
-    private int id;
+    private long id;
     private String username;
     private String password;
     private String firstname;
@@ -35,7 +35,7 @@ public class Client {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
