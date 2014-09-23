@@ -38,7 +38,18 @@ public class GetClient extends HttpServlet {
             response.sendRedirect("Client/indexClient.jsp?id=" + clt1.getId()
                  + "&username=" + clt1.getUsername() 
                  + "&FirstName=" + clt1.getFirstname()
-                 + "&LastName=" + clt1.getLastname());
+                 + "&LastName=" + clt1.getLastname()
+                 + "&Gender=" + clt1.getGender()   
+                 + "&Maritalstatus=" + clt1.getMaritalstatus()
+                 + "&Address=" + clt1.getAddress()
+                 + "&City=" + clt1.getCity()
+                 + "&Phone=" + clt1.getPhone()
+                 + "&Mobile=" + clt1.getMobile()   
+                 + "&Email=" + clt1.getEmail()
+                 + "&Remarks=" + clt1.getRemarks()
+                 + "&Isactive=" + clt1.getIsactive()                 
+            );            
+
         //} else {
          //      response.sendRedirect("Client/indexClient.jsp?id=&username=&FirstName=&LastName=");
         //}

@@ -44,7 +44,15 @@
                             
                             <h1>General Information:</h1><br /><br />
                             Full Name: <i><%= request.getParameter("FirstName") %> <%= request.getParameter("LastName") %></i> <br/>
-                          
+                            Gender:  <i><%= request.getParameter("Gender") %> </i> <br/>
+                            Marital status:  <i><%= request.getParameter("Maritalstatus") %> </i> <br/>
+                            Address:  <i><%= request.getParameter("Address") %> </i> <br/>
+                            City:  <i><%= request.getParameter("City") %> </i> <br/>
+                            Phone:  <i><%= request.getParameter("Phone") %> </i> <br/>
+                            Mobile:  <i><%= request.getParameter("Mobile") %> </i> <br/>
+                            Email:  <i><%= request.getParameter("Email") %> </i> <br/>
+                            Remarks:  <i><%= request.getParameter("Remarks") %> </i> <br/>
+                            Is active?  <i><%= request.getParameter("Isactive") %> </i> <br/>                            
                             </br>
 Please select an option from the below:
                         </div><br />
