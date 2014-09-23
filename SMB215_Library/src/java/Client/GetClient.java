@@ -16,7 +16,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import main.DBconnection;
-
+import city.*;
+import gender.*;
+        
 @WebServlet(name = "GetClient", urlPatterns = {"/GetClient"})
 public class GetClient extends HttpServlet {
     
@@ -29,20 +31,24 @@ public class GetClient extends HttpServlet {
             //int id = 1;
             //clt.setId(id);
                         
-            ClientBean cltBean = new ClientBean();
-            Client clt1 = cltBean.getClient(1);  //replace 1 with session variable correspondant to user id
+            GenderBean genBean = new GenderBean();
+            Gender gen = genBean.getGender(1);  
 
-        
+            ClientBean cltBean = new ClientBean();
+            Client clt1 = cltBean.getClient(1);  //replace 1 with session variable correspondant to user id       
             //System.out.println(clt.getId());
-            
+            //CityBean citBean = new CityBean();
+           // City mycit = citBean.getCity(1);
+           // mycit.getName();
+           
             response.sendRedirect("Client/indexClient.jsp?id=" + clt1.getId()
                  + "&username=" + clt1.getUsername() 
                  + "&FirstName=" + clt1.getFirstname()
                  + "&LastName=" + clt1.getLastname()
-                 + "&Gender=" + clt1.getGender()   
+                 + "&Gender=" + gen.getGender()   
                  + "&Maritalstatus=" + clt1.getMaritalstatus()
                  + "&Address=" + clt1.getAddress()
-                 + "&City=" + clt1.getCity()
+                 + "&City=" + clt1.getAddress()
                  + "&Phone=" + clt1.getPhone()
                  + "&Mobile=" + clt1.getMobile()   
                  + "&Email=" + clt1.getEmail()

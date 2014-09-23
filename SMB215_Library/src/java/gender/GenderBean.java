@@ -4,8 +4,9 @@
  * and open the template in the editor.
  */
 
-package Client;
+package gender;
 
+import gender.*;
 import Client.*;
 import java.sql.Connection;
 import java.sql.Date;
@@ -18,15 +19,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import main.DBconnection;
-import Client.Client;
+import gender.Gender;
 
 /**
  *
  * @author Dell
  */
-public class ClientBean {
-        public Client getClient(long id) {
-        Client cust = null;
+public class GenderBean {
+        public Gender getGender (int id) {
+        Gender gen = null;
         Connection con = null;
         Statement stmt = null;
         try {
@@ -37,24 +38,13 @@ public class ClientBean {
                     dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
             
             stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("Select * From customer Where cst_id=" + id);
+            ResultSet rs = stmt.executeQuery("Select * From gender Where id=" + id);
             
             if (rs.next()) {
-                cust = new Client();
-                cust.setId(rs.getInt(1));
-                cust.setUsername(rs.getString(2));
-                cust.setPassword(rs.getString(3));
-                cust.setFirstname(rs.getString(4));
-                cust.setLastname(rs.getString(5));
-                cust.setGender(rs.getInt(6));
-                cust.setMaritalstatus(rs.getInt(7));
-                cust.setDateofbirth(rs.getDate(8));
-                cust.setAddress(rs.getString(9));
-                 cust.setPhone(rs.getString(10));
-                cust.setMobile(rs.getString(11));
-                cust.setEmail(rs.getString(12));
-                cust.setRemarks(rs.getString(13));
-                cust.setIsactive(rs.getBoolean(14));
+                gen = new Gender();
+                gen.setId(rs.getInt(1));
+                gen.setGender(rs.getString(2));
+                
             }
         } catch (SQLException | ClassNotFoundException ex) {
             System.err.println("Caught Exception: " + ex.getMessage());
@@ -70,7 +60,7 @@ public class ClientBean {
                 System.err.println("Caught Exception: " + ex.getMessage());
             }
         }
-        return cust;
+        return gen;
     }
     
     }

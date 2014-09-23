@@ -22,11 +22,11 @@ public class CityBean {
                     dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
             con.setAutoCommit(false);
             idstmt = con.createStatement();
-            ResultSet rs = idstmt.executeQuery("Select ifnull(max(cit_id),0)+1 From tbl_city");
+            ResultSet rs = idstmt.executeQuery("Select ifnull(max(id),0)+1 From city");
             rs.next();
             id = rs.getInt(1);
 
-            pstmt = con.prepareStatement("Insert Into tbl_city Values(?,?,?,?)");
+            pstmt = con.prepareStatement("Insert Into city Values(?,?,?,?)");
 
             pstmt.setInt(1, id);
             pstmt.setString(2, cit.getCode());
@@ -113,7 +113,7 @@ public class CityBean {
             con = DriverManager.getConnection(dbCon.getDATABASE_URL(),
                     dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
             stmt = con.createStatement();
-            stmt.execute("Delete From tbl_city Where cit_id = " + String.valueOf(id));
+            stmt.execute("Delete From city Where id = " + String.valueOf(id));
         } catch (SQLException | ClassNotFoundException ex) {
             System.err.println("Caught Exception: " + ex.getMessage());
         } finally {
@@ -141,7 +141,7 @@ public class CityBean {
             con = DriverManager.getConnection(dbCon.getDATABASE_URL(),
                     dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
             stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("Select * From tbl_city Where cit_id=" + id);
+            ResultSet rs = stmt.executeQuery("Select * From city Where id=" + id);
             if (rs.next()) {
                 cit = new City();
                 cit.setId(rs.getInt(1));
@@ -176,8 +176,8 @@ public class CityBean {
             con = DriverManager.getConnection(dbCon.getDATABASE_URL(),
                     dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
 
-            pstmt = con.prepareStatement("Update tbl_city Set cit_shortname=?, "
-                    + "cit_name=? Where cit_id=?");
+            pstmt = con.prepareStatement("Update city Set shortname=?, "
+                    + "cit_name=? Where id=?");
             pstmt.setString(1, cit.getCode());
             pstmt.setString(2, cit.getName());
 //           / pstmt.setString(4, cit.getprovince());

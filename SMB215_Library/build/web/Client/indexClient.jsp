@@ -37,12 +37,13 @@
             </header>
 <!--==============================content================================-->
  <section id="content1"><div class="ic"></div>
-                <div class="container_12">
-                    <div class="wrapper">
-                        <div class="pull-left">
+     
                             Welcome to the Profile page of user: <b><%= request.getParameter("username") %></b><br />
-                            
-                            <h1>General Information:</h1><br /><br />
+  
+                            <table width="100%"cellspacing=0" cellpading="0">
+                                <tr><td colspan="2"><h1>General Information:</h1><br /><br /></td></tr>
+                                <tr>
+                            <td  width="150px"><image src="../images/Client/<%= request.getParameter("id") %>.jpg" border="2" /> </td><td>
                             Full Name: <i><%= request.getParameter("FirstName") %> <%= request.getParameter("LastName") %></i> <br/>
                             Gender:  <i><%= request.getParameter("Gender") %> </i> <br/>
                             Marital status:  <i><%= request.getParameter("Maritalstatus") %> </i> <br/>
@@ -53,50 +54,25 @@
                             Email:  <i><%= request.getParameter("Email") %> </i> <br/>
                             Remarks:  <i><%= request.getParameter("Remarks") %> </i> <br/>
                             Is active?  <i><%= request.getParameter("Isactive") %> </i> <br/>                            
-                            </br>
-Please select an option from the below:
-                        </div><br />
-                         
+                            </br></td>
+                            </tr>
+                            <tr><td colspan="2">Please select an option from the below:</td></tr>
+                            <tr><td colspan="2">
                             
-                        
-                        <div class="clear2"></div>
-            
-                        <div class="clear"></div>
-                        
-
-
-                    </div>
-                </div>
-            </section>           
-
-<section id="Edit"><div class="ic"></div>
-                <div class="container_12">
-                    <div class="wrapper">
-                        <div class="pull-left">
                             <a href="GetClient"><input type="submit" name="Submit" value="Edit My Profile" class="button"/></a>
                             <a href="GetClient"><input type="submit" name="Submit" value="Borrow a book" class="button"/></a>
                             <a href="GetClient"><input type="submit" name="Submit" value="Borrowed Books List" class="button"/></a>
                             <a href="GetClient"><input type="submit" name="Submit" value="change your password" class="button"/></a>
-                        </div>
-                        <div class="clear2"></div>
-            
-                        <div class="clear"></div>
-                        
+                                </td>
+                            </tr>
+            </section>           
 
 
-                    </div>
-                </div>
-            </section>
 
             <!--==============================footer=================================-->
-            <footer>
-                <div class="inner">
-                    <div class="footer-bg">
-                        ISAE &copy; 2014
-                    </div>
-                </div>
-            </footer>
-        </div>
+
+        </div>   
+         
         <script type="text/javascript"> Cufon.now();</script>
     </body>
 </html>
