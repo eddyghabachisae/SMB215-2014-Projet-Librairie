@@ -52,7 +52,7 @@ public class ClientBean {
                 cust.setAddress(rs.getString(9));
                 cust.setCity(rs.getString(10));
                 cust.setPhone(rs.getString(11));
-                cust.setMobile(rs.getString(12));
+                cust.setMobile(rs.getString(13));
                 cust.setEmail(rs.getString(13));
                 cust.setRemarks(rs.getString(14));
                 cust.setIsactive(rs.getBoolean(15));
