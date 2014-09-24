@@ -2,6 +2,7 @@ package RentHeader;
 
 
 
+import Client.Client;
 import Client.ClientBean;
 import RentDetails.RentDetails;
 import RentDetails.RentDetailsBean;
@@ -81,8 +82,9 @@ public class RentHeader {
     }
     
      public String getCutomerName(){
-    String name = "customer not linked !";
-    return name;
+    ClientBean clientBean = new ClientBean();
+    Client client = clientBean.getClient(this.getCustomer_id());
+    return client.getFirstname()+" "+client.getLastname();
     }
 
  

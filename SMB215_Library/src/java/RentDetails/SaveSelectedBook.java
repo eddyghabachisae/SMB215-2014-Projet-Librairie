@@ -6,9 +6,11 @@
 
 package RentDetails;
 
-import Item.*;
+
 import Book.Book;
 import Book.BookBean;
+import Client.Client;
+import Client.ClientBean;
 import customer.Customer;
 import customer.CustomerBean;
 import java.io.IOException;
@@ -55,8 +57,8 @@ public class SaveSelectedBook extends HttpServlet {
           booksList.add(book);
         }
          request.setAttribute("booksList", booksList);
-         CustomerBean customerBean = new CustomerBean();
-         List<Customer> customersList= customerBean.getCustomers();
+         ClientBean clientBean = new ClientBean();
+         List<Client> customersList= clientBean.getClients();
          request.setAttribute("customersList", customersList);
         request.getRequestDispatcher("RentHeader/rentHeaderForm.jsp?totalPrice="+totalPrice+"&selectedCustomer=").forward(request, response);
        
