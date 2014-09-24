@@ -33,6 +33,22 @@
             <section id="content"><div class="ic"><div class="inner_copy">All <a href="http://www.magentothemesworld.com" title="Best Magento Templates">premium Magento themes</a> at magentothemesworld.com!</div></div>
                 <div class="container_12">
                     <div class="wrapper">
+                        <article class="grid_2">
+                            <div class="box" style="height:40px;">
+                               <a href="./GetItemCategories" style="margin-left: 20%;margin-top: 5%; text-decoration:none;"> Item Category</a>
+                            </div>
+                        </article>
+                        <article class="grid_2">
+                            <div class="box" style="height:40px;">
+                               <a href="./GetBookCategories" style="margin-left: 20%;margin-top: 5%; text-decoration:none;"> Book Category</a>
+                            </div>
+                        </article>
+                          <article class="grid_2">
+                            <div class="box" style="height:40px;">
+                               <a href="./GetBookLanguages" style="margin-left: 20%;margin-top: 5%; text-decoration:none;"> Book Language</a>
+                            </div>
+                            </article>
+                        
                         <div class="pull-right">
                             <a href="GetItem"><input type="submit" name="Submit" value="Add New Item" class="button"/></a>
                         </div>

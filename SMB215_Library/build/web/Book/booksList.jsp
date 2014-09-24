@@ -4,6 +4,11 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
+     <%
+        if ((session.getAttribute("username") == null) || (session.getAttribute("username") == "")) {
+            response.sendRedirect("login.jsp");
+        }
+    %>
     <%@ include file="../main.html" %>
     <body id="page1">
         <div class="main">
@@ -17,7 +22,6 @@
                                 <nav>
                                     <ul class="menu">
                                         <li><a class="active" href="${pageContext.request.contextPath}/home.jsp">Main</a></li>
-                                        <li><a href="">Inbox</a></li>
                                         <li><a href="">Logout</a></li>
                                     </ul>
                                 </nav>
@@ -30,17 +34,18 @@
             </header>
 
             <!--==============================content================================-->
-            <section id="content"><div class="ic"><div class="inner_copy">All <a href="http://www.magentothemesworld.com" title="Best Magento Templates">premium Magento themes</a> at magentothemesworld.com!</div></div>
+            <section id="content">
                 <div class="container_12">
                     <div class="wrapper">
-                        
-                        <div class="clear2"></div>
+                        <div style="margin-left:80%;">
+                            <a href="./GetRentHeaders"><input type="submit" name="Submit" value="Back to List" class="button"/></a>
+                        </div>
                         <ul id="tabs">
                                     <li><a href="" title="tab1" class="activeTab">Select Books</a></li>
                                     <li><a href="" title="tab2" class="notActive">Rentals Info</a></li>
                        </ul>
                         <div id="content3"> 
-                            <div class="error_box"></div>
+                        <div class="error_box"></div>
                      <form id="form" name="form" action="./SaveSelectedBook" method="post" >                    
                           
                         <div class="CSSTableGenerator" >
@@ -55,7 +60,7 @@
                                     <tr>
                                         <td><input name="selectedBooks" type="checkbox" value="${book.id}"/></td>
                                         <td>${book.title}</td>
-                                        <td>${book.rentPrice}</td>
+                                        <td>${book.rentPrice} <%=request.getParameter("currency")%></td>
                                     </tr>
                                 </c:forEach>
                                 </tbody>
@@ -84,9 +89,7 @@
             <footer>
                 <div class="inner">
                     <div class="footer-bg">
-                        Guide.com &copy; 2012
-                        <span><a class="link" target="_blank" href="http://www.templatemonster.com/" rel="nofollow">Website Template</a> by TemplateMonster.com</span><span>More <a href="http://www.websitetemplatesonline.com" title="WTO - website templates and Flash templates">Free Web Templates</a> at WTO. All <a href="http://www.magentothemesworld.com" title="Best Magento Templates">premium Magento themes</a> at magentothemesworld.com!</span>
-                    </div>
+                   ISAE &copy; 2014 </div>
                 </div>
             </footer>
         </div>
