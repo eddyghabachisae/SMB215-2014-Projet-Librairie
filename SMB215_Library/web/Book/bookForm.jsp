@@ -22,7 +22,7 @@
                 <div class="wrapper">
                     <div class="grid_12">
                         <div class="wrapper border-bot">
-                            <h1><a href="index.html">Library</a></h1>
+                            <h1><a href="home.jsp">Library</a></h1>
                             <nav>
                                  <ul class="menu">
                                     <li><a class="active" href="${pageContext.request.contextPath}/home.jsp">Main</a></li>
