@@ -15,6 +15,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import main.DBconnection;
+import puchaseOrderHeader.POHeader;
 
 /**
  *
@@ -203,5 +204,39 @@ public class PODetailBean {
         }
     }
 
+     public void updatePOHeaderTotal(Long poh) {
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        try {
+            DBconnection dbCon = new DBconnection();
+            Class.forName(dbCon.getJDBC_DRIVER());
+
+            con = DriverManager.getConnection(dbCon.getDATABASE_URL(),
+                    dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
+
+            pstmt = con.prepareStatement("Update purchaseheader Inner Join " 
+                + "(Select purchaseheader_id, sum(pod_quantity*pod_unitcost) as total " 
+                + "From purchasedetails " 
+                + "Where purchaseheader_id = " + poh  
+                + " Group by purchaseheader_id) as tt " 
+                + "On purchaseheader.poh_id = tt.purchaseheader_id "
+                + "Set purchaseheader.poh_total = tt.total ");
+            
+            pstmt.executeUpdate();
+        } catch (SQLException | ClassNotFoundException ex) {
+            System.err.println("Caught Exception: " + ex.getMessage());
+        } finally {
+            try {
+                if (pstmt != null) {
+                    pstmt.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException ex) {
+                System.err.println("Caught Exception: " + ex.getMessage());
+            }
+        }
+    }
     
 }

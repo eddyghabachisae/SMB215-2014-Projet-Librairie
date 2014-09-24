@@ -35,6 +35,7 @@ public class DeletePODetail extends HttpServlet {
        long id = Long.parseLong(request.getParameter("id"));
         PODetailBean podBean = new PODetailBean();
         podBean.deletePODetail(id);
+        podBean.updatePOHeaderTotal(Long.parseLong(request.getParameter("pohid")));
         response.sendRedirect("GetPOHeader?id="+request.getParameter("pohid"));
     }
 
