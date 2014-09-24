@@ -29,10 +29,7 @@ public class GetClient extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            Client clt = new Client();
-            //int id = 1;
-            //clt.setId(id);
-            
+
             //replace 1 with session variable correspondant to user id  
             ClientBean cltBean = new ClientBean();
             Client clt1 = cltBean.getClient(1);   

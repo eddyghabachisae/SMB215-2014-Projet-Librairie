@@ -20,10 +20,6 @@ import java.util.List;
 import main.DBconnection;
 import Client.Client;
 
-/**
- *
- * @author Dell
- */
 public class ClientBean {
         public Client getClient(long id) {
         Client cust = null;
@@ -72,5 +68,5 @@ public class ClientBean {
         }
         return cust;
     }
-    
+
     }

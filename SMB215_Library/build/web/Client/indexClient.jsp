@@ -44,7 +44,13 @@
                                 <tr><td colspan="2"><h1>General Information:</h1><br /><br /></td></tr>
                                 <tr>
                             <td  width="150px"><image src="../images/Client/<%= request.getParameter("id") %>.jpg" border="2" /> </td><td>
-                            Full Name: <i><%= request.getParameter("FirstName") %> <%= request.getParameter("LastName") %></i> <br/>
+                                Full Name: 
+                                <%Iterator itr;%>
+                                <%List data = (List) request.Attribute("cltData")%>
+                                <% String s= (String) itr.next(); %>
+                            
+                            
+                            <i><%= request.getParameter("FirstName") %> <%= request.getParameter("LastName") %></i> <br/>
                             Gender:  <i><%= request.getParameter("Gender") %> </i> <br/>
                             Marital status:  <i><%= request.getParameter("Maritalstatus") %> </i> <br/>
                             Address:  <i><%= request.getParameter("Address") %> </i> <br/>
