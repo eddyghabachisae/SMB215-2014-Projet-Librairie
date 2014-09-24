@@ -71,7 +71,7 @@
                                     <tr>
                                         <input type="hidden" name="selectedBooks" value="${book.id}"/>
                                         <td>${book.title}</td>
-                                        <td>${book.rentPrice}</td>
+                                        <td>${book.rentPrice} <%=request.getParameter("currency")%></td>
                                         <td>
                                             <a  onclick="deleteRow(this,${book.rentPrice})" title="Delete" class="fa fa-lg fa-trash-o"></a> 
                                         </td>

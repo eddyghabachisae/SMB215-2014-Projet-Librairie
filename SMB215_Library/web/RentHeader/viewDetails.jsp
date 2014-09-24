@@ -56,7 +56,7 @@
                                 <c:forEach items="${rentDetailsList}" var="det">
                                     <tr>
                                         <td>${det.getBook().title}</td>
-                                        <td>${det.getBook().rentPrice}</td>
+                                        <td>${det.getBook().rentPrice} <%=request.getParameter("currency")%></td>
                                         <td>
                                             <a  onclick="" title="Return" class="fa fa-lg  fa-mail-reply-all"></a> 
                                         </td>

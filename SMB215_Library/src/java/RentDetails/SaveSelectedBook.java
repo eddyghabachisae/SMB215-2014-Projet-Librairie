@@ -11,8 +11,6 @@ import Book.Book;
 import Book.BookBean;
 import Client.Client;
 import Client.ClientBean;
-import customer.Customer;
-import customer.CustomerBean;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +19,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import library.Library;
+import library.LibraryBean;
 
 /**
  *
@@ -56,11 +56,17 @@ public class SaveSelectedBook extends HttpServlet {
           totalPrice+= book.getRentPrice();
           booksList.add(book);
         }
+        LibraryBean libraryBean = new LibraryBean();
+        Library library = libraryBean.getLibrary();
+        String currency = "";
+        if(library!=null){
+         currency = library.getMainCurrency();
+        }
          request.setAttribute("booksList", booksList);
          ClientBean clientBean = new ClientBean();
          List<Client> customersList= clientBean.getClients();
          request.setAttribute("customersList", customersList);
-        request.getRequestDispatcher("RentHeader/rentHeaderForm.jsp?totalPrice="+totalPrice+"&selectedCustomer=").forward(request, response);
+        request.getRequestDispatcher("RentHeader/rentHeaderForm.jsp?totalPrice="+totalPrice+"&selectedCustomer=&currency="+currency).forward(request, response);
        
     }
 

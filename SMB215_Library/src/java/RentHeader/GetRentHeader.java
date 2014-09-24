@@ -10,6 +10,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import library.Library;
+import library.LibraryBean;
 
 @WebServlet(name = "GetRentHeader", urlPatterns = {"/GetRentHeader"})
 public class GetRentHeader extends HttpServlet {
@@ -22,10 +24,16 @@ public class GetRentHeader extends HttpServlet {
             RentDetailsBean rentDetailsBean = new RentDetailsBean();
             List<RentDetails> rentDetailsList = rentDetailsBean.getRentDetailss(rentHeader.getId());
             request.setAttribute("rentDetailsList", rentDetailsList);
-          
+            LibraryBean libraryBean = new LibraryBean();
+            Library library = libraryBean.getLibrary();
+            String currency = "";
+            if(library!=null){
+             currency = library.getMainCurrency();
+            }
              request.getRequestDispatcher("RentHeader/viewDetails.jsp?"
                      +"total="+rentHeader.getTotal()
-                     +"&customer="+rentHeader.getCutomerName()).forward(request, response);
+                     +"&customer="+rentHeader.getCutomerName()
+                     +"&currency="+currency).forward(request, response);
         }
 
     }

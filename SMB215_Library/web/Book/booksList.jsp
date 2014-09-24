@@ -55,7 +55,7 @@
                                     <tr>
                                         <td><input name="selectedBooks" type="checkbox" value="${book.id}"/></td>
                                         <td>${book.title}</td>
-                                        <td>${book.rentPrice}</td>
+                                        <td>${book.rentPrice} <%=request.getParameter("currency")%></td>
                                     </tr>
                                 </c:forEach>
                                 </tbody>

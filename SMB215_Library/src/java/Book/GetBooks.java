@@ -15,6 +15,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import library.Library;
+import library.LibraryBean;
 
 /**
  *
@@ -45,8 +47,14 @@ public class GetBooks extends HttpServlet {
             booksList.add(book);
         }
         }
+        LibraryBean libraryBean = new LibraryBean();
+        Library library = libraryBean.getLibrary();
+        String currency = "";
+        if(library!=null){
+         currency = library.getMainCurrency();
+        }
         request.setAttribute("booksList", booksList);
-        request.getRequestDispatcher("Book/booksList.jsp").forward(request, response);
+        request.getRequestDispatcher("Book/booksList.jsp?currency="+currency).forward(request, response);
    
         }
   
