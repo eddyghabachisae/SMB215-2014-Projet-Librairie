@@ -63,17 +63,17 @@ public class GetPOHeader extends HttpServlet {
             POHeader poh = pohBean.getPOHeader(Long.valueOf(request.getParameter("id")));
             String orderdate="";
             if(poh.getOrderdate()!=null){
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
              orderdate = sdf.format(poh.getOrderdate());
             }
             String shippingdate="";
             if(poh.getShippingdate()!=null){
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
              shippingdate = sdf.format(poh.getShippingdate());
             }
             String deliverydate="";
             if(poh.getDeliverydate()!=null){
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
              deliverydate = sdf.format(poh.getDeliverydate());
             }
             request.getRequestDispatcher("purchaseOrderHeader/editPOHeader.jsp?"

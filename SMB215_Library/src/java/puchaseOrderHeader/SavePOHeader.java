@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package puchaseOrderHeader;
 
 import java.io.IOException;
 import java.sql.Date;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -36,53 +36,71 @@ public class SavePOHeader extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       POHeader poh = new POHeader();
-       poh.setBranch(Long.parseLong(request.getParameter("branch")));
-       poh.setSupplierbranch(Long.parseLong(request.getParameter("supplierbranch")));
-       
-       java.util.Date orderdate = null;
-        try {
-            orderdate = Utils.getDateFromString(request.getParameter("orderdate"));
-        } catch (ParseException ex) {
-            Logger.getLogger(SavePOHeader.class.getName()).log(Level.SEVERE, null, ex);
+        POHeader poh = new POHeader();
+        poh.setBranch(Long.parseLong(request.getParameter("branch")));
+        poh.setSupplierbranch(Long.parseLong(request.getParameter("supplierbranch")));
+
+        if ((request.getParameter("orderdate") != null) && !(request.getParameter("orderdate").equals(""))) {
+            String orderdateformat = request.getParameter("orderdate").substring(3, 5) + "/"
+                    + request.getParameter("orderdate").substring(0, 2) + "/"
+                    + request.getParameter("orderdate").substring(6, 10);
+
+            java.util.Date orderdate = null;
+            try {
+                orderdate = Utils.getDateFromString(orderdateformat);
+            } catch (ParseException ex) {
+                Logger.getLogger(SavePOHeader.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            if (orderdate != null) {
+                java.sql.Date sqlDate = new java.sql.Date(orderdate.getTime());
+                poh.setOrderdate(sqlDate);
+            }
         }
-        if(orderdate!=null){
-        java.sql.Date sqlDate = new java.sql.Date(orderdate.getTime());
-        poh.setOrderdate(sqlDate);
+
+        if ((request.getParameter("shippingdate") != null) && !(request.getParameter("shippingdate").equals(""))) {
+            String shippingdateformat = request.getParameter("shippingdate").substring(3, 5) + "/"
+                    + request.getParameter("shippingdate").substring(0, 2) + "/"
+                    + request.getParameter("shippingdate").substring(6, 10);
+
+            java.util.Date shippingdate = null;
+            try {
+                shippingdate = Utils.getDateFromString(shippingdateformat);
+            } catch (ParseException ex) {
+                Logger.getLogger(SavePOHeader.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            if (shippingdate != null) {
+                java.sql.Date sqlDate = new java.sql.Date(shippingdate.getTime());
+                poh.setShippingdate(sqlDate);
+            }
         }
         
-        java.util.Date shippingdate = null;
-        try {
-            shippingdate = Utils.getDateFromString(request.getParameter("shippingdate"));
-        } catch (ParseException ex) {
-            Logger.getLogger(SavePOHeader.class.getName()).log(Level.SEVERE, null, ex);
+                if ((request.getParameter("deliverydate") != null) && !(request.getParameter("deliverydate").equals(""))) {
+            String deliverydateformat = request.getParameter("deliverydate").substring(3, 5) + "/"
+                    + request.getParameter("deliverydate").substring(0, 2) + "/"
+                    + request.getParameter("deliverydate").substring(6, 10);
+
+            java.util.Date deliverydate = null;
+            try {
+                deliverydate = Utils.getDateFromString(deliverydateformat);
+            } catch (ParseException ex) {
+                Logger.getLogger(SavePOHeader.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            if (deliverydate != null) {
+                java.sql.Date sqlDate = new java.sql.Date(deliverydate.getTime());
+                poh.setDeliverydate(sqlDate);
+            }
         }
-        if(shippingdate!=null){
-        java.sql.Date sqlDate = new java.sql.Date(shippingdate.getTime());
-        poh.setShippingdate(sqlDate);
-        }
-        
-        java.util.Date deliverydate = null;
-        try {
-            deliverydate = Utils.getDateFromString(request.getParameter("deliverydate"));
-        } catch (ParseException ex) {
-            Logger.getLogger(SavePOHeader.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        if(deliverydate!=null){
-        java.sql.Date sqlDate = new java.sql.Date(deliverydate.getTime());
-        poh.setDeliverydate(sqlDate);
-        }
-        
-       poh.setEmployee(Long.parseLong(request.getParameter("employee")));
-       POHeaderBean pohBean = new POHeaderBean();
-       if (!request.getParameter("id").equals("null")) {
-           poh.setId(Long.parseLong(request.getParameter("id")));
+
+        poh.setEmployee(Long.parseLong(request.getParameter("employee")));
+        POHeaderBean pohBean = new POHeaderBean();
+        if (!request.getParameter("id").equals("null")) {
+            poh.setId(Long.parseLong(request.getParameter("id")));
             pohBean.modifyPOHeader(poh);
             response.sendRedirect("GetPOHeaders");
-       } else {
-           long id = pohBean.addPOHeader(poh);
-            response.sendRedirect("GetPOHeader?mode=edit&id="+id);
-       }
+        } else {
+            long id = pohBean.addPOHeader(poh);
+            response.sendRedirect("GetPOHeader?mode=edit&id=" + id);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
