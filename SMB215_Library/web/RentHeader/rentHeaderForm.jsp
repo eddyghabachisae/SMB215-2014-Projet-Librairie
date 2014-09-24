@@ -18,7 +18,7 @@
                 <div class="wrapper">
                     <div class="grid_12">
                         <div class="wrapper border-bot">
-                            <h1><a href="index.html">Library</a></h1>
+                            <h1><a href="home.jsp">Library</a></h1>
                             <nav>
                                  <ul class="menu">
                                     <li><a class="active" href="${pageContext.request.contextPath}/home.jsp">Main</a></li>
@@ -33,14 +33,15 @@
         </header>
         
         <!--==============================content================================-->
-        <section id="content"><div class="ic"><div class="inner_copy">All <a href="http://www.magentothemesworld.com" title="Best Magento Templates">premium Magento themes</a> at magentothemesworld.com!</div></div>
+        <section id="content">
             <div class="container_12">
                 <div class="wrapper">
+                    <div style="margin-left:80%;">
+                            <a href="GetRentHeaders"><input type="submit" name="Submit" value="Back to List" class="button"/></a>
+                    </div>
                     <article class="grid_8">
-                    	<div class="indent-right">
-                        	<h3 class="prev-indent-bot">Rental Order</h3>
                                 <ul id="tabs">
-                                    <li><a href="" title="tab1" class="notActive">Select Books</a></li>
+                                    <li><a href="GetBooks" title="tab1" class="notActive">Select Books</a></li>
                                     <li><a href="" title="tab2" class="activeTab">Rentals Info</a></li>
                                 </ul>
                                 <div id="content3"> 

@@ -18,7 +18,7 @@
                 <div class="wrapper">
                     <div class="grid_12">
                         <div class="wrapper border-bot">
-                            <h1><a href="index.html">Library</a></h1>
+                            <h1><a href="home.jsp">Library</a></h1>
                             <nav>
                                  <ul class="menu">
                                     <li><a class="active" href="${pageContext.request.contextPath}/home.jsp">Main</a></li>
@@ -33,15 +33,16 @@
         </header>
         
         <!--==============================content================================-->
-        <section id="content"><div class="ic"><div class="inner_copy">All <a href="http://www.magentothemesworld.com" title="Best Magento Templates">premium Magento themes</a> at magentothemesworld.com!</div></div>
+        <section id="content">
             <div class="container_12">
                 <div class="wrapper">
                     <article class="grid_8">
                     	<div class="indent-right">
-                        	<h3 class="prev-indent-bot">Rental Order Details</h3>
+                        	<h3 class="prev-indent-bot">Order Details</h3>
                                 
                                 <div id="content3"> 
-                                    <p>Cutomer  Name: <%=request.getParameter("customer")%></p>
+                                    <p><b>Cutomer  Name:</b> <%=request.getParameter("customer")%></p>
+                                    <p><b>OrderDate    :</b> <%=request.getParameter("orderDate")%></p>
                                     
 			
                             <br>

@@ -33,7 +33,8 @@ public class GetRentHeader extends HttpServlet {
              request.getRequestDispatcher("RentHeader/viewDetails.jsp?"
                      +"total="+rentHeader.getTotal()
                      +"&customer="+rentHeader.getCutomerName()
-                     +"&currency="+currency).forward(request, response);
+                     +"&currency="+currency
+                     +"&orderDate="+rentHeader.getSubmitDate()).forward(request, response);
         }
 
     }
