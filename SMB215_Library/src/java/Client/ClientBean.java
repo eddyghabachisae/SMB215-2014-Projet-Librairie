@@ -69,4 +69,55 @@ public class ClientBean {
         return cust;
     }
 
+	      public List<Client> getClients() {
+        List<Client> list = new ArrayList<>();
+        Connection con = null;
+        Statement stmt = null;
+        try {
+            DBconnection dbCon = new DBconnection();
+            Class.forName(dbCon.getJDBC_DRIVER());
+
+            con = DriverManager.getConnection(dbCon.getDATABASE_URL(),
+                    dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
+
+            stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("Select * From customer order by cst_id");
+        
+            while (rs.next()) {
+                Client client = new Client();
+                 client.setId(rs.getLong(1));
+                client.setUsername(rs.getString(2));
+                client.setPassword(rs.getString(3));
+                client.setFirstname(rs.getString(4));
+                client.setLastname(rs.getString(5));
+                client.setGender(rs.getInt(6));
+                client.setMaritalstatus(rs.getInt(7));
+                client.setDateofbirth(rs.getDate(8));
+                client.setAddress(rs.getString(9));
+                client.setCity(rs.getString(10));
+                client.setPhone(rs.getString(11));
+                client.setMobile(rs.getString(12));
+                client.setEmail(rs.getString(13));
+                client.setRemarks(rs.getString(14));
+                client.setIsactive(rs.getBoolean(15));
+                list.add(client);
+               
+            }
+        } catch (SQLException | ClassNotFoundException ex) {
+            System.err.println("Caught Exception: " + ex.getMessage());
+        } finally {
+            try {
+                if (stmt != null) {
+                    stmt.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException ex) {
+                System.err.println("Caught Exception: " + ex.getMessage());
+            }
+        }
+        System.err.println(list.size());
+        return list;
+    }
     }
