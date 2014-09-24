@@ -42,13 +42,13 @@ public class GetClient extends HttpServlet {
             MaritalBean marBean = new MaritalBean();
             Marital mar = marBean.getMarital(clt1.getMaritalstatus());  
 
-    
+
             //System.out.println(clt.getId());
             //CityBean citBean = new CityBean();
            // City mycit = citBean.getCity(1);
            // mycit.getName();
            
-            response.sendRedirect("Client/indexClient.jsp?id=" + clt1.getId()
+            response.sendRedirect("Client/editClient.jsp?id=" + clt1.getId()
                  + "&username=" + clt1.getUsername() 
                  + "&FirstName=" + clt1.getFirstname()
                  + "&LastName=" + clt1.getLastname()

@@ -1,3 +1,6 @@
+<%@page import="java.util.List"%>
+<%@page import="java.util.Iterator"%>
+<%@page import="Client.*"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -44,12 +47,8 @@
                                 <tr><td colspan="2"><h1>General Information:</h1><br /><br /></td></tr>
                                 <tr>
                             <td  width="150px"><image src="../images/Client/<%= request.getParameter("id") %>.jpg" border="2" /> </td><td>
-                                Full Name: 
-                                <%Iterator itr;%>
-                                <%List data = (List) request.Attribute("cltData")%>
-                                <% String s= (String) itr.next(); %>
-                            
-                            
+                                Full Name:
+                                    
                             <i><%= request.getParameter("FirstName") %> <%= request.getParameter("LastName") %></i> <br/>
                             Gender:  <i><%= request.getParameter("Gender") %> </i> <br/>
                             Marital status:  <i><%= request.getParameter("Maritalstatus") %> </i> <br/>
@@ -64,9 +63,8 @@
                             </tr>
                             <tr><td colspan="2">Please select an option from the below:</td></tr>
                             <tr><td colspan="2">
-                            
-                            <a href="GetClient"><input type="submit" name="Submit" value="Edit My Profile" class="button"/></a>
-                            <a href="GetClient"><input type="submit" name="Submit" value="Borrow a book" class="button"/></a>
+                                    <form action="${pageContext.request.contextPath}/GetClient" method="post"><input type="submit" name="Submit" value="Edit My Profile" class="button>/form>
+                                   <a href="GetClient"><input type="submit" name="Submit" value="Borrow a book" class="button"/></a>
                             <a href="GetClient"><input type="submit" name="Submit" value="Borrowed Books List" class="button"/></a>
                             <a href="GetClient"><input type="submit" name="Submit" value="change your password" class="button"/></a>
                                 </td>

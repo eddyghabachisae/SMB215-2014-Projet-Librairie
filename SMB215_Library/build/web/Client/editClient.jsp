@@ -10,20 +10,7 @@
     <head>
         <title>Supplier</title>
         <%@ include file="../main.html" %>
-    <script type="text/javascript">
-        function validateisactive() {
 
-            if (document.getElementById('isactive').checked) {
-                document.getElementById('deactivationlabel').style.display = 'none';
-                document.getElementById('deactivationreason').value = '';
-                document.getElementById('deactivationreason').style.display = 'none';
-            } else {
-                document.getElementById('deactivationlabel').style.display = 'block';
-                document.getElementById('deactivationreason').style.display = 'block';
-            }
-        }
-
-    </script>
     </head>
     
     <body id="page5">
@@ -64,36 +51,23 @@
 
                                     <form id="form" name="form" action="../SaveClient?id=<%=request.getParameter("id")%>" method="post">                    
                                         <fieldset>
-                                            <label><span class="text-form">Name* </span><input type="text" class="inputText" name="name" value="<%=request.getParameter("name")%>"></label>
-                                            <label><span class="text-form">Website </span><input type="text" class="inputText" name="website" value="<%=request.getParameter("website")%>"></label>
-                                            <label><span class="text-form">Remarks </span><textarea class="inputText" name="remarks"><%=request.getParameter("remarks")%></textarea></label>
+                                            <label><span class="text-form">Username: </span><input type="text" class="inputText" name="name" value="<%=request.getParameter("username")%>"></label>
+                                            <label><span class="text-form">First Name: </span><input type="text" class="inputText" name="website" value="<%=request.getParameter("FirstName")%>"></label>
+                                            <label><span class="text-form">Last Name: </span><textarea class="inputText" name="remarks"><%=request.getParameter("LastName")%></textarea></label>
 
-                                            <label><span class="text-form">Active?</span>
-                                                <input type="checkbox" id="isactive" name="isactive" 
-                                                       onchange="validateisactive()">
-                                            </label>
-                                            <label id="deactivationlabel"><span class="text-form">Deactivation reason </span><textarea class="inputText" name="deactivationreason" id="deactivationreason"><%=request.getParameter("deactivationreason")%></textarea></label>
-
-
-
+                                           
                                             <div class="wrapper">
                                                 <div class="extra-wrap">		
                                                     <div class="buttons">
                                                         <input type="submit" name="Submit" value="Submit" class="button"  />
-                                                        <a href="../GetSuppliers"><input type="button" name="Cancel" value="Cancel" class="button"/></a>
+                                                        <a href="../ViewProfile"><input type="button" name="Cancel" value="Cancel" class="button"/></a>
                                                     </div> 
 
                                                 </div>
 
                                             </div>                      
                                         </fieldset>						
-                                        <script>
-                                            <% if (request.getParameter("id").equals("")
-                        || request.getParameter("isactive").equals("true")) {%>
-    document.getElementById('isactive').checked = true;
-    validateisactive();
-                                            <%}%>
-                                        </script>
+
                                     </form>
                                 </div>
                             </div>
@@ -115,10 +89,9 @@
         </div>
         <script type="text/javascript"> Cufon.now();</script>
     </body>
-    <script type="text/javascript">
-
-        new FormValidator('form', [{
-                name: 'name',
+    <!--script type="text/javascript">
+      new FormValidator('form', [{
+                username: 'name',
                 display: 'Name',
                 rules: 'required'
             }
@@ -147,5 +120,5 @@
                 event.returnValue = false;
             }
         });
-    </script>
+    </script -->
 </html>
