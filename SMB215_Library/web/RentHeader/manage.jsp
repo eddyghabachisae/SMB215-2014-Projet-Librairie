@@ -57,7 +57,7 @@
                                     </tr>
                                 <c:forEach items="${rentHeadersList}" var="rent">
                                     <tr>
-                                        <td></td>
+                                        <td>${rent.getCutomerName()}</td>
                                         <td>${rent.submitDate}</td>
                                         <td>${rent.getBooksNb()}</td>
                                         <td><a href="GetRentHeader?id=${rent.id}" title="View Details" class="fa fa-lg fa fa-eye"></a></td>
