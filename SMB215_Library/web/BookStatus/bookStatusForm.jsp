@@ -3,6 +3,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
+     <%
+        if ((session.getAttribute("username") == null) || (session.getAttribute("username") == "")) {
+            response.sendRedirect("login.jsp");
+        }
+    %>
 <%@ include file="../main.html" %>
 <body id="page5">
 	<div class="main">
@@ -12,11 +17,10 @@
                 <div class="wrapper">
                     <div class="grid_12">
                         <div class="wrapper border-bot">
-                            <h1><a href="index.html">Library</a></h1>
+                            <h1><a href="home.jsp">Library</a></h1>
                             <nav>
                                  <ul class="menu">
                                     <li><a class="active" href="${pageContext.request.contextPath}/home.jsp">Main</a></li>
-                                    <li><a href="">Inbox</a></li>
                                     <li><a href="">Logout</a></li>
                                 </ul>
                             </nav>
@@ -28,7 +32,7 @@
         </header>
         
         <!--==============================content================================-->
-        <section id="content"><div class="ic"><div class="inner_copy">All <a href="http://www.magentothemesworld.com" title="Best Magento Templates">premium Magento themes</a> at magentothemesworld.com!</div></div>
+        <section id="content">
             <div class="container_12">
                 <div class="wrapper">
                     <article class="grid_8">
