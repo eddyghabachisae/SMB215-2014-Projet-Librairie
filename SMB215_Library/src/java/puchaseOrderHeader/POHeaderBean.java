@@ -233,7 +233,7 @@ public class POHeaderBean {
                     dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
                    con.setAutoCommit(false);
             pstmt = con.prepareStatement("Update purchaseheader Set poh_orderdate=?, "
-                    + "poh_shippingdate=?, poh_deliverydate, branch_id Where poh_id=?");
+                    + "poh_shippingdate=?, poh_deliverydate=?, branch_id=? Where poh_id=?");
             pstmt.setDate(1, poh.getOrderdate());
             pstmt.setDate(2, poh.getShippingdate());
             pstmt.setDate(3, poh.getDeliverydate());
@@ -241,12 +241,14 @@ public class POHeaderBean {
             pstmt.setLong(5, poh.getId());
             pstmt.executeUpdate();
             if (poh.getDeliverydate() != null){
-                pstmt = con.prepareStatement("");
-            pstmt.setDate(1, poh.getOrderdate());
-            pstmt.setDate(2, poh.getShippingdate());
-            pstmt.setDate(3, poh.getDeliverydate());
-            pstmt.setLong(4, poh.getBranch());
-            pstmt.setLong(5, poh.getId());
+                pstmt = con.prepareStatement("Update item "
+                        +"Inner Join "
+                        + "(Select item_id, pod_quantity, pod_unitcost From purchasedetails "
+                        + "Where purchaseheader_id=?) purchasedetails "
+                        + "On item.itm_id = purchasedetails.item_id "
+                        + "Set item.itm_quantity = item.itm_quantity+purchasedetails.pod_quantity, "
+                        + "item.itm_avgunitcost = ((item.itm_avgunitcost*item.itm_quantity)+(purchasedetails.pod_unitcost*purchasedetails.pod_quantity))/(itm_quantity+pod_quantity)");
+            pstmt.setLong(1, poh.getId());
             pstmt.executeUpdate();
             }
             con.commit();

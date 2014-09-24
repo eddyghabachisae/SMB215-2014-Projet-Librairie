@@ -1,3 +1,5 @@
+
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -16,6 +18,7 @@ import purchaseOrderDetail.PODetailBean;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -55,17 +58,31 @@ public class GetPOHeader extends HttpServlet {
             PODetailBean podBean = new PODetailBean();
         List<PODetail> podetails = podBean.getPODetails(Long.parseLong(request.getParameter("id")));
         request.setAttribute("podetails", podetails);
+        
             POHeaderBean pohBean = new POHeaderBean();
             POHeader poh = pohBean.getPOHeader(Long.valueOf(request.getParameter("id")));
+            String orderdate="";
+            if(poh.getOrderdate()!=null){
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+             orderdate = sdf.format(poh.getOrderdate());
+            }
+            String shippingdate="";
+            if(poh.getShippingdate()!=null){
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+             shippingdate = sdf.format(poh.getShippingdate());
+            }
+            String deliverydate="";
+            if(poh.getDeliverydate()!=null){
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+             deliverydate = sdf.format(poh.getDeliverydate());
+            }
             request.getRequestDispatcher("purchaseOrderHeader/editPOHeader.jsp?"
                     + "branch=" + poh.getBranch()
                     + "&supplier=" + poh.getSupplier()
                     + "&supplierbranch=" + poh.getSupplierbranch()
-            + "&orderdate=" + poh.getOrderdate()
-                    + "&shippingdate=" +
-                    ((poh.getShippingdate()!=null)?poh.getShippingdate():"")
-                    + "&deliverydate=" + 
-                    ((poh.getDeliverydate()!=null)?poh.getDeliverydate():"")
+                    + "&orderdate=" + orderdate
+                    + "&shippingdate=" + shippingdate
+                    + "&deliverydate=" + deliverydate
                     + "&total=" + poh.getTotal()
             ).forward(request, response);
         } else {

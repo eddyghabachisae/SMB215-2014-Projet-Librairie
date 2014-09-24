@@ -78,6 +78,7 @@ public class SavePOHeader extends HttpServlet {
        if (!request.getParameter("id").equals("null")) {
            poh.setId(Long.parseLong(request.getParameter("id")));
             pohBean.modifyPOHeader(poh);
+            response.sendRedirect("GetPOHeaders");
        } else {
            long id = pohBean.addPOHeader(poh);
             response.sendRedirect("GetPOHeader?mode=edit&id="+id);
