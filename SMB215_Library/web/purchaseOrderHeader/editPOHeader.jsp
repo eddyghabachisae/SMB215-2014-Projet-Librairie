@@ -53,6 +53,14 @@
                 var myform = document.getElementById('form');
                 myform.action = "SavePOHeader?id=<%=request.getParameter("id")%>&branch=" + branch_id + "&supplierbranch=" + supplierbranch_id + "&employee=" + <%= session.getAttribute("userid")%>;
             }
+            
+            function addbranchid(){
+                var selectbranch = document.getElementById('branch');
+                var branch_id = selectbranch.value;
+                var selectsupplierbranch = document.getElementById('supplierbranch');
+                var supplierbranch_id = selectsupplierbranch.value;
+                document.getElementById('getpodetail').href =  document.getElementById('getpodetail').href +'&branch='+branch_id+'&supplierbranch='+ supplierbranch_id;
+            }
         </script>
     </head>
 
@@ -176,7 +184,7 @@
                                                                 <% if ((request.getParameter("deliverydate") == null) || (request.getParameter("deliverydate").equals(""))) {%>
                                                                 <td>
 
-                                                                    <a href="GetPODetail?pohid=<%=request.getParameter("id")%>&amp;id=${pod.id}" title="Edit" class="fa fa-lg fa-pencil-square-o"></a>
+                                                                    <a id="getpodetail" onclick="addbranchid()" href="GetPODetail?pohid=<%=request.getParameter("id")%>&amp;id=${pod.id}" title="Edit" class="fa fa-lg fa-pencil-square-o" ></a>
                                                                     <a href="DeletePODetail?pohid=<%=request.getParameter("id")%>&amp;id=${pod.id}" title="Delete" class="fa fa-lg fa-trash-o"></a> 
                                                                 </td>
                                                                 <%}%>
@@ -209,7 +217,7 @@
                                                     <div class="buttons">
                                                         <input type="submit" name="Submit" id="submit" value="Submit" class="button" onclick="selectedvalues()"/>
                                                         <% if ((request.getParameter("id") != null) && (request.getParameter("id") != "")) {%>                                                               
-                                                        <a href="GetPODetail?pohid=<%=request.getParameter("id")%>"><input type="button" id="add" name="AddPOD" value="Add Item" class="button"/></a>
+                                                        <a href="GetPODetail?pohid=<%=request.getParameter("id")%>" id="getpodetail" onclick="addbranchid()"><input type="button" id="add" name="AddPOD" value="Add Item" class="button"/></a>
                                                             <%}%>
                                                         <a href="GetPOHeaders"><input type="button"  name="Cancel" value="Cancel" class="button"/></a>
                                                     </div> 

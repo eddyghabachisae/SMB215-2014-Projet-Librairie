@@ -37,6 +37,7 @@ public class SavePODetail extends HttpServlet {
         pod.setQuantity(Integer.parseInt(request.getParameter("quantity")));
         pod.setUnitcost(Float.parseFloat(request.getParameter("unitcost")));
         pod.setPohid(Long.parseLong(request.getParameter("pohid")));
+        pod.setBranch(Long.parseLong(request.getParameter("branch")));
         PODetailBean podBean = new PODetailBean();
         if (!request.getParameter("id").equals("")){
             pod.setId(Long.parseLong(request.getParameter("id")));

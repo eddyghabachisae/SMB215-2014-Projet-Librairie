@@ -19,6 +19,7 @@ public class PODetail {
     private String itemname;
     private long pohid;
     private long id;
+    private long branch;
     
 
     public long getItem() {
@@ -75,6 +76,14 @@ public class PODetail {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public long getBranch() {
+        return branch;
+    }
+
+    public void setBranch(long branch) {
+        this.branch = branch;
     }
     
     

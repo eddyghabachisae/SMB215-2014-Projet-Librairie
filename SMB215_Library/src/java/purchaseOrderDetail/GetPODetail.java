@@ -46,7 +46,9 @@ public class GetPODetail extends HttpServlet {
                     +"&quantity=" + pod.getQuantity() 
                     +"&unitcost=" + pod.getUnitcost()
                     +"&item=" + pod.getItem()
-                    +"&pohid=" + pod.getPohid()).forward(request,response); 
+                    +"&pohid=" + pod.getPohid()
+                    +"&branch=" + request.getParameter("branch")
+                    +"&supplierbranch=" + request.getParameter("supplierbranch")).forward(request,response); 
        } else {
            request.getRequestDispatcher("purchaseOrderDetail/editPODetail.jsp?"
                  + "id=&quantity=&unitcost=").forward(request,response); 

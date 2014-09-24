@@ -15,7 +15,7 @@
             var select = document.getElementById('item');
             var item_id = select.value;
             var myform = document.getElementById('form');
-            myform.action = "SavePODetail?id=<%=request.getParameter("id")%>&pohid=<%=request.getParameter("pohid")%>&selecteditem=" + item_id;
+            myform.action = "SavePODetail?id=<%=request.getParameter("id")%>&pohid=<%=request.getParameter("pohid")%>&branch=<%=request.getParameter("branch")%>&supplierbranch=<%=request.getParameter("supplierbranch")%>&selecteditem=" + item_id;
         }
         </script>
     </head>

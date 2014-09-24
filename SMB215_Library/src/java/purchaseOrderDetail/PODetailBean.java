@@ -78,7 +78,7 @@ public class PODetailBean {
 
             con = DriverManager.getConnection(dbCon.getDATABASE_URL(),
                     dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
-
+                   con.setAutoCommit(false);
             pstmt = con.prepareStatement("Insert Into purchasedetails "
                     + "(pod_quantity, pod_unitcost, purchaseheader_id, item_id) "
                     + "Values(?,?,?,?)");
@@ -89,8 +89,25 @@ public class PODetailBean {
             pstmt.setLong(4, pod.getItem());
             
             pstmt.execute();
+            
+            pstmt = con.prepareStatement("Insert Into warehouse "
+                    + "(item_id, branch_id) "
+                    + "Values(?,?)");
+            
+            pstmt.setInt(1, pod.getQuantity());
+            pstmt.setLong(2, pod.getItem());            
+            
+            pstmt.execute();
+             con.commit();
            
         } catch (SQLException | ClassNotFoundException ex) {
+            if (con != null) {
+                try {
+                    con.rollback();
+                } catch (SQLException ex2) {
+                    System.err.println("Caught Exception: " + ex2.getMessage());
+                }
+            }
             System.err.println("Caught Exception: " + ex.getMessage());
         } finally {
             try {
