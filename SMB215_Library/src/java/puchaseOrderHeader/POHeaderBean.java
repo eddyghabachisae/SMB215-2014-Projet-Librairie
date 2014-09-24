@@ -221,5 +221,56 @@ public class POHeaderBean {
             }
         }
     }
+    
+    public void modifyPOHeader(POHeader poh) {
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        try {
+            DBconnection dbCon = new DBconnection();
+            Class.forName(dbCon.getJDBC_DRIVER());
+
+            con = DriverManager.getConnection(dbCon.getDATABASE_URL(),
+                    dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
+                   con.setAutoCommit(false);
+            pstmt = con.prepareStatement("Update purchaseheader Set poh_orderdate=?, "
+                    + "poh_shippingdate=?, poh_deliverydate, branch_id Where poh_id=?");
+            pstmt.setDate(1, poh.getOrderdate());
+            pstmt.setDate(2, poh.getShippingdate());
+            pstmt.setDate(3, poh.getDeliverydate());
+            pstmt.setLong(4, poh.getBranch());
+            pstmt.setLong(5, poh.getId());
+            pstmt.executeUpdate();
+            if (poh.getDeliverydate() != null){
+                pstmt = con.prepareStatement("");
+            pstmt.setDate(1, poh.getOrderdate());
+            pstmt.setDate(2, poh.getShippingdate());
+            pstmt.setDate(3, poh.getDeliverydate());
+            pstmt.setLong(4, poh.getBranch());
+            pstmt.setLong(5, poh.getId());
+            pstmt.executeUpdate();
+            }
+            con.commit();
+        } catch (SQLException | ClassNotFoundException ex) {
+            if (con != null) {
+                try {
+                    con.rollback();
+                } catch (SQLException ex2) {
+                    System.err.println("Caught Exception: " + ex2.getMessage());
+                }
+            }
+            System.err.println("Caught Exception: " + ex.getMessage());
+        } finally {
+            try {
+                if (pstmt != null) {
+                    pstmt.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException ex) {
+                System.err.println("Caught Exception: " + ex.getMessage());
+            }
+        }
+    }
 
 }

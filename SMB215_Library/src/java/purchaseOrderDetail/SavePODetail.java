@@ -39,7 +39,7 @@ public class SavePODetail extends HttpServlet {
         pod.setPohid(Long.parseLong(request.getParameter("pohid")));
         PODetailBean podBean = new PODetailBean();
         if (!request.getParameter("id").equals("")){
-            pod.setId(Integer.parseInt(request.getParameter("id")));
+            pod.setId(Long.parseLong(request.getParameter("id")));
             podBean.modifyPODetail(pod);
             podBean.updatePOHeaderTotal(Long.parseLong(request.getParameter("pohid")));
             response.sendRedirect("GetPOHeader?id="+request.getParameter("pohid"));
