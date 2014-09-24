@@ -4,18 +4,18 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html">
         <% 
         if ((session.getAttribute("username") == null) || (session.getAttribute("username") == "")) {
       response.sendRedirect("login.jsp");
         }
     %>
-    <head>
+    <h:head>
         <title>Client Home Page</title>
         <%@ include file="../main.html" %>
-    </head>
+    </h:head>
     
-    <body id="page1">
+    <h:body id="page1">
         <div class="main">
             <!--==============================header=================================-->
             <header>
@@ -42,7 +42,7 @@
  <section id="content1"><div class="ic"></div>
      
                             Welcome to the Profile page of user: <b><%= request.getParameter("username") %></b><br />
-  
+                            
                             <table width="100%"cellspacing=0" cellpading="0">
                                 <tr><td colspan="2"><h1>General Information:</h1><br /><br /></td></tr>
                                 <tr>
@@ -78,7 +78,7 @@
         </div>   
          
         <script type="text/javascript"> Cufon.now();</script>
-    </body>
+    </h:body>
 </html>
 
 
