@@ -3,11 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/eddy/Documents/SMB215/SMB215-2014-Projet-Librairie/SMB215_Library/web/purchaseOrderDetail/editPODetail.jsp</file>
-            <file>file:/home/eddy/Documents/SMB215/SMB215-2014-Projet-Librairie/SMB215_Library/src/java/puchaseOrderHeader/SavePOHeader.java</file>
-            <file>file:/home/eddy/Documents/SMB215/SMB215-2014-Projet-Librairie/SMB215_Library/web/purchaseOrderHeader/editPOHeader.jsp</file>
-            <file>file:/home/eddy/Documents/SMB215/SMB215-2014-Projet-Librairie/SMB215_Library/src/java/main/DBconnection.java</file>
-            <file>file:/home/eddy/Documents/SMB215/SMB215-2014-Projet-Librairie/SMB215_Library/web/purchaseOrderHeader/viewPOHeader.jsp</file>
+            <file>file:/C:/Users/dany.wazen/Documents/GitHub/SMB215-2014-Projet-Librairie/SMB215_Library/src/java/Client/Client.java</file>
+            <file>file:/C:/Users/dany.wazen/Documents/GitHub/SMB215-2014-Projet-Librairie/SMB215_Library/src/java/city/CityBean.java</file>
+            <file>file:/C:/Users/dany.wazen/Documents/GitHub/SMB215-2014-Projet-Librairie/SMB215_Library/src/java/Client/ClientBean.java</file>
+            <file>file:/C:/Users/dany.wazen/Documents/GitHub/SMB215-2014-Projet-Librairie/SMB215_Library/src/java/Client/GetClient.java</file>
+            <file>file:/C:/Users/dany.wazen/Documents/GitHub/SMB215-2014-Projet-Librairie/SMB215_Library/web/home.jsp</file>
+            <file>file:/C:/Users/dany.wazen/Documents/GitHub/SMB215-2014-Projet-Librairie/SMB215_Library/src/java/Marital/Marital.java</file>
+            <file>file:/C:/Users/dany.wazen/Documents/GitHub/SMB215-2014-Projet-Librairie/SMB215_Library/src/java/Marital/MaritalBean.java</file>
+            <file>file:/C:/Users/dany.wazen/Documents/GitHub/SMB215-2014-Projet-Librairie/SMB215_Library/web/Client/viewClient.jsp</file>
+            <file>file:/C:/Users/dany.wazen/Documents/GitHub/SMB215-2014-Projet-Librairie/SMB215_Library/src/java/gender/Gender.java</file>
+            <file>file:/C:/Users/dany.wazen/Documents/GitHub/SMB215-2014-Projet-Librairie/SMB215_Library/src/java/supplier/ActivateSupplier.java</file>
+            <file>file:/C:/Users/dany.wazen/Documents/GitHub/SMB215-2014-Projet-Librairie/SMB215_Library/src/java/gender/GenderBean.java</file>
+            <file>file:/C:/Users/dany.wazen/Documents/GitHub/SMB215-2014-Projet-Librairie/SMB215_Library/web/Client/editClient.jsp</file>
         </group>
     </open-files>
 </project-private>
