@@ -232,7 +232,7 @@
                     document.getElementById('supplier').disabled = true;
                     document.getElementById('supplierbranch').disabled = true;
                 }
-                if  (mode !== 'edit') {
+                if  ((mode !== 'edit') || ((mode === 'edit') && ('<%=request.getParameter("total")%>'==='0.0'))) {
                     document.getElementById('shippingdatepicker').disabled = true;
                     document.getElementById('deliverydatepicker').disabled = true;
                 }

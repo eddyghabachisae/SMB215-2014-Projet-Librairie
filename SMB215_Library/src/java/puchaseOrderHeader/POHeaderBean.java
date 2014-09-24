@@ -250,6 +250,14 @@ public class POHeaderBean {
                         + "item.itm_avgunitcost = ((item.itm_avgunitcost*item.itm_quantity)+(purchasedetails.pod_unitcost*purchasedetails.pod_quantity))/(itm_quantity+pod_quantity)");
             pstmt.setLong(1, poh.getId());
             pstmt.executeUpdate();
+             pstmt = con.prepareStatement("Update warehouse "
+                        +"Inner Join "
+                        + "(Select item_id, branch_id, pod_quantity, pod_unitcost From purchasedetails "
+                        + "Where purchaseheader_id=?) purchasedetails "
+                        + "On warehouse.item_id = purchasedetails.item_id  and warehouse.branch_id = purchasedetails.branch_id "
+                        + "Set warehouse.wrh_quantity = warehouse.wrh_quantity+purchasedetails.pod_quantity");
+            pstmt.setLong(1, poh.getId());
+            pstmt.executeUpdate();
             }
             con.commit();
         } catch (SQLException | ClassNotFoundException ex) {
