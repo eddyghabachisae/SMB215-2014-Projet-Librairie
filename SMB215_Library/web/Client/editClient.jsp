@@ -54,6 +54,9 @@
                                             <label><span class="text-form">Username: </span><input type="text" class="inputText" name="name" value="<%=request.getParameter("username")%>"></label>
                                             <label><span class="text-form">First Name: </span><input type="text" class="inputText" name="website" value="<%=request.getParameter("FirstName")%>"></label>
                                             <label><span class="text-form">Last Name: </span><textarea class="inputText" name="remarks"><%=request.getParameter("LastName")%></textarea></label>
+                                            <label><span class="text-form">Gender: </span><input type="text" class="inputText" name="name" value="<%=request.getParameter("Gender")%>"></label>
+                                            <label><span class="text-form">Marital Status: </span><input type="text" class="inputText" name="website" value="<%=request.getParameter("Maritalstatus")%>"></label>
+                                            <label><span class="text-form">City: </span><textarea class="inputText" name="remarks"><%=request.getParameter("City")%></textarea></label>
 
                                            
                                             <div class="wrapper">
