@@ -17,12 +17,12 @@
                 }
             });
             $(function() {
-                if (mode === 'modify') {
+                if (mode === 'edit') {
                     $("#shippingdatepicker").datepicker();
                 }
             });
             $(function() {
-                if (mode === 'modify') {
+                if (mode === 'edit') {
                     $("#deliverydatepicker").datepicker();
                 }
             });
@@ -232,7 +232,7 @@
                     document.getElementById('supplier').disabled = true;
                     document.getElementById('supplierbranch').disabled = true;
                 }
-                if  (mode !== 'modify') {
+                if  (mode !== 'edit') {
                     document.getElementById('shippingdatepicker').disabled = true;
                     document.getElementById('deliverydatepicker').disabled = true;
                 }

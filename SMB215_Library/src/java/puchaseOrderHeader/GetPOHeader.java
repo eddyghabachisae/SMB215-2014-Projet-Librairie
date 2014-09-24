@@ -66,6 +66,7 @@ public class GetPOHeader extends HttpServlet {
                     ((poh.getShippingdate()!=null)?poh.getShippingdate():"")
                     + "&deliverydate=" + 
                     ((poh.getDeliverydate()!=null)?poh.getDeliverydate():"")
+                    + "&total=" + poh.getTotal()
             ).forward(request, response);
         } else {
             request.getRequestDispatcher("purchaseOrderHeader/editPOHeader.jsp?branch=&supplier=&supplierbranch=&orderdate=&shippingdate=&deliverydate=").forward(request, response);
