@@ -10,52 +10,52 @@
     <head>
         <title>PO Header</title>
         <%@ include file="../main.html" %>
-        <script>        
-        $(function() {   
-            if (mode !== 'view') {
-            $("#orderdatepicker").datepicker();
-        }
-        });
-        $(function() {
-            if (mode !== 'view') {
-            $("#shippingdatepicker").datepicker();
-        }
-        });
-        $(function() {
-            if (mode !== 'view') {
-            $("#deliverydatepicker").datepicker();
-        }
-        });
-    
-        function refreshsupplierbranches() {
+        <script>
+            $(function() {
+                if (mode !== 'view') {
+                    $("#orderdatepicker").datepicker();
+                }
+            });
+            $(function() {
+                if (mode === 'modify') {
+                    $("#shippingdatepicker").datepicker();
+                }
+            });
+            $(function() {
+                if (mode === 'modify') {
+                    $("#deliverydatepicker").datepicker();
+                }
+            });
 
-            var supplier = document.getElementById('supplier').value;
-            document.getElementById('supplierbranch').value = '';
-            if (supplier === '') {
-                document.getElementById('supplierbranch').disabled = true;
-            } else {
-                document.getElementById('supplierbranch').disabled = false;
-                for (var i = 1; i <= document.getElementById('supplierbranch').length - 1; i++) {
+            function refreshsupplierbranches() {
 
-                    if (document.getElementById('supplierbranch').options[i].className !== supplier) {
-                        document.getElementById('supplierbranch').options[i].hidden = true;
-                    } else {
-                        document.getElementById('supplierbranch').options[i].hidden = false;
+                var supplier = document.getElementById('supplier').value;
+                document.getElementById('supplierbranch').value = '';
+                if (supplier === '') {
+                    document.getElementById('supplierbranch').disabled = true;
+                } else {
+                    document.getElementById('supplierbranch').disabled = false;
+                    for (var i = 1; i <= document.getElementById('supplierbranch').length - 1; i++) {
+
+                        if (document.getElementById('supplierbranch').options[i].className !== supplier) {
+                            document.getElementById('supplierbranch').options[i].hidden = true;
+                        } else {
+                            document.getElementById('supplierbranch').options[i].hidden = false;
+                        }
                     }
                 }
             }
-        }
             function selectedvalues() {
-            var selectbranch = document.getElementById('branch');
-            var branch_id = selectbranch.value;
-            var selectsupplierbranch = document.getElementById('supplierbranch');
-            var supplierbranch_id = selectsupplierbranch.value;
-            var myform = document.getElementById('form');
-            myform.action = "SavePOHeader?id=<%=request.getParameter("id")%>&branch="+branch_id+"&supplierbranch=" + supplierbranch_id+"&employee=" + <%= session.getAttribute("userid")%>;
-        }
-    </script>
-   </head>
-   
+                var selectbranch = document.getElementById('branch');
+                var branch_id = selectbranch.value;
+                var selectsupplierbranch = document.getElementById('supplierbranch');
+                var supplierbranch_id = selectsupplierbranch.value;
+                var myform = document.getElementById('form');
+                myform.action = "SavePOHeader?id=<%=request.getParameter("id")%>&branch=" + branch_id + "&supplierbranch=" + supplierbranch_id + "&employee=" + <%= session.getAttribute("userid")%>;
+            }
+        </script>
+    </head>
+
     <body id="page5">
         <div class="main">
             <!--==============================header=================================-->
@@ -111,7 +111,7 @@
                                                     </c:forEach> 
                                                 </select>
                                             </label>
-                                            
+
                                             <label><span class="text-form">Branch* </span>
 
                                                 <select id="branch">
@@ -136,7 +136,7 @@
                                                     $('#supplierbranch').val(val);
                                                 }
                                             </script>
-                                            
+
                                             <script>
                                                 if ("<%=request.getParameter("branch")%>" !== "") {
                                                     var val = <%=request.getParameter("branch")%>;
@@ -153,7 +153,7 @@
                                             <label><span class="text-form">Delivery Date </span><input type="text"  class="inputText" id="deliverydatepicker"  
                                                                                                        name="deliverydate" value="<%=request.getParameter("deliverydate")%>"></label>
 
-                                        <% if ((request.getParameter("id")!=null) && (request.getParameter("id")!="")){%>                                                               <br>
+                                            <% if ((request.getParameter("id") != null) && (request.getParameter("id") != "")) {%>                                                               <br>
                                             <div class="CSSTableGenerator" >
                                                 <table>
                                                     <tbody>
@@ -175,15 +175,28 @@
                                                                 <td>${pod.total}</td>
                                                                 <% if ((request.getParameter("deliverydate") == null) || (request.getParameter("deliverydate").equals(""))) {%>
                                                                 <td>
-                                                                       
+
                                                                     <a href="GetPODetail?pohid=<%=request.getParameter("id")%>&amp;id=${pod.id}" title="Edit" class="fa fa-lg fa-pencil-square-o"></a>
                                                                     <a href="DeletePODetail?pohid=<%=request.getParameter("id")%>&amp;id=${pod.id}" title="Delete" class="fa fa-lg fa-trash-o"></a> 
-                                                                       </td>
-                                                        <%}%>
-                                                            
-                                                             
+                                                                </td>
+                                                                <%}%>
+
+
                                                             </tr>
                                                         </c:forEach>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                                        
+                                            <div class="CSSTableGenerator" >
+                                                <table>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>Total</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><%=request.getParameter("total")%></td>
+                                                    </tr>
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -195,9 +208,9 @@
 
                                                     <div class="buttons">
                                                         <input type="submit" name="Submit" id="submit" value="Submit" class="button" onclick="selectedvalues()"/>
-                                                        <% if ((request.getParameter("id")!=null) && (request.getParameter("id")!="")){%>                                                               
+                                                        <% if ((request.getParameter("id") != null) && (request.getParameter("id") != "")) {%>                                                               
                                                         <a href="GetPODetail?pohid=<%=request.getParameter("id")%>"><input type="button" id="add" name="AddPOD" value="Add Item" class="button"/></a>
-                                                        <%}%>
+                                                            <%}%>
                                                         <a href="GetPOHeaders"><input type="button"  name="Cancel" value="Cancel" class="button"/></a>
                                                     </div> 
 
@@ -212,18 +225,20 @@
                     </div>
                 </div>
             </section>
-                                                        
+
             <script>
                 var mode = '<%=request.getParameter("mode")%>';
                 if ((mode === 'edit') || (mode === 'view')) {
                     document.getElementById('supplier').disabled = true;
                     document.getElementById('supplierbranch').disabled = true;
-                } 
+                }
+                if  (mode !== 'modify') {
+                    document.getElementById('shippingdatepicker').disabled = true;
+                    document.getElementById('deliverydatepicker').disabled = true;
+                }
                 if (mode === 'view') {
                     document.getElementById('branch').disabled = true;
                     document.getElementById('orderdatepicker').disabled = true;
-                    document.getElementById('shippingdatepicker').disabled = true;
-                    document.getElementById('deliverydatepicker').disabled = true;
                     document.getElementById('submit').style.visibility = 'hidden';
                     document.getElementById('add').style.visibility = 'hidden';
                 }
