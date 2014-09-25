@@ -48,7 +48,7 @@ public class GetClient extends HttpServlet {
            // City mycit = citBean.getCity(1);
            // mycit.getName();
            
-            response.sendRedirect("Client/editClient.jsp?id=" + clt1.getId()
+            /*response.sendRedirect("Client/editClient.jsp?id=" + clt1.getId()
                  + "&username=" + clt1.getUsername() 
                  + "&FirstName=" + clt1.getFirstname()
                  + "&LastName=" + clt1.getLastname()
@@ -61,7 +61,7 @@ public class GetClient extends HttpServlet {
                  + "&Email=" + clt1.getEmail()
                  + "&Remarks=" + clt1.getRemarks()
                  + "&Isactive=" + clt1.getIsactive()                 
-            );            
+            );*/            
 
         //} else {
          //      response.sendRedirect("Client/indexClient.jsp?id=&username=&FirstName=&LastName=");

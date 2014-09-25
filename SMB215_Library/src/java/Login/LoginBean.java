@@ -23,6 +23,7 @@ public class LoginBean {
         public boolean doLogin(Login login, String username, String password) {
         Connection con = null;
         PreparedStatement pstmt = null;
+        PreparedStatement pstmt1 = null;
         boolean success = false;
         try {
             DBconnection dbCon = new DBconnection();
@@ -42,7 +43,21 @@ public class LoginBean {
                 login.setId(rs.getLong(3));
                 success = true;
             } else {
-                success = false;
+                
+                // Check if user is a client?
+                    pstmt1 = con.prepareStatement("Select cst_username, cst_password, cst_id From customer "
+                            + "Where cst_username=? and cst_password=?");
+                    pstmt1.setString(1, username);
+                    pstmt1.setString(2, password);
+                    ResultSet rs1 = pstmt1.executeQuery();
+                     if (rs1.next()) {
+                        login.setUsername(rs1.getString(1));
+                        login.setPassword(rs1.getString(2));
+                        login.setId(rs1.getLong(3));
+                        success = true;
+                    } else {
+                        success = false;
+                    }
             }
         } catch (SQLException | ClassNotFoundException ex) {
             System.err.println("Caught Exception: " + ex.getMessage());

@@ -56,7 +56,7 @@
                             <table width="100%"cellspacing=0" cellpading="0">
                                 <tr><td colspan="2"><h1>General Information:</h1><br /><br /></td></tr>
                                 <tr>
-                            <td  width="150px"><image src="../images/Client/<%=clt1.getId()%>.jpg" border="2" /> </td><td>
+                            <td  width="150px"><image src="../images/Client/<%=clt1.getId()%>.jpg" border="2" alt="Photo of <%=clt1.getFirstname()%> <%=clt1.getLastname()%>" /> </td><td>
                                 Full Name: <i><%=clt1.getFirstname()%> <%=clt1.getLastname()%><i><br/>
             
                             Gender:  <i><%=clt1.getLastname()%> </i> <br/>
@@ -67,7 +67,7 @@
                             Mobile:  <i><%=clt1.getMobile()%> </i> <br/>
                             Email:  <i><%=clt1.getEmail()%> </i> <br/>
                             Remarks:  <i><%=clt1.getRemarks()%></i> <br/>
-                            Is active?  <i><%=clt1.getIsactive()%> </i> <br/>                            
+                            Account is active:  <i><%=clt1.getIsactive()%> </i> <br/>                            
                             </br></td>
                             </tr>
                             <tr><td colspan="2">Please select an option from the below:</td></tr>
