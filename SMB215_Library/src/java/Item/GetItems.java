@@ -6,8 +6,14 @@
 
 package Item;
 
+import com.google.zxing.WriterException;
+import java.io.File;
 import java.io.IOException;
+import static java.security.AccessController.getContext;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -31,7 +37,7 @@ public class GetItems extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, WriterException {
         ItemBean itemBean = new ItemBean();
         List<Item> itemsList = itemBean.getItems();
         request.setAttribute("itemsList", itemsList);
@@ -44,13 +50,21 @@ public class GetItems extends HttpServlet {
         @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (WriterException ex) {
+            Logger.getLogger(GetItems.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (WriterException ex) {
+            Logger.getLogger(GetItems.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     @Override

@@ -25,7 +25,7 @@ public class ItemBean {
                     dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
 
             stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("Select * From item order by itm_id");
+            ResultSet rs = stmt.executeQuery("Select * From item order by itm_id ASC");
         
             while (rs.next()) {
                 Item item = new Item();
@@ -64,6 +64,7 @@ public class ItemBean {
         System.err.println(list.size());
         return list;
     }
+  
     
     public List<Item> getItemsList() {
         List<Item> list = new ArrayList<>();
@@ -104,97 +105,6 @@ public class ItemBean {
         return list;
     }
 
-    public List<Item> getItemsByPOH(long poh, long supplierbranch) {
-        List<Item> list = new ArrayList<>();
-        Connection con = null;
-        Statement stmt = null;
-        try {
-            DBconnection dbCon = new DBconnection();
-            Class.forName(dbCon.getJDBC_DRIVER());
-
-            con = DriverManager.getConnection(dbCon.getDATABASE_URL(),
-                    dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
-
-            stmt = con.createStatement();
-            
-            ResultSet rs = stmt.executeQuery("Select itm_id, itm_name "
-                    + "From item "
-                    + "Inner Join supitem on item.itm_id=supitem.item_id  "
-                    + "Inner Join supplierbranch on sbr_id=supitem.supplierBranch_id  "
-                    + "Where supplierBranch_id= " + supplierbranch + " and itm_id not in "
-                    + "(Select item_id from purchaseheader inner join purchasedetails "
-                    + "on poh_id = purchaseheader_id Where poh_id =" + poh + ")"
-                    + " order by itm_name");
-        
-            while (rs.next()) {
-                Item item = new Item();
-                item.setId(rs.getLong(1));
-                item.setName(rs.getString(2));
-                list.add(item);
-               
-            }
-        } catch (SQLException | ClassNotFoundException ex) {
-            System.err.println("Caught Exception: " + ex.getMessage());
-        } finally {
-            try {
-                if (stmt != null) {
-                    stmt.close();
-                }
-                if (con != null) {
-                    con.close();
-                }
-            } catch (SQLException ex) {
-                System.err.println("Caught Exception: " + ex.getMessage());
-            }
-        }
-        System.err.println(list.size());
-        return list;
-    }
-    
-    public List<Item> getItemsByPOD(long poh, long id) {
-        List<Item> list = new ArrayList<>();
-        Connection con = null;
-        Statement stmt = null;
-        try {
-            DBconnection dbCon = new DBconnection();
-            Class.forName(dbCon.getJDBC_DRIVER());
-
-            con = DriverManager.getConnection(dbCon.getDATABASE_URL(),
-                    dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
-
-            stmt = con.createStatement();
-            
-            ResultSet rs = stmt.executeQuery("Select itm_id, itm_name "
-                    + "From item inner join purchasedetails "
-                    + "On itm_id = item_id "
-                    + "Where purchaseheader_id=" + poh + " and "
-                    + "pod_id = " + id);
-            
-            while (rs.next()) {
-                Item item = new Item();
-                item.setId(rs.getLong(1));
-                item.setName(rs.getString(2));
-                list.add(item);
-               
-            }
-        } catch (SQLException | ClassNotFoundException ex) {
-            System.err.println("Caught Exception: " + ex.getMessage());
-        } finally {
-            try {
-                if (stmt != null) {
-                    stmt.close();
-                }
-                if (con != null) {
-                    con.close();
-                }
-            } catch (SQLException ex) {
-                System.err.println("Caught Exception: " + ex.getMessage());
-            }
-        }
-        System.err.println(list.size());
-        return list;
-    }
-    
     public void deleteItem(long id) {
         Connection con = null;
         Statement stmt = null;

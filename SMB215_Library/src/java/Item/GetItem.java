@@ -21,8 +21,22 @@ public class GetItem extends HttpServlet {
             Item item = itmBean.getItem(Integer.valueOf(request.getParameter("id")));
             ItemCategoryBean itc = new ItemCategoryBean();
             List<ItemCategory> itemCategoryList = itc.getItemCategories();
-            System.err.print("sizeee: "+itemCategoryList.size());
             request.setAttribute("itemCategoryList", itemCategoryList);
+            long nextBarcodeNb= 0;
+            List<Item> itemsList = itmBean.getItemsList();
+            for(int i=0;i<itemsList.size()-2; i++){
+                if(itemsList.get(i).getId() > itemsList.get(i+1).getId()){
+                    System.err.println("fet 3al if");
+                    if(nextBarcodeNb< itemsList.get(i).getId())
+                    nextBarcodeNb = itemsList.get(i).getId();
+                }
+                else
+                  if(nextBarcodeNb < itemsList.get(i+1).getId())
+                    nextBarcodeNb = itemsList.get(i+1).getId();
+                
+               
+            }
+            nextBarcodeNb = nextBarcodeNb+1;
             BookBean bookBean = new BookBean();
             Book book = bookBean.getBookFormItem(item.getId());
             boolean isBook = false;
@@ -43,14 +57,32 @@ public class GetItem extends HttpServlet {
                      +"&category="+item.getItemCategory_id()
                      +"&description="+item.getDescription()
                      +"&book="+isBook
-                     +"&book_id="+book_id).forward(request, response);
+                     +"&book_id="+book_id
+                     +"&barcode="+item.getBarcode()
+                     +"&nextBarcodeNb="+nextBarcodeNb).forward(request, response);
         } else {
             ItemCategoryBean itc = new ItemCategoryBean();
             List<ItemCategory> itemCategoryList = itc.getItemCategories();
-            System.err.print("sizeee: "+itemCategoryList.size());
+            ItemBean itmBean = new ItemBean();
+            List<Item> itemsList = itmBean.getItemsList();
+            long nextBarcodeNb= 0;
+            for(int i=0;i<itemsList.size()-2; i++){
+                if(itemsList.get(i).getId() > itemsList.get(i+1).getId()){
+                    System.err.println("fet 3al if");
+                    if(nextBarcodeNb< itemsList.get(i).getId())
+                    nextBarcodeNb = itemsList.get(i).getId();
+                }
+                else
+                  if(nextBarcodeNb < itemsList.get(i+1).getId())
+                    nextBarcodeNb = itemsList.get(i+1).getId();
+                
+               
+            }
+            nextBarcodeNb = nextBarcodeNb+1;
             request.setAttribute("itemCategoryList", itemCategoryList);
+            
             request.getRequestDispatcher("Item/itemForm.jsp?" 
-                     +"id=&name=&imgPath=&saleRentPrice=&minLimit=&maxLimit=&available=&active=&category=&description=&book=").forward(request, response);
+                     +"id=&name=&imgPath=&saleRentPrice=&minLimit=&maxLimit=&available=&active=&category=&description=&book=&barcode=&nextBarcodeNb="+nextBarcodeNb).forward(request, response);
          }
     }
 

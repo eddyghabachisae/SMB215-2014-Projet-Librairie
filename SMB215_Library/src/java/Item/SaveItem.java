@@ -9,6 +9,7 @@ package Item;
 import Book.Book;
 import Book.BookBean;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -19,6 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.fileupload.FileItem;  // add these libraries from folder "add to library"
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import utils.BarcodeManager;
 
 /**
  *
@@ -45,10 +47,9 @@ public class SaveItem extends HttpServlet {
     
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, FileNotFoundException {
         System.err.println("fet 3al post");
         Item item = new Item();
-         System.err.println("book"+request.getParameter("book"));
         item.setName(request.getParameter("name"));
         item.setDescription(request.getParameter("description"));
         item.setSaleRentPrice(Double.parseDouble(request.getParameter("saleRentPrice")));
@@ -57,8 +58,12 @@ public class SaveItem extends HttpServlet {
         item.setIsAvailable(Boolean.parseBoolean(request.getParameter("available")));
         item.setIsActive(Boolean.parseBoolean(request.getParameter("active")));
         item.setItemCategory_id(Long.parseLong(request.getParameter("category")));
+        String barcode = request.getParameter("barcode");
+        String barcodeImgPath = "C:/Users/Douha/Documents/NetBeansProjects/LibraryLatest/web/public/barcode/"+barcode+".png";
+        BarcodeManager.generateCode128(barcode, barcodeImgPath);
+        item.setImgBracodePath("${pageContext.request.contextPath}/public/barcode/"+barcode+".png");
+        item.setBarcode(request.getParameter("barcode"));
         ItemBean itemBean = new ItemBean();
-        System.err.println("itemmmm: "+item.toString());
         
         
       /*  if(ServletFileUpload.isMultipartContent(request)){
