@@ -67,7 +67,7 @@
                             <td  width="150px"><image src="../images/Client/<%=clt1.getId()%>.jpg" border="2" alt="Photo of <%=clt1.getFirstname()%> <%=clt1.getLastname()%>" /> </td><td>
                                 Full Name: <i><%=clt1.getFirstname()%> <%=clt1.getLastname()%><i><br/>
             
-                            Gender:  <i><%=clt1.getLastname()%> </i> <br/>
+                            Gender:  <i><%=gen.getGender()%> </i> <br/>
                             Marital status:  <i><%=mar.getMarital()%> </i> <br/>
                             Address:  <i><%=clt1.getAddress()%> </i> <br/>
                             

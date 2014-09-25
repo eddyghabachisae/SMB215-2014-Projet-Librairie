@@ -18,7 +18,7 @@
                     <div class="wrapper">
                         <div class="grid_12">
                             <div class="wrapper border-bot">
-                                <h1><a href="index.html">Library</a></h1>
+                                <h1><a href="home.jsp">Library</a></h1>
                                 <nav>
                                     <ul class="menu">
                                         <li><a class="active" href="${pageContext.request.contextPath}/home.jsp">Main</a></li>
@@ -51,9 +51,16 @@
                                 <div id="content3"> 
                                     <div class="success_box">All of the fields were successfully validated!</div>
                                     <div class="error_box"></div>
-
+                                    <%
+                                    if(request.getParameter("isExist")!=null && request.getParameter("isExist").equals("false"))
+                                    {%>
+                                    <div class="msg_box">Barcode Already Exist !</div>
+                                    <% } %>
                                     <form id="form" name="form" action="SaveItem?id=<%=request.getParameter("id")%>" method="post" >                    
                                         <fieldset>
+                                             <label><span class="text-form">Barcode* </span><input type="text" class="inputText" id="barcode" 
+                                                                                               name="barcode" value="<%=request.getParameter("barcode")%>" onchange="checkBarcode()"></label>                   
+                                                                                               <a href="#" onclick="generateBracode()" style="margin-left:30%;">If Not Available Click Here To Generate Your Own Barcode</a>
                                             <label><span class="text-form">Name* </span><input type="text" class="inputText" id="name" 
                                                                                                name="name" value="<%=request.getParameter("name")%>"></label>                   
                                           
@@ -121,8 +128,21 @@
         <script type="text/javascript"> Cufon.now();</script>
     </body>
     <script type="text/javascript">
+        function generateBracode() {
+		$('#barcode').val(<%=request.getParameter("nextBarcodeNb")%>);
 
-        new FormValidator('form', [{
+		}
+
+        function checkBarcode(){
+            var barcode = document.getElementById("barcode").value;
+            var id = <%=request.getParameter("id")%>;
+            window.location = "CheckBarcode?barcode="+barcode+"&id="+id;
+        }
+        new FormValidator('form', [
+            {   name: 'barcode',
+                display: 'Barcode',
+                rules: 'required'
+            },{
                 name: 'name',
                 display: 'Name',
                 rules: 'required'
