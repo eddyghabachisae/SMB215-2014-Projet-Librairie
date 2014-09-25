@@ -1,5 +1,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@page import="Client.*"%>
+<%@page import="gender.*"%>
+<%@page import="Marital.*"%>
 <!DOCTYPE html>
 <html lang="en">
         <% 
@@ -8,7 +11,7 @@
         }
     %>
     <head>
-        <title>Supplier</title>
+        <title>Edit My Profile</title>
         <%@ include file="../main.html" %>
 
     </head>
@@ -37,31 +40,42 @@
             </header>
 
             <!--==============================content================================-->
+                                <%
+                                //parse session id variable to long type
+                                Object attribute = request.getSession().getAttribute("userid");
+                                long orgId = Long.parseLong(String.valueOf(attribute));   
+                                
+                                // query client data using a session id        
+                                ClientBean cltBean = new ClientBean();
+                                Client clt1 = cltBean.getClient(orgId);
+                                
+                                // Get Gender information
+                                GenderBean genBean = new GenderBean();
+                                Gender gen = genBean.getGender(clt1.getGender()); 
+                                
+                                // Get Marital Status information            
+                                MaritalBean marBean = new MaritalBean();
+                                Marital mar = marBean.getMarital(clt1.getMaritalstatus()); %> 
+                                
             <section id="content"><div class="ic"></div>
                 <div class="container_12">
                     <div class="wrapper">
                         <article class="grid_8">
                             <div class="indent-right">
-                                <h3 class="prev-indent-bot">Client</h3>
+                                <h3 class="prev-indent-bot">Update my profile information</h3>
 
                                 <div id="content3"> 
                                     <div class="success_box">All of the fields were successfully validated!</div>
-                                    <div class="error_box"></div><div>test</div>
-                                    <c:forEach items="${clients}" var="clt">
-                                       
-                                 hhhh   <span> ${clt.cst_username}</span>
-                                            
-                                           
-                                    </c:forEach>
+                                    <!--div class="error_box"></div><div>erroe!</div-->
 
-                                    <!--form id="form" name="form" action="../SaveClient?id=<%=request.getParameter("id")%>" method="post">                    
+                                    <form id="form" name="form" action="../SaveClient?id=<%=request.getSession().getAttribute("userid")%>" method="post">                    
                                         <fieldset>
-                                            <label><span class="text-form">Username: </span><input type="text" class="inputText" name="name" value="<%=request.getParameter("username")%>"></label>
-                                            <label><span class="text-form">First Name: </span><input type="text" class="inputText" name="website" value="<%=request.getParameter("FirstName")%>"></label>
-                                            <label><span class="text-form">Last Name: </span><textarea class="inputText" name="remarks"><%=request.getParameter("LastName")%></textarea></label>
-                                            <label><span class="text-form">Gender: </span><input type="text" class="inputText" name="name" value="<%=request.getParameter("Gender")%>"></label>
-                                            <label><span class="text-form">Marital Status: </span><input type="text" class="inputText" name="website" value="<%=request.getParameter("Maritalstatus")%>"></label>
-                                            <label><span class="text-form">City: </span><textarea class="inputText" name="remarks"><%=request.getParameter("City")%></textarea></label>
+                                            <label><span class="text-form">Username: </span><input type="text" class="inputText" name="name" value="<%=clt1.getUsername()%>"></label>
+                                            <label><span class="text-form">First Name: </span><input type="text" class="inputText" name="website" value="<%=clt1.getFirstname()%>"></label>
+                                            <label><span class="text-form">Last Name: </span><textarea class="inputText" name="remarks"><%=clt1.getLastname()%></textarea></label>
+                                            <label><span class="text-form">Gender: </span><input type="text" class="inputText" name="name" value="<%=gen.getGender()%> "></label>
+                                            <label><span class="text-form">Marital Status: </span><input type="text" class="inputText" name="website" value="<%=mar.getMarital()%>"></label>
+                                            <label><span class="text-form">Address: </span><textarea class="inputText" name="remarks"><%=clt1.getAddress()%> </textarea></label>
 
                                            
                                             <div class="wrapper">

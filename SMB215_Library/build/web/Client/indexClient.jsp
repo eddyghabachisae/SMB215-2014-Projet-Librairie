@@ -80,7 +80,7 @@
                             </tr>
                             <tr><td colspan="2">Please select an option from the below:</td></tr>
                             <tr><td colspan="2">
-                                    <form action="${pageContext.request.contextPath}/GetClients" method="post"><input type="submit" name="Submit" value="Edit My Profile" class="button>/form>
+                            <a href="editClient.jsp"><input type="submit" name="Submit" value="Edit My Profile" class="button"></a>
                                    <a href="GetClient"><input type="submit" name="Submit" value="Borrow a book" class="button"/></a>
                             <a href="GetClient"><input type="submit" name="Submit" value="Borrowed Books List" class="button"/></a>
                             <a href="GetClient"><input type="submit" name="Submit" value="change your password" class="button"/></a>
