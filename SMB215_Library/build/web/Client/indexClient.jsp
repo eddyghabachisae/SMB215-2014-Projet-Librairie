@@ -48,7 +48,11 @@
                                 <tr>
                             <td  width="150px"><image src="../images/Client/<%= request.getParameter("id") %>.jpg" border="2" /> </td><td>
                                 Full Name:
-                                    
+                            <%ClientBean cltBean = new ClientBean();
+            Client clt1 = cltBean.getClient(1);%>
+            
+            <%=clt1.getUsername()%>
+            
                             <i><%= request.getParameter("FirstName") %> <%= request.getParameter("LastName") %></i> <br/>
                             Gender:  <i><%= request.getParameter("Gender") %> </i> <br/>
                             Marital status:  <i><%= request.getParameter("Maritalstatus") %> </i> <br/>

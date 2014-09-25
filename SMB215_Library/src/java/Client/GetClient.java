@@ -41,7 +41,7 @@ public class GetClient extends HttpServlet {
             // Get Marital Status information            
             MaritalBean marBean = new MaritalBean();
             Marital mar = marBean.getMarital(clt1.getMaritalstatus());  
-
+               
 
             //System.out.println(clt.getId());
             //CityBean citBean = new CityBean();
