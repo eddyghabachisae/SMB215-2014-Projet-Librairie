@@ -1,7 +1,7 @@
 <%@page import="java.util.List"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="Client.*"%>
-<%@page import="Gender.*"%>
+<%@page import="gender.*"%>
 <%@page import="Marital.*"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -51,23 +51,23 @@
                                 MaritalBean marBean = new MaritalBean();
                                 Marital mar = marBean.getMarital(clt1.getMaritalstatus()); %>  
                                 
-                            Welcome to the Profile page of user: <b><%= request.getParameter("username") %></b><br />
+                            Welcome to the Profile page of user: <b><%=clt1.getUsername()%></b><br />
                             
                             <table width="100%"cellspacing=0" cellpading="0">
                                 <tr><td colspan="2"><h1>General Information:</h1><br /><br /></td></tr>
                                 <tr>
-                            <td  width="150px"><image src="../images/Client/<%= request.getParameter("id") %>.jpg" border="2" /> </td><td>
-                                Full Name: <%=clt1.getFirstname()%> <%=clt1.getLastname()%><br/>
+                            <td  width="150px"><image src="../images/Client/<%=clt1.getId()%>.jpg" border="2" /> </td><td>
+                                Full Name: <i><%=clt1.getFirstname()%> <%=clt1.getLastname()%><i><br/>
             
-                            Gender:  <i><%= request.getParameter("Gender") %> </i> <br/>
-                            Marital status:  <i><%= request.getParameter("Maritalstatus") %> </i> <br/>
-                            Address:  <i><%= request.getParameter("Address") %> </i> <br/>
-                            City:  <i><%= request.getParameter("City") %> </i> <br/>
-                            Phone:  <i><%= request.getParameter("Phone") %> </i> <br/>
-                            Mobile:  <i><%= request.getParameter("Mobile") %> </i> <br/>
-                            Email:  <i><%= request.getParameter("Email") %> </i> <br/>
-                            Remarks:  <i><%= request.getParameter("Remarks") %> </i> <br/>
-                            Is active?  <i><%= request.getParameter("Isactive") %> </i> <br/>                            
+                            Gender:  <i><%=clt1.getLastname()%> </i> <br/>
+                            Marital status:  <i><%=mar.getMarital()%> </i> <br/>
+                            Address:  <i><%=clt1.getAddress()%> </i> <br/>
+                            
+                            Phone:  <i><%=clt1.getPhone()%> </i> <br/>
+                            Mobile:  <i><%=clt1.getMobile()%> </i> <br/>
+                            Email:  <i><%=clt1.getEmail()%> </i> <br/>
+                            Remarks:  <i><%=clt1.getRemarks()%></i> <br/>
+                            Is active?  <i><%=clt1.getIsactive()%> </i> <br/>                            
                             </br></td>
                             </tr>
                             <tr><td colspan="2">Please select an option from the below:</td></tr>

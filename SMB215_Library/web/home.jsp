@@ -33,7 +33,7 @@
                 </div>
                 <article class="grid_3">
                     <div class="box">
-                       <a href="ViewProfile" class="imgCenter"> <figure class="fa-5x fa fa-group blueColor"></figure></a>
+                       <a href="Client/indexClient.jsp" class="imgCenter"> <figure class="fa-5x fa fa-group blueColor"></figure></a>
                         <div class="padding">
                             <strong class="title-3 textCenter">Clients</strong>
                         </div>

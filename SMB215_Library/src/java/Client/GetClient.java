@@ -35,12 +35,12 @@ public class GetClient extends HttpServlet {
             Client clt1 = cltBean.getClient(1);   
             
             // Get Gender information
-            GenderBean genBean = new GenderBean();
-            Gender gen = genBean.getGender(clt1.getGender()); 
+            //GenderBean genBean = new GenderBean();
+            //Gender gen = genBean.getGender(clt1.getGender()); 
             
             // Get Marital Status information            
-            MaritalBean marBean = new MaritalBean();
-            Marital mar = marBean.getMarital(clt1.getMaritalstatus());  
+            //MaritalBean marBean = new MaritalBean();
+            //Marital mar = marBean.getMarital(clt1.getMaritalstatus());  
                
 
             //System.out.println(clt.getId());
