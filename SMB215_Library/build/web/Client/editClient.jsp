@@ -76,7 +76,10 @@
                                             <label><span class="text-form">Gender: </span><input type="text" class="inputText" name="name" value="<%=gen.getGender()%> "></label>
                                             <label><span class="text-form">Marital Status: </span><input type="text" class="inputText" name="website" value="<%=mar.getMarital()%>"></label>
                                             <label><span class="text-form">Address: </span><textarea class="inputText" name="remarks"><%=clt1.getAddress()%> </textarea></label>
-
+                                            <label><span class="text-form">Phone: </span><textarea class="inputText" name="remarks"><%=clt1.getPhone()%> </textarea></label>
+                                            <label><span class="text-form">Mobile: </span><textarea class="inputText" name="remarks"><%=clt1.getMobile()%> </textarea></label>
+                                            <label><span class="text-form">Email: </span><textarea class="inputText" name="remarks"><%=clt1.getEmail()%> </textarea></label>
+                                            <label><span class="text-form">Remarks: </span><textarea class="inputText" name="remarks"><%=clt1.getRemarks()%> </textarea></label> 
                                            
                                             <div class="wrapper">
                                                 <div class="extra-wrap">		
