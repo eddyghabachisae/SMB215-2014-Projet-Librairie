@@ -1,6 +1,8 @@
 <%@page import="java.util.List"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="Client.*"%>
+<%@page import="Gender.*"%>
+<%@page import="Marital.*"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -40,20 +42,23 @@
             </header>
 <!--==============================content================================-->
  <section id="content1"><div class="ic"></div>
-     
+                                <%ClientBean cltBean = new ClientBean();
+                                Client clt1 = cltBean.getClient(1);
+                                // Get Gender information
+                                GenderBean genBean = new GenderBean();
+                                Gender gen = genBean.getGender(clt1.getGender());             
+                                // Get Marital Status information            
+                                MaritalBean marBean = new MaritalBean();
+                                Marital mar = marBean.getMarital(clt1.getMaritalstatus()); %>  
+                                
                             Welcome to the Profile page of user: <b><%= request.getParameter("username") %></b><br />
                             
                             <table width="100%"cellspacing=0" cellpading="0">
                                 <tr><td colspan="2"><h1>General Information:</h1><br /><br /></td></tr>
                                 <tr>
                             <td  width="150px"><image src="../images/Client/<%= request.getParameter("id") %>.jpg" border="2" /> </td><td>
-                                Full Name:
-                            <%ClientBean cltBean = new ClientBean();
-            Client clt1 = cltBean.getClient(1);%>
+                                Full Name: <%=clt1.getFirstname()%> <%=clt1.getLastname()%><br/>
             
-            <%=clt1.getUsername()%>
-            
-                            <i><%= request.getParameter("FirstName") %> <%= request.getParameter("LastName") %></i> <br/>
                             Gender:  <i><%= request.getParameter("Gender") %> </i> <br/>
                             Marital status:  <i><%= request.getParameter("Maritalstatus") %> </i> <br/>
                             Address:  <i><%= request.getParameter("Address") %> </i> <br/>
