@@ -72,13 +72,13 @@
                                         <fieldset>
                                             <label><span class="text-form">Username: </span><input type="text" class="inputText" name="name" value="<%=clt1.getUsername()%>"></label>
                                             <label><span class="text-form">First Name: </span><input type="text" class="inputText" name="website" value="<%=clt1.getFirstname()%>"></label>
-                                            <label><span class="text-form">Last Name: </span><textarea class="inputText" name="remarks"><%=clt1.getLastname()%></textarea></label>
+                                            <label><span class="text-form">Last Name: </span><input type="text" class="inputText" name="remarks" value="<%=clt1.getLastname()%>"></label>
                                             <label><span class="text-form">Gender: </span><input type="text" class="inputText" name="name" value="<%=gen.getGender()%> "></label>
                                             <label><span class="text-form">Marital Status: </span><input type="text" class="inputText" name="website" value="<%=mar.getMarital()%>"></label>
                                             <label><span class="text-form">Address: </span><textarea class="inputText" name="remarks"><%=clt1.getAddress()%> </textarea></label>
-                                            <label><span class="text-form">Phone: </span><textarea class="inputText" name="remarks"><%=clt1.getPhone()%> </textarea></label>
-                                            <label><span class="text-form">Mobile: </span><textarea class="inputText" name="remarks"><%=clt1.getMobile()%> </textarea></label>
-                                            <label><span class="text-form">Email: </span><textarea class="inputText" name="remarks"><%=clt1.getEmail()%> </textarea></label>
+                                            <label><span class="text-form">Phone: </span><input type="text" class="inputText" name="remarks" value="<%=clt1.getPhone()%>"> </label>
+                                            <label><span class="text-form">Mobile: </span><input type="text" class="inputText" name="remarks" value="<%=clt1.getMobile()%>"></label>
+                                            <label><span class="text-form">Email: </span><input type="text" class="inputText" name="remarks" value="<%=clt1.getEmail()%>"> </label>
                                             <label><span class="text-form">Remarks: </span><textarea class="inputText" name="remarks"><%=clt1.getRemarks()%> </textarea></label> 
                                            
                                             <div class="wrapper">
