@@ -19,7 +19,7 @@
                 <div class="wrapper p3">
                     <div class="grid_12">
                         <div class="wrapper border-bot">
-                            <h1><a href="index.html">Library</a></h1>
+                            <h1><a href="${pageContext.request.contextPath}/home.jsp">Library</a></h1>
                             <nav>
                                 <ul class="menu">
                                      <li><b><% out.print(session.getAttribute("username"));%></b></li>
