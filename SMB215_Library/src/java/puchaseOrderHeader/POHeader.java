@@ -27,6 +27,7 @@ public class POHeader {
     private String branchname;
     private String employeename;
     private long supplier;
+    private float totalsecondary;
 
     public long getId() {
         return id;
@@ -136,6 +137,14 @@ public class POHeader {
 
     public void setSupplier(long supplier) {
         this.supplier = supplier;
+    }
+
+    public float getTotalsecondary() {
+        return totalsecondary;
+    }
+
+    public void setTotalsecondary(float totalsecondary) {
+        this.totalsecondary = totalsecondary;
     }
     
     

@@ -36,9 +36,13 @@ public class PODetailBean {
 
             stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("Select pod_id,"
-                    + "item_id, itm_name, pod_quantity, pod_unitcost, pod_quantity*pod_unitcost pod_total "
+                    + "item_id, itm_name, pod_quantity, pod_unitcost, "
+                    + "pod_unitcost*lib_secondarycurrencyrate unitcostsecondary, "
+                    + "pod_quantity*pod_unitcost pod_total, "
+                    + "pod_quantity*pod_unitcost*lib_secondarycurrencyrate totalsecondary "
                     + "From purchasedetails "
                     + "Inner Join item on item_id=itm_id "
+                    + "Left Join library on 1=1 "
                     + "Where purchaseheader_id = " + poh
                     + " order by pod_id");
             while (rs.next()) {
@@ -48,7 +52,9 @@ public class PODetailBean {
                 pod.setItemname(rs.getString(3));
                 pod.setQuantity(rs.getInt(4));
                 pod.setUnitcost(rs.getFloat(5));
-                pod.setTotal(rs.getFloat(6));
+                pod.setSecondaryunitcost(rs.getFloat(6));
+                pod.setTotal(rs.getFloat(7));
+                pod.setSecondarytotal(rs.getFloat(8));
                 list.add(pod);
             }
         } catch (SQLException | ClassNotFoundException ex) {
@@ -90,12 +96,12 @@ public class PODetailBean {
             
             pstmt.execute();
             
-            pstmt = con.prepareStatement("Insert Into warehouse "
-                    + "(item_id, branch_id) "
-                    + "Values(?,?)");
-            
-            pstmt.setInt(1, pod.getQuantity());
-            pstmt.setLong(2, pod.getItem());            
+            pstmt = con.prepareStatement("INSERT INTO warehouse (item_id, branch_id) "
+            + "SELECT * FROM (SELECT " + pod.getItem() + " as item_id, " + pod.getBranch() + " as branch_id) AS tmp "
+            + "WHERE NOT EXISTS ("
+            + "SELECT item_id, branch_id FROM warehouse "
+            + "WHERE item_id = tmp.item_id and branch_id = tmp.branch_id "
+            + ") LIMIT 1");
             
             pstmt.execute();
              con.commit();

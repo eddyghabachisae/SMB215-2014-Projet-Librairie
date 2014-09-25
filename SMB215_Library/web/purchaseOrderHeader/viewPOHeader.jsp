@@ -52,7 +52,13 @@
                                         <td>Supplier</td>
                                         <td>Branch</td>
                                         <td>Ordered by</td>
-                                        <td>Total</td>
+                                        <td>Total 
+                                            <%= (session.getAttribute("mainCurrency")!=null?session.getAttribute("mainCurrency"):"")%>
+                                        </td>
+                                        <% if(session.getAttribute("mainCurrency")!=null) {%>
+                                        <td>Total 
+                                            <%= session.getAttribute("secondaryCurrency")%>
+                                        </td><%}%>
                                         <td width="10%">Actions</td>
                                     </tr>
 
@@ -64,6 +70,10 @@
                                             <td>${poh.branchname}</td>
                                             <td>${poh.employeename}</td>
                                             <td>${poh.total}</td>
+                                             <% if(session.getAttribute("secondaryCurrency")!=null) {%>
+                                        <td> 
+                                            ${poh.totalsecondary}
+                                        </td><%}%>
                                             <td>
                                                            <c:set var="deliverydate" value="${poh.deliverydate}"/>               
                                        <% if ((pageContext.getAttribute("deliverydate") == null) || (pageContext.getAttribute("deliverydate") == "")) { %>

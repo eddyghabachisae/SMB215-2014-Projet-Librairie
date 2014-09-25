@@ -37,12 +37,14 @@ public class POHeaderBean {
                     + "CASE WHEN poh_orderdate!='0000-00-00' THEN poh_orderdate END poh_orderdate,"
                     + "CASE WHEN poh_shippingdate!='0000-00-00' THEN poh_shippingdate END poh_shippingdate,"
                     + "CASE WHEN poh_deliverydate!='0000-00-00' THEN poh_deliverydate END poh_deliverydate,"
-                    + "sup_name, brh_name, CONCAT(emp_firstname,' ',emp_lastname) emp_name, poh_total "
+                    + "sup_name, brh_name, CONCAT(emp_firstname,' ',emp_lastname) emp_name, poh_total, "
+                    + "poh_total*lib_secondarycurrencyrate totalsecondary "
                     + "From purchaseheader "
                     + "Inner Join supplierbranch on sbr_id=supplierBranch_id "
                     + "Inner Join supplier on supplier_id=sup_id "
                     + "Inner Join branch on branch_id=brh_id "
                     + "Inner Join employee on employee_id=emp_id "
+                    + "Left Join library on 1=1 "
                     + "order by poh_id");
             while (rs.next()) {
                 POHeader poh = new POHeader();
@@ -54,7 +56,7 @@ public class POHeaderBean {
                 poh.setBranchname(rs.getString(6));
                 poh.setEmployeename(rs.getString(7));
                 poh.setTotal(rs.getFloat(8));
-
+                poh.setTotalsecondary(rs.getFloat(9));
                 list.add(poh);
             }
         } catch (SQLException | ClassNotFoundException ex) {
@@ -90,12 +92,14 @@ public class POHeaderBean {
                     + "CASE WHEN poh_shippingdate!='0000-00-00' THEN poh_shippingdate END poh_shippingdate,"
                     + "CASE WHEN poh_deliverydate!='0000-00-00' THEN poh_deliverydate END poh_deliverydate,"
                     + "sup_name, brh_name, CONCAT(emp_firstname,' ',emp_lastname) emp_name, poh_total, "
-                    + "sup_id, brh_id, sbr_id "
+                    + "sup_id, brh_id, sbr_id, "
+                    + "poh_total*lib_secondarycurrencyrate totalsecondary "
                     + "From purchaseheader "
                     + "Inner Join supplierbranch on sbr_id=supplierBranch_id "
                     + "Inner Join supplier on supplier_id=sup_id "
                     + "Inner Join branch on branch_id=brh_id "
                     + "Inner Join employee on employee_id=emp_id "
+                    + "Left Join library on 1=1 "
                     + "Where poh_id=" + id);
             while (rs.next()) {
                 poh = new POHeader();
@@ -111,7 +115,9 @@ public class POHeaderBean {
                 poh.setSupplier(rs.getLong(9));
                 poh.setBranch(rs.getLong(10));
                 poh.setSupplierbranch(rs.getLong(11));
+                poh.setTotalsecondary(rs.getFloat(12));
             }
+            
         } catch (SQLException | ClassNotFoundException ex) {
             System.err.println("Caught Exception: " + ex.getMessage());
         } finally {
@@ -244,19 +250,18 @@ public class POHeaderBean {
                 pstmt = con.prepareStatement("Update item "
                         +"Inner Join "
                         + "(Select item_id, pod_quantity, pod_unitcost From purchasedetails "
-                        + "Where purchaseheader_id=?) purchasedetails "
+                        + "Where purchaseheader_id=" + poh.getId()+ ") purchasedetails "
                         + "On item.itm_id = purchasedetails.item_id "
                         + "Set item.itm_quantity = item.itm_quantity+purchasedetails.pod_quantity, "
                         + "item.itm_avgunitcost = ((item.itm_avgunitcost*item.itm_quantity)+(purchasedetails.pod_unitcost*purchasedetails.pod_quantity))/(itm_quantity+pod_quantity)");
-            pstmt.setLong(1, poh.getId());
             pstmt.executeUpdate();
              pstmt = con.prepareStatement("Update warehouse "
                         +"Inner Join "
                         + "(Select item_id, branch_id, pod_quantity, pod_unitcost From purchasedetails "
-                        + "Where purchaseheader_id=?) purchasedetails "
+                        + "Inner Join purchaseheader on poh_id = purchaseheader_id "
+                        + "Where purchaseheader_id= " + poh.getId() +") purchasedetails "
                         + "On warehouse.item_id = purchasedetails.item_id  and warehouse.branch_id = purchasedetails.branch_id "
                         + "Set warehouse.wrh_quantity = warehouse.wrh_quantity+purchasedetails.pod_quantity");
-            pstmt.setLong(1, poh.getId());
             pstmt.executeUpdate();
             }
             con.commit();

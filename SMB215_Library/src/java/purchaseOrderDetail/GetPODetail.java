@@ -36,8 +36,15 @@ public class GetPODetail extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         ItemBean itmBean = new ItemBean();
-       List<Item> items = itmBean.getItemsByPOH(Long.parseLong(request.getParameter("pohid")));
-       request.setAttribute("items", items);
+        if (request.getParameter("id") != null){
+            List<Item> items = itmBean.getItemsByPOD(Long.parseLong(request.getParameter("pohid")), 
+               Long.parseLong(request.getParameter("id")));
+            request.setAttribute("items", items);
+        } else {
+             List<Item> items = itmBean.getItemsByPOH(Long.parseLong(request.getParameter("pohid")), 
+               Long.parseLong(request.getParameter("supplierbranch")));
+             request.setAttribute("items", items);
+        }
        if (request.getParameter("id") != null){
           PODetailBean podBean = new PODetailBean();
           PODetail pod = podBean.getPODetail(Long.parseLong(request.getParameter("id")));

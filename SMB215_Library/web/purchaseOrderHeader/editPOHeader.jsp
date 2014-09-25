@@ -54,12 +54,20 @@
                 myform.action = "SavePOHeader?id=<%=request.getParameter("id")%>&branch=" + branch_id + "&supplierbranch=" + supplierbranch_id + "&employee=" + <%= session.getAttribute("userid")%>;
             }
             
-            function addbranchid(){
+            function addselectedvalues(){
                 var selectbranch = document.getElementById('branch');
                 var branch_id = selectbranch.value;
                 var selectsupplierbranch = document.getElementById('supplierbranch');
                 var supplierbranch_id = selectsupplierbranch.value;
-                document.getElementById('getpodetail').href =  document.getElementById('getpodetail').href +'&branch='+branch_id+'&supplierbranch='+ supplierbranch_id;
+                document.getElementById('addpod').href =  document.getElementById('addpod').href +'&branch='+branch_id+'&supplierbranch='+ supplierbranch_id;
+            }
+            
+            function editselectedvalues(){
+                var selectbranch = document.getElementById('branch');
+                var branch_id = selectbranch.value;
+                var selectsupplierbranch = document.getElementById('supplierbranch');
+                var supplierbranch_id = selectsupplierbranch.value;
+                document.getElementById('editpod').href =  document.getElementById('editpod').href +'&branch='+branch_id+'&supplierbranch='+ supplierbranch_id;
             }
         </script>
     </head>
@@ -168,8 +176,16 @@
                                                         <tr>
                                                             <td>Item</td>
                                                             <td>Quantity</td>
-                                                            <td>Unit cost</td>
-                                                            <td>Item total</td>
+                                                            <td>Unit cost <%= (session.getAttribute("mainCurrency")!=null?session.getAttribute("mainCurrency"):"")%></td>
+                                             <% if(session.getAttribute("secondaryCurrency")!=null) {%>               
+                                                            <td>Unit cost 
+                                            <%= session.getAttribute("secondaryCurrency")%>
+                                        </td><%}%>
+                                                            <td>Item total <%= (session.getAttribute("mainCurrency")!=null?session.getAttribute("mainCurrency"):"")%></td>
+                                        <% if(session.getAttribute("secondaryCurrency")!=null) {%>
+                                        <td>Item total 
+                                            <%= session.getAttribute("secondaryCurrency")%>
+                                        </td><%}%>
                                                             <% if ((request.getParameter("deliverydate") == null) || (request.getParameter("deliverydate").equals(""))) {%>
                                                             <td width="10%">Actions</td>
                                                             <%}%>
@@ -180,11 +196,15 @@
                                                                 <td>${pod.itemname}</td>
                                                                 <td>${pod.quantity}</td>
                                                                 <td>${pod.unitcost}</td>
+                                                                <% if(session.getAttribute("secondaryCurrency")!=null) {%>               
+                                                                <td>${pod.secondaryunitcost}</td><%}%>
                                                                 <td>${pod.total}</td>
+                                                                <% if(session.getAttribute("secondaryCurrency")!=null) {%>               
+                                                                <td>${pod.secondarytotal}</td><%}%>
                                                                 <% if ((request.getParameter("deliverydate") == null) || (request.getParameter("deliverydate").equals(""))) {%>
                                                                 <td>
 
-                                                                    <a id="getpodetail" onclick="addbranchid()" href="GetPODetail?pohid=<%=request.getParameter("id")%>&amp;id=${pod.id}" title="Edit" class="fa fa-lg fa-pencil-square-o" ></a>
+                                                                    <a id="editpod" onclick="editselectedvalues()" href="GetPODetail?pohid=<%=request.getParameter("id")%>&amp;id=${pod.id}" title="Edit" class="fa fa-lg fa-pencil-square-o" ></a>
                                                                     <a href="DeletePODetail?pohid=<%=request.getParameter("id")%>&amp;id=${pod.id}" title="Delete" class="fa fa-lg fa-trash-o"></a> 
                                                                 </td>
                                                                 <%}%>
@@ -195,15 +215,22 @@
                                                     </tbody>
                                                 </table>
                                             </div>
-                                                        
-                                            <div class="CSSTableGenerator" >
+                                                        <br>
+                                            <div class="CSSTableGenerator" style="width:200px;">
                                                 <table>
                                                     <tbody>
                                                         <tr>
-                                                            <td>Total</td>
+                                                            <td>Total <%= (session.getAttribute("mainCurrency")!=null?session.getAttribute("mainCurrency"):"")%></td>
+                                                            <% if(session.getAttribute("secondaryCurrency")!=null) {%>
+                                        <td>Total 
+                                            <%= session.getAttribute("secondaryCurrency")%>
+                                        </td><%}%>
                                                         </tr>
                                                         <tr>
                                                             <td><%=request.getParameter("total")%></td>
+                                                            <% if(session.getAttribute("secondaryCurrency")!=null) {%>
+                                        <td><%=request.getParameter("totalsecondary")%>
+                                        </td><%}%>
                                                     </tr>
                                                     </tbody>
                                                 </table>
@@ -217,7 +244,7 @@
                                                     <div class="buttons">
                                                         <input type="submit" name="Submit" id="submit" value="Submit" class="button" onclick="selectedvalues()"/>
                                                         <% if ((request.getParameter("id") != null) && (request.getParameter("id") != "")) {%>                                                               
-                                                        <a href="GetPODetail?pohid=<%=request.getParameter("id")%>" id="getpodetail" onclick="addbranchid()"><input type="button" id="add" name="AddPOD" value="Add Item" class="button"/></a>
+                                                        <a href="GetPODetail?pohid=<%=request.getParameter("id")%>" id="addpod" onclick="addselectedvalues()"><input type="button" id="add" name="AddPOD" value="Add Item" class="button"/></a>
                                                             <%}%>
                                                         <a href="GetPOHeaders"><input type="button"  name="Cancel" value="Cancel" class="button"/></a>
                                                     </div> 
@@ -239,6 +266,7 @@
                 if ((mode === 'edit') || (mode === 'view')) {
                     document.getElementById('supplier').disabled = true;
                     document.getElementById('supplierbranch').disabled = true;
+                    document.getElementById('branch').disabled = true;
                 }
                 if  ((mode !== 'edit') || ((mode === 'edit') && ('<%=request.getParameter("total")%>'==='0.0'))) {
                     document.getElementById('shippingdatepicker').disabled = true;

@@ -47,7 +47,9 @@ public class SavePODetail extends HttpServlet {
         } else {
             podBean.addPODetail(pod);
             podBean.updatePOHeaderTotal(Long.parseLong(request.getParameter("pohid")));
-            response.sendRedirect("GetPODetail?pohid="+request.getParameter("pohid"));
+            response.sendRedirect("GetPODetail?pohid="+request.getParameter("pohid")
+            + "&branch=" + request.getParameter("branch")
+            + "&supplierbranch=" + request.getParameter("supplierbranch"));
         }
     }
 

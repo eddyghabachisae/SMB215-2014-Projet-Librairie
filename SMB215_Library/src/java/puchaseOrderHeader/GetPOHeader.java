@@ -1,5 +1,3 @@
-
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -84,6 +82,7 @@ public class GetPOHeader extends HttpServlet {
                     + "&shippingdate=" + shippingdate
                     + "&deliverydate=" + deliverydate
                     + "&total=" + poh.getTotal()
+                    + "&totalsecondary=" + poh.getTotalsecondary()
             ).forward(request, response);
         } else {
             request.getRequestDispatcher("purchaseOrderHeader/editPOHeader.jsp?branch=&supplier=&supplierbranch=&orderdate=&shippingdate=&deliverydate=").forward(request, response);

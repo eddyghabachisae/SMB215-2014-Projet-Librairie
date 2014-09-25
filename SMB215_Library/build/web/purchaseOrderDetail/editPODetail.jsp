@@ -78,7 +78,7 @@
                                             <label><span class="text-form">Quantity* </span><input type="text" class="inputText" id="quantity"  
                                                                                                     name="quantity" value="<%=request.getParameter("quantity")%>"></label>
 
-                                            <label><span class="text-form">Unit cost* </span><input type="text" class="inputText" id="unitcost"  
+                                            <label><span class="text-form">Unit cost <%= (session.getAttribute("mainCurrency")!=null?session.getAttribute("mainCurrency"):"")%>* </span><input type="text" class="inputText" id="unitcost"  
                                                                                                        name="unitcost" value="<%=request.getParameter("unitcost")%>"></label>
                                         
                                             <div class="wrapper">

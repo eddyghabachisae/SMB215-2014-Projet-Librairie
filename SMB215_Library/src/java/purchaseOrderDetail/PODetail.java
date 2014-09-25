@@ -20,7 +20,8 @@ public class PODetail {
     private long pohid;
     private long id;
     private long branch;
-    
+    private float secondaryunitcost;
+    private float secondarytotal;
 
     public long getItem() {
         return item;
@@ -84,6 +85,22 @@ public class PODetail {
 
     public void setBranch(long branch) {
         this.branch = branch;
+    }
+
+    public float getSecondaryunitcost() {
+        return secondaryunitcost;
+    }
+
+    public void setSecondaryunitcost(float secondaryunitcost) {
+        this.secondaryunitcost = secondaryunitcost;
+    }
+
+    public float getSecondarytotal() {
+        return secondarytotal;
+    }
+
+    public void setSecondarytotal(float secondarytotal) {
+        this.secondarytotal = secondarytotal;
     }
     
     
