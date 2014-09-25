@@ -51,8 +51,11 @@
                                     <tr>
                                         
                                         <td>Item</td>
-                                        <td>Price</td>
-                                        <td>Price</td>
+                                        <td>Price <%= (session.getAttribute("mainCurrency")!=null?session.getAttribute("mainCurrency"):"")%></td>
+                                             <% if(session.getAttribute("secondaryCurrency")!=null) {%>               
+                                                            <td>Price 
+                                            <%= session.getAttribute("secondaryCurrency")%>
+                                        </td><%}%>
                                         <td>Shipping days</td>
                                         <td width="10%">Actions</td>
                                     </tr>
@@ -61,7 +64,8 @@
                     
                     <td>${spi.itemname}</td>
                     <td>${spi.price}</td>
-                    <td>${spi.price}</td>
+                    <% if(session.getAttribute("secondaryCurrency")!=null) {%>               
+                    <td>${spi.secondaryprice}</td><%}%>
                     <td>${spi.shippingdays}</td>
                     <td>
                         <a href="GetSupplierBranchItem?id=${spi.id}&amp;supplierbranchid=${spi.supplierbranch}&amp;supplierbranchname=<%=request.getParameter("supplierbranchname")%>" title="Edit" class="fa fa-lg fa-pencil-square-o"></a>

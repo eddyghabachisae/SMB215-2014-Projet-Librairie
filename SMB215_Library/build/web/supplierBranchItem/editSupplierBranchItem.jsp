@@ -76,7 +76,7 @@
                                                 }
                                             </script>
                                            
-                                            <label><span class="text-form">Price* </span><input type="text" class="inputText" id="price"  
+                                            <label><span class="text-form">Price <%= (session.getAttribute("mainCurrency")!=null?session.getAttribute("mainCurrency"):"")%>* </span><input type="text" class="inputText" id="price"  
                                                                                                     name="price"  value="<%=request.getParameter("price")%>"></label>
                                                                                                
                                             <label><span class="text-form">Shipping days </span><input type="text" class="inputText" id="shippingdays"  

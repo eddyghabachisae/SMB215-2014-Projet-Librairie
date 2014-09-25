@@ -18,6 +18,7 @@ public class SupplierBranchItem {
     private int shippingdays;
     private float price;
     private String itemname;
+    private float secondaryprice;
     
 
     public long getId() {
@@ -66,6 +67,14 @@ public class SupplierBranchItem {
 
     public void setItemname(String itemname) {
         this.itemname = itemname;
+    }
+
+    public float getSecondaryprice() {
+        return secondaryprice;
+    }
+
+    public void setSecondaryprice(float secondaryprice) {
+        this.secondaryprice = secondaryprice;
     }
     
     

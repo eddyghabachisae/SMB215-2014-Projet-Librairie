@@ -36,9 +36,10 @@ public class SupplierBranchItemBean {
 
             stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("Select spi_id, supplierBranch_id, item_id, itm_name, "
-                    + "spi_price, spi_shippingdays "
+                    + "spi_price, spi_shippingdays, spi_price*lib_secondarycurrencyrate "
                     + "From supitem "
                     + "Inner Join item on item_id=itm_id "
+                    + "Left Join library on 1=1 "
                     + "Where supplierBranch_id = " + sbr + " order by itm_name");
             while (rs.next()) {
                 SupplierBranchItem spi = new SupplierBranchItem();
@@ -48,6 +49,7 @@ public class SupplierBranchItemBean {
                 spi.setItemname(rs.getString(4));
                 spi.setPrice(rs.getFloat(5));
                 spi.setShippingdays(rs.getInt(6));
+                spi.setSecondaryprice(rs.getFloat(7));
                 list.add(spi);
             }
         } catch (SQLException | ClassNotFoundException ex) {
