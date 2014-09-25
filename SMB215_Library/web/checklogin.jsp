@@ -1,5 +1,5 @@
 <%@page import="Login.LoginBean"%>
-<%@page import="Login.Login"%>"
+<%@page import="Login.Login"%>
 <%
 if (request.getParameter("user").equals("su") && request.getParameter("pass").equals("su")) {
         session.setAttribute("username", request.getParameter("user"));
@@ -11,7 +11,7 @@ if (request.getParameter("user").equals("su") && request.getParameter("pass").eq
         if (success) {
             session.setAttribute("username", login.getUsername());
             session.setAttribute("userid", login.getId());
-            response.sendRedirect("home.jsp");
+            response.sendRedirect("library/getSettings.jsp");
         } else {
             response.sendRedirect("login.jsp?success="+success);
         } 

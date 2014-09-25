@@ -3,16 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/dany.wazen/Documents/GitHub/SMB215-2014-Projet-Librairie/SMB215_Library/src/java/Client/Client.java</file>
-            <file>file:/C:/Users/dany.wazen/Documents/GitHub/SMB215-2014-Projet-Librairie/SMB215_Library/web/Client/test.xhtml</file>
-            <file>file:/C:/Users/dany.wazen/Documents/GitHub/SMB215-2014-Projet-Librairie/SMB215_Library/src/java/Book/BookBean.java</file>
-            <file>file:/C:/Users/dany.wazen/Documents/GitHub/SMB215-2014-Projet-Librairie/SMB215_Library/src/java/Client/webTimeBean.java</file>
-            <file>file:/C:/Users/dany.wazen/Documents/GitHub/SMB215-2014-Projet-Librairie/SMB215_Library/src/java/Client/GetClient.java</file>
-            <file>file:/C:/Users/dany.wazen/Documents/GitHub/SMB215-2014-Projet-Librairie/SMB215_Library/src/java/Client/ClientBean.java</file>
-            <file>file:/C:/Users/dany.wazen/Documents/GitHub/SMB215-2014-Projet-Librairie/SMB215_Library/web/supplier/viewSupplier.jsp</file>
-            <file>file:/C:/Users/dany.wazen/Documents/GitHub/SMB215-2014-Projet-Librairie/SMB215_Library/web/Client/indexClient.jsp</file>
-            <file>file:/C:/Users/dany.wazen/Documents/GitHub/SMB215-2014-Projet-Librairie/SMB215_Library/src/java/Client/ModifyClient.java</file>
-            <file>file:/C:/Users/dany.wazen/Documents/GitHub/SMB215-2014-Projet-Librairie/SMB215_Library/web/Client/editClient.jsp</file>
+            <file>file:/home/eddy/Documents/SMB215/SMB215-2014-Projet-Librairie/SMB215_Library/src/java/purchaseOrderDetail/SavePODetail.java</file>
+            <file>file:/home/eddy/Documents/SMB215/SMB215-2014-Projet-Librairie/SMB215_Library/src/java/supplierBranchItem/SupplierBranchItem.java</file>
+            <file>file:/home/eddy/Documents/SMB215/SMB215-2014-Projet-Librairie/SMB215_Library/src/java/supplierBranchItem/SupplierBranchItemBean.java</file>
         </group>
     </open-files>
 </project-private>

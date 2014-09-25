@@ -27,7 +27,7 @@ public class SaveLibrary extends HttpServlet {
         LibraryBean libBean = new LibraryBean();
 
         libBean.UpdateLibrary(lib);
-        response.sendRedirect("GetLibrarySettings");
+        response.sendRedirect("library/getSettings.jsp");
 
     }
 

@@ -4,7 +4,7 @@ import java.sql.*;
 import main.DBconnection;
 
 public class LibraryBean {
-
+    
     public void getLibrary(Library lib) {
 
         Connection con = null;
