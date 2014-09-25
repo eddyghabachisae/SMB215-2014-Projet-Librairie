@@ -42,11 +42,19 @@
             </header>
 <!--==============================content================================-->
  <section id="content1"><div class="ic"></div>
-                                <%ClientBean cltBean = new ClientBean();
-                                Client clt1 = cltBean.getClient(1);
+                                <%
+                                //parse session id variable to long type
+                                Object attribute = request.getSession().getAttribute("userid");
+                                long orgId = Long.parseLong(String.valueOf(attribute));   
+                                
+                                // query client data using a session id        
+                                ClientBean cltBean = new ClientBean();
+                                Client clt1 = cltBean.getClient(orgId);
+                                
                                 // Get Gender information
                                 GenderBean genBean = new GenderBean();
-                                Gender gen = genBean.getGender(clt1.getGender());             
+                                Gender gen = genBean.getGender(clt1.getGender()); 
+                                
                                 // Get Marital Status information            
                                 MaritalBean marBean = new MaritalBean();
                                 Marital mar = marBean.getMarital(clt1.getMaritalstatus()); %>  
