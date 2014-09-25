@@ -46,10 +46,15 @@
 
                                 <div id="content3"> 
                                     <div class="success_box">All of the fields were successfully validated!</div>
-                                    <div class="error_box"></div>
+                                    <div class="error_box"></div><div>test</div>
+                                    <c:forEach items="${clients}" var="clt">
+                                       
+                                 hhhh   <span> ${clt.cst_username}</span>
+                                            
+                                           
+                                    </c:forEach>
 
-
-                                    <form id="form" name="form" action="../SaveClient?id=<%=request.getParameter("id")%>" method="post">                    
+                                    <!--form id="form" name="form" action="../SaveClient?id=<%=request.getParameter("id")%>" method="post">                    
                                         <fieldset>
                                             <label><span class="text-form">Username: </span><input type="text" class="inputText" name="name" value="<%=request.getParameter("username")%>"></label>
                                             <label><span class="text-form">First Name: </span><input type="text" class="inputText" name="website" value="<%=request.getParameter("FirstName")%>"></label>
@@ -71,7 +76,7 @@
                                             </div>                      
                                         </fieldset>						
 
-                                    </form>
+                                    </form-->
                                 </div>
                             </div>
                         </article>
