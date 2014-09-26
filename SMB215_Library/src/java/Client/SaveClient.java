@@ -24,13 +24,26 @@ public class SaveClient extends HttpServlet {
         try {
             
             // get form variables *******************************************
-            //session id
+            //Get Session id
             Object attribute = req.getSession().getAttribute("userid");
             long id = Long.parseLong(String.valueOf(attribute));   
-            //username
+            //Get username
             String form_user = req.getParameter("username");
-            
-            
+            //Get first name
+            String form_firstname = req.getParameter("firstname");
+            //Get last name
+            String form_lastname = req.getParameter("lastname");
+            //Get address
+            String form_address = req.getParameter("address");
+            //Get phone
+            String form_phone = req.getParameter("phone");
+            //Get mobile
+            String form_mobile = req.getParameter("mobile");
+            //Get email
+            String form_email = req.getParameter("email");
+            //Get remarks
+            String form_remarks = req.getParameter("remarks");
+ 
             // establish connection *************************************
             DBconnection dbCon = new DBconnection();
             Class.forName(dbCon.getJDBC_DRIVER());
@@ -39,7 +52,15 @@ public class SaveClient extends HttpServlet {
             
          
             // update query execution *******************************
-            pstmt = con.prepareStatement("Update customer Set cst_username='" + form_user + "' Where cst_id=" + id);
+            pstmt = con.prepareStatement("Update customer Set cst_username='" + form_user + 
+                    "' ,cst_firstname='" + form_firstname + 
+                    "' ,cst_lastname='" + form_lastname + 
+                    "' ,cst_address='" + form_address + 
+                    "' ,cst_phone='" + form_phone + 
+                    "' ,cst_mobile='" + form_mobile + 
+                    "' ,cst_email='" + form_email + 
+                    "' ,cst_remarks='" + form_remarks + 
+                    "' Where cst_id=" + id);
             pstmt.executeUpdate();
             
             
