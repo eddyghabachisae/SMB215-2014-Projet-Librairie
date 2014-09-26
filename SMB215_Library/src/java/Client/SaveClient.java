@@ -34,7 +34,9 @@ public class SaveClient extends HttpServlet {
             //Get last name
             String form_lastname = req.getParameter("lastname");
             //Get Gender
-            int form_gender = Integer.parseInt(req.getParameter("gender"));            
+            int form_gender = Integer.parseInt(req.getParameter("gender"));
+            //Get Marital
+            int form_marital = Integer.parseInt(req.getParameter("marital")); 
             //Get address
             String form_address = req.getParameter("address");
             //Get phone
@@ -58,6 +60,7 @@ public class SaveClient extends HttpServlet {
                     "' ,cst_firstname='" + form_firstname + 
                     "' ,cst_lastname='" + form_lastname +
                     "' ,cst_gender_id='" + form_gender +
+                    "' ,cst_maritalstatus='" + form_marital +
                     "' ,cst_address='" + form_address + 
                     "' ,cst_phone='" + form_phone + 
                     "' ,cst_mobile='" + form_mobile + 
