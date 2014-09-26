@@ -10,6 +10,13 @@
         }
     %>
     <%@ include file="../main.html" %>
+    <link rel="stylesheet" type="text/css" href="./public/stylesheets/dataTable.css">
+    <script type="text/javascript" language="javascript" src="./public/javascripts/dataTable.js"></script>
+    <script type="text/javascript" charset="utf-8">
+			$(document).ready(function() {
+				$('#example').dataTable();
+			} );
+    </script>
     <body id="page1">
         <div class="main">
             <!--==============================header=================================-->
@@ -45,27 +52,28 @@
                                     <li><a href="" title="tab2" class="notActive">Rentals Info</a></li>
                        </ul>
                         <div id="content3"> 
-                        <div class="error_box"></div>
+                     <div class="error_box"></div>
                      <form id="form" name="form" action="./SaveSelectedBook" method="post" >                    
-                          
-                        <div class="CSSTableGenerator" >
-                            <table >
-                                <tbody>
-                                    <tr>
-                                        <td width="10%">Select</td>
-                                        <td>Title</td>
-                                        <td width="20%">Rent Price</td>
-                                    </tr>
-                                <c:forEach items="${booksList}" var="book">
+                         
+                         <table id="example" class="display" cellspacing="0" width="100%">
+                             <thead>
+                               <td width="10%">Select</td>
+                               <td>Title</td>
+                               <td width="10%">Barcode</td>
+                               <td width="20%">Rent Price</td>  
+                             </thead>
+                             <tbody>
+                                 <c:forEach items="${booksList}" var="book">
                                     <tr>
                                         <td><input name="selectedBooks" type="checkbox" value="${book.id}"/></td>
                                         <td>${book.title}</td>
+                                        <td>${book.getItem().getBarcode()}</td>
                                         <td>${book.rentPrice} <%=request.getParameter("currency")%></td>
                                     </tr>
-                                </c:forEach>
-                                </tbody>
-                            </table>
-                        </div>
+                                 </c:forEach>
+                             </tbody>
+                         </table>
+                      
                          <fieldset>
                              <div class="wrapper">
                                 <div class="extra-wrap">		
