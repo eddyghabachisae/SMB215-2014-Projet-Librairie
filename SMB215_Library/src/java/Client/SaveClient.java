@@ -39,12 +39,12 @@ public class SaveClient extends HttpServlet {
             
          
             // update query execution *******************************
-            pstmt = con.prepareStatement("Update customer Set cst_username=" + form_user + "Where cst_id=" + id);
+            pstmt = con.prepareStatement("Update customer Set cst_username='" + form_user + "' Where cst_id=" + id);
             pstmt.executeUpdate();
             
             
             // Go to View profile page ******************************
-            response.sendRedirect("ViewClient.jsp");
+            response.sendRedirect("Client/indexClient.jsp");
         } catch (SQLException | ClassNotFoundException ex) {
             System.err.println("Caught Exception: " + ex.getMessage());
         } finally {
