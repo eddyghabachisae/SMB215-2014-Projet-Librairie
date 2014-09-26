@@ -83,12 +83,12 @@
                                             
                                             <label><span class="text-form">Gender: </span>
                                             <select name="gender" id="gender">
-                                                <c:forEach items="${Genderslist1}" var="gen1"> 
-                                                    <c:if test='${gen1.id == gen.getGender()}'>
-                                                    <option value="${gen1.id}" selected="selected">${gen1.gender}</option>
+                                                <c:forEach items="${Genderslist1}" var="gen1">                                                    
+                                                    <c:if test="${gen1.id == 1}">
+                                                        <option value="${gen1.id}" selected="selected">${gen1.gender}</option>
                                                     </c:if>
-                                                    <c:if test='${gen1.id != gen.getGender()}'>
-                                                    <option value="${gen1.id}">${gen1.gender}</option>
+                                                    <c:if test='${gen1.id != clt1.getGender()}'>
+                                                        <option value="${gen1.id}">${gen1.gender}</option>
                                                     </c:if>
                                                 </c:forEach> 
                                             </select>
