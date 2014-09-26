@@ -82,14 +82,11 @@
                                             <label><span class="text-form">Last Name: </span><input type="text" class="inputText" name="lastname" value="<%=clt1.getLastname()%>"></label>
                                             
                                             <label><span class="text-form">Gender: </span>
-                                            <select name="gender" id="gender">
+                                            <select name="gender" id="gender"><%=clt1.getGender()%>"
                                                 <c:forEach items="${Genderslist1}" var="gen1">                                                    
-                                                    <c:if test="${gen1.id == 1}">
-                                                        <option value="${gen1.id}" selected="selected">${gen1.gender}</option>
-                                                    </c:if>
-                                                    <c:if test='${gen1.id != clt1.getGender()}'>
-                                                        <option value="${gen1.id}">${gen1.gender}</option>
-                                                    </c:if>
+                                              <c:set var="bang" value="<%=clt1.getGender()%>"/>
+                                               <option value="${gen1.id}" <c:if test="${gen1.id == bang}">selected="selected"</c:if>>${gen1.gender}</option>
+
                                                 </c:forEach> 
                                             </select>
                                             </label>             
