@@ -43,10 +43,9 @@ public List<Gender> getGenders() {
                 Gender gen = new Gender();
                 gen.setId(rs.getInt(1));
                 gen.setGender(rs.getString(2));
-
                 list.add(gen);
             }
-            
+          
         } catch (SQLException | ClassNotFoundException ex) {
             System.err.println("Caught Exception: " + ex.getMessage());
         } finally {

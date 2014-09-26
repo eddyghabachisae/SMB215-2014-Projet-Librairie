@@ -54,11 +54,11 @@
                                 GenderBean genBean = new GenderBean();
                                 Gender gen = genBean.getGender(clt1.getGender()); 
                                 
+                                //generate gender list
+                                GetGendersBean gendersBean = new GetGendersBean();
+                                List<Gender> Genderslist = gendersBean.getGenders();  
+                                pageContext.setAttribute("Genderslist1", Genderslist);
                                 
-                                
-                                //GetGendersBean gendersBean = new GetGendersBean();
-                               // List<Gender> Genderslist = gendersBean.getGenders();  
-                              
                                 // Get Marital Status information            
                                 MaritalBean marBean = new MaritalBean();
                                 Marital mar = marBean.getMarital(clt1.getMaritalstatus()); %> 
@@ -80,11 +80,14 @@
                                             <label><span class="text-form">Username: </span><input type="text" class="inputText" name="username" value="<%=clt1.getUsername()%>"></label>
                                             <label><span class="text-form">First Name: </span><input type="text" class="inputText" name="firstname" value="<%=clt1.getFirstname()%>"></label>
                                             <label><span class="text-form">Last Name: </span><input type="text" class="inputText" name="lastname" value="<%=clt1.getLastname()%>"></label>
-                                           
-                                                   <c:forEach items="${Genderslist}" var="gen1"> 
-                                                          <label> ${gen1.gender_desc} </label> 
-                                                   </c:forEach> 
                                             
+                                            <label><span class="text-form">Gender: </span>
+                                            <select name="gender" id="gender">
+                                                <c:forEach items="${Genderslist1}" var="gen1"> 
+                                                    <option value="${gen1.id}" <c:if test='${gen1.id == clt1.getGender()}'>selected="selected"</c:if>>${gen1.gender}  </option>
+                                                </c:forEach> 
+                                            </select>${gen1.id} ${clt1.getGender()}
+                                            </label>
                                  
                                             
                                             <label><!--span class="text-form">Gender: </span><input type="text" class="inputText" name="gender" value="<%=gen.getGender()%> "></label-->
