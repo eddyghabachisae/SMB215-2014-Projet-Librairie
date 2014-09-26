@@ -45,11 +45,11 @@
                                 <%
                                 //parse session id variable to long type
                                 Object attribute = request.getSession().getAttribute("userid");
-                                long orgId = Long.parseLong(String.valueOf(attribute));   
+                                long userId = Long.parseLong(String.valueOf(attribute));   
                                 
                                 // query client data using a session id        
                                 ClientBean cltBean = new ClientBean();
-                                Client clt1 = cltBean.getClient(orgId);
+                                Client clt1 = cltBean.getClient(userId);
                                 
                                 // Get Gender information
                                 GenderBean genBean = new GenderBean();

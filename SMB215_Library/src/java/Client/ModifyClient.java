@@ -11,6 +11,7 @@ import java.io.PrintWriter;
 import static java.lang.System.out;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -39,64 +40,41 @@ public class ModifyClient extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        
-        
+    protected void processRequest(HttpServletRequest req, HttpServletResponse response)
+            throws ServletException, IOException {      
+              
         Connection con = null;
-        Statement stmt = null;
-        List lst = new ArrayList();
-        
-        
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            Client cust = null;
-
-       
+        PreparedStatement pstmt = null;
+        try {
+            
+            // get form variables *******************************************
+            //session id
+            Object attribute = req.getSession().getAttribute("userid");
+            long id = Long.parseLong(String.valueOf(attribute));   
+            //username
+            String form_user = req.getParameter("username");
+            
+            
+            // establish connection *************************************
             DBconnection dbCon = new DBconnection();
             Class.forName(dbCon.getJDBC_DRIVER());
-
             con = DriverManager.getConnection(dbCon.getDATABASE_URL(),
                     dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
             
-            stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("Select * From customer Where cst_id=1");
-            while (rs.next())
-                    {
-                       lst.add(rs.getString("cst_id"));
-                       lst.add(rs.getString("cst_username"));
-                       lst.add(rs.getString("cst_firstname"));
-                       lst.add(rs.getString("cst_lastname"));
-                    }
-            rs.close();
+         
+            // update query execution *******************************
+            pstmt = con.prepareStatement("Update customer Set cst_username=" + form_user + "Where cst_id=" + id);
+            pstmt.executeUpdate();
             
             
-            
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ModifyClient</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ModifyClient at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-        catch (SQLException | ClassNotFoundException ex) {
+            // Go to View profile page ******************************
+            response.sendRedirect("ViewClient.jsp");
+        } catch (SQLException | ClassNotFoundException ex) {
             System.err.println("Caught Exception: " + ex.getMessage());
-        } 
-        finally {
-            request.setAttribute("cltData", lst);
-            RequestDispatcher rd = request.getRequestDispatcher("/indexClient.jsp");
-            rd.forward(request, response);
-           
-            lst.clear();
-            out.close();
-            
+        } finally {
             try {
-                if (stmt != null) {
-                    stmt.close();
+                if (pstmt != null) {
+                    pstmt.close();
                 }
                 if (con != null) {
                     con.close();
@@ -104,7 +82,7 @@ public class ModifyClient extends HttpServlet {
             } catch (SQLException ex) {
                 System.err.println("Caught Exception: " + ex.getMessage());
             }
-        }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

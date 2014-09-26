@@ -66,19 +66,20 @@
 
                                 <div id="content3"> 
                                     <div class="success_box">All of the fields were successfully validated!</div>
-                                    <!--div class="error_box"></div><div>erroe!</div-->
+                                    <!--div class="error_box"></div><div>error!</div-->
 
-                                    <form id="form" name="form" action="../SaveClient?id=<%=request.getSession().getAttribute("userid")%>" method="post">                    
+                                    <form id="form" name="form" action="../SaveClient" method="post">                    
                                         <fieldset>
-                                            <label><span class="text-form">Username: </span><input type="text" class="inputText" name="name" value="<%=clt1.getUsername()%>"></label>
-                                            <label><span class="text-form">First Name: </span><input type="text" class="inputText" name="website" value="<%=clt1.getFirstname()%>"></label>
-                                            <label><span class="text-form">Last Name: </span><input type="text" class="inputText" name="remarks" value="<%=clt1.getLastname()%>"></label>
-                                            <label><span class="text-form">Gender: </span><input type="text" class="inputText" name="name" value="<%=gen.getGender()%> "></label>
-                                            <label><span class="text-form">Marital Status: </span><input type="text" class="inputText" name="website" value="<%=mar.getMarital()%>"></label>
-                                            <label><span class="text-form">Address: </span><textarea class="inputText" name="remarks"><%=clt1.getAddress()%> </textarea></label>
-                                            <label><span class="text-form">Phone: </span><input type="text" class="inputText" name="remarks" value="<%=clt1.getPhone()%>"> </label>
-                                            <label><span class="text-form">Mobile: </span><input type="text" class="inputText" name="remarks" value="<%=clt1.getMobile()%>"></label>
-                                            <label><span class="text-form">Email: </span><input type="text" class="inputText" name="remarks" value="<%=clt1.getEmail()%>"> </label>
+                                            <input type="hidden" name="id" value="<%=request.getSession().getAttribute("userid")%>">
+                                            <label><span class="text-form">Username: </span><input type="text" class="inputText" name="username" value="<%=clt1.getUsername()%>"></label>
+                                            <label><span class="text-form">First Name: </span><input type="text" class="inputText" name="firstname" value="<%=clt1.getFirstname()%>"></label>
+                                            <label><span class="text-form">Last Name: </span><input type="text" class="inputText" name="lastname" value="<%=clt1.getLastname()%>"></label>
+                                            <label><span class="text-form">Gender: </span><input type="text" class="inputText" name="gender" value="<%=gen.getGender()%> "></label>
+                                            <label><span class="text-form">Marital Status: </span><input type="text" class="inputText" name="marital" value="<%=mar.getMarital()%>"></label>
+                                            <label><span class="text-form">Address: </span><textarea class="inputText" name="address"><%=clt1.getAddress()%> </textarea></label>
+                                            <label><span class="text-form">Phone: </span><input type="text" class="inputText" name="phone" value="<%=clt1.getPhone()%>"> </label>
+                                            <label><span class="text-form">Mobile: </span><input type="text" class="inputText" name="mobile" value="<%=clt1.getMobile()%>"></label>
+                                            <label><span class="text-form">Email: </span><input type="text" class="inputText" name="email" value="<%=clt1.getEmail()%>"> </label>
                                             <label><span class="text-form">Remarks: </span><textarea class="inputText" name="remarks"><%=clt1.getRemarks()%> </textarea></label> 
                                            
                                             <div class="wrapper">
