@@ -1,3 +1,4 @@
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page import="Client.*"%>
@@ -53,6 +54,11 @@
                                 GenderBean genBean = new GenderBean();
                                 Gender gen = genBean.getGender(clt1.getGender()); 
                                 
+                                
+                                
+                                //GetGendersBean gendersBean = new GetGendersBean();
+                               // List<Gender> Genderslist = gendersBean.getGenders();  
+                              
                                 // Get Marital Status information            
                                 MaritalBean marBean = new MaritalBean();
                                 Marital mar = marBean.getMarital(clt1.getMaritalstatus()); %> 
@@ -74,7 +80,14 @@
                                             <label><span class="text-form">Username: </span><input type="text" class="inputText" name="username" value="<%=clt1.getUsername()%>"></label>
                                             <label><span class="text-form">First Name: </span><input type="text" class="inputText" name="firstname" value="<%=clt1.getFirstname()%>"></label>
                                             <label><span class="text-form">Last Name: </span><input type="text" class="inputText" name="lastname" value="<%=clt1.getLastname()%>"></label>
-                                            <label><span class="text-form">Gender: </span><input type="text" class="inputText" name="gender" value="<%=gen.getGender()%> "></label>
+                                           
+                                                   <c:forEach items="${Genderslist}" var="gen1"> 
+                                                          <label> ${gen1.gender_desc} </label> 
+                                                   </c:forEach> 
+                                            
+                                 
+                                            
+                                            <label><!--span class="text-form">Gender: </span><input type="text" class="inputText" name="gender" value="<%=gen.getGender()%> "></label-->
                                             <label><span class="text-form">Marital Status: </span><input type="text" class="inputText" name="marital" value="<%=mar.getMarital()%>"></label>
                                             <label><span class="text-form">Address: </span><textarea class="inputText" name="address"><%=clt1.getAddress()%> </textarea></label>
                                             <label><span class="text-form">Phone: </span><input type="text" class="inputText" name="phone" value="<%=clt1.getPhone()%>"> </label>
