@@ -83,7 +83,7 @@
                             <a href="editClient.jsp"><input type="submit" name="Submit" value="Edit My Profile" class="button"></a>
                                    <a href="GetClient"><input type="submit" name="Submit" value="Borrow a book" class="button"/></a>
                             <a href="GetClient"><input type="submit" name="Submit" value="Borrowed Books List" class="button"/></a>
-                            <a href="GetClient"><input type="submit" name="Submit" value="change your password" class="button"/></a>
+                            <a href="ClientChangePassword.jsp"><input type="submit" name="Submit" value="change your password" class="button"/></a>
                                 </td>
                             </tr>
             </section>           
