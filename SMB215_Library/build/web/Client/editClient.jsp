@@ -49,7 +49,7 @@
                                 // query client data using a session id        
                                 ClientBean cltBean = new ClientBean();
                                 Client clt1 = cltBean.getClient(orgId);
-                                
+                                int testgen = clt1.getGender();
                                 // Get Gender information
                                 GenderBean genBean = new GenderBean();
                                 Gender gen = genBean.getGender(clt1.getGender()); 
@@ -84,13 +84,15 @@
                                             <label><span class="text-form">Gender: </span>
                                             <select name="gender" id="gender">
                                                 <c:forEach items="${Genderslist1}" var="gen1"> 
-                                                    <option value="${gen1.id}" <c:if test='${gen1.id == clt1.getGender()}'>selected="selected"</c:if>>${gen1.gender}  </option>
+                                                    <c:if test='${gen1.id == gen.getGender()}'>
+                                                    <option value="${gen1.id}" selected="selected">${gen1.gender}</option>
+                                                    </c:if>
+                                                    <c:if test='${gen1.id != gen.getGender()}'>
+                                                    <option value="${gen1.id}">${gen1.gender}</option>
+                                                    </c:if>
                                                 </c:forEach> 
-                                            </select>${gen1.id} ${clt1.getGender()}
-                                            </label>
-                                 
-                                            
-                                            <label><!--span class="text-form">Gender: </span><input type="text" class="inputText" name="gender" value="<%=gen.getGender()%> "></label-->
+                                            </select>
+                                            </label>             
                                             <label><span class="text-form">Marital Status: </span><input type="text" class="inputText" name="marital" value="<%=mar.getMarital()%>"></label>
                                             <label><span class="text-form">Address: </span><textarea class="inputText" name="address"><%=clt1.getAddress()%> </textarea></label>
                                             <label><span class="text-form">Phone: </span><input type="text" class="inputText" name="phone" value="<%=clt1.getPhone()%>"> </label>

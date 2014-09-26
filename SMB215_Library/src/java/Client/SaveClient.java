@@ -33,6 +33,8 @@ public class SaveClient extends HttpServlet {
             String form_firstname = req.getParameter("firstname");
             //Get last name
             String form_lastname = req.getParameter("lastname");
+            //Get Gender
+            int form_gender = Integer.parseInt(req.getParameter("gender"));            
             //Get address
             String form_address = req.getParameter("address");
             //Get phone
@@ -54,7 +56,8 @@ public class SaveClient extends HttpServlet {
             // update query execution *******************************
             pstmt = con.prepareStatement("Update customer Set cst_username='" + form_user + 
                     "' ,cst_firstname='" + form_firstname + 
-                    "' ,cst_lastname='" + form_lastname + 
+                    "' ,cst_lastname='" + form_lastname +
+                    "' ,cst_gender_id='" + form_gender +
                     "' ,cst_address='" + form_address + 
                     "' ,cst_phone='" + form_phone + 
                     "' ,cst_mobile='" + form_mobile + 
