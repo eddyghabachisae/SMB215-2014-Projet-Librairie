@@ -61,7 +61,7 @@
                              if(!request.getParameter("listSize").equals("0"))
                              {
                             
-                            %> 
+                          %> 
                         <div class="CSSTableGenerator" >
                             <table >
                                 <tbody>
@@ -77,7 +77,7 @@
                                     <tr>
                                         <td><c:choose>
                                             <c:when test="${item.isAvailable==true}" >
-                                                <a href="" title="Avaible" class="fa fa-lg fa-check" ></a>
+                                                <a href="" title="Available" class="fa fa-lg fa-check" ></a>
                                             </c:when>
                                             <c:otherwise>
                                              <a href="" title="Not Available" class="fa fa-lg fa-times" ></a>   
@@ -105,6 +105,7 @@
                                             </c:choose>
                                             <a href="GetItem?id=${item.id}" title="Edit" class="fa fa-lg fa-pencil-square-o"></a>
                                             <a href="DeleteItem?id=${item.id}" tite="Delete" class="fa fa-lg fa-trash-o"></a> 
+                                            <a href="PrintBracode?id=${item.id}" tite="Print" class="fa fa-lg fa-print"></a> 
                                         </td>
                                     </tr>
                                 </c:forEach>
