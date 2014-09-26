@@ -25,7 +25,7 @@
                     <div class="wrapper">
                         <div class="grid_12">
                             <div class="wrapper border-bot">
-                                <h1><a href="index.html">Library</a></h1>
+                                <h1><a href="../home.jsp">Library</a></h1>
                                 <nav>
                                     <ul class="menu">
                                         <li><b><% out.print(session.getAttribute("username"));%></b></li>
@@ -59,6 +59,11 @@
                                 List<Gender> Genderslist = gendersBean.getGenders();  
                                 pageContext.setAttribute("Genderslist1", Genderslist);
                                 
+                                 //generate gender list
+                                GetMaritalsBean MaritalsBean = new GetMaritalsBean();
+                                List<Marital> Maritalslist = MaritalsBean.getMaritals();  
+                                pageContext.setAttribute("Maritalslist1", Maritalslist);      
+                                
                                 // Get Marital Status information            
                                 MaritalBean marBean = new MaritalBean();
                                 Marital mar = marBean.getMarital(clt1.getMaritalstatus()); %> 
@@ -83,14 +88,21 @@
                                             
                                             <label><span class="text-form">Gender: </span>
                                             <select name="gender" id="gender"><%=clt1.getGender()%>"
-                                                <c:forEach items="${Genderslist1}" var="gen1">                                                    
-                                              <c:set var="bang" value="<%=clt1.getGender()%>"/>
-                                               <option value="${gen1.id}" <c:if test="${gen1.id == bang}">selected="selected"</c:if>>${gen1.gender}</option>
-
-                                                </c:forEach> 
+                                            <c:forEach items="${Genderslist1}" var="gen1">                                                    
+                                               <c:set var="usergen" value="<%=clt1.getGender()%>"/>
+                                               <option value="${gen1.id}" <c:if test="${gen1.id == usergen}">selected="selected"</c:if>>${gen1.gender}</option>
+                                            </c:forEach> 
                                             </select>
-                                            </label>             
-                                            <label><span class="text-form">Marital Status: </span><input type="text" class="inputText" name="marital" value="<%=mar.getMarital()%>"></label>
+                                            </label>     
+                                            <label><span class="text-form">Marital Status:</span>
+                                            <select name="marital" id="marital"><%=clt1.getMaritalstatus()%>"
+                                            <c:forEach items="${Maritalslist1}" var="mar1">                                                    
+                                               <c:set var="usermar" value="<%=clt1.getMaritalstatus()%>"/>
+                                               <option value="${mar1.id}" <c:if test="${mar1.id == usermar}">selected="selected"</c:if>>${mar1.marital}</option>
+                                            </c:forEach> 
+                                            </select> 
+                                            </label> 
+                                            
                                             <label><span class="text-form">Address: </span><textarea class="inputText" name="address"><%=clt1.getAddress()%> </textarea></label>
                                             <label><span class="text-form">Phone: </span><input type="text" class="inputText" name="phone" value="<%=clt1.getPhone()%>"> </label>
                                             <label><span class="text-form">Mobile: </span><input type="text" class="inputText" name="mobile" value="<%=clt1.getMobile()%>"></label>
