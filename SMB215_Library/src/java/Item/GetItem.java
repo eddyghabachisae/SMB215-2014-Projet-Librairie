@@ -59,7 +59,8 @@ public class GetItem extends HttpServlet {
                      +"&book="+isBook
                      +"&book_id="+book_id
                      +"&barcode="+item.getBarcode()
-                     +"&nextBarcodeNb="+nextBarcodeNb).forward(request, response);
+                     +"&nextBarcodeNb="+nextBarcodeNb
+                     +"&AvgPrice="+item.getAvgUnitCost()).forward(request, response);
         } else {
             ItemCategoryBean itc = new ItemCategoryBean();
             List<ItemCategory> itemCategoryList = itc.getItemCategories();
@@ -82,7 +83,7 @@ public class GetItem extends HttpServlet {
             request.setAttribute("itemCategoryList", itemCategoryList);
             
             request.getRequestDispatcher("Item/itemForm.jsp?" 
-                     +"id=&name=&imgPath=&saleRentPrice=&minLimit=&maxLimit=&available=&active=&category=&description=&book=&barcode=&nextBarcodeNb="+nextBarcodeNb).forward(request, response);
+                     +"id=&name=&imgPath=&saleRentPrice=&minLimit=&maxLimit=&available=&active=&category=&description=&book=&barcode=&nextBarcodeNb="+nextBarcodeNb+"&AvgPrice=").forward(request, response);
          }
     }
 

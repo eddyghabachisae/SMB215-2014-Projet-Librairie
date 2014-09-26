@@ -61,7 +61,7 @@ public class SaveItem extends HttpServlet {
         String barcode = request.getParameter("barcode");
         String barcodeImgPath = "C:/Users/Douha/Documents/NetBeansProjects/LibraryLatest/web/public/barcode/"+barcode+".png";
         BarcodeManager.generateCode128(barcode, barcodeImgPath);
-        item.setImgBracodePath("${pageContext.request.contextPath}/public/barcode/"+barcode+".png");
+        item.setImgBracodePath("./public/barcode/"+barcode+".png");
         item.setBarcode(request.getParameter("barcode"));
         ItemBean itemBean = new ItemBean();
         
