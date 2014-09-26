@@ -66,6 +66,9 @@
                                           
                                             <label><span class="text-form">Sale price* </span><input type="text" class="inputText" id="saleRentPrice" 
                                                                                                           name="saleRentPrice" value="<%=request.getParameter("saleRentPrice")%>"></label>
+                                                                                                          <%if(request.getParameter("AvgPrice").equals("")==false){%>
+                                                                                                          <span style="margin-left:30%;">Average Price: <%=request.getParameter("AvgPrice")%></span>
+                                                                                                          <%}%>
                                             <label><span class="text-form">Min Limit In Stock* </span><input type="text" class="inputText" id="minLimit" 
                                                                                                     name="minLimit" value="<%=request.getParameter("minLimit")%>"></label>
                                             <label><span class="text-form">Max Limit In Stock* </span><input type="text" class="inputText" id="maxLimit" 
@@ -87,12 +90,14 @@
                                                         <option value="${itemCat.id}" >${itemCat.code}</option>
                                                     </c:forEach>
                                                 </select></label>
+                                            <% if(request.getParameter("id")!=null && !request.getParameter("id").equals("")){ %>
                                             <script>
                                                  if ("<%=request.getParameter("category")%>" !== "") {
                                                      var val = <%=request.getParameter("category")%>;
                                                      $('#category').val(val);
                                                  }
                                                 </script>
+                                                <%}%>
                                             <div class="wrapper">
                                                 <div class="text-form">Description</div>
                                                 <div class="extra-wrap">
@@ -135,9 +140,14 @@
 
         function checkBarcode(){
             var barcode = document.getElementById("barcode").value;
-            var id = <%=request.getParameter("id")%>;
-            window.location = "CheckBarcode?barcode="+barcode+"&id="+id;
+            <% if(request.getParameter("id")!=null && !request.getParameter("id").equals("")) {%>
+            window.location = "CheckBarcode?barcode="+barcode+"&id="+<%=request.getParameter("id")%>;
+            <%} else%>
+            window.location = "CheckBarcode?barcode="+barcode+"&id=";
+              
         }
+        </script>
+        <script>
         new FormValidator('form', [
             {   name: 'barcode',
                 display: 'Barcode',
