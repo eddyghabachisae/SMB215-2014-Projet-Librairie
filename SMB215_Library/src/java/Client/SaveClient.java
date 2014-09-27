@@ -1,6 +1,9 @@
 package Client;
 
+import java.io.DataInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -11,6 +14,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,6 +24,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import main.DBconnection;
+import org.apache.commons.fileupload.*;
+import org.apache.commons.fileupload.disk.*;
+import org.apache.commons.fileupload.servlet.*;
+import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.io.output.*;
 
 @WebServlet(name = "SaveClient", urlPatterns = {"/SaveClient"})
 public class SaveClient extends HttpServlet {
@@ -98,6 +107,57 @@ public class SaveClient extends HttpServlet {
                         "' Where cst_id=" + id);
                 pstmt.executeUpdate();
 
+      
+                String contentType = req.getContentType();
+                System.out.println("Content type is :: " + contentType);
+                String imageSave=null;
+                byte dataBytes[]=null;
+                String saveFile=null;
+                if ((contentType != null) && (contentType.indexOf("multipart/form-data") >= 0))
+                {
+                DataInputStream in = new DataInputStream(req.getInputStream());
+                int formDataLength = req.getContentLength();
+                dataBytes = new byte[formDataLength];
+                int byteRead = 0;
+                int totalBytesRead = 0;
+                while (totalBytesRead < formDataLength)
+                {
+                byteRead = in.read(dataBytes, totalBytesRead, formDataLength);
+                totalBytesRead += byteRead;
+                }
+                String file = new String(dataBytes);
+                saveFile = file.substring(file.indexOf("filename=\"") + 10);
+                saveFile = saveFile.substring(0, saveFile.indexOf("\n"));
+                saveFile = saveFile.substring(saveFile.lastIndexOf("\\") + 1, saveFile.indexOf("\""));
+                // out.print(dataBytes);
+                int lastIndex = contentType.lastIndexOf("=");
+                String boundary = contentType.substring(lastIndex + 1, contentType.length());
+                // out.println(boundary);
+                int pos;
+                pos = file.indexOf("filename=\"");
+                pos = file.indexOf("\n", pos) + 1;
+                pos = file.indexOf("\n", pos) + 1;
+                pos = file.indexOf("\n", pos) + 1;
+                int boundaryLocation = file.indexOf(boundary, pos) - 4;
+                int startPos = ((file.substring(0, pos)).getBytes()).length;
+                int endPos = ((file.substring(0, boundaryLocation)).getBytes()).length;
+                try
+                {
+                FileOutputStream fileOut = new FileOutputStream("c://"+saveFile);
+                // fileOut.write(dataBytes);
+                fileOut.write(dataBytes, startPos, (endPos - startPos));
+                fileOut.flush();
+                fileOut.close();
+                imageSave="Success";
+                }catch (Exception e)
+                {
+                System.err.println ("Error writing to file");
+                imageSave="Failure";
+                }
+                }
+                
+                
+                
 
                 // Go to View profile page ******************************
                 response.sendRedirect("Client/indexClient.jsp");
