@@ -43,67 +43,72 @@
 <!--==============================content================================-->
  <section id="content1"><div class="ic"></div>
                               
-          <script language="javascript">
-function fncSubmit()
-{
+        <script language="javascript">
+        function fncSubmit()
+        {
 
-if(document.ChangePasswordForm.OldPassword.value == "")
-{
-alert('Please input old password');
-document.ChangePasswordForm.OldPassword.focus();
-return false;
-} 
+        if(document.ChangePasswordForm.OldPassword.value == "")
+        {
+        alert('your old password field is empty, please input old password');
+        document.ChangePasswordForm.OldPassword.focus();
+        return false;
+        } 
 
-if(document.ChangePasswordForm.newpassword.value == "")
-{
-alert('Please input Password');
-document.ChangePasswordForm.newpassword.focus(); 
-return false;
-} 
+        if(document.ChangePasswordForm.newpassword.value == "")
+        {
+        alert('your new  password field is empty, please input new password');
+        document.ChangePasswordForm.newpassword.focus(); 
+        return false;
+        } 
 
-if(document.ChangePasswordForm.conpassword.value == "")
-{
-alert('Please input Confirm Password');
-document.ChangePasswordForm.conpassword.focus(); 
-return false;
-} 
+        if(document.ChangePasswordForm.conpassword.value == "")
+        {
+        alert('your confirmation  password field is empty, please confirm password');
+        document.ChangePasswordForm.conpassword.focus(); 
+        return false;
+        } 
 
-if(document.ChangePasswordForm.newpassword.value != document.ChangePasswordForm.conpassword.value)
-{
-alert('Confirm Password Not Match');
-document.ChangePasswordForm.conpassword.focus(); 
-return false;
-} 
+        if(document.ChangePasswordForm.newpassword.value != document.ChangePasswordForm.conpassword.value)
+        {
+        alert('Confirmation of Passwords dows not Match');
+        document.ChangePasswordForm.conpassword.focus(); 
+        return false;
+        } 
 
-document.ChangePasswordForm.submit();
-}
-</script>
-<form name="ChangePasswordForm" method="post" action="processChangePWD.jsp" OnSubmit="return fncSubmit();">
+        document.ChangePasswordForm.submit();
+        }
+        </script>
+        <div class="container_12">
+                    <div class="wrapper">
+                        <article class="grid_8">
+                            <div class="indent-right">
+                                <h3 class="prev-indent-bot">Change Password Form</h3>
+                                <div id="content3"> 
+                                <form name="ChangePasswordForm" method="post" action="../UpdatePassword" OnSubmit="return fncSubmit();">
+                                    <fieldset>
+                                      <label><span class="text-form">type your old password: </span><input name="OldPassword" type="password" id="OLDpwd"></label><br />   
+                                      <label><span class="text-form">type your new password: </span><input name="newpassword" type="password" id="newpassword"></label><br />
+                                      <label><span class="text-form">confirm your new password: </span><input name="conpassword" type="password" id="conpassword"></label><br /> 
+                                    </fieldset>           
+                                <table border="1" align="center" bgcolor="#2B60DE">
+                                     
+                                </form>
+                                    
+                               <div class="wrapper">
+                                    <div class="extra-wrap">		
+                                        <div class="buttons">
+                                            <input type="submit" name="Submit" value="update" class="button"  />
+                                            <a href="../ViewProfile"><input type="button" name="Cancel" value="Cancel" class="button"/></a>
+                                        </div> 
 
-<table border="1" align="center" bgcolor="#2B60DE">
+                                    </div>    
+                                </div>
+                            </div>
+                            </div>
+                        </article>
 
-<tr>
-<td>OLD PASSWORD</td>
-<TD><input name="OldPassword" type="password" id="OLDpwd" size="20"></td>
-</tr>
-<tr>
-<td>NewPassword</td>
-<td><input name="newpassword" type="password" id="newpassword">
-</td>
-</tr>
-<tr>
-<td>Confirm Password</td>
-<td><input name="conpassword" type="password" id="conpassword">
-</td>
-</tr>
-<tr>
-<td> </td>
-<td><input type="submit" name="Submit" value="Save"></td>
-</tr>
-
-</table>
-</form>
-
+                    </div>
+                </div>
             <!--==============================footer=================================-->
 
         </div>   
