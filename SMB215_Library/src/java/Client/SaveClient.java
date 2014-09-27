@@ -1,11 +1,17 @@
 package Client;
 
-import supplier.*;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,9 +22,10 @@ import main.DBconnection;
 @WebServlet(name = "SaveClient", urlPatterns = {"/SaveClient"})
 public class SaveClient extends HttpServlet {
 
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse response) throws ServletException, IOException {
-        
+   
+   @Override
+   protected void doPost(HttpServletRequest req, HttpServletResponse response) throws ServletException, IOException /*ParseException*/ {
+         
         Connection con = null;
         PreparedStatement pstmt = null;
         try {
@@ -37,7 +44,12 @@ public class SaveClient extends HttpServlet {
             int form_gender = Integer.parseInt(req.getParameter("gender"));
             //Get Marital
             int form_marital = Integer.parseInt(req.getParameter("marital")); 
-            //Get address
+            //Get DoB
+           // String formDoB = req.getParameter("timestamp");
+           // SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+           // Date form_DoB = sdf.parse(formDoB);
+            //String formattedDate = sdf.format(form_DoB);
+            //Get phone
             String form_address = req.getParameter("address");
             //Get phone
             String form_phone = req.getParameter("phone");
@@ -61,6 +73,7 @@ public class SaveClient extends HttpServlet {
                     "' ,cst_lastname='" + form_lastname +
                     "' ,cst_gender_id='" + form_gender +
                     "' ,cst_maritalstatus='" + form_marital +
+                    //"' ,cst_dateofbirth='" + (Date) form_DoB +
                     "' ,cst_address='" + form_address + 
                     "' ,cst_phone='" + form_phone + 
                     "' ,cst_mobile='" + form_mobile + 
@@ -74,7 +87,9 @@ public class SaveClient extends HttpServlet {
             response.sendRedirect("Client/indexClient.jsp");
         } catch (SQLException | ClassNotFoundException ex) {
             System.err.println("Caught Exception: " + ex.getMessage());
-        } finally {
+        //} catch (ParseException ex) {
+     //     Logger.getLogger(SaveClient.class.getName()).log(Level.SEVERE, null, ex);
+       } finally {
             try {
                 if (pstmt != null) {
                     pstmt.close();
@@ -87,4 +102,6 @@ public class SaveClient extends HttpServlet {
             }   
     }
     }
+    
+       
 }

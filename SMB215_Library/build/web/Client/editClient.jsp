@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -14,7 +15,56 @@
     <head>
         <title>Edit My Profile</title>
         <%@ include file="../main.html" %>
+        
+        <!Calendar Picker javascript>
+        <script language="JavaScript" src="../javascript/ts_picker.js">
 
+        //Script by Denis Gritcyuk: tspicker@yahoo.com
+        //Submitted to JavaScript Kit (http://javascriptkit.com)
+        //Visit http://javascriptkit.com for this script
+
+        </script>
+        <script language="javascript">
+        function fncSubmit()
+        {
+
+        if(document.form.username.value == "")
+        {
+        alert('username field could not be empty');
+        document.form.username.focus();
+        return false;
+        } 
+
+        if(document.form.firstname.value == "")
+        {
+        alert('first name field could not be empty');
+        document.form.firstname.focus(); 
+        return false;
+        } 
+
+        if(document.form.lastname.value == "")
+        {
+        alert('first name field could not be empty');
+        document.form.lastname.focus(); 
+        return false;
+        } 
+
+        if(document.form.email.value == "")
+        {
+        alert('email field could not be empty');
+        document.form.email.focus(); 
+        return false;
+        } 
+        
+        if(document.form.mobile.value == "")
+        {
+        alert('mobile field could not be empty');
+        document.form.mobile.focus(); 
+        return false;
+        } 
+        document.ChangePasswordForm.submit();
+        }
+        </script>
     </head>
     
     <body id="page5">
@@ -79,7 +129,7 @@
                                     <div class="success_box">All of the fields were successfully validated!</div>
                                     <!--div class="error_box"></div><div>error!</div-->
 
-                                    <form id="form" name="form" action="../SaveClient" method="post">                    
+                                    <form id="form" name="form" action="../SaveClient" method="post" OnSubmit="return fncSubmit();">                    
                                         <fieldset>
                                             <input type="hidden" name="id" value="<%=request.getSession().getAttribute("userid")%>">
                                             <label><span class="text-form">Username: </span><input type="text" class="inputText" name="username" value="<%=clt1.getUsername()%>"></label>
@@ -101,8 +151,12 @@
                                                <option value="${mar1.id}" <c:if test="${mar1.id == usermar}">selected="selected"</c:if>>${mar1.marital}</option>
                                             </c:forEach> 
                                             </select> 
-                                            </label> 
-                                            
+                                            </label>
+                                            <label><span class="text-form">Date of Birth </span>
+                                            <% SimpleDateFormat formatter=new SimpleDateFormat("dd-MM-yyyy");
+                                            String DOB=formatter.format(clt1.getDateofbirth());%>
+
+                                                <input type="Text" class="inputText" name="timestamp" value="<%=DOB%> "><a href="javascript:show_calendar('document.form.timestamp', document.form.timestamp.value );"><img src="../javascript/cal.gif" width="16" height="16" border="0" alt="Click Here to Pick up the date of birth"></a></label>
                                             <label><span class="text-form">Address: </span><textarea class="inputText" name="address"><%=clt1.getAddress()%> </textarea></label>
                                             <label><span class="text-form">Phone: </span><input type="text" class="inputText" name="phone" value="<%=clt1.getPhone()%>"> </label>
                                             <label><span class="text-form">Mobile: </span><input type="text" class="inputText" name="mobile" value="<%=clt1.getMobile()%>"></label>
@@ -140,36 +194,5 @@
         </div>
         <script type="text/javascript"> Cufon.now();</script>
     </body>
-    <!--script type="text/javascript">
-      new FormValidator('form', [{
-                username: 'name',
-                display: 'Name',
-                rules: 'required'
-            }
-        ], function(errors, event) {
-            var SELECTOR_ERRORS = $('.error_box'),
-                    SELECTOR_SUCCESS = $('.success_box');
-
-            if (errors.length > 0) {
-                SELECTOR_ERRORS.empty();
-
-                for (var i = 0, errorLength = errors.length; i < errorLength; i++) {
-                    SELECTOR_ERRORS.append(errors[i].message + '<br />');
-                }
-
-                SELECTOR_SUCCESS.css({display: 'none'});
-                SELECTOR_ERRORS.fadeIn(200);
-            } else {
-                SELECTOR_ERRORS.css({display: 'none'});
-                SELECTOR_SUCCESS.fadeIn(200);
-                document.getElementById("form").submit();
-            }
-
-            if (event && event.preventDefault) {
-                event.preventDefault();
-            } else if (event) {
-                event.returnValue = false;
-            }
-        });
-    </script -->
+   
 </html>
