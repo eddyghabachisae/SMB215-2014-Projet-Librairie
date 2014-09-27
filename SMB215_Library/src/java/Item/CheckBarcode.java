@@ -17,6 +17,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import library.Library;
+import library.LibraryBean;
 
 /**
  *
@@ -39,27 +41,30 @@ public class CheckBarcode extends HttpServlet {
        ItemBean itmBean = new ItemBean();
        List<Item> tempItemsList = itmBean.getItems();
        boolean isExist = true;
+       if(tempItemsList.size()>0){
        for(Item item:tempItemsList){
+           if(item.getBarcode()!=null)
            if(item.getBarcode().equals(request.getParameter("barcode")))
                isExist&=false;
        }
-       
-        if (request.getParameter("id") != null){
+       }
+       else{
+           isExist = true;
+       }
+      
+       LibraryBean libraryBean = new LibraryBean();
+            Library library = libraryBean.getLibrary();
+            String currency = "";
+            if(library!=null){
+             currency = library.getMainCurrency();
+       System.err.println("id:"+request.getParameter("id"));
+        if (request.getParameter("id")!= null && request.getParameter("id").equals("")==false){
             Item item = itmBean.getItem(Integer.valueOf(request.getParameter("id")));
             ItemCategoryBean itc = new ItemCategoryBean();
             List<ItemCategory> itemCategoryList = itc.getItemCategories();
             request.setAttribute("itemCategoryList", itemCategoryList);
-            long nextBarcodeNb= 0;
-            List<Item> itemsList = itmBean.getItemsList();
-            for(int i=0;i<itemsList.size()-2; i++){
-                if(itemsList.get(i).getId() > itemsList.get(i+1).getId()){
-                    if(nextBarcodeNb< itemsList.get(i).getId())
-                    nextBarcodeNb = itemsList.get(i).getId();
-                }
-                else
-                  if(nextBarcodeNb < itemsList.get(i+1).getId())
-                    nextBarcodeNb = itemsList.get(i+1).getId();    
-            }
+            Item  item2 =itmBean.getLatestItem();
+            long  nextBarcodeNb = item2.getId()+1;
             nextBarcodeNb = nextBarcodeNb+1;
             BookBean bookBean = new BookBean();
             Book book = bookBean.getBookFormItem(item.getId());
@@ -87,35 +92,28 @@ public class CheckBarcode extends HttpServlet {
                      +"&book_id="+book_id
                      +"&barcode="+item.getBarcode()
                      +"&nextBarcodeNb="+nextBarcodeNb
-                     +"&isExist="+isExist).forward(request, response);
+                     +"&isExist="+isExist
+                     +"&AvgPrice="
+                     +"&currency="+currency).forward(request, response);
         } else {
             ItemCategoryBean itc = new ItemCategoryBean();
             List<ItemCategory> itemCategoryList = itc.getItemCategories();
             List<Item> itemsList = itmBean.getItemsList();
-            long nextBarcodeNb= 0;
-            for(int i=0;i<itemsList.size()-2; i++){
-                if(itemsList.get(i).getId() > itemsList.get(i+1).getId()){
-                    System.err.println("fet 3al if");
-                    if(nextBarcodeNb< itemsList.get(i).getId())
-                    nextBarcodeNb = itemsList.get(i).getId();
-                }
-                else
-                  if(nextBarcodeNb < itemsList.get(i+1).getId())
-                    nextBarcodeNb = itemsList.get(i+1).getId();
-            }
-            nextBarcodeNb = nextBarcodeNb+1;
+            Item  item =itmBean.getLatestItem();
+            long  nextBarcodeNb = item.getId()+1;
             request.setAttribute("itemCategoryList", itemCategoryList);
-            
             if(isExist==true){
-            request.getRequestDispatcher("Item/itemForm.jsp?" 
-                     +"id=&name=&imgPath=&saleRentPrice=&minLimit=&maxLimit=&available=&active=&category=&description=&book=&barcode="+request.getParameter("barcode")+"&nextBarcodeNb="+nextBarcodeNb+"&isExist="+isExist).forward(request, response);
-            }
+               request.getRequestDispatcher("Item/itemForm.jsp?" 
+                     +"id=&name=&imgPath=&saleRentPrice=&minLimit=&maxLimit=&available=&active=&category=&description=&book=&barcode="+request.getParameter("barcode")+"&nextBarcodeNb="+nextBarcodeNb+"&AvgPrice=&isExist="+isExist+"&currency="+currency).forward(request, response);
+        
+           }
             else{
-             request.getRequestDispatcher("Item/itemForm.jsp?" 
-                     +"id=&name=&imgPath=&saleRentPrice=&minLimit=&maxLimit=&available=&active=&category=&description=&book=&barcode=&nextBarcodeNb="+nextBarcodeNb+"&isExist="+isExist).forward(request, response);
-            }
+            request.getRequestDispatcher("Item/itemForm.jsp?" 
+                     +"id=&name=&imgPath=&saleRentPrice=&minLimit=&maxLimit=&available=&active=&category=&description=&book=&barcode=&nextBarcodeNb="+nextBarcodeNb+"&AvgPrice=&isExist="+isExist+"&currency="+currency).forward(request, response);
+        }
             }
             
+    }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
