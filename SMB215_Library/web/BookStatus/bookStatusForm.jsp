@@ -56,12 +56,16 @@
                                 <fieldset>
                                     <input type="hidden" name="book_id" value="<%=request.getParameter("book_id")%>"/>
                                     <label><span class="text-form">Branch*</span>
+                                           <% if(request.getParameter("branchName")!=null && !request.getParameter("branchName").equals("")){%>
+                                            <%=request.getParameter("branchName")%>
+                                           <%}else{%>
                                           <select name="branch" id="branch" >
                                               <option value="" selected >Select</option>
                                             <c:forEach items="${branchesList}" var="branch">
 					   <option value="${branch.id}">${branch.name}</option>
                                             </c:forEach>
-                                          </select></label>
+                                          </select>
+                                    <%}%></label>
                                     <script>
                                                  if ("<%=request.getParameter("branch_id")%>" !== "") {
                                                      var val = <%=request.getParameter("branch_id")%>;

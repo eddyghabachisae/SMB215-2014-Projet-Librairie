@@ -40,8 +40,9 @@ public class GetBookStatus extends HttpServlet {
              }
             int branchesListSize= 0;
             branchesListSize = branchesList.size();
+            String branchName = bookStatus.getBranch().getName();
             request.getRequestDispatcher("BookStatus/bookStatusForm.jsp?" 
-                     +"id="+bookStatus.getId()+"&branch_id="+bookStatus.getBranch_id()+"&section="+bookStatus.getSection()+"&shelf="+bookStatus.getShelf()+"&book_id="+bookStatus.getBook_id()+"&item_id"+bookStatus.getBook().getItem_id()+"&sizeList="+bookStatusList.size()+"&branchesListSize="+branchesListSize).forward(request, response);
+                     +"id="+bookStatus.getId()+"&branch_id="+bookStatus.getBranch_id()+"&branchName="+branchName+"&section="+bookStatus.getSection()+"&shelf="+bookStatus.getShelf()+"&book_id="+bookStatus.getBook_id()+"&item_id"+bookStatus.getBook().getItem_id()+"&sizeList="+bookStatusList.size()+"&branchesListSize="+branchesListSize).forward(request, response);
             }
             else{
                 BranchBean branchBean = new BranchBean();
