@@ -7,7 +7,6 @@
 package Author;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -27,7 +26,8 @@ public class GetAuthors extends HttpServlet {
         AuthorBean cntBean = new AuthorBean();
         List<Author> authors = cntBean.getAuthors();
         request.setAttribute("authors", authors);
-        request.getRequestDispatcher("authors/viewAuthor.jsp").forward(request, response);
+        int listSize= authors.size();
+        request.getRequestDispatcher("Author/viewAuthor.jsp?listSize="+listSize).forward(request, response);
     }
 
     @Override

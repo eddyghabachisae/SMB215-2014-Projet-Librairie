@@ -30,7 +30,7 @@ public class SaveAuthor extends HttpServlet {
             response.sendRedirect("GetAuthors");
         } else {
             cntBean.addAuthor(cnt);
-            response.sendRedirect("GetAuthor");
+            response.sendRedirect("GetAuthors");
         }
     }
 

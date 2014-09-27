@@ -30,10 +30,17 @@
             <section id="content"><div class="ic"></div>
                 <div class="container_12">
                     <div class="wrapper">
+                        <h3 class="">Book Authors</h3>
+                        <a href="./GetItems"><input type="submit" name="Submit" value="Back To Items" class="button"/></a>
                         <div class="pull-right">
                             <a href="GetAuthor"><input type="submit" name="Submit" value="Add New Author" class="button"/></a>
                         </div>
                         <div class="clear2"></div>
+                        <%
+                             if(!request.getParameter("listSize").equals("0"))
+                             {
+                            
+                          %>
                         <div class="CSSTableGenerator" >
                             <table>
                                 <tbody>
@@ -55,21 +62,15 @@
                                     </c:forEach>
                                 </tbody>
                             </table>
+                                 <%}
+                             else{
+                            %>
+                            <br>
+                            <div class="emptyList_box">List is Empty!</div>
+                            <%}%>
                                                </div>
-                        <div class="clear"></div>
-                        <div id="tnt_pagination">
-                            <span class="disabled_tnt_pagination">Prev</span>
-                            <span class="active_tnt_link">1</span>
-                            <a href="#2">2</a>
-                            <a href="#3">3</a>
-                            <a href="#3">4</a>
-                            <a href="#5">5</a>
-                            <a href="#6">6</a>
-                            <a href="#7">7</a>
-                            <a href="#8">8</a>
-                            <a href="#9">9</a>
-                            <a href="#10">10</a>
-                            <a href="#forwaed">Next</a></div>
+                       
+                        
 
 
                     </div>

@@ -23,12 +23,12 @@ public class GetAuthor extends HttpServlet {
         if (request.getParameter("id") != null){
             AuthorBean cntBean = new AuthorBean();
             Author cnt = cntBean.getAuthor(Integer.valueOf(request.getParameter("id")));
-            response.sendRedirect("author/editAuthor.jsp?" 
+            response.sendRedirect("Author/editAuthor.jsp?" 
                     +"id=" + cnt.getId()
                     +"&code=" + cnt.getCode() 
                     +"&name=" + cnt.getName());
         } else {
-               response.sendRedirect("author/editAuthor.jsp?id=&code=&name=");
+               response.sendRedirect("Author/editAuthor.jsp?id=&code=&name=");
         }
         
     }
