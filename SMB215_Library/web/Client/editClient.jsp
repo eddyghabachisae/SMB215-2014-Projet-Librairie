@@ -132,7 +132,7 @@
                                     <form id="form" name="form" action="../SaveClient" method="post" OnSubmit="return fncSubmit();">                    
                                         <fieldset>
                                             <input type="hidden" name="id" value="<%=request.getSession().getAttribute("userid")%>">
-                                            <label><span class="text-form">Username: </span><input type="text" class="inputText" name="username" value="<%=clt1.getUsername()%>"></label>
+                                            <label><span class="text-form">Username: </span><input type="text" class="inputText" name="username" value="<%=clt1.getUsername()%>"><% if (request.getParameter("existingusername") != null) { out.println("<b>The username you chose already taken!</b>"); }%></label>
                                             <label><span class="text-form">First Name: </span><input type="text" class="inputText" name="firstname" value="<%=clt1.getFirstname()%>"></label>
                                             <label><span class="text-form">Last Name: </span><input type="text" class="inputText" name="lastname" value="<%=clt1.getLastname()%>"></label>
                                             

@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -65,26 +67,48 @@ public class SaveClient extends HttpServlet {
             Class.forName(dbCon.getJDBC_DRIVER());
             con = DriverManager.getConnection(dbCon.getDATABASE_URL(),
                     dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
+            Statement stmt = null; 
             
-         
-            // update query execution *******************************
-            pstmt = con.prepareStatement("Update customer Set cst_username='" + form_user + 
-                    "' ,cst_firstname='" + form_firstname + 
-                    "' ,cst_lastname='" + form_lastname +
-                    "' ,cst_gender_id='" + form_gender +
-                    "' ,cst_maritalstatus='" + form_marital +
-                    //"' ,cst_dateofbirth='" + (Date) form_DoB +
-                    "' ,cst_address='" + form_address + 
-                    "' ,cst_phone='" + form_phone + 
-                    "' ,cst_mobile='" + form_mobile + 
-                    "' ,cst_email='" + form_email + 
-                    "' ,cst_remarks='" + form_remarks + 
-                    "' Where cst_id=" + id);
-            pstmt.executeUpdate();
-            
-            
-            // Go to View profile page ******************************
-            response.sendRedirect("Client/indexClient.jsp");
+            // Check if old password match
+            stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("Select cst_username From customer where cst_id=" + id);
+            String newuser;
+            while (rs.next()) 
+            {
+                newuser = rs.getString(1); 
+                if (!form_user.equals(newuser)){
+                Statement stmt1 = null;
+                stmt1 = con.createStatement();
+                ResultSet rs1 = stmt1.executeQuery("Select * From customer where cst_username='" + form_user + "'"); 
+
+                if(!rs1.next()) // if no such user exists
+                {
+                // update query execution *******************************
+                pstmt = con.prepareStatement("Update customer Set cst_username='" + form_user + 
+                        "' ,cst_firstname='" + form_firstname + 
+                        "' ,cst_lastname='" + form_lastname +
+                        "' ,cst_gender_id='" + form_gender +
+                        "' ,cst_maritalstatus='" + form_marital +
+                        //"' ,cst_dateofbirth='" + (Date) form_DoB +
+                        "' ,cst_address='" + form_address + 
+                        "' ,cst_phone='" + form_phone + 
+                        "' ,cst_mobile='" + form_mobile + 
+                        "' ,cst_email='" + form_email + 
+                        "' ,cst_remarks='" + form_remarks + 
+                        "' Where cst_id=" + id);
+                pstmt.executeUpdate();
+
+
+                // Go to View profile page ******************************
+                response.sendRedirect("Client/indexClient.jsp");
+                }              
+                else
+                {
+                // Go back to modify profile page ******************************
+                  response.sendRedirect("Client/editClient.jsp?existingusername=true");
+                }
+            }
+            }
         } catch (SQLException | ClassNotFoundException ex) {
             System.err.println("Caught Exception: " + ex.getMessage());
         //} catch (ParseException ex) {
@@ -101,6 +125,7 @@ public class SaveClient extends HttpServlet {
                 System.err.println("Caught Exception: " + ex.getMessage());
             }   
     }
+        
     }
     
        
