@@ -84,7 +84,7 @@ public class ClientBean {
         
             while (rs.next()) {
                 Client client = new Client();
-                 client.setId(rs.getLong(1));
+                client.setId(rs.getLong(1));
                 client.setUsername(rs.getString(2));
                 client.setPassword(rs.getString(3));
                 client.setFirstname(rs.getString(4));

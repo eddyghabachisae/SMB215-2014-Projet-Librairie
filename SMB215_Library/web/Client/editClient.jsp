@@ -113,11 +113,9 @@
                                                 <div class="extra-wrap">		
                                                     <div class="buttons">
                                                         <input type="submit" name="Submit" value="Submit" class="button"  />
-                                                        <a href="../ViewProfile"><input type="button" name="Cancel" value="Cancel" class="button"/></a>
+                                                        <a href="indexClient.jsp"><input type="button" name="Cancel" value="Cancel" class="button"/></a>
                                                     </div> 
-
                                                 </div>
-
                                             </div>                      
                                         </fieldset>						
 

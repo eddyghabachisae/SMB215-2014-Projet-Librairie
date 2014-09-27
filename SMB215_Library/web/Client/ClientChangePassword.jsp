@@ -84,9 +84,9 @@
                             <div class="indent-right">
                                 <h3 class="prev-indent-bot">Change Password Form</h3>
                                 <div id="content3"> 
-                                <form name="ChangePasswordForm" method="post" action="../UpdatePassword" OnSubmit="return fncSubmit();">
+                                <form id="ChangePasswordForm" name="ChangePasswordForm" method="post" action="../UpdatePassword" OnSubmit="return fncSubmit();">
                                     <fieldset>
-                                      <label><span class="text-form">type your old password: </span><input name="OldPassword" type="password" id="OLDpwd"></label><br />   
+                                      <label><span class="text-form">type your old password: </span><input name="OldPassword" type="password" id="OLDpwd"><% if (request.getParameter("wrongoldpassword") != null) { out.println("<b>your old password is wrong!</b>!"); }%></label><br />   
                                       <label><span class="text-form">type your new password: </span><input name="newpassword" type="password" id="newpassword"></label><br />
                                       <label><span class="text-form">confirm your new password: </span><input name="conpassword" type="password" id="conpassword"></label><br /> 
                                     </fieldset>           
@@ -98,7 +98,7 @@
                                     <div class="extra-wrap">		
                                         <div class="buttons">
                                             <input type="submit" name="Submit" value="update" class="button"  />
-                                            <a href="../ViewProfile"><input type="button" name="Cancel" value="Cancel" class="button"/></a>
+                                            <a href="indexClient.jsp"><input type="button" name="Cancel" value="Cancel" class="button"/></a>
                                         </div> 
 
                                     </div>    
