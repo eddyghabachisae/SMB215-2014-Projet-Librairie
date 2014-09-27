@@ -36,7 +36,8 @@ public class GetBookCategories extends HttpServlet {
         BookCategoryBean bookCatBean = new BookCategoryBean();
         List<BookCategory> bookCategoriesList = bookCatBean.getBookCategories();
         request.setAttribute("bookCategoriesList", bookCategoriesList);
-        request.getRequestDispatcher("BookCategory/manage.jsp").forward(request, response);
+        int listSize= bookCategoriesList.size();
+        request.getRequestDispatcher("BookCategory/manage.jsp?listSize="+listSize).forward(request, response);
    
         }
   
