@@ -5,7 +5,6 @@ import Author.Author;
 import Author.AuthorBean;
 import BookCategory.BookCategory;
 import BookCategory.BookCategoryBean;
-import BookStatus.BookStatus;
 import BookStatus.BookStatusBean;
 import BookLanguage.BookLanguage;
 import BookLanguage.BookLanguageBean;
@@ -19,12 +18,19 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import library.Library;
+import library.LibraryBean;
 
 @WebServlet(name = "GetBook", urlPatterns = {"/GetBook"})
 public class GetBook extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+            LibraryBean libraryBean = new LibraryBean();
+            Library library = libraryBean.getLibrary();
+            String currency = "";
+            if(library!=null){
+             currency = library.getMainCurrency();
         if (request.getParameter("id") != null && !request.getParameter("id").equals("") && !request.getParameter("id").equals("0")){
             BookBean bookBean = new BookBean();
             Book book = bookBean.getBook(Integer.valueOf(request.getParameter("id")));
@@ -40,8 +46,6 @@ public class GetBook extends HttpServlet {
             BranchBean branchBean = new BranchBean();
             List<Branch> branchesList = branchBean.getBranchesList();
             request.setAttribute("branchesList", branchesList);
-            BookStatusBean bookStatusBean = new BookStatusBean();
-           // BookStatus bookStatus = bookStatusBean.getBookStatus(book.getBookStatus_id());
             String publishDate="";
             if(book.getPublishDate()!=null){
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -59,7 +63,8 @@ public class GetBook extends HttpServlet {
                      +"&bookCategory_id="+book.getBookCategory_id()
                      +"&author_id="+book.getAuthor_id()
                      +"&rentPrice="+book.getRentPrice()
-                     +"&item_id="+book.getItem_id()).forward(request, response);
+                     +"&item_id="+book.getItem_id()
+                     +"&currency="+currency).forward(request, response);
         } else {
             BookBean bookBean = new BookBean();
             BookCategoryBean bookCatBean = new BookCategoryBean();
@@ -74,9 +79,10 @@ public class GetBook extends HttpServlet {
              BookLanguageBean langBean = new BookLanguageBean();
             List<BookLanguage> LanguagesList = langBean.getBookLanguages();
             request.setAttribute("LanguagesList", LanguagesList);
-            request.getRequestDispatcher("Book/bookForm.jsp?id=&title=&subtitle=&isbn=&publisher=&publishDate=&pagesNb=&bookCategory_id=&bookAuthor_id=&rentPrice=&item_id="+request.getParameter("item_id")).forward(request, response);
+            request.getRequestDispatcher("Book/bookForm.jsp?id=&title=&subtitle=&isbn=&publisher=&publishDate=&pagesNb=&bookCategory_id=&bookAuthor_id=&rentPrice=&item_id="+request.getParameter("item_id")+"&currency="+currency).forward(request, response);
       }
 
+    }
     }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)

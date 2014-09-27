@@ -71,7 +71,7 @@
                                       <label><span class="text-form">Pages Number* </span><input type="text" class="inputText" id="pagesNb" 
                                         name="pagesNb" value="<%=request.getParameter("pagesNb")%>"></label>
                                         <label><span class="text-form">Rent Price* </span><input type="text" class="inputText" id="rentPrice" 
-                                        name="rentPrice" value="<%=request.getParameter("rentPrice")%>"></label>
+                                        name="rentPrice" value="<%=request.getParameter("rentPrice")%>"> <%=request.getParameter("currency")%></label>
                                       <label><span class="text-form">Language*</span>
                                           <select name="language" id="language" >
                                               <option value="" selected >Select</option>

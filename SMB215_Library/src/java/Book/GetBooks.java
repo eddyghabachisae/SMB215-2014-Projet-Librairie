@@ -47,12 +47,12 @@ public class GetBooks extends HttpServlet {
             booksList.add(book);
         }
         }
-//        LibraryBean libraryBean = new LibraryBean();
-//        Library library = libraryBean.getLibrary();
-//        String currency = "";
-//        if(library!=null){
-//         currency = library.getMainCurrency();
-//        }
+        LibraryBean libraryBean = new LibraryBean();
+        Library library = libraryBean.getLibrary();
+        String currency = "";
+        if(library!=null){
+         currency = library.getMainCurrency();
+        }
         request.setAttribute("booksList", booksList);
         request.getRequestDispatcher("Book/booksList.jsp?currency="+currency).forward(request, response);
    
