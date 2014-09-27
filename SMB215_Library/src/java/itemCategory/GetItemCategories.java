@@ -16,7 +16,8 @@ public class GetItemCategories extends HttpServlet {
         ItemCategoryBean itcBean = new ItemCategoryBean();
         List<ItemCategory> itemCategories = itcBean.getItemCategories();
         request.setAttribute("itemCategories", itemCategories);
-        request.getRequestDispatcher("itemCategory/viewItemCategory.jsp").forward(request, response);
+        int listSize= itemCategories.size();
+        request.getRequestDispatcher("itemCategory/viewItemCategory.jsp?listSize="+listSize).forward(request, response);
     }
     
     @Override
