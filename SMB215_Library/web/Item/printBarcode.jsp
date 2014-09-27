@@ -39,13 +39,15 @@
                     <div class="wrapper">
                         <article class="grid_8">
                             <div class="indent-right">
+                                
                                 <h3 class="prev-indent-bot"><%=request.getParameter("name")%></h3>
                                  <div id="content3">
                                   <% if(!request.getParameter("imgBarcodePath").equals("")) { %> 
                                   <div class="printable">
                                   <img  src="<%=request.getParameter("imgBarcodePath")%>" style="width:150px; height:50px;"  />
                                    </div>
-                                  <a href=""  >print</a> 
+                                   <a href="" id="link"><input type="submit" name="Print" value="Print" class="button"/></a>
+                                   <a href="GetItems"><input type="submit" name="Submit" value="Back To Items" class="button"/></a>
                                   <%} else {%>
                                   <div class="emptyList_box">No Barcode !</div>
                                   <%} %>
@@ -77,7 +79,7 @@
             function(){
  
                 // Hook up the print link.
-                $( "a" )
+                $( "#link" )
                     .attr( "href", "javascript:void( 0 )" )
                     .click(
                         function(){

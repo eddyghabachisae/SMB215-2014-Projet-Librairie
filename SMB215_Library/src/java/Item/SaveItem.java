@@ -59,6 +59,7 @@ public class SaveItem extends HttpServlet {
         item.setIsActive(Boolean.parseBoolean(request.getParameter("active")));
         item.setItemCategory_id(Long.parseLong(request.getParameter("category")));
         String barcode = request.getParameter("barcode");
+        System.out.println("barcodeeee: "+request.getParameter("barcode"));
         String barcodeImgPath = "C:/Users/Douha/Documents/NetBeansProjects/LibraryLatest/web/public/barcode/"+barcode+".png";
         BarcodeManager.generateCode128(barcode, barcodeImgPath);
         item.setImgBracodePath("./public/barcode/"+barcode+".png");
@@ -113,16 +114,18 @@ public class SaveItem extends HttpServlet {
             if(request.getParameter("book")!=null && request.getParameter("book").equals("true")){
                 BookBean bookBean = new BookBean();
                 Book book = bookBean.getBookFormItem(item.getId());
+                System.err.println("item iddd:"+item.getId());
                 response.sendRedirect("GetBook?item_id="+item.getId()+"&id="+book.getId());
             }
             else
                 response.sendRedirect("GetItems");
         } else {
             System.err.println("fet 3al elseee");
-            itemBean.addItem(item);
+            long item_id = itemBean.addItem(item);
+            System.err.println("item id:"+item_id);
             if(request.getParameter("book")!=null && request.getParameter("book").equals("true"))
-                response.sendRedirect("GetBook?item_id="+item.getId()+"&id=");
-            else
+              response.sendRedirect("GetBook?item_id="+item_id+"&id=");
+          else
                 response.sendRedirect("GetItems");
         }
     }

@@ -10,33 +10,28 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import library.Library;
+import library.LibraryBean;
 
 @WebServlet(name = "GetItem", urlPatterns = {"/GetItem"})
 public class GetItem extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+            LibraryBean libraryBean = new LibraryBean();
+            Library library = libraryBean.getLibrary();
+            String currency = "";
+            if(library!=null){
+             currency = library.getMainCurrency();
+            }
         if (request.getParameter("id") != null){
             ItemBean itmBean = new ItemBean();
             Item item = itmBean.getItem(Integer.valueOf(request.getParameter("id")));
             ItemCategoryBean itc = new ItemCategoryBean();
             List<ItemCategory> itemCategoryList = itc.getItemCategories();
             request.setAttribute("itemCategoryList", itemCategoryList);
-            long nextBarcodeNb= 0;
-            List<Item> itemsList = itmBean.getItemsList();
-            for(int i=0;i<itemsList.size()-2; i++){
-                if(itemsList.get(i).getId() > itemsList.get(i+1).getId()){
-                    System.err.println("fet 3al if");
-                    if(nextBarcodeNb< itemsList.get(i).getId())
-                    nextBarcodeNb = itemsList.get(i).getId();
-                }
-                else
-                  if(nextBarcodeNb < itemsList.get(i+1).getId())
-                    nextBarcodeNb = itemsList.get(i+1).getId();
-                
-               
-            }
-            nextBarcodeNb = nextBarcodeNb+1;
+            Item  item2 =itmBean.getLatestItem();
+            long  nextBarcodeNb = item2.getId()+1;
             BookBean bookBean = new BookBean();
             Book book = bookBean.getBookFormItem(item.getId());
             boolean isBook = false;
@@ -60,30 +55,19 @@ public class GetItem extends HttpServlet {
                      +"&book_id="+book_id
                      +"&barcode="+item.getBarcode()
                      +"&nextBarcodeNb="+nextBarcodeNb
-                     +"&AvgPrice="+item.getAvgUnitCost()).forward(request, response);
+                     +"&AvgPrice="+item.getAvgUnitCost()
+                     +"&currency="+currency).forward(request, response);
         } else {
             ItemCategoryBean itc = new ItemCategoryBean();
             List<ItemCategory> itemCategoryList = itc.getItemCategories();
             ItemBean itmBean = new ItemBean();
-            List<Item> itemsList = itmBean.getItemsList();
-            long nextBarcodeNb= 0;
-            for(int i=0;i<itemsList.size()-2; i++){
-                if(itemsList.get(i).getId() > itemsList.get(i+1).getId()){
-                    System.err.println("fet 3al if");
-                    if(nextBarcodeNb< itemsList.get(i).getId())
-                    nextBarcodeNb = itemsList.get(i).getId();
-                }
-                else
-                  if(nextBarcodeNb < itemsList.get(i+1).getId())
-                    nextBarcodeNb = itemsList.get(i+1).getId();
-                
-               
-            }
-            nextBarcodeNb = nextBarcodeNb+1;
+            Item  item =itmBean.getLatestItem();
+            long  nextBarcodeNb = item.getId()+1;
+            System.err.println("nextBarcodeNb:"+nextBarcodeNb);
             request.setAttribute("itemCategoryList", itemCategoryList);
             
             request.getRequestDispatcher("Item/itemForm.jsp?" 
-                     +"id=&name=&imgPath=&saleRentPrice=&minLimit=&maxLimit=&available=&active=&category=&description=&book=&barcode=&nextBarcodeNb="+nextBarcodeNb+"&AvgPrice=").forward(request, response);
+                    +"id=&name=&imgPath=&saleRentPrice=&minLimit=&maxLimit=&available=&active=&category=&description=&book=&barcode=&nextBarcodeNb="+nextBarcodeNb+"&AvgPrice=&currency="+currency).forward(request, response);
          }
     }
 

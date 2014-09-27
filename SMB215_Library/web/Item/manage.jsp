@@ -52,6 +52,11 @@
                                <a href="./GetBookLanguages" style="margin-left: 20%;margin-top: 5%; text-decoration:none;"> Book Language</a>
                             </div>
                             </article>
+                         <article class="grid_2">
+                            <div class="box" style="height:40px;">
+                               <a href="./GetAuthors" style="margin-left: 20%;margin-top: 5%; text-decoration:none;"> Book Authors</a>
+                            </div>
+                           </article>
                         
                         <div class="pull-right">
                             <a href="GetItem"><input type="submit" name="Submit" value="Add New Item" class="button"/></a>

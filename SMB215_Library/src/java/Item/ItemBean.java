@@ -132,10 +132,11 @@ public class ItemBean {
         }
     }
 
-    public void addItem(Item item) {
+    public long addItem(Item item) {
 
         Connection con = null;
         PreparedStatement pstmt = null;
+        long id =0;
 
         try {
             DBconnection dbCon = new DBconnection();
@@ -143,7 +144,7 @@ public class ItemBean {
 
             con = DriverManager.getConnection(dbCon.getDATABASE_URL(),
                     dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
-            pstmt = con.prepareStatement("Insert Into item (itm_name, itm_barcode, itm_barcodeimgpath, itm_imgpath, itm_description, itm_avgunitcost, itm_salerentprice, itm_minlimit, itm_maxlimit, itm_quantity, itm_isavailable, itm_isactive, itm_deactivationreason, itemCategory_id) Values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+            pstmt = con.prepareStatement("Insert Into item (itm_name, itm_barcode, itm_barcodeimgpath, itm_imgpath, itm_description, itm_avgunitcost, itm_salerentprice, itm_minlimit, itm_maxlimit, itm_quantity, itm_isavailable, itm_isactive, itm_deactivationreason, itemCategory_id) Values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)",Statement.RETURN_GENERATED_KEYS);
     
             pstmt.setString(1, item.getName());
             pstmt.setString(2, item.getBarcode());
@@ -160,6 +161,9 @@ public class ItemBean {
             pstmt.setString(13, item.getDeactivationReason());
             pstmt.setLong(14, item.getItemCategory_id());
             pstmt.execute();
+            ResultSet rs = pstmt.getGeneratedKeys();
+            rs.next();
+            id = rs.getLong(1);
 
         } catch (SQLException | ClassNotFoundException ex) {
             System.err.println("Caught Exception: " + ex.getMessage());
@@ -175,6 +179,7 @@ public class ItemBean {
                 System.err.println("Caught Exception: " + ex.getMessage());
             }
         }
+        return id;
     }
 
     public Item getItem(long id) {
@@ -225,6 +230,56 @@ public class ItemBean {
         }
         return item;
     }
+    
+    
+    public Item getLatestItem() {
+        Item item = null;
+        Connection con = null;
+        Statement stmt = null;
+        try {
+            DBconnection dbCon = new DBconnection();
+            Class.forName(dbCon.getJDBC_DRIVER());
+
+            con = DriverManager.getConnection(dbCon.getDATABASE_URL(),
+                    dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
+            stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("Select * From item Where itm_id=(select max(itm_id) from item)");
+            item = new Item();
+            if (rs.next()) {
+                item.setId(rs.getLong(1));
+                item.setName(rs.getString(2));
+                item.setBarcode(rs.getString(3));
+                item.setImgBracodePath(rs.getString(4));
+                item.setImgPath(rs.getString(5));
+                item.setDescription(rs.getString(6));
+                item.setAvgUnitCost(rs.getDouble(7));
+                item.setSaleRentPrice(rs.getDouble(8));
+                item.setMinLimit(rs.getInt(9));
+                item.setMaxLimit(rs.getInt(10));
+                item.setQuantity(rs.getInt(11));
+                item.setIsAvailable(rs.getBoolean(12));
+                item.setIsActive(rs.getBoolean(13));
+                item.setDeactivationReason(rs.getString(14));
+                item.setItemCategory_id(rs.getInt(15));
+                
+            }
+        } catch (SQLException | ClassNotFoundException ex) {
+            System.err.println("Caught Exception: " + ex.getMessage());
+        } finally {
+            try {
+                if (stmt != null) {
+                    stmt.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException ex) {
+                System.err.println("Caught Exception: " + ex.getMessage());
+            }
+        }
+        return item;
+    }
+    
 
     public void modifyItem(Item item) {
         Connection con = null;

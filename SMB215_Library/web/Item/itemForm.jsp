@@ -1,5 +1,4 @@
 <%@page import="Item.Item"%>
-<%@page import="Item.Item"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
@@ -65,9 +64,9 @@
                                                                                                name="name" value="<%=request.getParameter("name")%>"></label>                   
                                           
                                             <label><span class="text-form">Sale price* </span><input type="text" class="inputText" id="saleRentPrice" 
-                                                                                                          name="saleRentPrice" value="<%=request.getParameter("saleRentPrice")%>"></label>
+                                                                                                          name="saleRentPrice" value="<%=request.getParameter("saleRentPrice")%>"><%=request.getParameter("currency")%></label>
                                                                                                           <%if(request.getParameter("AvgPrice").equals("")==false){%>
-                                                                                                          <span style="margin-left:30%;">Average Price: <%=request.getParameter("AvgPrice")%></span>
+                                                                                                          <span style="margin-left:30%;">Average Price: <%=request.getParameter("AvgPrice")%> <%=request.getParameter("currency")%></span>
                                                                                                           <%}%>
                                             <label><span class="text-form">Min Limit In Stock* </span><input type="text" class="inputText" id="minLimit" 
                                                                                                     name="minLimit" value="<%=request.getParameter("minLimit")%>"></label>
