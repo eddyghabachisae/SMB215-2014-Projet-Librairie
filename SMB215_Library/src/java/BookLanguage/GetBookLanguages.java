@@ -7,7 +7,6 @@
 package BookLanguage;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,7 +24,8 @@ public class GetBookLanguages extends HttpServlet {
         BookLanguageBean cntBean = new BookLanguageBean();
         List<BookLanguage> bookLanguagesList = cntBean.getBookLanguages();
         request.setAttribute("Languages", bookLanguagesList);
-        request.getRequestDispatcher("BookLanguage/viewLanguage.jsp").forward(request, response);
+        int listSize= bookLanguagesList.size();
+        request.getRequestDispatcher("BookLanguage/viewLanguage.jsp?listSize="+listSize).forward(request, response);
     }
 
     
