@@ -22,14 +22,14 @@ public class ProvinceBean {
                     dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
             con.setAutoCommit(false);
             idstmt = con.createStatement();
-            ResultSet rs = idstmt.executeQuery("Select ifnull(max(pvc_id),0)+1 From tbl_province");
+            ResultSet rs = idstmt.executeQuery("Select ifnull(max(pvc_id),0)+1 From province");
             rs.next();
             id = rs.getInt(1);
 
-            pstmt = con.prepareStatement("Insert Into tbl_province Values(?,?,?,?)");
+            pstmt = con.prepareStatement("Insert Into province Values(?,?,?,?)");
 
             pstmt.setInt(1, id);
-            pstmt.setString(2, pvc.getShortName());
+            pstmt.setString(2, pvc.getCode());
             pstmt.setString(3, pvc.getName());
             pstmt.setInt(4, pvc.getcountry());
 
