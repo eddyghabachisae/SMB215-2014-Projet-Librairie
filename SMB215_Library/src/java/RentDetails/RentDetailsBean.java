@@ -212,12 +212,13 @@ public class RentDetailsBean {
             con = DriverManager.getConnection(dbCon.getDATABASE_URL(),
                     dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
 
-            pstmt = con.prepareStatement("Update rentDetails Set rnt_returneddate=?, book_id=?, rentHeader_id=?,"
+            pstmt = con.prepareStatement("Update rentDetails Set rnt_returneddate=?, book_id=?, rentHeader_id=?"
                     +" Where rnd_id=?");
             
             pstmt.setDate(1, rentDetails.getReturnedDate());
             pstmt.setLong(2, rentDetails.getBook_id());
             pstmt.setLong(3, rentDetails.getRentHeader_id());
+            pstmt.setLong(4, rentDetails.getId());
             pstmt.executeUpdate();
         } catch (SQLException | ClassNotFoundException ex) {
             System.err.println("Caught Exception: " + ex.getMessage());
