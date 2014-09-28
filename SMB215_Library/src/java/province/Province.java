@@ -4,7 +4,7 @@ public class Province {
 
     private int id;
     private String name;
-    private String shortName;
+    private String code;
     private int country;
 
     public int getId() {
@@ -23,12 +23,12 @@ public class Province {
         this.name = name;
     }
 
-    public String getShortName() {
-        return shortName;
+    public String getCode() {
+        return code;
     }
 
-    public void setShortName(String shortName) {
-        this.shortName = shortName;
+    public void setCode(String Code) {
+        this.code = Code;
     }
 
     public int getcountry() {
