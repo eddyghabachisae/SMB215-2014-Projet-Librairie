@@ -3,6 +3,8 @@ package RentDetails;
 
 import Book.Book;
 import Book.BookBean;
+import RentHeader.RentHeader;
+import RentHeader.RentHeaderBean;
 import java.sql.Date;
 
 
@@ -56,7 +58,12 @@ public class RentDetails {
         Book book = bookBean.getBook(this.book_id);
         return book;
     }
-
+    
+    public RentHeader getRentHeader(){
+    RentHeaderBean rentHeaderBean = new RentHeaderBean();
+    RentHeader rentHeader = rentHeaderBean.getRentHeader(this.getRentHeader_id());
+    return rentHeader;
+    }
     
 
     
