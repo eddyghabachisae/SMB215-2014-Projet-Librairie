@@ -109,7 +109,7 @@
                                 List<Gender> Genderslist = gendersBean.getGenders();  
                                 pageContext.setAttribute("Genderslist1", Genderslist);
                                 
-                                 //generate gender list
+                                 //generate Martial list
                                 GetMaritalsBean MaritalsBean = new GetMaritalsBean();
                                 List<Marital> Maritalslist = MaritalsBean.getMaritals();  
                                 pageContext.setAttribute("Maritalslist1", Maritalslist);      

@@ -22,16 +22,15 @@ public class CityBean {
                     dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
             con.setAutoCommit(false);
             idstmt = con.createStatement();
-            ResultSet rs = idstmt.executeQuery("Select ifnull(max(id),0)+1 From city");
+            ResultSet rs = idstmt.executeQuery("Select ifnull(max(cty_id),0)+1 From city");
             rs.next();
             id = rs.getInt(1);
 
-            pstmt = con.prepareStatement("Insert Into city Values(?,?,?,?)");
+            pstmt = con.prepareStatement("Insert Into city Values(?,?,?)");
 
             pstmt.setInt(1, id);
             pstmt.setString(2, cit.getCode());
             pstmt.setString(3, cit.getName());
-            //pstmt.setString(4, cit.getprovince());
 
             pstmt.execute();
 
@@ -83,7 +82,6 @@ public class CityBean {
                 cty.setId(rs.getInt(1));
                 cty.setCode(rs.getString(2));
                 cty.setName(rs.getString(3));
-                cty.setProvince(rs.getInt(4));
                 list.add(cty);
             }
         } catch (SQLException | ClassNotFoundException ex) {
