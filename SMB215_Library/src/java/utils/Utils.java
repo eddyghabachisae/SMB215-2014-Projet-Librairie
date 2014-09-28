@@ -30,4 +30,16 @@ public class Utils {
 		Calendar currentDate = Calendar.getInstance();
 		return currentDate.getTime();
 	}
+        
+        public static long getDifferenceBetween(Date date1, Date date2){
+            Calendar cal1 = Calendar.getInstance();
+            Calendar cal2 = Calendar.getInstance();
+             cal1.setTime(date1);
+             cal2.setTime(date2);
+            long milis1 = cal1.getTimeInMillis();
+            long milis2 = cal2.getTimeInMillis();
+            long diff = milis2 - milis1;
+            long diffDays = diff / (24 * 60 * 60 * 1000);
+            return diffDays;
+        }
 }
