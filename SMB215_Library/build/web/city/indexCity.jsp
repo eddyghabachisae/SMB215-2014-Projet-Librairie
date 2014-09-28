@@ -73,7 +73,12 @@
                                 </tr>
                                 <c:forEach items="${Citieslist1}" var="cit1">  
                                 <tr>
-                                     <td width="200px">${cit1.name}</td><td>${cit1.code}</td>
+                                     <td width="200px">${cit1.name}</td>
+                                     <td>${cit1.code}</td>
+                                     <td>
+                                         <a href="editCity.jsp?cit_id=${cit1.id}"><input type="submit" name="Submit" value="Edit City" class="button"></a>
+                                         <a href="deleteCity.jsp?cit_id=${cit1.id}&cit_name=${cit1.name}"><input type="submit" name="Submit" value="Delete City" class="button"></a>
+                                     </td>
                                 </tr>
                                 </c:forEach>
 

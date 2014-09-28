@@ -64,10 +64,8 @@
                                     <li><a href="logout.jsp">Logout</a></li>
                                     </ul>
                                 </nav>
-                            </div>
-
-                        </div>
-                    </div>
+                                </div>
+               </div>
                 </div>
             </header>
 
@@ -79,29 +77,28 @@
                     <div class="wrapper">
                         <article class="grid_8">
                             <div class="indent-right">
-                                <h3 class="prev-indent-bot">Add a new City to Library database</h3>
+                                <h3 class="prev-indent-bot">Delete <%=request.getParameter("cit_name")%> city from Library database</h3>
 
                                 <div id="content3"> 
-                                    <div class="success_box">All of the fields were successfully validated!</div>
-                                    <!--div class="error_box"></div><div>error!</div-->
-
-                                    <form id="form" name="form" action="../insertCity" method="post" OnSubmit="return fncSubmit();" >                    
+                                        <form id="form" name="form" action="../deleteCity" method="post" OnSubmit="return fncSubmit();" >                    
                                         <fieldset>
                                             
-                                            <label><span class="text-form">City Name </span><input type="text" class="inputText" name="cityname" value=""><% if (request.getParameter("existingcityname") != null) { out.println("<b>The city you are trying to enter already exists!</b>"); }%></label>
-                                            <label><span class="text-form">City Code: </span><input type="text" class="inputText" name="citycode" value="" ></label>
+                                            <label><span class="text-form">are you sure you want to delete?</span></label>
                                             
                                             <div class="wrapper">
                                                 <div class="extra-wrap">		
                                                     <div class="buttons">
-                                                        <input type="submit" name="Submit" value="Add" class="button"  />
+                                                        <input type="hidden" name="cit_id" value="<%=request.getParameter("cit_id")%>" />
+                                                        <input type="submit" name="Submit" value="delete" class="button"  />
                                                         <a href="indexCity.jsp"><input type="button" name="Cancel" value="Cancel" class="button"/></a>
                                                     </div> 
                                                 </div>
                                             </div>                      
                                         </fieldset>						
 
-                                    </form-->
+                                    </form>
+
+                                    
                                 </div>
                             </div>
                         </article>

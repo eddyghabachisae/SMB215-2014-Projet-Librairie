@@ -111,7 +111,7 @@ public class CityBean {
             con = DriverManager.getConnection(dbCon.getDATABASE_URL(),
                     dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
             stmt = con.createStatement();
-            stmt.execute("Delete From city Where id = " + String.valueOf(id));
+            stmt.execute("Delete From city Where cty_id = " + String.valueOf(id));
         } catch (SQLException | ClassNotFoundException ex) {
             System.err.println("Caught Exception: " + ex.getMessage());
         } finally {
