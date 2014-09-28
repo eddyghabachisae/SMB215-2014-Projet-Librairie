@@ -101,7 +101,7 @@
                                             </div>                      
                                         </fieldset>						
 
-                                    </form-->
+                                    </form>
                                 </div>
                             </div>
                         </article>

@@ -139,7 +139,7 @@ public class CityBean {
             con = DriverManager.getConnection(dbCon.getDATABASE_URL(),
                     dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
             stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("Select * From city Where id=" + id);
+            ResultSet rs = stmt.executeQuery("Select * From city Where cty_id=" + id);
             if (rs.next()) {
                 cit = new City();
                 cit.setId(rs.getInt(1));
@@ -174,8 +174,8 @@ public class CityBean {
             con = DriverManager.getConnection(dbCon.getDATABASE_URL(),
                     dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
 
-            pstmt = con.prepareStatement("Update city Set shortname=?, "
-                    + "cit_name=? Where id=?");
+            pstmt = con.prepareStatement("Update city Set cty_code=?, "
+                    + "cty_name=? Where cty_id=?");
             pstmt.setString(1, cit.getCode());
             pstmt.setString(2, cit.getName());
 //           / pstmt.setString(4, cit.getprovince());

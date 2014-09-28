@@ -1,3 +1,5 @@
+<%@page import="city.City"%>
+<%@page import="city.CityBean"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -84,17 +86,23 @@
                                 <div id="content3"> 
                                     <div class="success_box">All of the fields were successfully validated!</div>
                                     <!--div class="error_box"></div><div>error!</div-->
+                                    <%
+                                    // query city data using a form id        
+                                    CityBean citBean = new CityBean();
+                                    City cit1 = citBean.getCity(Integer.parseInt(request.getParameter("cit_id")));
+                                   
+                                    %>
 
-                                    <form id="form" name="form" action="../insertCity" method="post" OnSubmit="return fncSubmit();" >                    
+                                    <form id="form" name="form" action="../updateCity" method="post" OnSubmit="return fncSubmit();" >                    
                                         <fieldset>
-                                            
-                                            <label><span class="text-form">City Name </span><input type="text" class="inputText" name="cityname" value=""><% if (request.getParameter("existingcityname") != null) { out.println("<b>The city you are trying to enter already exists!</b>"); }%></label>
-                                            <label><span class="text-form">City Code: </span><input type="text" class="inputText" name="citycode" value="" ></label>
+                                            <input type="hidden" name="cit_id" value="<%=cit1.getId()%>" />
+                                            <label><span class="text-form">City Name </span><input type="text" class="inputText" name="cityname" value="<%=cit1.getName()%>"><% if (request.getParameter("existingcityname") != null) { out.println("<b>The city you are trying to enter already exists!</b>"); }%></label>
+                                            <label><span class="text-form">City Code: </span><input type="text" class="inputText" name="citycode" value="<%=cit1.getCode()%>" ></label>
                                             
                                             <div class="wrapper">
                                                 <div class="extra-wrap">		
                                                     <div class="buttons">
-                                                        <input type="submit" name="Submit" value="Add" class="button"  />
+                                                        <input type="submit" name="Submit" value="Update" class="button"  />
                                                         <a href="indexCity.jsp"><input type="button" name="Cancel" value="Cancel" class="button"/></a>
                                                     </div> 
                                                 </div>
