@@ -78,7 +78,7 @@
                                      <td>${pvc1.code}</td>
                                      <td>${pvc1.country}</td>
                                      <td>
-                                         <a href="editProvince.jsp?cit_id=${cit1.id}"><input type="submit" name="Submit" value="Edit City" class="button"></a>
+                                         <a href="editProvince.jsp?pvc1_id=${pvc1.id}&pvc1_name=${pvc1.name}"><input type="submit" name="Submit" value="Edit Province" class="button"></a>
                                          <a href="deleteProvince.jsp?pvc1_id=${pvc1.id}&pvc1_name=${pvc1.name}"><input type="submit" name="Submit" value="Delete Province" class="button"></a>
                                      </td>
                                 </tr>

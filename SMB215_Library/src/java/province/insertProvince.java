@@ -50,14 +50,14 @@ public class insertProvince extends HttpServlet {
                 rs = stmt.executeQuery("Select pvc_name From province where pvc_name='" + form_provincename + "' & country_id =" + form_cntid);
    
             
-            while (rs.next()) 
-            {
+
             if(!rs.next()) // if no such province exists
                 {
         
                 Province pvc = new Province();
                 pvc.setCode(form_provincecode);
                 pvc.setName(form_provincename);
+                pvc.setcountry(form_cntid);
                 ProvinceBean pvcBean = new ProvinceBean();
                 pvcBean.addProvince(pvc);
                 response.sendRedirect("province/indexProvince.jsp");
@@ -67,7 +67,7 @@ public class insertProvince extends HttpServlet {
                 // Go back to modify profile page ******************************
                   response.sendRedirect("province/addProvince.jsp?existingprovincename=true");
                 }
-            }
+           
     
 
 

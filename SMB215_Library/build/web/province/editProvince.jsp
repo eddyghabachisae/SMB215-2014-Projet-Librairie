@@ -1,131 +1,158 @@
+<%@page import="country.*"%>
+<%@page import="province.*"%>
 <%@page import="city.City"%>
 <%@page import="city.CityBean"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@page import="Client.*"%>
+<%@page import="gender.*"%>
+<%@page import="Marital.*"%>
 <!DOCTYPE html>
 <html lang="en">
-<%@ include file="../main.html" %>
-<body id="page5">
-	<div class="main">
-        <!--==============================header=================================-->
-        <header>
-            <div class="container_12">
-                <div class="wrapper">
-                    <div class="grid_12">
-                        <div class="wrapper border-bot">
-                            <h1><a href="index.html">Library</a></h1>
-                            <nav>
-                                 <ul class="menu">
-                                    <li><a class="active" href="../home.jsp">Main</a></li>
-                                    <li><a href="">Inbox</a></li>
-                                    <li><a href="">Logout</a></li>
-                                </ul>
-                            </nav>
+        <% 
+        if ((session.getAttribute("username") == null) || (session.getAttribute("username") == "")) {
+      response.sendRedirect("login.jsp");
+        }
+    %>
+    <head>
+        <title>Edit My Profile</title>
+        <%@ include file="../main.html" %>
+        
+        <!Calendar Picker javascript>
+        <script language="JavaScript" src="../javascript/ts_picker.js">
+
+        //Script by Denis Gritcyuk: tspicker@yahoo.com
+        //Submitted to JavaScript Kit (http://javascriptkit.com)
+        //Visit http://javascriptkit.com for this script
+
+        </script>
+        <script language="javascript">
+        function fncSubmit()
+        {
+
+        if(document.form.cityname.value == "")
+        {
+        alert('city name field could not be empty');
+        document.form.cityname.focus();
+        return false;
+        } 
+
+        if(document.form.citycode.value == "")
+        {
+        alert('city code field could not be empty');
+        document.form.citycode.focus(); 
+        return false;
+        } 
+
+        
+        document.ChangePasswordForm.submit();
+        }
+        </script>
+    </head>
+    
+    <body id="page5">
+        <div class="main">
+            <!--==============================header=================================-->
+            <header>
+                <div class="container_12">
+                    <div class="wrapper">
+                        <div class="grid_12">
+                            <div class="wrapper border-bot">
+                                <h1><a href="../home.jsp">Library</a></h1>
+                                <nav>
+                                    <ul class="menu">
+                                        <li><b><% out.print(session.getAttribute("username"));%></b></li>
+                                        <li><a class="active" href="${pageContext.request.contextPath}/home.jsp">Main</a></li>
+                                    <li><a href="logout.jsp">Logout</a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+
                         </div>
-                        
                     </div>
                 </div>
-            </div>
-        </header>
-        
-        <!--==============================content================================-->
-        <section id="content"><div class="ic"><div class="inner_copy">All <a href="http://www.magentothemesworld.com" title="Best Magento Templates">premium Magento themes</a> at magentothemesworld.com!</div></div>
-            <div class="container_12">
-                <div class="wrapper">
-                    <article class="grid_8">
-                    	<div class="indent-right">
-                        	<h3 class="prev-indent-bot">City Form</h3>
-                                    <div class="success_box">All of the fields were successfully validated!</div>
-                                    <div class="error_box"></div>
-                                     <%
-                                            String action = "../AddCity";
-                                            int id = 0;
-                                            String shortName = "";
-                                            String name = "";
-                                            if (request.getParameter("id") != null) {
-                                                action = "../ModifyCity";
-                                                id = Integer.parseInt(request.getParameter("id"));
-                                                CityBean citBean = new CityBean();
-                                                City cit = citBean.getCity(id);
-                                                id = cit.getId();
-                                                shortName = cit.getShortName();
-                                                name = cit.getName();
-                                            }
-                                        %>
-                            <form id="form" name="form" action="<%= action%>" method="post" enctype="multipart/form-data">                    
-                                <fieldset>
-                                       <input type="hidden" id="txtCityId" name="txtCityId" value ="<%=String.valueOf(id)%>">
-                                      <label><span class="text-form">Short Name* </span><input type="text" class="inputText" id="txtCityShortName" 
-                                             name="txtCityShortName" value="<%= shortName%>"></label>
-                                      <label><span class="text-form">Name* </span><input type="text" class="inputText" id="txtCityName" name="txtCityName" 
-                                       value="<%= name%>"></label>                              
-                                      
-					<div class="wrapper">
-                                        <div class="extra-wrap">
-											
-                                            <div class="buttons">
-							<input type="submit" name="Submit" value="Submit" class="button"/>
-                                                        <a href="viewCity.jsp"><input type="button" name="Cancel" value="Cancel" class="button"/></a>
-                                            </div> 
-										
-                                        </div>
-										
-                                      </div>                      
-                                </fieldset>						
-                            </form>
-                        </div>
-                    </article>
-                    
-                </div>
-            </div>
-          </section>
-        
-        <!--==============================footer=================================-->
-        <footer>
-        	<div class="inner">
-            	<div class="footer-bg">
-                	Guide.com &copy; 2012
-                    <span><a class="link" target="_blank" href="http://www.templatemonster.com/" rel="nofollow">Website Template</a> by TemplateMonster.com</span><span>More <a href="http://www.websitetemplatesonline.com" title="WTO - website templates and Flash templates">Free Web Templates</a> at WTO. All <a href="http://www.magentothemesworld.com" title="Best Magento Templates">premium Magento themes</a> at magentothemesworld.com!</span>
-                </div>
-            </div>
-        </footer>
-    </div>
-	<script type="text/javascript"> Cufon.now(); </script>
-</body>
-<script type="text/javascript">
+            </header>
 
-new FormValidator('form', [{
-    name: 'txtCityShortName',
-    display: 'Short Name',    
-    rules: 'required'
-},
-{
-    name: 'txtCityName',
-    display: 'Name',    
-    rules: 'required'
-}], function(errors, event) {
-    var SELECTOR_ERRORS = $('.error_box'),
-        SELECTOR_SUCCESS = $('.success_box');
-        
-    if (errors.length > 0) {
-        SELECTOR_ERRORS.empty();
-        
-        for (var i = 0, errorLength = errors.length; i < errorLength; i++) {
-            SELECTOR_ERRORS.append(errors[i].message + '<br />');
-        }
-        
-        SELECTOR_SUCCESS.css({ display: 'none' });
-        SELECTOR_ERRORS.fadeIn(200);
-    } else {
-        SELECTOR_ERRORS.css({ display: 'none' });
-        SELECTOR_SUCCESS.fadeIn(200);
-        document.getElementById("form").submit();
-    }
-    
-    if (event && event.preventDefault) {
-        event.preventDefault();
-    } else if (event) {
-        event.returnValue = false;
-    }
-});
-</script>
+            <!--==============================content================================-->
+      
+                                
+            <section id="content"><div class="ic"></div>
+                <div class="container_12">
+                    <div class="wrapper">
+                        <article class="grid_8">
+                            <div class="indent-right">
+                                <h3 class="prev-indent-bot">Edit <%=request.getParameter("pvc_name")%> to Library database</h3>
+
+                                <div id="content3"> 
+                                    <div class="success_box">All of the fields were successfully validated!</div>
+                                    <!--div class="error_box"></div><div>error!</div-->
+                                    <%
+                                    // query province data using a form id        
+                                       ProvinceBean pvcBean = new ProvinceBean();
+                                       Province pvc1 = pvcBean.getProvince(Integer.parseInt(request.getParameter("pvc1_id")));
+                                    
+                                    //generate country list
+                                        CountryBean countriesBean = new CountryBean();
+                                        List<Country> Countrieslist = countriesBean.getCountries();  
+                                        pageContext.setAttribute("Countrieslist1", Countrieslist);
+                                       
+                                    // Get country information  
+                                        CountryBean countryBean = new CountryBean();
+                                        Country pvcCountry = countryBean.getCountry(pvc1.getcountry());  
+                                   
+                                    %>
+
+                                    
+                                    <form id="form" name="form" action="../updateProvince" method="post" OnSubmit="return fncSubmit();" >                    
+                                        <fieldset>
+                                            <input type="hidden" name="pvc_id" value="<%=pvc1.getId()%>" />
+                                            <label><span class="text-form">Province Name </span><input type="text" class="inputText" name="provincename" value="<%=pvc1.getName()%>"><% if (request.getParameter("existingprovincename") != null) { out.println("<b>The province you are trying to enter <br />already exists!</b>"); }%></label>
+                                            <label><span class="text-form">Province Code: </span><input type="text" class="inputText" name="provincecode" value="<%=pvc1.getCode()%>"></label>
+                                           
+                                            <label><span class="text-form">Country: </span>
+                                            <select name="country" id="country">
+                                            <c:forEach items="${Countrieslist1}" var="cnt1">
+                                                <c:set var="usercnt" value="<%=pvc1.getcountry()%>"/>
+                                                <option value="${cnt1.id}" <c:if test="${cnt1.id == usercnt}">selected="selected"</c:if> >${cnt1.name}</option>
+                                            </c:forEach> 
+                                              
+                                                
+                                            </select>
+                                            <div class="wrapper">
+                                                <div class="extra-wrap">		
+                                                    <div class="buttons">
+                                                        <input type="submit" name="Submit" value="Update" class="button"  />
+                                                        <a href="indexProvince.jsp"><input type="button" name="Cancel" value="Cancel" class="button"/></a>
+                                                    </div> 
+                                                </div>
+                                            </div>                      
+                                        </fieldset>						
+
+                                    </form>
+                                    
+                                    
+
+                                </div>
+                            </div>
+                        </article>
+
+                    </div>
+                </div>
+            </section>
+
+
+            <!--==============================footer=================================-->
+            <footer>
+                <div class="inner">
+                    <div class="footer-bg">
+                        ISAE &copy; 2014
+                    </div>
+                </div>
+            </footer>
+        </div>
+        <script type="text/javascript"> Cufon.now();</script>
+    </body>
+   
 </html>

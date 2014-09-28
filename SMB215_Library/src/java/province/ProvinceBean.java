@@ -144,13 +144,13 @@ public class ProvinceBean {
             con = DriverManager.getConnection(dbCon.getDATABASE_URL(),
                     dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
             stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("Select * From tbl_province Where pvc_id=" + id);
+            ResultSet rs = stmt.executeQuery("Select * From province Where pvc_id=" + id);
             if (rs.next()) {
                 pvc = new Province();
                 pvc.setId(rs.getInt(1));
-                pvc.setShortName(rs.getString(2));
+                pvc.setCode(rs.getString(2));
                 pvc.setName(rs.getString(3));
-                pvc.setcountry(rs.getInt(3));
+                pvc.setcountry(rs.getInt(4));
             }
         } catch (SQLException | ClassNotFoundException ex) {
             System.err.println("Caught Exception: " + ex.getMessage());
@@ -179,12 +179,12 @@ public class ProvinceBean {
             con = DriverManager.getConnection(dbCon.getDATABASE_URL(),
                     dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
 
-            pstmt = con.prepareStatement("Update tbl_province Set pvc_shortname=?, "
-                    + "pvc_name=? Where pvc_id=?");
-            pstmt.setString(1, pvc.getShortName());
+            pstmt = con.prepareStatement("Update province Set pvc_code=?, "
+                    + "pvc_name=?, country_id=? Where pvc_id=?");
+            pstmt.setString(1, pvc.getCode());
             pstmt.setString(2, pvc.getName());
-            pstmt.setInt(4, pvc.getcountry());
-            pstmt.setInt(3, pvc.getId());
+            pstmt.setInt(3, pvc.getcountry());
+            pstmt.setInt(4, pvc.getId());
             pstmt.executeUpdate();
         } catch (SQLException | ClassNotFoundException ex) {
             System.err.println("Caught Exception: " + ex.getMessage());
