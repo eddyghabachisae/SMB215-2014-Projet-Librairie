@@ -246,7 +246,7 @@ h3 {
 	line-height:1.8em; 
 	color:#4c4c4c;
 	letter-spacing:-2px;
-	background:url(../images/h3-tail.gif) 0 bottom repeat-x;
+	//background:url(../images/h3-tail.gif) 0 bottom repeat-x;
 	margin-bottom:8px;
 }
 h5 {color:#4c4c4c; font-weight:normal;}

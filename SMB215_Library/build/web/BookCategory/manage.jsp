@@ -35,10 +35,17 @@
             <section id="content">
                 <div class="container_12">
                     <div class="wrapper">
+                        <h3 class="">Book Categories</h3>
+                        <a href="./GetItems"><input type="submit" name="Submit" value="Back To Items" class="button"/></a>
                         <div class="pull-right">
                             <a href="GetBookCategory"><input type="submit" name="Submit" value="Add New Category" class="button"/></a>
                         </div>
                         <div class="clear2"></div>
+                         <%
+                             if(!request.getParameter("listSize").equals("0"))
+                             {
+                            
+                          %>
                         <div class="CSSTableGenerator" >
                             <table >
                                 <tbody>
@@ -59,8 +66,13 @@
                                 </c:forEach>
                                 </tbody>
                             </table>
+                              <%}
+                             else{
+                            %>
+                            <br>
+                            <div class="emptyList_box">List is Empty!</div>
+                            <%}%>
                         </div>
-                        <div class="clear"></div>
                        
 
 
