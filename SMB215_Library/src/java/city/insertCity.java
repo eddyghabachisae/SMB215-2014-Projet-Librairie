@@ -3,6 +3,7 @@ package city;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.sql.SQLException;
@@ -19,40 +20,36 @@ import main.DBconnection;
 public class insertCity extends HttpServlet {
 
 @Override
-protected void doPost(HttpServletRequest req, HttpServletResponse response) throws ServletException, IOException /*ParseException*/ {
-        String form_citname = req.getParameter("cityname");
-            //Get first name
-        String form_citcode = req.getParameter("citycode");
-            //Get last name
+   protected void doPost(HttpServletRequest req, HttpServletResponse response) throws ServletException, IOException /*ParseException*/ {
+         
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        try {
+
+            
+            String form_citname = req.getParameter("cityname");
+                //Get first name
+            String form_citcode = req.getParameter("citycode");
+                //Get last name
         
         // establish connection *************************************
-            Connection con = null;
+           
             DBconnection dbCon = new DBconnection();
-            try {
-                Class.forName(dbCon.getJDBC_DRIVER());
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(insertCity.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            try {
-                con = DriverManager.getConnection(dbCon.getDATABASE_URL(),
-                        dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
-            } catch (SQLException ex) {
-                Logger.getLogger(insertCity.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            Class.forName(dbCon.getJDBC_DRIVER());
+            con = DriverManager.getConnection(dbCon.getDATABASE_URL(),
+                    dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
             Statement stmt = null; 
         
             // Check if CITY EXISTS             
             stmt = con.createStatement();
             ResultSet rs;
-            try {
+            
                 rs = stmt.executeQuery("Select cty_name From city where cty_name='" + form_citname + "'");
-            } catch (SQLException ex) {
-                Logger.getLogger(insertCity.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            String newuser;
+   
+            
             while (rs.next()) 
             {
-            if(!rs.next()) // if no such user exists
+            if(!rs.next()) // if no such city exists
                 {
         
                 City cit = new City();
@@ -65,11 +62,34 @@ protected void doPost(HttpServletRequest req, HttpServletResponse response) thro
             else
                 {
                 // Go back to modify profile page ******************************
-                  response.sendRedirect("Client/editClient.jsp?existingusername=true");
+                  response.sendRedirect("city/addCity.jsp?existingcityname=true");
                 }
             }
-    }
+    
 
 
 
+        } catch (SQLException | ClassNotFoundException ex) {
+                    System.err.println("Caught Exception: " + ex.getMessage());
+                //} catch (ParseException ex) {
+             //     Logger.getLogger(SaveClient.class.getName()).log(Level.SEVERE, null, ex);
+               } finally {
+                    try {
+                        if (pstmt != null) {
+                            pstmt.close();
+                        }
+                        if (con != null) {
+                            con.close();
+                        }
+                    } 
+                            catch (SQLException ex) {
+                        System.err.println("Caught Exception: " + ex.getMessage());
+                    }   
+            }
 }
+}
+
+
+
+       
+

@@ -41,15 +41,23 @@
                             <a href="./GetBooks"><input type="submit" name="Submit" value="New Rent Order" class="button"/></a>
                         </div>
                         <div class="clear2"></div>
-                         <%
+                            `<%
                              if(!request.getParameter("listSize").equals("0"))
                              {
                             
                             %> 
-                        <div class="CSSTableGenerator" >
+                            <form id="form" name="form" action="SearchByNumber" method="post" >
+                                <label><span class="text-form">Search By Order Number</span> <input type="text" class="inputText" id="orderNb" 
+                                                        name="orderNb" value=""><input type="submit" name="Submit" value="Search" class="button"/></label> 
+                            </form>
+                            <% if(request.getParameter("isFilteringMode")!=null && request.getParameter("isFilteringMode").equals("true")) {%>
+                            <a href="GetRentHeaders"><input type="submit" name="Submit" value="Show All" class="button"/></a>
+                            <%}%>
+                          <div class="CSSTableGenerator" >
                             <table >
                                 <tbody>
                                     <tr>
+                                        <td width="10%"># Number</td>
                                         <td>Customer Name</td>
                                         <td>Submit Date</td>
                                         <td>Books Nb</td>
@@ -57,6 +65,7 @@
                                     </tr>
                                 <c:forEach items="${rentHeadersList}" var="rent">
                                     <tr>
+                                        <td>${rent.getId()}</td>
                                         <td>${rent.getCutomerName()}</td>
                                         <td>${rent.submitDate}</td>
                                         <td>${rent.getBooksNb()}</td>

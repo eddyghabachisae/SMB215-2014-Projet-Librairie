@@ -43,15 +43,17 @@
                                 <div id="content3"> 
                                     <p><b>Cutomer  Name:</b> <%=request.getParameter("customer")%></p>
                                     <p><b>OrderDate    :</b> <%=request.getParameter("orderDate")%></p>
-                                    
-			
+                                    <% if(request.getParameter("isLate").equals("true")){%>
+                                    <div class="msg_box">The Customer has not Return These Books! He is Late <%=request.getParameter("lateDays")%> Days !</div>
+			            <%}%>
                             <br>
                             <div class="CSSTableGenerator" >
                             <table id="booksTable">
                                 <tbody>
                                     <tr>
                                         <td width="70%">Book Name</td>
-                                        <td width="10%">Rent Price</td>
+                                        <td width="20%">Rent Price</td>
+                                        <td width="20%">Return Date</td>
                                         <td width="2%">Actions</td>
                                     </tr>
                                 <c:forEach items="${rentDetailsList}" var="det">
@@ -59,12 +61,32 @@
                                         <td>${det.getBook().title}</td>
                                         <td>${det.getBook().rentPrice} <%=request.getParameter("currency")%></td>
                                         <td>
-                                            <a  onclick="" title="Return" class="fa fa-lg  fa-mail-reply-all"></a> 
-                                        </td>
+                                            <c:choose>
+                                            <c:when test="${det.getReturnedDate()!=null}" >
+                                            ${det.getReturnedDate()}
+                                            </c:when>
+                                                <c:otherwise>
+                                                    Not Returned!
+                                                </c:otherwise>
+                                             </c:choose>
+                                            </td>
+                                        <td>
+                                            <c:choose>
+                                            <c:when test="${det.getReturnedDate()==null}" >
+                                            <form id="form" name="form" action="ReturnBook?id=${det.getId()}" method="post" > 
+                                            <input type="hidden" value="<%= session.getAttribute("userid")%>" name="employee"/>
+                                            <input type="submit" name="Submit" value="Submit" class="button"/>
+                                            </form>
+                                            </c:when>
+                                                <c:otherwise>
+                                                   Returned!
+                                                </c:otherwise>
+                                             </c:choose>
+                                       </td>
                                     </tr>
                                 </c:forEach>
                                     <tr>
-                                        <td colspan="3"><span id="total" style="margin-left:80%;"> Total: <%= request.getParameter("total")%></span></td>
+                                        <td colspan="4"><span id="total" style="margin-left:80%;"> Total: <%= request.getParameter("total")%></span></td>
                                     </tr>
                                 </tbody>
                             </table>        
