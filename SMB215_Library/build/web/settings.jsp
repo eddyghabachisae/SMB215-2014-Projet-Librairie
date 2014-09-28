@@ -56,7 +56,7 @@
                 </article>
                 <article class="grid_2">
                     <div class="box">
-					  <a href="province/viewProvince.jsp" class="imgCenter"> <figure class="fa-5x fa fa-globe blueColor"></figure></a>
+					  <a href="province/indexProvince.jsp" class="imgCenter"> <figure class="fa-5x fa fa-globe blueColor"></figure></a>
                         <div class="padding">
                             <strong class="title-3 ">Provinces</strong>
                         </div>
