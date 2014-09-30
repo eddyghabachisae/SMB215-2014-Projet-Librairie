@@ -1,4 +1,5 @@
 
+<%@page import="country.*"%>
 <%@page import="province.*"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.Iterator"%>
@@ -7,6 +8,7 @@
 <%@page import="Marital.*"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html">
         <% 
@@ -49,10 +51,11 @@
                                 Object attribute = request.getSession().getAttribute("userid");
                                 long userId = Long.parseLong(String.valueOf(attribute));   
                                 
-                                //generate Cities list
+                                //generate provinces list
                                 ProvinceBean ProvincesBean = new ProvinceBean();
                                 List<Province> Provinceslist = ProvincesBean.getProvinces();  
                                 pageContext.setAttribute("Provinceslist1", Provinceslist);
+ 
                                 %>
                                 
                            <br />
@@ -76,13 +79,19 @@
                                 <tr>
                                      <td width="200px">${pvc1.name}</td>
                                      <td>${pvc1.code}</td>
-                                     <td>${pvc1.country}</td>
+                                     <c:set var="cntid" value="${pvc1.country}"/>
+                                       <jsp:useBean id="country" class="country.pickCountry" /> 
+                                               <c:set target="${country}" property="id" value="1" />
+                                     <td></td>
                                      <td>
                                          <a href="editProvince.jsp?pvc1_id=${pvc1.id}&pvc1_name=${pvc1.name}"><input type="submit" name="Submit" value="Edit Province" class="button"></a>
                                          <a href="deleteProvince.jsp?pvc1_id=${pvc1.id}&pvc1_name=${pvc1.name}"><input type="submit" name="Submit" value="Delete Province" class="button"></a>
                                      </td>
                                 </tr>
                                 </c:forEach>
+                                <tr>
+
+                                </tr>
 
                             </table>
             </section>           
