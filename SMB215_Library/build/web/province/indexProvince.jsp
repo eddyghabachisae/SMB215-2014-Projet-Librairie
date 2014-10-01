@@ -80,8 +80,7 @@
                                      <td width="200px">${pvc1.name}</td>
                                      <td>${pvc1.code}</td>
                                      <c:set var="cntid" value="${pvc1.country}"/>
-                                       <jsp:useBean id="country" class="country.pickCountry" /> 
-                                               <c:set target="${country}" property="id" value="1" />
+                                      
                                      <td></td>
                                      <td>
                                          <a href="editProvince.jsp?pvc1_id=${pvc1.id}&pvc1_name=${pvc1.name}"><input type="submit" name="Submit" value="Edit Province" class="button"></a>

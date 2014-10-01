@@ -1,5 +1,6 @@
 package province;
 
+import country.Country;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -67,6 +68,7 @@ public class ProvinceBean {
 
     public List<Province> getProvinces() {
         List<Province> list = new ArrayList<>();
+
         Connection con = null;
         Statement stmt = null;
         try {
@@ -77,15 +79,24 @@ public class ProvinceBean {
                     dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
 
             stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("Select * From province "
-                    + "order by pvc_name");
+            ResultSet rs = stmt.executeQuery("SELECT `province`.`pvc_id`" +
+", `province`.`pvc_code`" +
+", `province`.`pvc_name`" +
+", `province`.`country_id`" +
+", `country`.`cnt_name`" +
+"FROM" +
+" `librarydb`.`province`" +
+" INNER JOIN `librarydb`.`country`" +
+" ON (`province`.`country_id` = `country`.`cnt_id`);");
             while (rs.next()) {
                 Province pvc = new Province();
                 pvc.setId(rs.getInt(1));
                 pvc.setCode(rs.getString(2));
                 pvc.setName(rs.getString(3));
                 pvc.setcountry(rs.getInt(4));
+
                 list.add(pvc);
+;
             }
         } catch (SQLException | ClassNotFoundException ex) {
             System.err.println("Caught Exception: " + ex.getMessage());
