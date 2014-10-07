@@ -75,7 +75,7 @@
                                             <c:when test="${det.getReturnedDate()==null}" >
                                             <form id="form" name="form" action="ReturnBook?id=${det.getId()}" method="post" > 
                                             <input type="hidden" value="<%= session.getAttribute("userid")%>" name="employee"/>
-                                            <input type="submit" name="Submit" value="Submit" class="button"/>
+                                            <input type="submit" name="Submit" value="Return" class="button"/>
                                             </form>
                                             </c:when>
                                                 <c:otherwise>
