@@ -57,6 +57,7 @@
                             <table >
                                 <tbody>
                                     <tr>
+                                        <td width="10%">Lateness</td>
                                         <td width="10%"># Number</td>
                                         <td>Customer Name</td>
                                         <td>Submit Date</td>
@@ -65,6 +66,17 @@
                                     </tr>
                                 <c:forEach items="${rentHeadersList}" var="rent">
                                     <tr>
+                                        <td>
+                                           <c:choose>
+                                            <c:when test="${rentHeaderMap.get(rent).equals('Late')}" >
+                                                <span style="color: red" class="fa fa-lg fa-exclamation-triangle" title="Late"></span>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <span style="color: green" class="fa fa-lg fa-exclamation-triangle" title="Not Late"></span> 
+                                            </c:otherwise>
+                                            </c:choose>
+                                        
+                                        </td>
                                         <td>${rent.getId()}</td>
                                         <td>${rent.getCutomerName()}</td>
                                         <td>${rent.submitDate}</td>
