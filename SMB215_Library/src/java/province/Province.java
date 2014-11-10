@@ -6,6 +6,7 @@ public class Province {
     private String name;
     private String code;
     private int country;
+    private String countryname;
 
     public int getId() {
         return id;
@@ -37,5 +38,13 @@ public class Province {
 
     public void setcountry(int country) {
         this.country = country;
+    }
+    
+    public String getCountryname() {
+        return countryname;
+    }
+
+    public void setCountryname(String countryname) {
+        this.countryname = countryname;
     }
 }

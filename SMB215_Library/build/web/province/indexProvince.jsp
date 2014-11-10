@@ -81,7 +81,7 @@
                                      <td>${pvc1.code}</td>
                                      <c:set var="cntid" value="${pvc1.country}"/>
                                       
-                                     <td></td>
+                                     <td>${pvc1.countryname}</td>
                                      <td>
                                          <a href="editProvince.jsp?pvc1_id=${pvc1.id}&pvc1_name=${pvc1.name}"><input type="submit" name="Submit" value="Edit Province" class="button"></a>
                                          <a href="deleteProvince.jsp?pvc1_id=${pvc1.id}&pvc1_name=${pvc1.name}"><input type="submit" name="Submit" value="Delete Province" class="button"></a>

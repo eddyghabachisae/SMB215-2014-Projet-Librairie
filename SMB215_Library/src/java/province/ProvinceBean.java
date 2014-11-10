@@ -94,7 +94,7 @@ public class ProvinceBean {
                 pvc.setCode(rs.getString(2));
                 pvc.setName(rs.getString(3));
                 pvc.setcountry(rs.getInt(4));
-
+                pvc.setCountryname(rs.getString(5));
                 list.add(pvc);
 ;
             }
