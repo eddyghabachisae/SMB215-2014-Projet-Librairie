@@ -1,17 +1,21 @@
 package Client;
 
-import Client.ClientBook.*;
-import city.*;
-import city.*;
 import java.io.DataInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -20,18 +24,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import main.DBconnection;
+import org.apache.commons.fileupload.*;
+import org.apache.commons.fileupload.disk.*;
+import org.apache.commons.fileupload.servlet.*;
+import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.io.output.*;
 
 @WebServlet(name = "SaveClient", urlPatterns = {"/SaveClient"})
-public class SaveClient extends HttpServlet {
+public class saveClientold extends HttpServlet {
 
-      @Override
+   
+   @Override
    protected void doPost(HttpServletRequest req, HttpServletResponse response) throws ServletException, IOException /*ParseException*/ {
          
         Connection con = null;
         PreparedStatement pstmt = null;
-        PreparedStatement pstmt1 = null;
         try {
-            
             // get form variables *******************************************
             //Get Session id
             Object attribute = req.getSession().getAttribute("userid");
@@ -107,11 +115,11 @@ public class SaveClient extends HttpServlet {
                 }
             }
             }
-               
+
         } catch (SQLException | ClassNotFoundException ex) {
             System.err.println("Caught Exception: " + ex.getMessage());
         //} catch (ParseException ex) {
-     //     Logger.getLogger(SaveClient.class.getName()).log(Level.SEVERE, null, ex);
+     //     Logger.getLogger(saveClientold.class.getName()).log(Level.SEVERE, null, ex);
        } finally {
             try {
                 if (pstmt != null) {
@@ -127,4 +135,5 @@ public class SaveClient extends HttpServlet {
         
     }
     
+       
 }

@@ -129,11 +129,10 @@
                                     <div class="success_box">All of the fields were successfully validated!</div>
                                     <!--div class="error_box"></div><div>error!</div-->
 
-                                    <form id="form" name="form" action="../SaveClient" method="post" OnSubmit="return fncSubmit();" enctype="multipart/form-data" >                    
+                                    <form id="form" name="form" action="../SaveClient" method="post" OnSubmit="return fncSubmit();">                    
                                         <fieldset>
                                             <input type="hidden" name="id" value="<%=request.getSession().getAttribute("userid")%>">
-                                            <label for="file"><span class="text-form">Change your photo:</span>
-                                            <input type="file" class="inputText" name="file" id="file" /><br/></label>
+
                                             <label><span class="text-form">Username: </span><input type="text" class="inputText" name="username" value="<%=clt1.getUsername()%>"><% if (request.getParameter("existingusername") != null) { out.println("<b>The username you chose already taken!</b>"); }%></label>
                                             <label><span class="text-form">First Name: </span><input type="text" class="inputText" name="firstname" value="<%=clt1.getFirstname()%>"></label>
                                             <label><span class="text-form">Last Name: </span><input type="text" class="inputText" name="lastname" value="<%=clt1.getLastname()%>"></label>

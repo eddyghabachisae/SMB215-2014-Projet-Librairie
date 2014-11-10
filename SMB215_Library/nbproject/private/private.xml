@@ -3,11 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/dany.wazen/Documents/GitHub/SMB215-2014-Projet-Librairie/SMB215_Library/web/settings.jsp</file>
-            <file>file:/C:/Users/dany.wazen/Documents/GitHub/SMB215-2014-Projet-Librairie/SMB215_Library/src/java/province/ProvinceBean.java</file>
-            <file>file:/C:/Users/dany.wazen/Documents/GitHub/SMB215-2014-Projet-Librairie/SMB215_Library/src/java/province/deleteProvince.java</file>
             <file>file:/C:/Users/dany.wazen/Documents/GitHub/SMB215-2014-Projet-Librairie/SMB215_Library/src/java/province/Province.java</file>
+            <file>file:/C:/Users/dany.wazen/Documents/GitHub/SMB215-2014-Projet-Librairie/SMB215_Library/src/java/country/CountryBean.java</file>
+            <file>file:/C:/Users/dany.wazen/Documents/GitHub/SMB215-2014-Projet-Librairie/SMB215_Library/src/java/country/pickCountry.java</file>
+            <file>file:/C:/Users/dany.wazen/Documents/GitHub/SMB215-2014-Projet-Librairie/SMB215_Library/src/java/country/Country.java</file>
+            <file>file:/C:/Users/dany.wazen/Documents/GitHub/SMB215-2014-Projet-Librairie/SMB215_Library/src/java/city/CityBean.java</file>
+            <file>file:/C:/Users/dany.wazen/Documents/GitHub/SMB215-2014-Projet-Librairie/SMB215_Library/web/province/editProvince.jsp</file>
+            <file>file:/C:/Users/dany.wazen/Documents/GitHub/SMB215-2014-Projet-Librairie/SMB215_Library/src/java/province/insertProvince.java</file>
+            <file>file:/C:/Users/dany.wazen/Documents/GitHub/SMB215-2014-Projet-Librairie/SMB215_Library/web/province/addProvince.jsp</file>
+            <file>file:/C:/Users/dany.wazen/Documents/GitHub/SMB215-2014-Projet-Librairie/SMB215_Library/src/java/country/GetCountry.java</file>
+            <file>file:/C:/Users/dany.wazen/Documents/GitHub/SMB215-2014-Projet-Librairie/SMB215_Library/src/java/province/ProvinceBean.java</file>
             <file>file:/C:/Users/dany.wazen/Documents/GitHub/SMB215-2014-Projet-Librairie/SMB215_Library/web/province/indexProvince.jsp</file>
+            <file>file:/C:/Users/dany.wazen/Documents/GitHub/SMB215-2014-Projet-Librairie/SMB215_Library/src/java/branch/Branch.java</file>
             <file>file:/C:/Users/dany.wazen/Documents/GitHub/SMB215-2014-Projet-Librairie/SMB215_Library/web/province/deleteProvince.jsp</file>
         </group>
     </open-files>

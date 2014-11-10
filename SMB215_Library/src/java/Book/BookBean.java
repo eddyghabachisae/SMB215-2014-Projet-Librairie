@@ -27,7 +27,7 @@ public class BookBean {
                     dbCon.getDB_USERNAME(), dbCon.getDB_PASSWORD());
 
             stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("Select * From book order by bok_id");
+            ResultSet rs = stmt.executeQuery("Select * From book order by bok_title");
         
             while (rs.next()) {
                 Book book = new Book();
