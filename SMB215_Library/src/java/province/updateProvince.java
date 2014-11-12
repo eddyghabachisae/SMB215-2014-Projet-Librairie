@@ -49,7 +49,7 @@ public class updateProvince extends HttpServlet {
                           
             // Check if province exists
             stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("Select pvc_name From province where pvc_name='" + form_pvcname + "' & country_id =" + form_cntid);
+            ResultSet rs = stmt.executeQuery("Select pvc_name From province where pvc_name='" + form_pvcname + "' AND country_id =" + form_cntid);
             int newprovince;
             
             if(!rs.next()) // if no such province exists
@@ -67,7 +67,7 @@ public class updateProvince extends HttpServlet {
                     }    
             //city exisit    
             else { 
-            ResultSet rs1 = stmt.executeQuery("Select pvc_id From province where pvc_name='" + form_pvcname + "'");
+            ResultSet rs1 = stmt.executeQuery("Select pvc_id From province where pvc_name='" + form_pvcname + "' AND country_id =" + form_cntid);
             while (rs1.next()) 
             {
                 newprovince = rs1.getInt(1); 
@@ -88,7 +88,7 @@ public class updateProvince extends HttpServlet {
                 else
                     {
                     // Go back to modify profile page ******************************
-                      response.sendRedirect("city/editCity.jsp?existingprovincename=true&cit_id=" + form_id);
+                     response.sendRedirect("province/editProvince.jsp?pvc1_id=" + form_id + "&&pvc1_name=" + form_pvcname + "&&existingprovincename=true");
                     }
                 }
     

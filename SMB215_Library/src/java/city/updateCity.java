@@ -44,7 +44,7 @@ public class updateCity extends HttpServlet {
         
             // Check if CITY EXISTS             
                           
-            // Check if old password match
+            // Check if old city match
             stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("Select cty_id From city where cty_name='" + form_citname + "'");
             int newcity;
@@ -61,7 +61,7 @@ public class updateCity extends HttpServlet {
                     citBean.modifyCity(cit);
                     response.sendRedirect("city/indexCity.jsp");
                     }    
-            //city exisit    
+            //city exist    
             else { 
             ResultSet rs1 = stmt.executeQuery("Select cty_id From city where cty_name='" + form_citname + "'");
             while (rs1.next()) 
